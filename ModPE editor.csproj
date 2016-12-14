@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Autocomplete.cs" />
+    <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="CoreEngine.cs" />
     <Compile Include="fAutocompleteItems.cs">
       <SubType>Form</SubType>

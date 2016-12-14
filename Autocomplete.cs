@@ -23,11 +23,6 @@ namespace ModPE_editor
             menu.Items.SetAutocompleteItems(dynamic);
         }
 
-        public static void FindVars()
-        {
-            dynamic?.findVars();
-        }
-
         private static ImageList LoadImages()
         {
             ImageList images = new ImageList();
@@ -52,29 +47,11 @@ namespace ModPE_editor
     {
         private AutocompleteMenu menu;
         private FastColoredTextBox tb;
-        private List<AutocompleteItem> vars = new List<AutocompleteItem>();
 
         public DynamicCollection(AutocompleteMenu menu, FastColoredTextBox tb)
         {
             this.menu = menu;
             this.tb = tb;
-            findVars();
-        }
-
-        public void findVars()
-        {
-            vars.Clear();
-            Regex regex = new Regex(@"\b(var)\s+(?<range>[\w_]+?)\b");
-            foreach (Match match in regex.Matches(tb.Text))
-                vars.Add(new AutocompleteItem(match.Value.Split(' ')[1]));
-            regex = new Regex(@"\bfunction\b");
-            foreach(var line in tb.Lines)
-                if (regex.IsMatch(line) && line.IndexOf('(') != -1 && line.IndexOf(')') != -1)
-                {
-                    string params_line = line.Split('(')[1].Split(')')[0];
-                    foreach (var param in params_line.Split(','))
-                        vars.Add(new AutocompleteItem(param));
-                }
         }
 
         public IEnumerator<AutocompleteItem> GetEnumerator()
@@ -89,7 +66,8 @@ namespace ModPE_editor
                 if (parts.Length < 2)
                 {
                     items.AddRange(CoreEngine.GetDefaultList());
-                    items.AddRange(vars);
+                    foreach (var item in CodeAnalysisEngine.Variables)
+                        items.Add(new AutocompleteItem(item));
                     foreach (var item in items)
                         yield return item;
                 }
@@ -105,7 +83,8 @@ namespace ModPE_editor
                 if (parts.Length < 2)
                 {
                     items.AddRange(ModPe.GetDefaultList());
-                    items.AddRange(vars);
+                    foreach (var item in CodeAnalysisEngine.Variables)
+                        items.Add(new AutocompleteItem(item));
                     foreach (var item in items)
                         yield return item;
                 }
