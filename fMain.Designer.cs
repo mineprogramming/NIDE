@@ -51,6 +51,7 @@
             this.tsmiOpenJS = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenModpkg = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenCoreEngine = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenRecent = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
@@ -103,7 +104,6 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
@@ -179,6 +179,7 @@
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNew,
             this.tsmiOpen,
+            this.tsmiOpenRecent,
             this.tsmiSave,
             this.tsmiSaveAs});
             this.tsmiFile.Name = "tsmiFile";
@@ -274,6 +275,13 @@
             this.tsmiOpenCoreEngine.Size = new System.Drawing.Size(175, 22);
             this.tsmiOpenCoreEngine.Text = "CoreEngine project";
             this.tsmiOpenCoreEngine.Click += new System.EventHandler(this.tsmiOpenCoreEngine_Click);
+            // 
+            // tsmiOpenRecent
+            // 
+            this.tsmiOpenRecent.Name = "tsmiOpenRecent";
+            this.tsmiOpenRecent.Size = new System.Drawing.Size(186, 22);
+            this.tsmiOpenRecent.Text = "Open recent";
+            this.tsmiOpenRecent.Click += new System.EventHandler(this.tsmiOpenRecent_Click);
             // 
             // tsmiSave
             // 
@@ -539,6 +547,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
         private System.Windows.Forms.ToolStripMenuItem tsmiCoreEngineDocs;
         private System.Windows.Forms.ToolStripMenuItem tsmiAutocompleteItems;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenRecent;
     }
 }
 

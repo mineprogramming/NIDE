@@ -66,7 +66,7 @@ namespace ModPE_editor
             SaveWindow();
             e.Cancel = !BeforeClosingFile();
         }
-        
+
         private void tvFolders_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             string nodeName = e.Node.Text;
@@ -131,7 +131,7 @@ namespace ModPE_editor
                 string name = dlgFileName.FileName;
                 if (!name.ToLower().Contains(".png"))
                     name = name + ".png";
-                string path = folder + (ProgramData.Mode == WorkMode.MODPKG?"\\images\\":"\\assets\\") + (dlgFileName.Type == ImageType.ITEMS_OPAQUE ? "items-opaque" : "terrain-atlas");
+                string path = folder + (ProgramData.Mode == WorkMode.MODPKG ? "\\images\\" : "\\assets\\") + (dlgFileName.Type == ImageType.ITEMS_OPAQUE ? "items-opaque" : "terrain-atlas");
                 png.Save(path + "\\" + name);
                 LoadDiretories();
             }
@@ -235,6 +235,16 @@ namespace ModPE_editor
         }
 
         //fileworking
+        private void tsmiOpenRecent_Click(object sender, EventArgs e)
+        {
+            fRecentItems items = new fRecentItems();
+            if (items.ShowDialog() == DialogResult.OK)
+                if (BeforeClosingFile() && LoadFile(fRecentItems.Path))
+                {
+                    saved = true;
+                }
+        }
+
         private void tsmiNewJS_Click(object sender, EventArgs e)
         {
             if (BeforeClosingFile() && CreateJS())
@@ -520,41 +530,71 @@ namespace ModPE_editor
         {
             if (dlgFolder.ShowDialog() == DialogResult.OK)
             {
-                string _folder = dlgFolder.SelectedPath;
-                if (File.Exists(_folder + "\\script\\main.js"))
-                {
-                    folder = _folder;
-                    return InitModpkg();
-                }
-                else
-                {
-                    MessageBox.Show("This folder isn't a modpkg!");
-                    return false;
-                }
+                return LoadModpkg(dlgFolder.SelectedPath);
             }
             else return false;
+        }
+
+        private bool LoadModpkg(string path)
+        {
+            if (File.Exists(path + "\\script\\main.js"))
+            {
+                folder = path;
+                return InitModpkg();
+            }
+            else
+            {
+                MessageBox.Show("This folder isn't a modpkg!");
+                return false;
+            }
         }
 
         private bool LoadCoreEngine()
         {
             if (dlgFolder.ShowDialog() == DialogResult.OK)
             {
-                string _folder = dlgFolder.SelectedPath;
-                if (File.Exists(_folder + "\\main.js") &&
-                    File.Exists(_folder + "\\dev\\.includes") &&
-                    File.Exists(_folder + "\\launcher.js") &&
-                    File.Exists(_folder + "\\mod.info"))
-                {
-                    folder = _folder;
-                    return InitCoreEngine();
-                }
-                else
-                {
-                    MessageBox.Show("This folder isn't a CoreEngine project!");
-                    return false;
-                }
+                return LoadCoreEngine(dlgFolder.SelectedPath);
             }
             else return false;
+        }
+
+        private bool LoadCoreEngine(string path)
+        {
+            if (File.Exists(path + "\\main.js") &&
+                File.Exists(path + "\\dev\\.includes") &&
+                File.Exists(path + "\\launcher.js") &&
+                File.Exists(path + "\\mod.info"))
+            {
+                folder = path;
+                return InitCoreEngine();
+            }
+            else
+            {
+                MessageBox.Show("This folder isn't a CoreEngine project!");
+                return false;
+            }
+        }
+
+        private bool LoadFile(string path)
+        {
+            if (path.Split('\\').Last().Contains("."))
+            {
+                ProgramData.Mode = WorkMode.JAVASCRIPT;
+                tvFolders.Visible = false;
+                return LoadJS(path);
+            }
+            else if (Directory.GetDirectories(path).Contains(path + "\\script"))
+            {
+                ProgramData.Mode = WorkMode.MODPKG;
+                tvFolders.Visible = true;
+                return LoadModpkg(path);
+            }
+            else
+            {
+                ProgramData.Mode = WorkMode.CORE_ENGINE;
+                tvFolders.Visible = true;
+                return LoadCoreEngine(path);
+            }
         }
 
         private bool SaveJS()
@@ -627,7 +667,7 @@ namespace ModPE_editor
                     zip.AddDirectory(folder + "\\assets");
                     zip.Save(folder + "\\" + "resources.zip");
                 }
-                    return true;
+                return true;
             }
             catch (Exception e)
             {
@@ -658,7 +698,16 @@ namespace ModPE_editor
                 key.SetValue("Width", Width.ToString());
                 key.SetValue("Height", Height.ToString());
                 key.SetValue("dvWidth", tvFolders.Width.ToString());
-            }catch (Exception e)
+                if (file != "" && !ProgramData.Recent.Contains(file))
+                {
+                    for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
+                        ProgramData.Recent[i] = ProgramData.Recent[i - 1];
+                    ProgramData.Recent[0] = ProgramData.Mode == WorkMode.JAVASCRIPT ? file : folder;
+                }
+                for (int i = 0; i < ProgramData.Recent.Count(); i++)
+                    key.SetValue("Save" + i, ProgramData.Recent[i]);
+            }
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Cannot save window properties");
                 return false;
@@ -678,9 +727,11 @@ namespace ModPE_editor
                 Height = Convert.ToInt32(key.GetValue("Height"));
                 tvFolders.Width = Convert.ToInt32(key.GetValue("dvWidth"));
                 if (key.GetSubKeyNames().Contains("maximized"))
-                    WindowState = Convert.ToBoolean(key.GetValue("maximized"))? FormWindowState.Maximized:FormWindowState.Normal;
+                    WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
+                for (int i = 0; i < ProgramData.Recent.Count(); i++)
+                    ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Cannot load window properties");
                 return false;
@@ -693,6 +744,6 @@ namespace ModPE_editor
         {
 
         }
-        
+
     }
 }
