@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ModPE_editor
 {
@@ -383,25 +384,7 @@ namespace ModPE_editor
                 fctbMain.OpenFile(file, Encoding.UTF8);
                 CodeAnalysisEngine.Update();
                 tvFolders.Visible = true;
-                xml = new XmlDocument();
-                if (File.Exists(folder + "\\project_info.xml"))
-                {
-                    xml.Load(folder + "\\project_info.xml");
-                }
-                else if (File.Exists(folder + "\\projet_info.xml"))
-                {
-                    xml.Load(folder + "\\projet_info.xml");
-                    xml.Save(folder + "\\project_info.xml");
-                    File.Delete(folder + "\\projet_info.xml");
-                }
-                else
-                {
-                    xml.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><settings></settings>");
-                    XmlElement el = xml.CreateElement("pack");
-                    el.InnerText = "true";
-                    xml.DocumentElement.AppendChild(el);
-                    xml.Save(folder + "\\project_info.xml");
-                }
+                LoadOrCreateXML();
                 LoadDiretories();
                 fctbMain.Language = Language.JS;
                 return true;
@@ -421,6 +404,7 @@ namespace ModPE_editor
                 fctbMain.OpenFile(file, Encoding.UTF8);
                 CodeAnalysisEngine.Update();
                 tvFolders.Visible = true;
+                LoadOrCreateXML();
                 LoadDiretories();
                 fctbMain.Language = Language.JS;
                 return true;
@@ -429,6 +413,57 @@ namespace ModPE_editor
             {
                 MessageBox.Show(e.Message, "Unable to load CoreEngine project");
                 return false;
+            }
+        }
+
+        private bool LoadOrCreateXML()
+        {
+            try
+            {
+                xml = new XmlDocument();
+                if (File.Exists(folder + "\\project_info.xml"))
+                {
+                    xml.Load(folder + "\\project_info.xml");
+                    LoadAutocompleteItems();
+                }
+                else if (File.Exists(folder + "\\projet_info.xml"))
+                {
+                    xml.Load(folder + "\\projet_info.xml");
+                    xml.Save(folder + "\\project_info.xml");
+                    File.Delete(folder + "\\projet_info.xml");
+                    LoadAutocompleteItems();
+                }
+                else
+                {
+                    xml.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><settings></settings>");
+                    if(Directory.GetDirectories(folder).Contains(folder + "\\script"))
+                    {
+                        XmlElement el = xml.CreateElement("pack");
+                        el.InnerText = "true";
+                        xml.DocumentElement.AppendChild(el);
+                    }
+                    xml.Save(folder + "\\project_info.xml");
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Cannot initialize xml");
+                return false;
+            }
+        }
+
+        private void LoadAutocompleteItems()
+        {
+            var items = xml.DocumentElement.GetElementsByTagName("UserAutocompleteItem");
+            if (items.Count != 0)
+            {
+                List<string> list = new List<string>();
+                foreach(var item in items)
+                {
+                    list.Add((item as XmlNode).InnerText);
+                }
+                Autocomplete.UserItems = list.ToArray();
             }
         }
 
@@ -653,13 +688,48 @@ namespace ModPE_editor
                     zip.Save(folder + "\\" + new DirectoryInfo(folder).Name + ".modpkg");
                 }
                 fctbMain.SaveToFile(file, Encoding.UTF8);
-                return true;
+                return SaveAutocompleteItems();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Unable to save .modpkg");
                 return false;
             }
+        }
+
+        private bool SaveAutocompleteItems()
+        {
+            try
+            {
+                if (Autocomplete.UserItems.Length != 0)
+                {
+                    foreach (var item in Autocomplete.UserItems)
+                    {
+                        if (!HasInnerText(xml.DocumentElement.GetElementsByTagName("UserAutocompleteItem"), item))
+                        {
+                            XmlElement el = xml.CreateElement("UserAutocompleteItem");
+                            el.InnerText = item;
+                            xml.DocumentElement.AppendChild(el);
+                        }
+                    }
+                }
+                xml.Save(folder + "\\project_info.xml");
+                return true;
+            }catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "Unable to save UserAutocompleteItems");
+                return false;
+            }
+        }
+
+        private bool HasInnerText(XmlNodeList list, string text)
+        {
+            foreach(var node in list)
+            {
+                if ((node as XmlNode).InnerText == text)
+                    return true;
+            }
+            return false;
         }
 
         private bool SaveCoreEngine()
@@ -673,7 +743,7 @@ namespace ModPE_editor
                     zip.AddDirectory(folder + "\\assets");
                     zip.Save(folder + "\\" + "resources.zip");
                 }
-                return true;
+                return SaveAutocompleteItems();
             }
             catch (Exception e)
             {
