@@ -45,7 +45,7 @@
             this.tss1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiNewModpkg = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewModpkgFromModel = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss5 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiNewCoreEngine = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenJS = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,10 +57,10 @@
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiFind = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tss3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiComment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiAutocompleteItems = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +77,7 @@
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter = new System.Windows.Forms.Splitter();
+            this.tss4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
             this.msMain.SuspendLayout();
@@ -104,6 +105,7 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
@@ -194,7 +196,7 @@
             this.tss1,
             this.tsmiNewModpkg,
             this.tsmiNewModpkgFromModel,
-            this.toolStripSeparator1,
+            this.tss5,
             this.tsmiNewCoreEngine});
             this.tsmiNew.Name = "tsmiNew";
             this.tsmiNew.Size = new System.Drawing.Size(186, 22);
@@ -233,10 +235,10 @@
             this.tsmiNewModpkgFromModel.Text = "From model";
             this.tsmiNewModpkgFromModel.Click += new System.EventHandler(this.tsmiNewModpkgFromModel_Click);
             // 
-            // toolStripSeparator1
+            // tss5
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(172, 6);
+            this.tss5.Name = "tss5";
+            this.tss5.Size = new System.Drawing.Size(172, 6);
             // 
             // tsmiNewCoreEngine
             // 
@@ -305,12 +307,13 @@
             this.tsmiEdit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiUndo,
             this.tsmiRedo,
-            this.toolStripSeparator2,
+            this.tss2,
             this.tsmiFind,
             this.tsmiReplace,
-            this.toolStripSeparator3,
+            this.tss3,
             this.tsmiComment,
             this.tsmiSelectAll,
+            this.tss4,
             this.tsmiAutocompleteItems});
             this.tsmiEdit.Name = "tsmiEdit";
             this.tsmiEdit.Size = new System.Drawing.Size(39, 20);
@@ -332,10 +335,10 @@
             this.tsmiRedo.Text = "Redo";
             this.tsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
             // 
-            // toolStripSeparator2
+            // tss2
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
+            this.tss2.Name = "tss2";
+            this.tss2.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmiFind
             // 
@@ -353,10 +356,10 @@
             this.tsmiReplace.Text = "Replace";
             this.tsmiReplace.Click += new System.EventHandler(this.tsmiReplace_Click);
             // 
-            // toolStripSeparator3
+            // tss3
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(199, 6);
+            this.tss3.Name = "tss3";
+            this.tss3.Size = new System.Drawing.Size(199, 6);
             // 
             // tsmiComment
             // 
@@ -394,7 +397,7 @@
             // 
             this.tsmiRun.Enabled = false;
             this.tsmiRun.Name = "tsmiRun";
-            this.tsmiRun.Size = new System.Drawing.Size(95, 22);
+            this.tsmiRun.Size = new System.Drawing.Size(152, 22);
             this.tsmiRun.Text = "Run";
             this.tsmiRun.Click += new System.EventHandler(this.tsmiRun_Click);
             // 
@@ -475,6 +478,11 @@
             this.splitter.TabIndex = 3;
             this.splitter.TabStop = false;
             // 
+            // tss4
+            // 
+            this.tss4.Name = "tss4";
+            this.tss4.Size = new System.Drawing.Size(199, 6);
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -536,18 +544,19 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewModpkgFromModel;
         private System.Windows.Forms.ToolStripMenuItem tsmiDebug;
         private System.Windows.Forms.ToolStripMenuItem tsmiRun;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator tss5;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewCoreEngine;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenCoreEngine;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator tss2;
+        private System.Windows.Forms.ToolStripSeparator tss3;
         private System.Windows.Forms.ToolStripMenuItem tsmiSelectAll;
         private System.Windows.Forms.ToolStripMenuItem tsmiHelp;
         private System.Windows.Forms.ToolStripMenuItem tsmiCoreEngineDocs;
         private System.Windows.Forms.ToolStripMenuItem tsmiAutocompleteItems;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenRecent;
+        private System.Windows.Forms.ToolStripSeparator tss4;
     }
 }
 
