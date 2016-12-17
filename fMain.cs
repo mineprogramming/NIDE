@@ -384,17 +384,23 @@ namespace ModPE_editor
                 CodeAnalysisEngine.Update();
                 tvFolders.Visible = true;
                 xml = new XmlDocument();
-                if (!File.Exists(folder + "\\projet_info.xml"))
+                if (File.Exists(folder + "\\project_info.xml"))
+                {
+                    xml.Load(folder + "\\project_info.xml");
+                }
+                else if (File.Exists(folder + "\\projet_info.xml"))
+                {
+                    xml.Load(folder + "\\projet_info.xml");
+                    xml.Save(folder + "\\project_info.xml");
+                    File.Delete(folder + "\\projet_info.xml");
+                }
+                else
                 {
                     xml.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><settings></settings>");
                     XmlElement el = xml.CreateElement("pack");
                     el.InnerText = "true";
                     xml.DocumentElement.AppendChild(el);
-                    xml.Save(folder + "\\projet_info.xml");
-                }
-                else
-                {
-                    xml.Load(folder + "\\projet_info.xml");
+                    xml.Save(folder + "\\project_info.xml");
                 }
                 LoadDiretories();
                 fctbMain.Language = Language.JS;
