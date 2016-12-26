@@ -437,7 +437,7 @@ namespace ModPE_editor
                 else
                 {
                     xml.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><settings></settings>");
-                    if(Directory.GetDirectories(folder).Contains(folder + "\\script"))
+                    if (Directory.GetDirectories(folder).Contains(folder + "\\script"))
                     {
                         XmlElement el = xml.CreateElement("pack");
                         el.InnerText = "true";
@@ -460,7 +460,7 @@ namespace ModPE_editor
             if (items.Count != 0)
             {
                 List<string> list = new List<string>();
-                foreach(var item in items)
+                foreach (var item in items)
                 {
                     list.Add((item as XmlNode).InnerText);
                 }
@@ -681,7 +681,8 @@ namespace ModPE_editor
                     {
                         JavaScriptCompressor compressor = new JavaScriptCompressor();
                         compressed = compressor.Compress(fctbMain.Text);
-                    } catch(Exception e)
+                    }
+                    catch (Exception e)
                     {
                         MessageBox.Show(e.Message, "Error in your Javascript code found!");
                         return false;
@@ -725,7 +726,8 @@ namespace ModPE_editor
                 }
                 xml.Save(folder + "\\project_info.xml");
                 return true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Unable to save UserAutocompleteItems");
                 return false;
@@ -734,7 +736,7 @@ namespace ModPE_editor
 
         private bool HasInnerText(XmlNodeList list, string text)
         {
-            foreach(var node in list)
+            foreach (var node in list)
             {
                 if ((node as XmlNode).InnerText == text)
                     return true;
@@ -829,9 +831,9 @@ namespace ModPE_editor
                     ProgramData.Recent[i] = ProgramData.Recent[i - 1];
                 ProgramData.Recent[0] = path;
             }
-            else if(file != "")
+            else if (file != "")
             {
-                for(int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
+                for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
                     ProgramData.Recent[i + 1] = ProgramData.Recent[i];
                 ProgramData.Recent[0] = path;
             }
@@ -840,15 +842,16 @@ namespace ModPE_editor
         //debugger
         private void tsmiRun_Click(object sender, EventArgs e)
         {
-            try
-            {
-                JavaScriptCompressor compressor = new JavaScriptCompressor();
-                string compressed = compressor.Compress(fctbMain.Text);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error in your Javascript code found!");
-            }
+            if (fctbMain.Text != "")
+                try
+                {
+                    JavaScriptCompressor compressor = new JavaScriptCompressor();
+                    string compressed = compressor.Compress(fctbMain.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error in your Javascript code found!");
+                }
         }
 
     }
