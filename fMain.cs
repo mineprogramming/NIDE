@@ -348,6 +348,7 @@ namespace ModPE_editor
 
         private bool BeforeClosingFile()
         {
+            AddRecent();
             if (saved || fctbMain.Text == "")
                 return true;
             var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
@@ -774,12 +775,7 @@ namespace ModPE_editor
                 key.SetValue("Width", Width.ToString());
                 key.SetValue("Height", Height.ToString());
                 key.SetValue("dvWidth", tvFolders.Width.ToString());
-                if (file != "" && !ProgramData.Recent.Contains(file))
-                {
-                    for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
-                        ProgramData.Recent[i] = ProgramData.Recent[i - 1];
-                    ProgramData.Recent[0] = ProgramData.Mode == WorkMode.JAVASCRIPT ? file : folder;
-                }
+                AddRecent();
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
                     key.SetValue("Save" + i, ProgramData.Recent[i]);
             }
@@ -813,6 +809,23 @@ namespace ModPE_editor
                 return false;
             }
             return true;
+        }
+
+        private void AddRecent()
+        {
+            string path = ProgramData.Mode == WorkMode.JAVASCRIPT ? file : folder;
+            if (file != "" && !ProgramData.Recent.Contains(path))
+            {
+                for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
+                    ProgramData.Recent[i] = ProgramData.Recent[i - 1];
+                ProgramData.Recent[0] = path;
+            }
+            else if(file != "")
+            {
+                for(int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
+                    ProgramData.Recent[i + 1] = ProgramData.Recent[i];
+                ProgramData.Recent[0] = path;
+            }
         }
 
         //debugger
