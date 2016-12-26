@@ -63,9 +63,10 @@
             this.tss3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiComment = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiAutocompleteItems = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDebug = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCoreEngineDocs = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
@@ -77,7 +78,6 @@
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter = new System.Windows.Forms.Splitter();
-            this.tss4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
             this.msMain.SuspendLayout();
@@ -105,7 +105,6 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
@@ -378,6 +377,11 @@
             this.tsmiSelectAll.Text = "Select all";
             this.tsmiSelectAll.Click += new System.EventHandler(this.tsmiSelectAll_Click);
             // 
+            // tss4
+            // 
+            this.tss4.Name = "tss4";
+            this.tss4.Size = new System.Drawing.Size(199, 6);
+            // 
             // tsmiAutocompleteItems
             // 
             this.tsmiAutocompleteItems.Name = "tsmiAutocompleteItems";
@@ -388,18 +392,17 @@
             // tsmiDebug
             // 
             this.tsmiDebug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiRun});
+            this.tsmiCheck});
             this.tsmiDebug.Name = "tsmiDebug";
             this.tsmiDebug.Size = new System.Drawing.Size(54, 20);
             this.tsmiDebug.Text = "Debug";
             // 
-            // tsmiRun
+            // tsmiCheck
             // 
-            this.tsmiRun.Enabled = false;
-            this.tsmiRun.Name = "tsmiRun";
-            this.tsmiRun.Size = new System.Drawing.Size(152, 22);
-            this.tsmiRun.Text = "Run";
-            this.tsmiRun.Click += new System.EventHandler(this.tsmiRun_Click);
+            this.tsmiCheck.Name = "tsmiCheck";
+            this.tsmiCheck.Size = new System.Drawing.Size(152, 22);
+            this.tsmiCheck.Text = "Check code";
+            this.tsmiCheck.Click += new System.EventHandler(this.tsmiRun_Click);
             // 
             // tsmiHelp
             // 
@@ -478,11 +481,6 @@
             this.splitter.TabIndex = 3;
             this.splitter.TabStop = false;
             // 
-            // tss4
-            // 
-            this.tss4.Name = "tss4";
-            this.tss4.Size = new System.Drawing.Size(199, 6);
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -543,7 +541,7 @@
         private System.Windows.Forms.ToolStripSeparator tss1;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewModpkgFromModel;
         private System.Windows.Forms.ToolStripMenuItem tsmiDebug;
-        private System.Windows.Forms.ToolStripMenuItem tsmiRun;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCheck;
         private System.Windows.Forms.ToolStripSeparator tss5;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewCoreEngine;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenCoreEngine;

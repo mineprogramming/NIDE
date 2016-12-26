@@ -676,8 +676,17 @@ namespace ModPE_editor
                 fctbMain.SaveToFile(file, Encoding.UTF8);
                 if (xml.GetElementsByTagName("pack")[0].InnerText == "true")
                 {
-                    JavaScriptCompressor compressor = new JavaScriptCompressor();
-                    File.WriteAllText(file, compressor.Compress(fctbMain.Text), Encoding.UTF8);
+                    string compressed;
+                    try
+                    {
+                        JavaScriptCompressor compressor = new JavaScriptCompressor();
+                        compressed = compressor.Compress(fctbMain.Text);
+                    } catch(Exception e)
+                    {
+                        MessageBox.Show(e.Message, "Error in your Javascript code found!");
+                        return false;
+                    }
+                    File.WriteAllText(file, compressed, Encoding.UTF8);
                 }
                 using (ZipFile zip = new ZipFile())
                 {
@@ -831,7 +840,15 @@ namespace ModPE_editor
         //debugger
         private void tsmiRun_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                JavaScriptCompressor compressor = new JavaScriptCompressor();
+                string compressed = compressor.Compress(fctbMain.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error in your Javascript code found!");
+            }
         }
 
     }
