@@ -1,4 +1,4 @@
-﻿using FastColoredTextBoxNS;
+using FastColoredTextBoxNS;
 using System;
 using System.Xml;
 using System.IO;
@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Diagnostics;
 using Microsoft.Win32;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ModPE_editor
 {
@@ -23,6 +24,7 @@ namespace ModPE_editor
         public fMain(string[] args)
         {
             InitializeComponent();
+            CodeAnalysisEngine.Initialize(fctbMain);
             LoadWindow();
             fctbMain.Language = Language.JS;
             Autocomplete.SetAutoompleteMenu(fctbMain);
@@ -55,7 +57,7 @@ namespace ModPE_editor
             if (fctbMain.Language == Language.JS)
             {
                 Highlighting.ResetStyles(e.ChangedRange);
-                Autocomplete.FindVars();
+                CodeAnalysisEngine.Update();
             }
             saved = false;
         }
@@ -65,7 +67,7 @@ namespace ModPE_editor
             SaveWindow();
             e.Cancel = !BeforeClosingFile();
         }
-        
+
         private void tvFolders_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             string nodeName = e.Node.Text;
@@ -130,7 +132,7 @@ namespace ModPE_editor
                 string name = dlgFileName.FileName;
                 if (!name.ToLower().Contains(".png"))
                     name = name + ".png";
-                string path = folder + (ProgramData.Mode == WorkMode.MODPKG?"\\images\\":"\\assets\\") + (dlgFileName.Type == ImageType.ITEMS_OPAQUE ? "items-opaque" : "terrain-atlas");
+                string path = folder + (ProgramData.Mode == WorkMode.MODPKG ? "\\images\\" : "\\assets\\") + (dlgFileName.Type == ImageType.ITEMS_OPAQUE ? "items-opaque" : "terrain-atlas");
                 png.Save(path + "\\" + name);
                 LoadDiretories();
             }
@@ -234,6 +236,16 @@ namespace ModPE_editor
         }
 
         //fileworking
+        private void tsmiOpenRecent_Click(object sender, EventArgs e)
+        {
+            fRecentItems items = new fRecentItems();
+            if (items.ShowDialog() == DialogResult.OK)
+                if (BeforeClosingFile() && LoadFile(fRecentItems.Path))
+                {
+                    saved = true;
+                }
+        }
+
         private void tsmiNewJS_Click(object sender, EventArgs e)
         {
             if (BeforeClosingFile() && CreateJS())
@@ -336,6 +348,7 @@ namespace ModPE_editor
 
         private bool BeforeClosingFile()
         {
+            AddRecent();
             if (saved || fctbMain.Text == "")
                 return true;
             var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
@@ -370,21 +383,9 @@ namespace ModPE_editor
             {
                 file = folder + "\\script\\main.js";
                 fctbMain.OpenFile(file, Encoding.UTF8);
-                Autocomplete.FindVars();
+                CodeAnalysisEngine.Update();
                 tvFolders.Visible = true;
-                xml = new XmlDocument();
-                if (!File.Exists(folder + "\\projet_info.xml"))
-                {
-                    xml.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><settings></settings>");
-                    XmlElement el = xml.CreateElement("pack");
-                    el.InnerText = "true";
-                    xml.DocumentElement.AppendChild(el);
-                    xml.Save(folder + "\\projet_info.xml");
-                }
-                else
-                {
-                    xml.Load(folder + "\\projet_info.xml");
-                }
+                LoadOrCreateXML();
                 LoadDiretories();
                 fctbMain.Language = Language.JS;
                 return true;
@@ -402,8 +403,9 @@ namespace ModPE_editor
             {
                 file = folder + "\\main.js";
                 fctbMain.OpenFile(file, Encoding.UTF8);
-                Autocomplete.FindVars();
+                CodeAnalysisEngine.Update();
                 tvFolders.Visible = true;
+                LoadOrCreateXML();
                 LoadDiretories();
                 fctbMain.Language = Language.JS;
                 return true;
@@ -412,6 +414,57 @@ namespace ModPE_editor
             {
                 MessageBox.Show(e.Message, "Unable to load CoreEngine project");
                 return false;
+            }
+        }
+
+        private bool LoadOrCreateXML()
+        {
+            try
+            {
+                xml = new XmlDocument();
+                if (File.Exists(folder + "\\project_info.xml"))
+                {
+                    xml.Load(folder + "\\project_info.xml");
+                    LoadAutocompleteItems();
+                }
+                else if (File.Exists(folder + "\\projet_info.xml"))
+                {
+                    xml.Load(folder + "\\projet_info.xml");
+                    xml.Save(folder + "\\project_info.xml");
+                    File.Delete(folder + "\\projet_info.xml");
+                    LoadAutocompleteItems();
+                }
+                else
+                {
+                    xml.LoadXml("<?xml version=\"1.0\" encoding=\"utf-8\"?><settings></settings>");
+                    if (Directory.GetDirectories(folder).Contains(folder + "\\script"))
+                    {
+                        XmlElement el = xml.CreateElement("pack");
+                        el.InnerText = "true";
+                        xml.DocumentElement.AppendChild(el);
+                    }
+                    xml.Save(folder + "\\project_info.xml");
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Cannot initialize xml");
+                return false;
+            }
+        }
+
+        private void LoadAutocompleteItems()
+        {
+            var items = xml.DocumentElement.GetElementsByTagName("UserAutocompleteItem");
+            if (items.Count != 0)
+            {
+                List<string> list = new List<string>();
+                foreach (var item in items)
+                {
+                    list.Add((item as XmlNode).InnerText);
+                }
+                Autocomplete.UserItems = list.ToArray();
             }
         }
 
@@ -490,7 +543,7 @@ namespace ModPE_editor
             {
                 file = path;
                 fctbMain.OpenFile(file, Encoding.UTF8);
-                Autocomplete.FindVars();
+                CodeAnalysisEngine.Update();
                 return InitJS();
             }
             catch (Exception e)
@@ -519,41 +572,71 @@ namespace ModPE_editor
         {
             if (dlgFolder.ShowDialog() == DialogResult.OK)
             {
-                string _folder = dlgFolder.SelectedPath;
-                if (File.Exists(_folder + "\\script\\main.js"))
-                {
-                    folder = _folder;
-                    return InitModpkg();
-                }
-                else
-                {
-                    MessageBox.Show("This folder isn't a modpkg!");
-                    return false;
-                }
+                return LoadModpkg(dlgFolder.SelectedPath);
             }
             else return false;
+        }
+
+        private bool LoadModpkg(string path)
+        {
+            if (File.Exists(path + "\\script\\main.js"))
+            {
+                folder = path;
+                return InitModpkg();
+            }
+            else
+            {
+                MessageBox.Show("This folder isn't a modpkg!");
+                return false;
+            }
         }
 
         private bool LoadCoreEngine()
         {
             if (dlgFolder.ShowDialog() == DialogResult.OK)
             {
-                string _folder = dlgFolder.SelectedPath;
-                if (File.Exists(_folder + "\\main.js") &&
-                    File.Exists(_folder + "\\dev\\.includes") &&
-                    File.Exists(_folder + "\\launcher.js") &&
-                    File.Exists(_folder + "\\mod.info"))
-                {
-                    folder = _folder;
-                    return InitCoreEngine();
-                }
-                else
-                {
-                    MessageBox.Show("This folder isn't a CoreEngine project!");
-                    return false;
-                }
+                return LoadCoreEngine(dlgFolder.SelectedPath);
             }
             else return false;
+        }
+
+        private bool LoadCoreEngine(string path)
+        {
+            if (File.Exists(path + "\\main.js") &&
+                File.Exists(path + "\\dev\\.includes") &&
+                File.Exists(path + "\\launcher.js") &&
+                File.Exists(path + "\\mod.info"))
+            {
+                folder = path;
+                return InitCoreEngine();
+            }
+            else
+            {
+                MessageBox.Show("This folder isn't a CoreEngine project!");
+                return false;
+            }
+        }
+
+        private bool LoadFile(string path)
+        {
+            if (path.Split('\\').Last().Contains("."))
+            {
+                ProgramData.Mode = WorkMode.JAVASCRIPT;
+                tvFolders.Visible = false;
+                return LoadJS(path);
+            }
+            else if (Directory.GetDirectories(path).Contains(path + "\\script"))
+            {
+                ProgramData.Mode = WorkMode.MODPKG;
+                tvFolders.Visible = true;
+                return LoadModpkg(path);
+            }
+            else
+            {
+                ProgramData.Mode = WorkMode.CORE_ENGINE;
+                tvFolders.Visible = true;
+                return LoadCoreEngine(path);
+            }
         }
 
         private bool SaveJS()
@@ -593,8 +676,18 @@ namespace ModPE_editor
                 fctbMain.SaveToFile(file, Encoding.UTF8);
                 if (xml.GetElementsByTagName("pack")[0].InnerText == "true")
                 {
-                    JavaScriptCompressor compressor = new JavaScriptCompressor();
-                    File.WriteAllText(file, compressor.Compress(fctbMain.Text), Encoding.UTF8);
+                    string compressed;
+                    try
+                    {
+                        JavaScriptCompressor compressor = new JavaScriptCompressor();
+                        compressed = compressor.Compress(fctbMain.Text);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message, "Error in your Javascript code found!");
+                        return false;
+                    }
+                    File.WriteAllText(file, compressed, Encoding.UTF8);
                 }
                 using (ZipFile zip = new ZipFile())
                 {
@@ -606,13 +699,49 @@ namespace ModPE_editor
                     zip.Save(folder + "\\" + new DirectoryInfo(folder).Name + ".modpkg");
                 }
                 fctbMain.SaveToFile(file, Encoding.UTF8);
-                return true;
+                return SaveAutocompleteItems();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Unable to save .modpkg");
                 return false;
             }
+        }
+
+        private bool SaveAutocompleteItems()
+        {
+            try
+            {
+                if (Autocomplete.UserItems.Length != 0)
+                {
+                    foreach (var item in Autocomplete.UserItems)
+                    {
+                        if (!HasInnerText(xml.DocumentElement.GetElementsByTagName("UserAutocompleteItem"), item))
+                        {
+                            XmlElement el = xml.CreateElement("UserAutocompleteItem");
+                            el.InnerText = item;
+                            xml.DocumentElement.AppendChild(el);
+                        }
+                    }
+                }
+                xml.Save(folder + "\\project_info.xml");
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Unable to save UserAutocompleteItems");
+                return false;
+            }
+        }
+
+        private bool HasInnerText(XmlNodeList list, string text)
+        {
+            foreach (var node in list)
+            {
+                if ((node as XmlNode).InnerText == text)
+                    return true;
+            }
+            return false;
         }
 
         private bool SaveCoreEngine()
@@ -626,7 +755,7 @@ namespace ModPE_editor
                     zip.AddDirectory(folder + "\\assets");
                     zip.Save(folder + "\\" + "resources.zip");
                 }
-                    return true;
+                return SaveAutocompleteItems();
             }
             catch (Exception e)
             {
@@ -657,7 +786,11 @@ namespace ModPE_editor
                 key.SetValue("Width", Width.ToString());
                 key.SetValue("Height", Height.ToString());
                 key.SetValue("dvWidth", tvFolders.Width.ToString());
-            }catch (Exception e)
+                AddRecent();
+                for (int i = 0; i < ProgramData.Recent.Count(); i++)
+                    key.SetValue("Save" + i, ProgramData.Recent[i]);
+            }
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Cannot save window properties");
                 return false;
@@ -677,9 +810,11 @@ namespace ModPE_editor
                 Height = Convert.ToInt32(key.GetValue("Height"));
                 tvFolders.Width = Convert.ToInt32(key.GetValue("dvWidth"));
                 if (key.GetSubKeyNames().Contains("maximized"))
-                    WindowState = Convert.ToBoolean(key.GetValue("maximized"))? FormWindowState.Maximized:FormWindowState.Normal;
+                    WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
+                for (int i = 0; i < ProgramData.Recent.Count(); i++)
+                    ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Cannot load window properties");
                 return false;
@@ -687,11 +822,37 @@ namespace ModPE_editor
             return true;
         }
 
+        private void AddRecent()
+        {
+            string path = ProgramData.Mode == WorkMode.JAVASCRIPT ? file : folder;
+            if (file != "" && !ProgramData.Recent.Contains(path))
+            {
+                for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
+                    ProgramData.Recent[i] = ProgramData.Recent[i - 1];
+                ProgramData.Recent[0] = path;
+            }
+            else if (file != "")
+            {
+                for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
+                    ProgramData.Recent[i + 1] = ProgramData.Recent[i];
+                ProgramData.Recent[0] = path;
+            }
+        }
+
         //debugger
         private void tsmiRun_Click(object sender, EventArgs e)
         {
-
+            if (fctbMain.Text != "")
+                try
+                {
+                    JavaScriptCompressor compressor = new JavaScriptCompressor();
+                    string compressed = compressor.Compress(fctbMain.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error in your Javascript code found!");
+                }
         }
-        
+
     }
 }
