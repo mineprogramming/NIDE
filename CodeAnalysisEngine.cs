@@ -19,7 +19,11 @@ namespace ModPE_editor
             Variables.Clear();
             Regex regex = new Regex(@"\b(var)\s+(?<range>[\w_]+?)\b");
             foreach (Match match in regex.Matches(fctb.Text))
-                Variables.Add(match.Value.Split(' ')[1]);
+            {
+                string variable = match.Value.Split(' ')[1];
+                if (!Variables.Contains(variable))
+                    Variables.Add(match.Value.Split(' ')[1]);
+            }
             regex = new Regex(@"\bfunction\b");
             foreach (var line in fctb.Lines)
             {
