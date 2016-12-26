@@ -16,7 +16,7 @@ namespace ModPE_editor
         };
         public static List<string> global = new List<string>();
         public static Dictionary<string, List<string>> Members = new Dictionary<string, List<string>>();
-        public static List<string> namespaces = new List<string>();
+        public static List<string> namespaces = new List<string>() { "android", "java" };
         public static List<string> hooks = new List<string>();
         public static List<string> hooks_autocomplete = new List<string>();
 

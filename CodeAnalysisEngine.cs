@@ -22,12 +22,14 @@ namespace ModPE_editor
                 Variables.Add(match.Value.Split(' ')[1]);
             regex = new Regex(@"\bfunction\b");
             foreach (var line in fctb.Lines)
+            {
                 if (regex.IsMatch(line) && line.IndexOf('(') != -1 && line.IndexOf(')') != -1)
                 {
                     string params_line = line.Split('(')[1].Split(')')[0];
                     foreach (var param in params_line.Split(','))
-                        Variables.Add(param);
+                        Variables.Add(param.Trim());
                 }
+            }
         }
     }
 }
