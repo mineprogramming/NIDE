@@ -65,6 +65,8 @@
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tss4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiAutocompleteItems = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiInserts = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -168,6 +170,7 @@
             this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.tsmiEdit,
+            this.tsmiInserts,
             this.tsmiDebug,
             this.tsmiHelp});
             this.msMain.Location = new System.Drawing.Point(0, 0);
@@ -389,6 +392,21 @@
             this.tsmiAutocompleteItems.Text = "User autocomlete items";
             this.tsmiAutocompleteItems.Click += new System.EventHandler(this.tsmiAutocompleteItems_Click);
             // 
+            // tsmiInserts
+            // 
+            this.tsmiInserts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNewItem});
+            this.tsmiInserts.Name = "tsmiInserts";
+            this.tsmiInserts.Size = new System.Drawing.Size(53, 20);
+            this.tsmiInserts.Text = "Inserts";
+            // 
+            // tsmiNewItem
+            // 
+            this.tsmiNewItem.Name = "tsmiNewItem";
+            this.tsmiNewItem.Size = new System.Drawing.Size(152, 22);
+            this.tsmiNewItem.Text = "New item";
+            this.tsmiNewItem.Click += new System.EventHandler(this.tsmiNewItem_Click);
+            // 
             // tsmiDebug
             // 
             this.tsmiDebug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -400,7 +418,7 @@
             // tsmiCheck
             // 
             this.tsmiCheck.Name = "tsmiCheck";
-            this.tsmiCheck.Size = new System.Drawing.Size(152, 22);
+            this.tsmiCheck.Size = new System.Drawing.Size(136, 22);
             this.tsmiCheck.Text = "Check code";
             this.tsmiCheck.Click += new System.EventHandler(this.tsmiRun_Click);
             // 
@@ -555,6 +573,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiAutocompleteItems;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenRecent;
         private System.Windows.Forms.ToolStripSeparator tss4;
+        private System.Windows.Forms.ToolStripMenuItem tsmiInserts;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewItem;
     }
 }
 

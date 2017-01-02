@@ -854,5 +854,33 @@ namespace ModPE_editor
                 }
         }
 
+        private void tsmiNewItem_Click(object sender, EventArgs e)
+        {
+            if(ProgramData.Mode != WorkMode.MODPKG)
+            {
+                MessageBox.Show("This function is only for Modpkgs at the moment");
+                return;
+            }
+            if (!fctbMain.Text.Contains("/*ItemsEngine. DO NOT CHANGE*/"))
+            {
+                fctbMain.AppendText(@"
+/*ItemsEngine. DO NOT CHANGE*/
+function SetTileFromJson(name){
+    var str = ModPE.openInputStreamFromTexturePack(name);
+    var bis = new java.io.BufferedInputStream(is);
+    var buf = new java.io.ByteArrayOutputStream();
+    var res = bis.read();
+    while (res != -1)
+    {
+         buf.write(res);
+         res = bis.read();
+    }
+    var json = eval(buf.toString());
+    ModPE.setItem(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
+}
+            ");
+            }
+
+        }
     }
 }

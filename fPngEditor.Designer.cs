@@ -32,10 +32,10 @@
             this.DrawPanel = new System.Windows.Forms.TableLayoutPanel();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsbColor = new System.Windows.Forms.ToolStripButton();
-            this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.tsbDraw = new System.Windows.Forms.ToolStripButton();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +60,7 @@
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.DrawPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DrawPanel.Location = new System.Drawing.Point(0, 28);
             this.DrawPanel.Name = "DrawPanel";
@@ -109,10 +109,6 @@
             this.tsbColor.Text = "Choose color";
             this.tsbColor.Click += new System.EventHandler(this.tsbColor_Click);
             // 
-            // dlgColor
-            // 
-            this.dlgColor.FullOpen = true;
-            // 
             // tsbDraw
             // 
             this.tsbDraw.Checked = true;
@@ -144,6 +140,10 @@
             this.tsbSave.Size = new System.Drawing.Size(23, 22);
             this.tsbSave.Text = "Save";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
+            // 
+            // dlgColor
+            // 
+            this.dlgColor.FullOpen = true;
             // 
             // fPngEditor
             // 
