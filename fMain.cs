@@ -90,7 +90,7 @@ namespace ModPE_editor
                     if (BeforeClosingFile())
                         LoadXML(path);
                 }
-                else if(ext == "json")
+                else if (ext == "json")
                 {
                     new fJsonItem(path).ShowDialog();
 
@@ -857,34 +857,47 @@ namespace ModPE_editor
                 }
         }
 
+        //inserts
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
-            if(ProgramData.Mode != WorkMode.MODPKG)
+            if (ProgramData.Mode != WorkMode.MODPKG)
             {
                 MessageBox.Show("This function is only for Modpkgs at the moment");
                 return;
             }
             if (!fctbMain.Text.Contains("/*ItemsEngine. DO NOT CHANGE*/"))
             {
-                fctbMain.AppendText(@"
-/*ItemsEngine. DO NOT CHANGE*/
+                fctbMain.AppendText(@"/*ItemsEngine. DO NOT CHANGE*/
 function SetTileFromJson(name){
-    var str = ModPE.openInputStreamFromTexturePack(name);
+    var str = ModPE.openInputStreamFromTexturePack(""items\\"" + name);
     var bis = new java.io.BufferedInputStream(is);
     var buf = new java.io.ByteArrayOutputStream();
     var res = bis.read();
     while (res != -1)
     {
-         buf.write(res);
-         res = bis.read();
+        buf.write(res);
+        res = bis.read();
     }
     var json = eval(buf.toString());
-    ModPE.setItem(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
-}
-            ");
+    if (json.type == ""item"")
+        ModPE.setItem(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
+    else if (json.type == ""block"")
+    {
+        Block.defineBlock(json.id, json.name, [[json.texture.name, json.texture.meta]], json.material, json.opaque, json.renderType);
+        Block.setDestroyTime(json.id, json.destroyTime);
+        Block.setExplosionResistance(json.id, json.explosionResistance);
+    }
+    else if (json.type == ""food"")
+        ModPE.setFoodItem(json.id, json.texture.name, json.texture.meta, json.restore, json.name, json.maxStack);
+    else if (json.type == ""armor"")
+        Item.defineArmor(json.id, json.texture.name, json.texture.meta, json.name, json.armorTexture, json.reduceDamage, json.maxDamage, json.armorType);
+    else if (json.type == ""throwable"")
+        Item.defineThrowable(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
+}");
             }
             fJsonItem form = new fJsonItem();
-            form.ShowDialog();
+            if (form.ShowDialog() != DialogResult.Cancel)
+                fctbMain.AppendText("\nSetTileFromJson(\"" + fJsonItem.name + ".json\")");
         }
     }
 }

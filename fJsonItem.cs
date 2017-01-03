@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
@@ -14,6 +7,7 @@ namespace ModPE_editor
 {
     public partial class fJsonItem : Form
     {
+        public static string name;
         private string filename = null;
         private bool saved = false;
 
@@ -106,7 +100,6 @@ namespace ModPE_editor
         private bool SaveJson()
         {
             string json = "";
-            string name = "";
             switch (tcMain.SelectedTab.Text)
             {
                 case "Item":
@@ -203,14 +196,12 @@ namespace ModPE_editor
                     name = throwable.name;
                     break;
             }
-
-            MessageBox.Show(json);
             try
             {
-                string path = ProgramData.Folder + "\\images\\items\\" + name + ".json";
+                filename = ProgramData.Folder + "\\images\\items\\" + name + ".json";
                 if (!Directory.Exists(ProgramData.Folder + "\\images\\items\\"))
                     Directory.CreateDirectory(ProgramData.Folder + "\\images\\items\\");
-                File.WriteAllText(path, json);
+                File.WriteAllText(filename, json);
             }
             catch (Exception e)
             {
@@ -322,6 +313,7 @@ namespace ModPE_editor
                 }
                 else if (result == DialogResult.Cancel)
                 {
+                    DialogResult = DialogResult.Cancel;
                     e.Cancel = true; ;
                 }
             }
