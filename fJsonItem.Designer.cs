@@ -90,8 +90,6 @@
             this.armor_id = new System.Windows.Forms.NumericUpDown();
             this.label24 = new System.Windows.Forms.Label();
             this.armor_name = new System.Windows.Forms.TextBox();
-            this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.tpThrowable = new System.Windows.Forms.TabPage();
             this.throwable_stack = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
@@ -103,6 +101,8 @@
             this.throwable_id = new System.Windows.Forms.NumericUpDown();
             this.label33 = new System.Windows.Forms.Label();
             this.throwable_name = new System.Windows.Forms.TextBox();
+            this.tsMain = new System.Windows.Forms.ToolStrip();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.item_id)).BeginInit();
             this.tcMain.SuspendLayout();
             this.tpItem.SuspendLayout();
@@ -125,11 +125,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.armor_reduce)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.armor_index)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.armor_id)).BeginInit();
-            this.tsMain.SuspendLayout();
             this.tpThrowable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_stack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_index)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_id)).BeginInit();
+            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -147,6 +147,7 @@
             this.item_name.Name = "item_name";
             this.item_name.Size = new System.Drawing.Size(159, 20);
             this.item_name.TabIndex = 1;
+            this.item_name.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label3
             // 
@@ -163,6 +164,7 @@
             this.item_id.Name = "item_id";
             this.item_id.Size = new System.Drawing.Size(99, 20);
             this.item_id.TabIndex = 7;
+            this.item_id.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // tcMain
             // 
@@ -208,6 +210,7 @@
             0,
             0,
             0});
+            this.item_stack.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label5
             // 
@@ -224,6 +227,7 @@
             this.item_index.Name = "item_index";
             this.item_index.Size = new System.Drawing.Size(99, 20);
             this.item_index.TabIndex = 11;
+            this.item_index.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label4
             // 
@@ -240,6 +244,7 @@
             this.item_icon.Name = "item_icon";
             this.item_icon.Size = new System.Drawing.Size(144, 20);
             this.item_icon.TabIndex = 9;
+            this.item_icon.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label2
             // 
@@ -289,6 +294,7 @@
             0,
             0,
             0});
+            this.block_explosion.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label14
             // 
@@ -310,6 +316,7 @@
             0,
             0,
             0});
+            this.block_destroy.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label13
             // 
@@ -326,6 +333,7 @@
             this.block_render.Name = "block_render";
             this.block_render.Size = new System.Drawing.Size(78, 20);
             this.block_render.TabIndex = 21;
+            this.block_render.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label12
             // 
@@ -347,6 +355,7 @@
             this.block_opaque.Size = new System.Drawing.Size(121, 21);
             this.block_opaque.TabIndex = 19;
             this.block_opaque.Text = "true";
+            this.block_opaque.SelectedIndexChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label11
             // 
@@ -368,6 +377,7 @@
             0,
             0,
             0});
+            this.block_material.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label10
             // 
@@ -384,6 +394,7 @@
             this.block_index.Name = "block_index";
             this.block_index.Size = new System.Drawing.Size(99, 20);
             this.block_index.TabIndex = 15;
+            this.block_index.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label8
             // 
@@ -400,6 +411,7 @@
             this.block_texture.Name = "block_texture";
             this.block_texture.Size = new System.Drawing.Size(136, 20);
             this.block_texture.TabIndex = 13;
+            this.block_texture.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label9
             // 
@@ -425,6 +437,7 @@
             this.block_id.Name = "block_id";
             this.block_id.Size = new System.Drawing.Size(99, 20);
             this.block_id.TabIndex = 11;
+            this.block_id.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label7
             // 
@@ -441,6 +454,7 @@
             this.block_name.Name = "block_name";
             this.block_name.Size = new System.Drawing.Size(159, 20);
             this.block_name.TabIndex = 9;
+            this.block_name.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // tpFood
             // 
@@ -474,6 +488,7 @@
             0,
             0,
             0});
+            this.food_restore.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label20
             // 
@@ -495,6 +510,7 @@
             0,
             0,
             0});
+            this.food_stack.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label15
             // 
@@ -511,6 +527,7 @@
             this.food_index.Name = "food_index";
             this.food_index.Size = new System.Drawing.Size(99, 20);
             this.food_index.TabIndex = 21;
+            this.food_index.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label16
             // 
@@ -527,6 +544,7 @@
             this.food_icon.Name = "food_icon";
             this.food_icon.Size = new System.Drawing.Size(144, 20);
             this.food_icon.TabIndex = 19;
+            this.food_icon.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label17
             // 
@@ -552,6 +570,7 @@
             this.food_id.Name = "food_id";
             this.food_id.Size = new System.Drawing.Size(99, 20);
             this.food_id.TabIndex = 17;
+            this.food_id.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label19
             // 
@@ -568,6 +587,7 @@
             this.food_name.Name = "food_name";
             this.food_name.Size = new System.Drawing.Size(159, 20);
             this.food_name.TabIndex = 15;
+            this.food_name.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // tpArmor
             // 
@@ -605,6 +625,7 @@
             0,
             0,
             0});
+            this.armor_max.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label28
             // 
@@ -626,6 +647,7 @@
             0,
             0,
             0});
+            this.armor_reduce.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label27
             // 
@@ -651,6 +673,7 @@
             this.armor_texture.Name = "armor_texture";
             this.armor_texture.Size = new System.Drawing.Size(101, 20);
             this.armor_texture.TabIndex = 33;
+            this.armor_texture.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // armor_type
             // 
@@ -665,6 +688,7 @@
             this.armor_type.Size = new System.Drawing.Size(81, 21);
             this.armor_type.TabIndex = 31;
             this.armor_type.Text = "helmet";
+            this.armor_type.SelectedIndexChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label25
             // 
@@ -681,6 +705,7 @@
             this.armor_index.Name = "armor_index";
             this.armor_index.Size = new System.Drawing.Size(99, 20);
             this.armor_index.TabIndex = 29;
+            this.armor_index.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label21
             // 
@@ -697,6 +722,7 @@
             this.armor_icon.Name = "armor_icon";
             this.armor_icon.Size = new System.Drawing.Size(144, 20);
             this.armor_icon.TabIndex = 27;
+            this.armor_icon.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label22
             // 
@@ -722,6 +748,7 @@
             this.armor_id.Name = "armor_id";
             this.armor_id.Size = new System.Drawing.Size(99, 20);
             this.armor_id.TabIndex = 25;
+            this.armor_id.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label24
             // 
@@ -738,26 +765,7 @@
             this.armor_name.Name = "armor_name";
             this.armor_name.Size = new System.Drawing.Size(159, 20);
             this.armor_name.TabIndex = 23;
-            // 
-            // tsMain
-            // 
-            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbSave});
-            this.tsMain.Location = new System.Drawing.Point(0, 0);
-            this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(373, 25);
-            this.tsMain.TabIndex = 9;
-            this.tsMain.Text = "toolStrip1";
-            // 
-            // tsbSave
-            // 
-            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
-            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(23, 22);
-            this.tsbSave.Text = "toolStripButton1";
-            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
+            this.armor_name.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // tpThrowable
             // 
@@ -790,6 +798,7 @@
             0,
             0,
             0});
+            this.throwable_stack.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label29
             // 
@@ -806,6 +815,7 @@
             this.throwable_index.Name = "throwable_index";
             this.throwable_index.Size = new System.Drawing.Size(99, 20);
             this.throwable_index.TabIndex = 11;
+            this.throwable_index.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label30
             // 
@@ -822,6 +832,7 @@
             this.throwable_icon.Name = "throwable_icon";
             this.throwable_icon.Size = new System.Drawing.Size(144, 20);
             this.throwable_icon.TabIndex = 9;
+            this.throwable_icon.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label31
             // 
@@ -847,6 +858,7 @@
             this.throwable_id.Name = "throwable_id";
             this.throwable_id.Size = new System.Drawing.Size(99, 20);
             this.throwable_id.TabIndex = 7;
+            this.throwable_id.ValueChanged += new System.EventHandler(this.SomethingChanged);
             // 
             // label33
             // 
@@ -863,6 +875,27 @@
             this.throwable_name.Name = "throwable_name";
             this.throwable_name.Size = new System.Drawing.Size(159, 20);
             this.throwable_name.TabIndex = 1;
+            this.throwable_name.TextChanged += new System.EventHandler(this.SomethingChanged);
+            // 
+            // tsMain
+            // 
+            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbSave});
+            this.tsMain.Location = new System.Drawing.Point(0, 0);
+            this.tsMain.Name = "tsMain";
+            this.tsMain.Size = new System.Drawing.Size(373, 25);
+            this.tsMain.TabIndex = 9;
+            this.tsMain.Text = "toolStrip1";
+            // 
+            // tsbSave
+            // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
+            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Size = new System.Drawing.Size(23, 22);
+            this.tsbSave.Text = "toolStripButton1";
+            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
             // fJsonItem
             // 
@@ -874,6 +907,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "fJsonItem";
             this.Text = "Редактирование предмета";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fJsonItem_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.item_id)).EndInit();
             this.tcMain.ResumeLayout(false);
             this.tpItem.ResumeLayout(false);
@@ -900,13 +934,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.armor_reduce)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.armor_index)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.armor_id)).EndInit();
-            this.tsMain.ResumeLayout(false);
-            this.tsMain.PerformLayout();
             this.tpThrowable.ResumeLayout(false);
             this.tpThrowable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_stack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_index)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_id)).EndInit();
+            this.tsMain.ResumeLayout(false);
+            this.tsMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

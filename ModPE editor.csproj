@@ -56,6 +56,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -86,6 +87,12 @@
     <Compile Include="fDialog.Designer.cs">
       <DependentUpon>fDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="fJsonItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fJsonItem.Designer.cs">
+      <DependentUpon>fJsonItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fDialog.resx">
       <DependentUpon>fDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fJsonItem.resx">
+      <DependentUpon>fJsonItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
