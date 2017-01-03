@@ -868,19 +868,23 @@ namespace ModPE_editor
             if (!fctbMain.Text.Contains("/*ItemsEngine. DO NOT CHANGE*/"))
             {
                 fctbMain.AppendText(@"/*ItemsEngine. DO NOT CHANGE*/
+function convertStreamToString(is) { 
+    var bis = new java.io.BufferedInputStream(is); 
+    var buf = new java.io.ByteArrayOutputStream(); 
+    var res = bis.read(); 
+    while(res != -1) { 
+        buf.write(res); 
+        res = bis.read(); 
+    } 
+    return buf.toString(); 
+}
 function SetTileFromJson(name){
-    var str = ModPE.openInputStreamFromTexturePack(""items\\"" + name);
-    var bis = new java.io.BufferedInputStream(is);
-    var buf = new java.io.ByteArrayOutputStream();
-    var res = bis.read();
-    while (res != -1)
-    {
-        buf.write(res);
-        res = bis.read();
-    }
-    var json = eval(buf.toString());
-    if (json.type == ""item"")
+    var str    = ModPE.openInputStreamFromTexturePack(""items//"" + name);
+    var string = convertStreamToString(str);
+    var json   = JSON.parse(string);
+    if (json.type == ""item""){
         ModPE.setItem(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
+    }
     else if (json.type == ""block"")
     {
         Block.defineBlock(json.id, json.name, [[json.texture.name, json.texture.meta]], json.material, json.opaque, json.renderType);
@@ -897,7 +901,11 @@ function SetTileFromJson(name){
             }
             fJsonItem form = new fJsonItem();
             if (form.ShowDialog() != DialogResult.Cancel)
-                fctbMain.AppendText("\nSetTileFromJson(\"" + fJsonItem.name + ".json\")");
+            {
+                fctbMain.AppendText("\nSetTileFromJson(\"" + fJsonItem.name + ".json\");");
+                LoadDiretories();
+            }
+
         }
     }
 }

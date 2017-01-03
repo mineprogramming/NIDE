@@ -85,6 +85,8 @@ namespace ModPE_editor
         private void tsbSave_Click(object sender, EventArgs e)
         {
             if (SaveJson()) saved = true;
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private static string ObjectToJson(object obj)
@@ -310,6 +312,10 @@ namespace ModPE_editor
                 if (result == DialogResult.Yes)
                 {
                     e.Cancel = !SaveJson();
+                    if (e.Cancel)
+                        DialogResult = DialogResult.Cancel;
+                    else
+                        DialogResult = DialogResult.OK;
                 }
                 else if (result == DialogResult.Cancel)
                 {

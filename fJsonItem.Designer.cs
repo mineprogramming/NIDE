@@ -161,6 +161,11 @@
             // item_id
             // 
             this.item_id.Location = new System.Drawing.Point(236, 6);
+            this.item_id.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.item_id.Name = "item_id";
             this.item_id.Size = new System.Drawing.Size(99, 20);
             this.item_id.TabIndex = 7;
@@ -369,6 +374,11 @@
             // block_material
             // 
             this.block_material.Location = new System.Drawing.Point(58, 58);
+            this.block_material.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.block_material.Name = "block_material";
             this.block_material.Size = new System.Drawing.Size(99, 20);
             this.block_material.TabIndex = 17;
@@ -434,6 +444,11 @@
             // block_id
             // 
             this.block_id.Location = new System.Drawing.Point(236, 6);
+            this.block_id.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.block_id.Name = "block_id";
             this.block_id.Size = new System.Drawing.Size(99, 20);
             this.block_id.TabIndex = 11;
@@ -567,6 +582,11 @@
             // food_id
             // 
             this.food_id.Location = new System.Drawing.Point(235, 6);
+            this.food_id.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.food_id.Name = "food_id";
             this.food_id.Size = new System.Drawing.Size(99, 20);
             this.food_id.TabIndex = 17;
@@ -745,6 +765,11 @@
             // armor_id
             // 
             this.armor_id.Location = new System.Drawing.Point(237, 9);
+            this.armor_id.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.armor_id.Name = "armor_id";
             this.armor_id.Size = new System.Drawing.Size(99, 20);
             this.armor_id.TabIndex = 25;
@@ -855,6 +880,11 @@
             // throwable_id
             // 
             this.throwable_id.Location = new System.Drawing.Point(236, 6);
+            this.throwable_id.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.throwable_id.Name = "throwable_id";
             this.throwable_id.Size = new System.Drawing.Size(99, 20);
             this.throwable_id.TabIndex = 7;
