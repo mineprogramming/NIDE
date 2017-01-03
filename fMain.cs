@@ -157,6 +157,11 @@ namespace ModPE_editor
             Process.Start("CoreEngine help.chm");
         }
 
+        private void openProjectInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(ProgramData.Folder);
+        }
+
         //util
         private void LoadDiretories()
         {
@@ -883,5 +888,6 @@ namespace ModPE_editor
             }
 
         }
+        
     }
 }
