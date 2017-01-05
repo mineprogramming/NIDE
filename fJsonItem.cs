@@ -10,34 +10,14 @@ namespace ModPE_editor
         public static string name;
         private string filename = null;
         private bool saved = false;
-
-        private class Creatable
-        {
-            public string type;
-            public string name;
-            public int id;
-        }
-
-        private class Texture
-        {
-            public string name;
-            public int meta;
-            public Texture() { }
-            public Texture(string name, int meta)
-            {
-                this.name = name; this.meta = meta;
-            }
-        }
-
+        
         private class Item : Creatable
         {
-            public Texture texture;
             public int maxStack;
         }
 
         private class Block : Creatable
         {
-            public Texture texture;
             public int material;
             public bool opaque;
             public int renderType;
@@ -47,14 +27,12 @@ namespace ModPE_editor
 
         private class Food : Creatable
         {
-            public Texture texture;
             public int maxStack;
             public int restore;
         }
 
         private class Armor : Creatable
         {
-            public Texture texture;
             public string armorType;
             public int reduceDamage;
             public int maxDamage;
@@ -63,7 +41,6 @@ namespace ModPE_editor
 
         private class Throwable : Creatable
         {
-            public Texture texture;
             public int maxStack;
         }
 
@@ -93,12 +70,7 @@ namespace ModPE_editor
         {
             return new JavaScriptSerializer().Serialize(obj);
         }
-
-        private static type JsonToObject<type>(string JSON)
-        {
-            return new JavaScriptSerializer().Deserialize<type>(JSON);
-        }
-
+        
         private bool SaveJson()
         {
             string json = "";
@@ -220,7 +192,7 @@ namespace ModPE_editor
             try
             {
                 JSON = File.ReadAllText(filename);
-                obj = JsonToObject<Creatable>(JSON);
+                obj = JSON.ToObject<Creatable>();
             }
             catch (Exception e)
             {
@@ -232,7 +204,7 @@ namespace ModPE_editor
                 case "item":
                     for (int i = 1; i < 5; i++)
                         tcMain.TabPages.Remove(tcMain.TabPages[1]);
-                    Item item = JsonToObject<Item>(JSON);
+                    Item item = JSON.ToObject<Item>();
                     item_name.Text = item.name;
                     item_id.Value = item.id;
                     item_icon.Text = item.texture.name;
@@ -244,7 +216,7 @@ namespace ModPE_editor
                     tcMain.TabPages.Remove(tcMain.TabPages[0]);
                     for (int i = 1; i < 4; i++)
                         tcMain.TabPages.Remove(tcMain.TabPages[1]);
-                    Block block = JsonToObject<Block>(JSON);
+                    Block block = JSON.ToObject<Block>();
                     block_name.Text = block.name;
                     block_id.Value = block.id;
                     block_texture.Text = block.texture.name;
@@ -261,7 +233,7 @@ namespace ModPE_editor
                         tcMain.TabPages.Remove(tcMain.TabPages[0]);
                     for (int i = 1; i < 3; i++)
                         tcMain.TabPages.Remove(tcMain.TabPages[1]);
-                    Food food = JsonToObject<Food>(JSON);
+                    Food food = JSON.ToObject<Food>();
                     food_name.Text = food.name;
                     food_id.Value = food.id;
                     food_icon.Text = food.texture.name;
@@ -274,7 +246,7 @@ namespace ModPE_editor
                     for (int i = 0; i < 3; i++)
                         tcMain.TabPages.Remove(tcMain.TabPages[0]);
                     tcMain.TabPages.Remove(tcMain.TabPages[1]);
-                    Armor armor = JsonToObject<Armor>(JSON);
+                    Armor armor = JSON.ToObject<Armor>();
                     armor_name.Text = armor.name;
                     armor_id.Value = armor.id;
                     armor_icon.Text = armor.texture.name;
@@ -288,7 +260,7 @@ namespace ModPE_editor
                 case "throwable":
                     for (int i = 0; i < 4; i++)
                         tcMain.TabPages.Remove(tcMain.TabPages[0]);
-                    Throwable throwable = JsonToObject<Throwable>(JSON);
+                    Throwable throwable = JSON.ToObject<Throwable>();
                     throwable_name.Text = throwable.name;
                     throwable_id.Value = throwable.id;
                     throwable_icon.Text = throwable.texture.name;
@@ -324,5 +296,24 @@ namespace ModPE_editor
                 }
             }
         }
+    }
+}
+
+class Creatable
+{
+    public string type;
+    public string name;
+    public int id;
+    public Texture texture;
+}
+
+class Texture
+{
+    public string name;
+    public int meta;
+    public Texture() { }
+    public Texture(string name, int meta)
+    {
+        this.name = name; this.meta = meta;
     }
 }

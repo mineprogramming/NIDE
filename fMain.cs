@@ -870,16 +870,7 @@ namespace ModPE_editor
                 MessageBox.Show("This function is only for Modpkgs at the moment");
                 return;
             }
-            if (!fctbMain.Text.Contains("/*ItemsEngine. DO NOT CHANGE*/"))
-            {
-                try
-                {
-                    fctbMain.AppendText(File.ReadAllText("ItemsEngine.js"));
-                }catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Cannot load ItemsEngine temlate");
-                }
-            }
+            insertItemsEngine();
             fJsonItem form = new fJsonItem();
             if (form.ShowDialog() != DialogResult.Cancel)
             {
@@ -888,6 +879,33 @@ namespace ModPE_editor
             }
 
         }
-        
+
+        private void insertItemsEngine()
+        {
+            if (!fctbMain.Text.Contains("/*ItemsEngine. DO NOT CHANGE*/"))
+            {
+                try
+                {
+                    fctbMain.AppendText(File.ReadAllText("ItemsEngine.js"));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Cannot load ItemsEngine temlate");
+                }
+            }
+        }
+
+        private void craftRecipieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ProgramData.Mode != WorkMode.MODPKG)
+            {
+                MessageBox.Show("This function is only for Modpkgs at the moment");
+                return;
+            }
+            insertItemsEngine();
+            var form = new fCraft();
+            if (form.ShowDialog() == DialogResult.OK)
+                fctbMain.AppendText("\n" + fCraft.recipie);
+        }
     }
 }

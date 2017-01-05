@@ -29,3 +29,4 @@ function SetTileFromJson(name){
     else if (json.type == "throwable")
         Item.defineThrowable(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
 }
+/*END*/

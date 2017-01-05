@@ -79,8 +79,9 @@
             this.tsmiNewScript = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitter = new System.Windows.Forms.Splitter();
             this.openProjectInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitter = new System.Windows.Forms.Splitter();
+            this.craftRecipieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
             this.msMain.SuspendLayout();
@@ -108,7 +109,6 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
@@ -397,7 +397,8 @@
             // tsmiInserts
             // 
             this.tsmiInserts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiNewItem});
+            this.tsmiNewItem,
+            this.craftRecipieToolStripMenuItem});
             this.tsmiInserts.Name = "tsmiInserts";
             this.tsmiInserts.Size = new System.Drawing.Size(53, 20);
             this.tsmiInserts.Text = "Inserts";
@@ -405,7 +406,7 @@
             // tsmiNewItem
             // 
             this.tsmiNewItem.Name = "tsmiNewItem";
-            this.tsmiNewItem.Size = new System.Drawing.Size(125, 22);
+            this.tsmiNewItem.Size = new System.Drawing.Size(152, 22);
             this.tsmiNewItem.Text = "New item";
             this.tsmiNewItem.Click += new System.EventHandler(this.tsmiNewItem_Click);
             // 
@@ -471,7 +472,7 @@
             this.tsmiDeleteTexture,
             this.openProjectInExplorerToolStripMenuItem});
             this.cmsTreeView.Name = "contextMenuStrip1";
-            this.cmsTreeView.Size = new System.Drawing.Size(202, 114);
+            this.cmsTreeView.Size = new System.Drawing.Size(202, 92);
             // 
             // tsmiNewScript
             // 
@@ -494,6 +495,13 @@
             this.tsmiDeleteTexture.Text = "Delete";
             this.tsmiDeleteTexture.Click += new System.EventHandler(this.tsmiDeleteTexture_Click);
             // 
+            // openProjectInExplorerToolStripMenuItem
+            // 
+            this.openProjectInExplorerToolStripMenuItem.Name = "openProjectInExplorerToolStripMenuItem";
+            this.openProjectInExplorerToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.openProjectInExplorerToolStripMenuItem.Text = "Open project in explorer";
+            this.openProjectInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
+            // 
             // splitter
             // 
             this.splitter.Location = new System.Drawing.Point(115, 24);
@@ -502,12 +510,12 @@
             this.splitter.TabIndex = 3;
             this.splitter.TabStop = false;
             // 
-            // openProjectInExplorerToolStripMenuItem
+            // craftRecipieToolStripMenuItem
             // 
-            this.openProjectInExplorerToolStripMenuItem.Name = "openProjectInExplorerToolStripMenuItem";
-            this.openProjectInExplorerToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.openProjectInExplorerToolStripMenuItem.Text = "Open project in explorer";
-            this.openProjectInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
+            this.craftRecipieToolStripMenuItem.Name = "craftRecipieToolStripMenuItem";
+            this.craftRecipieToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.craftRecipieToolStripMenuItem.Text = "Craft recipie";
+            this.craftRecipieToolStripMenuItem.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
             // 
             // fMain
             // 
@@ -586,6 +594,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiInserts;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewItem;
         private System.Windows.Forms.ToolStripMenuItem openProjectInExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem craftRecipieToolStripMenuItem;
     }
 }
 
