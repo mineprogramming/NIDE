@@ -23,7 +23,7 @@ namespace ModPE_editor
         {
             InitializeComponent();
             CodeAnalysisEngine.Initialize(fctbMain);
-            LoadWindow();
+            RegisterWorker.Load(this);
             fctbMain.Language = Language.JS;
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
@@ -62,7 +62,7 @@ namespace ModPE_editor
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveWindow();
+            RegisterWorker.Save(this);
             e.Cancel = !BeforeClosingFile();
         }
 
@@ -161,6 +161,9 @@ namespace ModPE_editor
         {
             Process.Start(ProgramData.Folder);
         }
+
+        //connections
+        public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; }  }
 
         //util
         private void LoadDiretories()
@@ -356,7 +359,7 @@ namespace ModPE_editor
 
         private bool BeforeClosingFile()
         {
-            AddRecent();
+            RegisterWorker.AddRecent();
             if (saved || fctbMain.Text == "")
                 return true;
             var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
@@ -782,71 +785,7 @@ namespace ModPE_editor
                 return SaveCoreEngine();
             else return false;
         }
-
-        //save
-        private bool SaveWindow()
-        {
-            try
-            {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                key = key.CreateSubKey("ModPE");
-                key.SetValue("maximized", WindowState == FormWindowState.Maximized);
-                key.SetValue("Width", Width.ToString());
-                key.SetValue("Height", Height.ToString());
-                key.SetValue("dvWidth", tvFolders.Width.ToString());
-                AddRecent();
-                for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    key.SetValue("Save" + i, ProgramData.Recent[i]);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Cannot save window properties");
-                return false;
-            }
-            return true;
-        }
-
-        private bool LoadWindow()
-        {
-            try
-            {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                if (!key.GetSubKeyNames().Contains("ModPE"))
-                    return false;
-                key = key.OpenSubKey("ModPE");
-                Width = Convert.ToInt32(key.GetValue("Width"));
-                Height = Convert.ToInt32(key.GetValue("Height"));
-                tvFolders.Width = Convert.ToInt32(key.GetValue("dvWidth"));
-                if (key.GetSubKeyNames().Contains("maximized"))
-                    WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
-                for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Cannot load window properties");
-                return false;
-            }
-            return true;
-        }
-
-        private void AddRecent()
-        {
-            string path = ProgramData.Mode == WorkMode.JAVASCRIPT ? ProgramData.File : ProgramData.Folder;
-            if (ProgramData.File != "" && !ProgramData.Recent.Contains(path))
-            {
-                for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
-                    ProgramData.Recent[i] = ProgramData.Recent[i - 1];
-                ProgramData.Recent[0] = path;
-            }
-            else if (ProgramData.File != "")
-            {
-                for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
-                    ProgramData.Recent[i + 1] = ProgramData.Recent[i];
-                ProgramData.Recent[0] = path;
-            }
-        }
-
+                
         //debugger
         private void tsmiRun_Click(object sender, EventArgs e)
         {
