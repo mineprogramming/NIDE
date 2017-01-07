@@ -8,7 +8,6 @@ using Ionic.Zip;
 using Yahoo.Yui.Compressor;
 using System.Drawing;
 using System.Diagnostics;
-using Microsoft.Win32;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -108,12 +107,12 @@ namespace ModPE_editor
                     name = name + ".js";
                 if (ProgramData.Mode == WorkMode.CORE_ENGINE)
                 {
-                    CreateFile("dev\\" + name);
+                    Util.CreateFile("dev\\" + name);
                     File.AppendAllLines(ProgramData.Folder + "\\dev\\.includes", new string[] { name });
                 }
                 else
                 {
-                    CreateFile("script\\" + name);
+                    Util.CreateFile("script\\" + name);
                 }
                 LoadDiretories();
             }
@@ -192,16 +191,6 @@ namespace ModPE_editor
         private TreeNode AddNode(TreeNode node, string text)
         {
             return node.Nodes.Add(text);
-        }
-
-        private void CreateFile(string PathRelative)
-        {
-            File.Create(ProgramData.Folder + "\\" + PathRelative).Close();
-        }
-
-        private void CreateDirectory(string PathRelative)
-        {
-            Directory.CreateDirectory(ProgramData.Folder + "\\" + PathRelative);
         }
 
         //textworking
@@ -497,10 +486,10 @@ namespace ModPE_editor
                 try
                 {
                     ProgramData.Folder = dlgFolder.SelectedPath;
-                    Directory.CreateDirectory(ProgramData.Folder + "\\images\\items-opaque");
-                    Directory.CreateDirectory(ProgramData.Folder + "\\images\\terrain-atlas");
-                    Directory.CreateDirectory(ProgramData.Folder + "\\script");
-                    File.Create(ProgramData.Folder + "\\script\\main.js").Close();
+                    Util.CreateDirectory("images\\items-opaque");
+                    Util.CreateDirectory("images\\terrain-atlas");
+                    Util.CreateDirectory("script");
+                    Util.CreateFile("script\\main.js");
                     return InitModpkg();
                 }
                 catch (Exception e)
@@ -519,15 +508,15 @@ namespace ModPE_editor
                 try
                 {
                     ProgramData.Folder = dlgFolder.SelectedPath;
-                    CreateFile("main.js");
-                    CreateFile("launcher.js");
-                    CreateFile("mod.info");
-                    CreateFile("resources.zip");
-                    CreateDirectory("gui");
-                    CreateDirectory("dev");
-                    CreateDirectory("assets\\items-opaque");
-                    CreateDirectory("assets\\terrain-atlas");
-                    CreateFile("dev\\.includes");
+                    Util.CreateFile("main.js");
+                    Util.CreateFile("launcher.js");
+                    Util.CreateFile("mod.info");
+                    Util.CreateFile("resources.zip");
+                    Util.CreateDirectory("gui");
+                    Util.CreateDirectory("dev");
+                    Util.CreateDirectory("assets\\items-opaque");
+                    Util.CreateDirectory("assets\\terrain-atlas");
+                    Util.CreateFile("dev\\.includes");
                     return InitCoreEngine();
                 }
                 catch (Exception e)
