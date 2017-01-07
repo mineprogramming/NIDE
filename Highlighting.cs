@@ -36,13 +36,25 @@ namespace ModPE_editor
         public static void ResetStyles(Range range)
         {
             if (OldNamespace != null)
-                range.ClearStyle(OldNamespace); 
+            {
+                range.ClearStyle(OldNamespace);
+                OldNamespace = null;
+            }
             if(OldHook != null)
+            {
                 range.ClearStyle(OldHook);
+                OldHook = null;
+            }
             if (OldGlobal != null)
+            {
                 range.ClearStyle(OldGlobal);
+                OldGlobal = null;
+            }
             if (OldMember != null)
+            {
                 range.ClearStyle(OldMember);
+                OldMember = null;
+            }
             if (ProgramData.Mode == WorkMode.CORE_ENGINE)
             {
                 range.ClearStyle(NamespaceStyle);
