@@ -907,5 +907,11 @@ namespace ModPE_editor
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
+
+        private void tsmiSettings_Click(object sender, EventArgs e)
+        {
+            new fSettings().ShowDialog();
+            Highlighting.ResetStyles(fctbMain.Range);
+        }
     }
 }

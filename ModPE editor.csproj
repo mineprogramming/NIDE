@@ -117,6 +117,12 @@
     <Compile Include="fRecentItems.Designer.cs">
       <DependentUpon>fRecentItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="fSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fSettings.Designer.cs">
+      <DependentUpon>fSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModPe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramData.cs" />
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fRecentItems.resx">
       <DependentUpon>fRecentItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fSettings.resx">
+      <DependentUpon>fSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
