@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fCraft));
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.cmsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
@@ -50,14 +53,12 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.cmsBtn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMeta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).BeginInit();
-            this.cmsBtn.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -96,7 +97,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ModPE_editor.Properties.Resources.arrow;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(117, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 108);
@@ -117,6 +118,20 @@
             this.checkBox9.TabIndex = 8;
             this.checkBox9.UseVisualStyleBackColor = true;
             this.checkBox9.Click += new System.EventHandler(this.btn_Click);
+            // 
+            // cmsBtn
+            // 
+            this.cmsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiClear});
+            this.cmsBtn.Name = "cmsBtn";
+            this.cmsBtn.Size = new System.Drawing.Size(102, 26);
+            // 
+            // tsmiClear
+            // 
+            this.tsmiClear.Name = "tsmiClear";
+            this.tsmiClear.Size = new System.Drawing.Size(101, 22);
+            this.tsmiClear.Text = "Clear";
+            this.tsmiClear.Click += new System.EventHandler(this.tsmiClear_Click);
             // 
             // checkBox8
             // 
@@ -326,20 +341,6 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Count";
             // 
-            // cmsBtn
-            // 
-            this.cmsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiClear});
-            this.cmsBtn.Name = "cmsBtn";
-            this.cmsBtn.Size = new System.Drawing.Size(102, 26);
-            // 
-            // tsmiClear
-            // 
-            this.tsmiClear.Name = "tsmiClear";
-            this.tsmiClear.Size = new System.Drawing.Size(101, 22);
-            this.tsmiClear.Text = "Clear";
-            this.tsmiClear.Click += new System.EventHandler(this.tsmiClear_Click);
-            // 
             // fCraft
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,10 +362,10 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.cmsBtn.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMeta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).EndInit();
-            this.cmsBtn.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
