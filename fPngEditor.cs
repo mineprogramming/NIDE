@@ -153,5 +153,26 @@ namespace ModPE_editor
             }
             saved = true;
         }
+
+        private void tsbOpen_Click(object sender, EventArgs e)
+        {
+            dlgOpen.ShowDialog();
+        }
+
+        private void dlgOpen_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Bitmap bmp = new Bitmap(dlgOpen.FileName);
+            if (bmp.Height == 16 && bmp.Width == 16)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    for (int j = 0; j < 16; j++)
+                    {
+                        pixels[i, j] = bmp.GetPixel(i, j);
+                    }
+                }
+            }
+            DrawPanel.Refresh();
+        }
     }
 }
