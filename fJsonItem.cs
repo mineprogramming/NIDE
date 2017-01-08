@@ -10,7 +10,7 @@ namespace ModPE_editor
         public static string name;
         private string filename = null;
         private bool saved = false;
-        
+
         private class Item : Creatable
         {
             public int maxStack;
@@ -61,19 +61,27 @@ namespace ModPE_editor
 
         private void tsbSave_Click(object sender, EventArgs e)
         {
-            if (SaveJson()) saved = true;
-            DialogResult = DialogResult.OK;
-            Close();
+            if (SaveJson())
+            {
+                saved = true;
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
 
         private static string ObjectToJson(object obj)
         {
             return new JavaScriptSerializer().Serialize(obj);
         }
-        
+
         private bool SaveJson()
         {
             string json = "";
+            if (tbFilename.Text == "")
+            {
+                MessageBox.Show("All fileds have to be comleted");
+                return false;
+            }
             switch (tcMain.SelectedTab.Text)
             {
                 case "Item":
@@ -91,7 +99,6 @@ namespace ModPE_editor
                         maxStack = (int)item_stack.Value
                     };
                     json = ObjectToJson(item);
-                    name = item.name;
                     break;
                 case "Block":
                     if (block_name.Text == "" || block_texture.Text == "")
@@ -112,7 +119,6 @@ namespace ModPE_editor
                         explosionResistance = block_explosion.Value
                     };
                     json = ObjectToJson(block);
-                    name = block.name;
                     break;
                 case "Food":
                     if (food_name.Text == "" || food_icon.Text == "")
@@ -130,7 +136,6 @@ namespace ModPE_editor
                         restore = (int)food_restore.Value
                     };
                     json = ObjectToJson(food);
-                    name = food.name;
                     break;
                 case "Armor":
                     if (armor_name.Text == "" || armor_icon.Text == "" || armor_texture.Text == "")
@@ -150,7 +155,6 @@ namespace ModPE_editor
                         armorTexture = armor_texture.Text
                     };
                     json = ObjectToJson(armor);
-                    name = armor.name;
                     break;
                 case "Throwable":
                     if (throwable_name.Text == "" || throwable_icon.Text == "")
@@ -167,9 +171,9 @@ namespace ModPE_editor
                         maxStack = (int)throwable_stack.Value
                     };
                     json = ObjectToJson(throwable);
-                    name = throwable.name;
                     break;
             }
+            name = tbFilename.Text;
             try
             {
                 filename = ProgramData.Folder + "\\images\\items\\" + name + ".json";
@@ -199,6 +203,10 @@ namespace ModPE_editor
                 MessageBox.Show(e.Message, "Unable to  open JSON");
                 return;
             }
+            tbFilename.Enabled = false;
+            string[] splitted = filename.Split('\\');
+            splitted = splitted[splitted.Length - 1].Split('.');
+            tbFilename.Text = splitted[0];
             switch (obj.type)
             {
                 case "item":
@@ -210,7 +218,6 @@ namespace ModPE_editor
                     item_icon.Text = item.texture.name;
                     item_index.Value = item.texture.meta;
                     item_stack.Value = item.maxStack;
-                    item_name.Enabled = false;
                     break;
                 case "block":
                     tcMain.TabPages.Remove(tcMain.TabPages[0]);
@@ -226,7 +233,6 @@ namespace ModPE_editor
                     block_render.Value = block.renderType;
                     block_destroy.Value = block.destroyTime;
                     block_explosion.Value = block.explosionResistance;
-                    block_name.Enabled = false;
                     break;
                 case "food":
                     for (int i = 0; i < 2; i++)
@@ -240,7 +246,6 @@ namespace ModPE_editor
                     food_index.Value = food.texture.meta;
                     food_stack.Value = food.maxStack;
                     food_restore.Value = food.restore;
-                    food_name.Enabled = false;
                     break;
                 case "armor":
                     for (int i = 0; i < 3; i++)
@@ -255,7 +260,6 @@ namespace ModPE_editor
                     armor_reduce.Value = armor.reduceDamage;
                     armor_max.Value = armor.maxDamage;
                     armor_texture.Text = armor.armorTexture;
-                    armor_name.Enabled = false;
                     break;
                 case "throwable":
                     for (int i = 0; i < 4; i++)
@@ -266,7 +270,6 @@ namespace ModPE_editor
                     throwable_icon.Text = throwable.texture.name;
                     throwable_index.Value = throwable.texture.meta;
                     throwable_stack.Value = throwable.maxStack;
-                    throwable_name.Enabled = false;
                     break;
             }
         }

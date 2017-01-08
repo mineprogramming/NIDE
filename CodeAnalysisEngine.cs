@@ -24,7 +24,7 @@ namespace ModPE_editor
                 {
                     string variable = match.Value.Split(' ')[1];
                     if (!Variables.Contains(variable))
-                        Variables.Add(match.Value.Split(' ')[1]);
+                        Variables.Add(variable);
                 }
             }
             regex = new Regex(@"\bfunction\b");
@@ -33,8 +33,11 @@ namespace ModPE_editor
                 if (regex.IsMatch(line) && line.IndexOf('(') != -1 && line.IndexOf(')') != -1)
                 {
                     string params_line = line.Split('(')[1].Split(')')[0];
+                    string function_line = line.Split('(')[0].Split()[1];
                     foreach (var param in params_line.Split(','))
                         Variables.Add(param.Trim());
+                    if (!ModPe.hooks.Contains(function_line))
+                        Variables.Add(function_line);
                 }
             }
         }
