@@ -39,7 +39,7 @@ namespace ModPE_editor
             {
                 try
                 {
-                    ProgramData.File = args[1];
+                    ProgramData.File = args[0];
                     fctbMain.OpenFile(ProgramData.File, Encoding.UTF8);
                 }
                 catch (Exception ex)
