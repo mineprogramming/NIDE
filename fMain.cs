@@ -825,12 +825,11 @@ namespace ModPE_editor
 
         private void craftRecipieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ProgramData.Mode != WorkMode.MODPKG)
+            if (ProgramData.Mode == WorkMode.CORE_ENGINE)
             {
-                MessageBox.Show("This function is only for Modpkgs at the moment");
+                MessageBox.Show("This function is only for pure ModPE at the moment");
                 return;
             }
-            insertItemsEngine();
             var form = new fCraft();
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
