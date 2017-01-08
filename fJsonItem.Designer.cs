@@ -103,6 +103,7 @@
             this.throwable_name = new System.Windows.Forms.TextBox();
             this.tsMain = new System.Windows.Forms.ToolStrip();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.tbFilename = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.item_id)).BeginInit();
             this.tcMain.SuspendLayout();
             this.tpItem.SuspendLayout();
@@ -927,11 +928,19 @@
             this.tsbSave.Text = "toolStripButton1";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
+            // tbFilename
+            // 
+            this.tbFilename.Location = new System.Drawing.Point(254, 24);
+            this.tbFilename.Name = "tbFilename";
+            this.tbFilename.Size = new System.Drawing.Size(100, 20);
+            this.tbFilename.TabIndex = 10;
+            // 
             // fJsonItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(373, 208);
+            this.Controls.Add(this.tbFilename);
             this.Controls.Add(this.tsMain);
             this.Controls.Add(this.tcMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -1052,5 +1061,6 @@
         private System.Windows.Forms.NumericUpDown throwable_id;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox throwable_name;
+        private System.Windows.Forms.TextBox tbFilename;
     }
 }
