@@ -36,6 +36,8 @@
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.dlgColor = new System.Windows.Forms.ColorDialog();
+            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +62,7 @@
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.DrawPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DrawPanel.Location = new System.Drawing.Point(0, 28);
             this.DrawPanel.Name = "DrawPanel";
@@ -89,10 +91,11 @@
             // tsMain
             // 
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbSave,
+            this.tsbOpen,
             this.tsbColor,
             this.tsbDraw,
-            this.tsbClear,
-            this.tsbSave});
+            this.tsbClear});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(337, 25);
@@ -145,6 +148,21 @@
             // 
             this.dlgColor.FullOpen = true;
             // 
+            // tsbOpen
+            // 
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpen.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpen.Image")));
+            this.tsbOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpen.Click += new System.EventHandler(this.tsbOpen_Click);
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.DefaultExt = "png";
+            this.dlgOpen.FileName = "/textures";
+            this.dlgOpen.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgOpen_FileOk);
+            // 
             // fPngEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,5 +190,7 @@
         private System.Windows.Forms.ToolStripButton tsbDraw;
         private System.Windows.Forms.ToolStripButton tsbClear;
         private System.Windows.Forms.ToolStripButton tsbSave;
+        private System.Windows.Forms.ToolStripButton tsbOpen;
+        private System.Windows.Forms.OpenFileDialog dlgOpen;
     }
 }

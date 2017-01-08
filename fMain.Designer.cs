@@ -67,8 +67,11 @@
             this.tsmiAutocompleteItems = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiInserts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.craftRecipieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDebug = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCoreEngineDocs = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
@@ -81,7 +84,6 @@
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.openProjectInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter = new System.Windows.Forms.Splitter();
-            this.craftRecipieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
             this.msMain.SuspendLayout();
@@ -109,6 +111,7 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
@@ -174,6 +177,7 @@
             this.tsmiEdit,
             this.tsmiInserts,
             this.tsmiDebug,
+            this.tsmiOptions,
             this.tsmiHelp});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
@@ -406,9 +410,16 @@
             // tsmiNewItem
             // 
             this.tsmiNewItem.Name = "tsmiNewItem";
-            this.tsmiNewItem.Size = new System.Drawing.Size(152, 22);
+            this.tsmiNewItem.Size = new System.Drawing.Size(138, 22);
             this.tsmiNewItem.Text = "New item";
             this.tsmiNewItem.Click += new System.EventHandler(this.tsmiNewItem_Click);
+            // 
+            // craftRecipieToolStripMenuItem
+            // 
+            this.craftRecipieToolStripMenuItem.Name = "craftRecipieToolStripMenuItem";
+            this.craftRecipieToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.craftRecipieToolStripMenuItem.Text = "Craft recipie";
+            this.craftRecipieToolStripMenuItem.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
             // 
             // tsmiDebug
             // 
@@ -424,6 +435,21 @@
             this.tsmiCheck.Size = new System.Drawing.Size(136, 22);
             this.tsmiCheck.Text = "Check code";
             this.tsmiCheck.Click += new System.EventHandler(this.tsmiRun_Click);
+            // 
+            // tsmiOptions
+            // 
+            this.tsmiOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSettings});
+            this.tsmiOptions.Name = "tsmiOptions";
+            this.tsmiOptions.Size = new System.Drawing.Size(61, 20);
+            this.tsmiOptions.Text = "Options";
+            // 
+            // tsmiSettings
+            // 
+            this.tsmiSettings.Name = "tsmiSettings";
+            this.tsmiSettings.Size = new System.Drawing.Size(116, 22);
+            this.tsmiSettings.Text = "Settings";
+            this.tsmiSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
             // 
             // tsmiHelp
             // 
@@ -510,13 +536,6 @@
             this.splitter.TabIndex = 3;
             this.splitter.TabStop = false;
             // 
-            // craftRecipieToolStripMenuItem
-            // 
-            this.craftRecipieToolStripMenuItem.Name = "craftRecipieToolStripMenuItem";
-            this.craftRecipieToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.craftRecipieToolStripMenuItem.Text = "Craft recipie";
-            this.craftRecipieToolStripMenuItem.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
-            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,7 +582,6 @@
         private System.Windows.Forms.ToolStripMenuItem ctsmiFind;
         private System.Windows.Forms.ToolStripMenuItem ctsmiReplace;
         private System.Windows.Forms.ToolStripMenuItem ctsmiAutoIndent;
-        private System.Windows.Forms.TreeView tvFolders;
         private System.Windows.Forms.Splitter splitter;
         private System.Windows.Forms.ContextMenuStrip cmsTreeView;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
@@ -595,6 +613,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewItem;
         private System.Windows.Forms.ToolStripMenuItem openProjectInExplorerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem craftRecipieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOptions;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
+        private System.Windows.Forms.TreeView tvFolders;
     }
 }
 

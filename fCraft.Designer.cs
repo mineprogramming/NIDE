@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fCraft));
             this.panel1 = new System.Windows.Forms.Panel();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.cmsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
@@ -50,18 +53,27 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.nudCount = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmsBtn = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiClear = new System.Windows.Forms.ToolStripMenuItem();
+            this.rbTable = new System.Windows.Forms.RadioButton();
+            this.rbFurance = new System.Windows.Forms.RadioButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.cmsBtn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMeta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).BeginInit();
-            this.cmsBtn.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.checkBox10);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.checkBox9);
@@ -73,7 +85,7 @@
             this.panel1.Controls.Add(this.checkBox3);
             this.panel1.Controls.Add(this.checkBox2);
             this.panel1.Controls.Add(this.checkBox1);
-            this.panel1.Location = new System.Drawing.Point(12, 54);
+            this.panel1.Location = new System.Drawing.Point(12, 35);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(258, 115);
             this.panel1.TabIndex = 1;
@@ -96,7 +108,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::ModPE_editor.Properties.Resources.arrow;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(117, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 108);
@@ -117,6 +129,20 @@
             this.checkBox9.TabIndex = 8;
             this.checkBox9.UseVisualStyleBackColor = true;
             this.checkBox9.Click += new System.EventHandler(this.btn_Click);
+            // 
+            // cmsBtn
+            // 
+            this.cmsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiClear});
+            this.cmsBtn.Name = "cmsBtn";
+            this.cmsBtn.Size = new System.Drawing.Size(102, 26);
+            // 
+            // tsmiClear
+            // 
+            this.tsmiClear.Name = "tsmiClear";
+            this.tsmiClear.Size = new System.Drawing.Size(101, 22);
+            this.tsmiClear.Text = "Clear";
+            this.tsmiClear.Click += new System.EventHandler(this.tsmiClear_Click);
             // 
             // checkBox8
             // 
@@ -233,7 +259,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(541, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
             this.label1.TabIndex = 2;
@@ -241,19 +267,19 @@
             // 
             // nudId
             // 
-            this.nudId.Location = new System.Drawing.Point(36, 7);
+            this.nudId.Location = new System.Drawing.Point(565, 76);
             this.nudId.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.nudId.Name = "nudId";
-            this.nudId.Size = new System.Drawing.Size(111, 20);
+            this.nudId.Size = new System.Drawing.Size(93, 20);
             this.nudId.TabIndex = 3;
             // 
             // nudMeta
             // 
-            this.nudMeta.Location = new System.Drawing.Point(190, 7);
+            this.nudMeta.Location = new System.Drawing.Point(578, 102);
             this.nudMeta.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -266,7 +292,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(153, 9);
+            this.label2.Location = new System.Drawing.Point(541, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 13);
             this.label2.TabIndex = 4;
@@ -276,18 +302,19 @@
             // 
             this.wbItems.AllowNavigation = false;
             this.wbItems.AllowWebBrowserDrop = false;
+            this.wbItems.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.wbItems.IsWebBrowserContextMenuEnabled = false;
-            this.wbItems.Location = new System.Drawing.Point(12, 175);
+            this.wbItems.Location = new System.Drawing.Point(0, 156);
             this.wbItems.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbItems.Name = "wbItems";
-            this.wbItems.Size = new System.Drawing.Size(820, 308);
+            this.wbItems.Size = new System.Drawing.Size(820, 339);
             this.wbItems.TabIndex = 6;
             this.wbItems.Url = new System.Uri("https://hydra-media.cursecdn.com/minecraft-ru.gamepedia.com/d/d1/DataValues.svg", System.UriKind.Absolute);
             this.wbItems.WebBrowserShortcutsEnabled = false;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(12, 31);
+            this.btnOk.Location = new System.Drawing.Point(547, 127);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(111, 20);
             this.btnOk.TabIndex = 7;
@@ -297,7 +324,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(159, 31);
+            this.btnSave.Location = new System.Drawing.Point(664, 127);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(111, 20);
             this.btnSave.TabIndex = 8;
@@ -307,7 +334,7 @@
             // 
             // nudCount
             // 
-            this.nudCount.Location = new System.Drawing.Point(276, 145);
+            this.nudCount.Location = new System.Drawing.Point(724, 100);
             this.nudCount.Name = "nudCount";
             this.nudCount.Size = new System.Drawing.Size(52, 20);
             this.nudCount.TabIndex = 9;
@@ -320,31 +347,101 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(276, 129);
+            this.label3.Location = new System.Drawing.Point(683, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 10;
             this.label3.Text = "Count";
             // 
-            // cmsBtn
+            // rbTable
             // 
-            this.cmsBtn.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiClear});
-            this.cmsBtn.Name = "cmsBtn";
-            this.cmsBtn.Size = new System.Drawing.Size(102, 26);
+            this.rbTable.AutoSize = true;
+            this.rbTable.Checked = true;
+            this.rbTable.Location = new System.Drawing.Point(12, 12);
+            this.rbTable.Name = "rbTable";
+            this.rbTable.Size = new System.Drawing.Size(87, 17);
+            this.rbTable.TabIndex = 11;
+            this.rbTable.Text = "Crafting table";
+            this.rbTable.UseVisualStyleBackColor = true;
             // 
-            // tsmiClear
+            // rbFurance
             // 
-            this.tsmiClear.Name = "tsmiClear";
-            this.tsmiClear.Size = new System.Drawing.Size(101, 22);
-            this.tsmiClear.Text = "Clear";
-            this.tsmiClear.Click += new System.EventHandler(this.tsmiClear_Click);
+            this.rbFurance.AutoSize = true;
+            this.rbFurance.Location = new System.Drawing.Point(276, 12);
+            this.rbFurance.Name = "rbFurance";
+            this.rbFurance.Size = new System.Drawing.Size(64, 17);
+            this.rbFurance.TabIndex = 12;
+            this.rbFurance.Text = "Furance";
+            this.rbFurance.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.pictureBox3);
+            this.panel2.Controls.Add(this.checkBox12);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.checkBox11);
+            this.panel2.Location = new System.Drawing.Point(276, 35);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(258, 115);
+            this.panel2.TabIndex = 11;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkBox12.Location = new System.Drawing.Point(223, 41);
+            this.checkBox12.MaximumSize = new System.Drawing.Size(32, 32);
+            this.checkBox12.MinimumSize = new System.Drawing.Size(32, 32);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(32, 32);
+            this.checkBox12.TabIndex = 10;
+            this.checkBox12.UseVisualStyleBackColor = true;
+            this.checkBox12.Click += new System.EventHandler(this.btn_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(117, 3);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 108);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.Appearance = System.Windows.Forms.Appearance.Button;
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.checkBox11.ContextMenuStrip = this.cmsBtn;
+            this.checkBox11.Location = new System.Drawing.Point(41, 3);
+            this.checkBox11.MinimumSize = new System.Drawing.Size(32, 32);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(32, 32);
+            this.checkBox11.TabIndex = 1;
+            this.checkBox11.UseVisualStyleBackColor = true;
+            this.checkBox11.Click += new System.EventHandler(this.btn_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(30, 39);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(57, 71);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 11;
+            this.pictureBox3.TabStop = false;
             // 
             // fCraft
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 495);
+            this.ClientSize = new System.Drawing.Size(820, 495);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.rbFurance);
+            this.Controls.Add(this.rbTable);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.nudCount);
             this.Controls.Add(this.btnSave);
@@ -361,10 +458,14 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.cmsBtn.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMeta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudCount)).EndInit();
-            this.cmsBtn.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -394,5 +495,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ContextMenuStrip cmsBtn;
         private System.Windows.Forms.ToolStripMenuItem tsmiClear;
+        private System.Windows.Forms.RadioButton rbTable;
+        private System.Windows.Forms.RadioButton rbFurance;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

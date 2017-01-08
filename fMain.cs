@@ -8,7 +8,6 @@ using Ionic.Zip;
 using Yahoo.Yui.Compressor;
 using System.Drawing;
 using System.Diagnostics;
-using Microsoft.Win32;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -23,7 +22,7 @@ namespace ModPE_editor
         {
             InitializeComponent();
             CodeAnalysisEngine.Initialize(fctbMain);
-            LoadWindow();
+            RegisterWorker.Load(this);
             fctbMain.Language = Language.JS;
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
@@ -40,7 +39,7 @@ namespace ModPE_editor
             {
                 try
                 {
-                    ProgramData.File = args[1];
+                    ProgramData.File = args[0];
                     fctbMain.OpenFile(ProgramData.File, Encoding.UTF8);
                 }
                 catch (Exception ex)
@@ -62,7 +61,7 @@ namespace ModPE_editor
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveWindow();
+            RegisterWorker.Save(this);
             e.Cancel = !BeforeClosingFile();
         }
 
@@ -108,12 +107,12 @@ namespace ModPE_editor
                     name = name + ".js";
                 if (ProgramData.Mode == WorkMode.CORE_ENGINE)
                 {
-                    CreateFile("dev\\" + name);
+                    Util.CreateFile("dev\\" + name);
                     File.AppendAllLines(ProgramData.Folder + "\\dev\\.includes", new string[] { name });
                 }
                 else
                 {
-                    CreateFile("script\\" + name);
+                    Util.CreateFile("script\\" + name);
                 }
                 LoadDiretories();
             }
@@ -162,6 +161,9 @@ namespace ModPE_editor
             Process.Start(ProgramData.Folder);
         }
 
+        //connections
+        public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; }  }
+
         //util
         private void LoadDiretories()
         {
@@ -189,16 +191,6 @@ namespace ModPE_editor
         private TreeNode AddNode(TreeNode node, string text)
         {
             return node.Nodes.Add(text);
-        }
-
-        private void CreateFile(string PathRelative)
-        {
-            File.Create(ProgramData.Folder + "\\" + PathRelative).Close();
-        }
-
-        private void CreateDirectory(string PathRelative)
-        {
-            Directory.CreateDirectory(ProgramData.Folder + "\\" + PathRelative);
         }
 
         //textworking
@@ -356,7 +348,7 @@ namespace ModPE_editor
 
         private bool BeforeClosingFile()
         {
-            AddRecent();
+            RegisterWorker.AddRecent();
             if (saved || fctbMain.Text == "")
                 return true;
             var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
@@ -494,10 +486,10 @@ namespace ModPE_editor
                 try
                 {
                     ProgramData.Folder = dlgFolder.SelectedPath;
-                    Directory.CreateDirectory(ProgramData.Folder + "\\images\\items-opaque");
-                    Directory.CreateDirectory(ProgramData.Folder + "\\images\\terrain-atlas");
-                    Directory.CreateDirectory(ProgramData.Folder + "\\script");
-                    File.Create(ProgramData.Folder + "\\script\\main.js").Close();
+                    Util.CreateDirectory("images\\items-opaque");
+                    Util.CreateDirectory("images\\terrain-atlas");
+                    Util.CreateDirectory("script");
+                    Util.CreateFile("script\\main.js");
                     return InitModpkg();
                 }
                 catch (Exception e)
@@ -516,15 +508,15 @@ namespace ModPE_editor
                 try
                 {
                     ProgramData.Folder = dlgFolder.SelectedPath;
-                    CreateFile("main.js");
-                    CreateFile("launcher.js");
-                    CreateFile("mod.info");
-                    CreateFile("resources.zip");
-                    CreateDirectory("gui");
-                    CreateDirectory("dev");
-                    CreateDirectory("assets\\items-opaque");
-                    CreateDirectory("assets\\terrain-atlas");
-                    CreateFile("dev\\.includes");
+                    Util.CreateFile("main.js");
+                    Util.CreateFile("launcher.js");
+                    Util.CreateFile("mod.info");
+                    Util.CreateFile("resources.zip");
+                    Util.CreateDirectory("gui");
+                    Util.CreateDirectory("dev");
+                    Util.CreateDirectory("assets\\items-opaque");
+                    Util.CreateDirectory("assets\\terrain-atlas");
+                    Util.CreateFile("dev\\.includes");
                     return InitCoreEngine();
                 }
                 catch (Exception e)
@@ -782,71 +774,7 @@ namespace ModPE_editor
                 return SaveCoreEngine();
             else return false;
         }
-
-        //save
-        private bool SaveWindow()
-        {
-            try
-            {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                key = key.CreateSubKey("ModPE");
-                key.SetValue("maximized", WindowState == FormWindowState.Maximized);
-                key.SetValue("Width", Width.ToString());
-                key.SetValue("Height", Height.ToString());
-                key.SetValue("dvWidth", tvFolders.Width.ToString());
-                AddRecent();
-                for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    key.SetValue("Save" + i, ProgramData.Recent[i]);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Cannot save window properties");
-                return false;
-            }
-            return true;
-        }
-
-        private bool LoadWindow()
-        {
-            try
-            {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                if (!key.GetSubKeyNames().Contains("ModPE"))
-                    return false;
-                key = key.OpenSubKey("ModPE");
-                Width = Convert.ToInt32(key.GetValue("Width"));
-                Height = Convert.ToInt32(key.GetValue("Height"));
-                tvFolders.Width = Convert.ToInt32(key.GetValue("dvWidth"));
-                if (key.GetSubKeyNames().Contains("maximized"))
-                    WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
-                for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Cannot load window properties");
-                return false;
-            }
-            return true;
-        }
-
-        private void AddRecent()
-        {
-            string path = ProgramData.Mode == WorkMode.JAVASCRIPT ? ProgramData.File : ProgramData.Folder;
-            if (ProgramData.File != "" && !ProgramData.Recent.Contains(path))
-            {
-                for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
-                    ProgramData.Recent[i] = ProgramData.Recent[i - 1];
-                ProgramData.Recent[0] = path;
-            }
-            else if (ProgramData.File != "")
-            {
-                for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
-                    ProgramData.Recent[i + 1] = ProgramData.Recent[i];
-                ProgramData.Recent[0] = path;
-            }
-        }
-
+                
         //debugger
         private void tsmiRun_Click(object sender, EventArgs e)
         {
@@ -897,15 +825,20 @@ namespace ModPE_editor
 
         private void craftRecipieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ProgramData.Mode != WorkMode.MODPKG)
+            if (ProgramData.Mode == WorkMode.CORE_ENGINE)
             {
-                MessageBox.Show("This function is only for Modpkgs at the moment");
+                MessageBox.Show("This function is only for pure ModPE at the moment");
                 return;
             }
-            insertItemsEngine();
             var form = new fCraft();
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
+        }
+
+        private void tsmiSettings_Click(object sender, EventArgs e)
+        {
+            new fSettings().ShowDialog();
+            Highlighting.ResetStyles(fctbMain.Range);
         }
     }
 }

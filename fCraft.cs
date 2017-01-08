@@ -29,6 +29,8 @@ namespace ModPE_editor
             checkBox8.Checked = false;
             checkBox9.Checked = false;
             checkBox10.Checked = false;
+            checkBox11.Checked = false;
+            checkBox12.Checked = false;
             checkedNow = sender as CheckBox;
             checkedNow.Checked = true;
             if (checkedNow.Tag != null)
@@ -81,32 +83,48 @@ namespace ModPE_editor
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (checkBox10.Tag == null)
+            if (rbTable.Checked)
             {
-                MessageBox.Show("Result item isn't mentioned!");
-                return;
+                if (checkBox10.Tag == null)
+                {
+                    MessageBox.Show("Result item isn't mentioned!");
+                    return;
+                }
+                else if (checkBox1.Tag == null || checkBox2.Tag == null || checkBox3.Tag == null || checkBox4.Tag == null || checkBox5.Tag == null || checkBox6.Tag == null || checkBox7.Tag == null || checkBox8.Tag == null || checkBox9.Tag == null)
+                {
+                    MessageBox.Show("Recipie is empty!");
+                    return;
+                }
+                string[] splitted = checkBox10.Tag.ToString().Split('_');
+                recipie = "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});";
+                string object1 = "";
+                string object2 = "";
+                Item[] items;
+                bool _3x3 = getItems(out items);
+                if (!_3x3)
+                    object1 = "[\"ab\", \"cd\"]";
+                else
+                    object1 = "[\"abc\", \"def\", \"ghi\"]";
+                object2 = "[";
+                for (int i = 0; i < items.Length; i++)
+                    if (items[i] != null)
+                        object2 += "\"" + Convert.ToChar(97 + i) + "\", " + items[i].id + ", " + items[i].data + ',';
+                object2 = object2.Substring(0, object2.Length - 1) + ']';
+                recipie = string.Format(recipie, splitted[0], (int)nudCount.Value, splitted[1], object1, object2);
             }
-            else if (!(checkBox1.Tag == null || checkBox2.Tag == null || checkBox3.Tag == null || checkBox4.Tag == null || checkBox5.Tag == null || checkBox6.Tag == null || checkBox7.Tag == null || checkBox8.Tag == null || checkBox9.Tag == null))
-            {
-                MessageBox.Show("Recipie is empty!");
-                return;
-            }
-            string[] splitted = checkBox10.Tag.ToString().Split('_');
-            recipie = "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});";
-            string object1 = "";
-            string object2 = "";
-            Item[] items;
-            bool _3x3 = getItems(out items);
-            if (!_3x3)
-                object1 = "[\"ab\", \"cd\"]";
             else
-                object1 = "[\"abc\", \"def\", \"ghi\"]";
-            object2 = "[";
-            for (int i = 0; i < items.Length; i++)
-                if (items[i] != null)
-                    object2 += "\"" + Convert.ToChar(97 + i) + "\", " + items[i].id + ", " + items[i].data + ',';
-            object2 = object2.Substring(0, object2.Length - 1) + ']';
-            recipie = string.Format(recipie, splitted[0], (int)nudCount.Value, splitted[1], object1, object2);
+            {
+                if(checkBox12.Tag == null || checkBox11.Tag == null)
+                {
+                    MessageBox.Show("Result or ingredient item isn't mentioned!");
+                    return;
+                }
+                recipie = "Item.addFurnaceRecipe({0}, {1}, {2});";
+                string[] splitted = checkBox11.Tag.ToString().Split('_');
+                string inputId = splitted[0];
+                splitted = checkBox12.Tag.ToString().Split('_');
+                recipie = String.Format(recipie, inputId, splitted[0], splitted[1]);
+            }
             DialogResult = DialogResult.OK;
             Close();
         }

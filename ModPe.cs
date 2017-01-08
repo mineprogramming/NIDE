@@ -41,7 +41,7 @@ namespace ModPE_editor
             string[] lines = File.ReadAllLines(path);
             foreach (string line in lines)
             {
-                if (line.Length == 0 || (line[0] == '/' && line[1] == '/'))
+                if (line.Length == 0 || line.StartsWith("//"))
                     continue;
                 string[] functions = line.Split(' ');
                 if (functions[0] == "function")
