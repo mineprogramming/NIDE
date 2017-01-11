@@ -90,7 +90,7 @@ namespace ModPE_editor
                     MessageBox.Show("Result item isn't mentioned!");
                     return;
                 }
-                else if (checkBox1.Tag == null || checkBox2.Tag == null || checkBox3.Tag == null || checkBox4.Tag == null || checkBox5.Tag == null || checkBox6.Tag == null || checkBox7.Tag == null || checkBox8.Tag == null || checkBox9.Tag == null)
+                else if (!(checkBox1.Tag != null || checkBox2.Tag != null || checkBox3.Tag != null || checkBox4.Tag != null || checkBox5.Tag != null || checkBox6.Tag != null || checkBox7.Tag != null || checkBox8.Tag != null || checkBox9.Tag != null))
                 {
                     MessageBox.Show("Recipie is empty!");
                     return;
