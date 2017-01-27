@@ -111,7 +111,6 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
