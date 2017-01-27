@@ -3,7 +3,7 @@ using System.Linq;
 using System.IO;
 using FastColoredTextBoxNS;
 
-namespace ModPE_editor
+namespace NIDE
 {
     static class ModPe
     {

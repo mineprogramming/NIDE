@@ -1,4 +1,4 @@
-﻿namespace ModPE_editor
+﻿namespace NIDE
 {
     partial class fMain
     {
@@ -548,7 +548,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
             this.Name = "fMain";
-            this.Text = "ModPE editor";
+            this.Text = "NIDE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).EndInit();
             this.cmsMain.ResumeLayout(false);

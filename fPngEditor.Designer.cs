@@ -1,4 +1,4 @@
-﻿namespace ModPE_editor
+﻿namespace NIDE
 {
     partial class fPngEditor
     {
@@ -44,7 +44,7 @@
             // DrawPanel
             // 
             this.DrawPanel.BackColor = System.Drawing.Color.White;
-            this.DrawPanel.BackgroundImage = global::ModPE_editor.Properties.Resources.background;
+            this.DrawPanel.BackgroundImage = global::NIDE.Properties.Resources.background;
             this.DrawPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.DrawPanel.ColumnCount = 16;
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));

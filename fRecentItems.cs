@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ModPE_editor
+namespace NIDE
 {
     public partial class fRecentItems : Form
     {

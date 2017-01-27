@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Web.Script.Serialization;
 
-namespace ModPE_editor
+namespace NIDE
 {
     public static class Util
     {

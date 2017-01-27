@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace ModPE_editor
+namespace NIDE
 {
     static class CoreEngine
     {

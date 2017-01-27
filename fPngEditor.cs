@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ModPE_editor
+namespace NIDE
 {
     public partial class fPngEditor : Form
     {

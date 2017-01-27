@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ModPE_editor
+namespace NIDE
 {
     public partial class fAutocompleteItems : Form
     {

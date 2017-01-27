@@ -7,8 +7,8 @@
     <ProjectGuid>{41E7BDE0-44AF-44A7-B779-4112D570081A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModPE_editor</RootNamespace>
-    <AssemblyName>ModPE editor</AssemblyName>
+    <RootNamespace>NIDE</RootNamespace>
+    <AssemblyName>NIDE</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

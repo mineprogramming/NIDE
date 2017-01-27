@@ -1,4 +1,4 @@
-﻿namespace ModPE_editor
+﻿namespace NIDE
 {
     partial class fDialog
     {

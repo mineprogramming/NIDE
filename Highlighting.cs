@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace ModPE_editor
+namespace NIDE
 {
     static class Highlighting
     {

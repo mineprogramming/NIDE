@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ModPE_editor
+namespace NIDE
 {
     static class Autocomplete
     {

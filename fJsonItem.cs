@@ -3,7 +3,7 @@ using System.IO;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
 
-namespace ModPE_editor
+namespace NIDE
 {
     public partial class fJsonItem : Form
     {

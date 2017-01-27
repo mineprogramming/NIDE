@@ -3,7 +3,7 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ModPE_editor
+namespace NIDE
 {
     static class RegisterWorker
     {

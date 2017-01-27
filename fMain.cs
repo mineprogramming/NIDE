@@ -11,7 +11,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ModPE_editor
+namespace NIDE
 {
     public partial class fMain : Form
     {
