@@ -17,6 +17,7 @@ namespace NIDE
     {
         bool saved = true;
         XmlDocument xml;
+        ProjectManager projectManager;
 
         public fMain(string[] args)
         {
@@ -839,6 +840,14 @@ namespace NIDE
         {
             new fSettings().ShowDialog();
             Highlighting.ResetStyles(fctbMain.Range);
+        }
+
+        private void tsmiNewProject_Click(object sender, EventArgs e)
+        {
+            if(dlgFolder.ShowDialog() == DialogResult.OK)
+            {
+                projectManager = new ProjectManager(dlgFolder.SelectedPath, ProjectType.MODPE);
+            }
         }
     }
 }

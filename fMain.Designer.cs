@@ -84,6 +84,7 @@
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.openProjectInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter = new System.Windows.Forms.Splitter();
+            this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
             this.msMain.SuspendLayout();
@@ -111,6 +112,7 @@
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fctbMain.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Location = new System.Drawing.Point(115, 24);
@@ -186,6 +188,7 @@
             // tsmiFile
             // 
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiNewProject,
             this.tsmiNew,
             this.tsmiOpen,
             this.tsmiOpenRecent,
@@ -535,6 +538,13 @@
             this.splitter.TabIndex = 3;
             this.splitter.TabStop = false;
             // 
+            // tsmiNewProject
+            // 
+            this.tsmiNewProject.Name = "tsmiNewProject";
+            this.tsmiNewProject.Size = new System.Drawing.Size(186, 22);
+            this.tsmiNewProject.Text = "New";
+            this.tsmiNewProject.Click += new System.EventHandler(this.tsmiNewProject_Click);
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -615,6 +625,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
         private System.Windows.Forms.TreeView tvFolders;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewProject;
     }
 }
 
