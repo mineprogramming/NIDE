@@ -38,6 +38,8 @@
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
             this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +64,7 @@
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
+            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.DrawPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DrawPanel.Location = new System.Drawing.Point(0, 28);
             this.DrawPanel.Name = "DrawPanel";
@@ -91,9 +93,11 @@
             // tsMain
             // 
             this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbSave,
             this.tsbOpen,
+            this.tsbSave,
+            this.toolStripSeparator1,
             this.tsbColor,
+            this.toolStripButton1,
             this.tsbDraw,
             this.tsbClear});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
@@ -151,7 +155,7 @@
             this.tsbClear.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbClear.Name = "tsbClear";
             this.tsbClear.Size = new System.Drawing.Size(23, 22);
-            this.tsbClear.Text = "Clear";
+            this.tsbClear.Text = "Erase";
             this.tsbClear.Click += new System.EventHandler(this.tsbClear_Click);
             // 
             // dlgColor
@@ -163,6 +167,20 @@
             this.dlgOpen.DefaultExt = "png";
             this.dlgOpen.FileName = "/textures";
             this.dlgOpen.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgOpen_FileOk);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Pick color";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // fPngEditor
             // 
@@ -193,5 +211,7 @@
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripButton tsbOpen;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
