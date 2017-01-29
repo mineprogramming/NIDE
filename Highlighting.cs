@@ -55,7 +55,7 @@ namespace NIDE
                 range.ClearStyle(OldMember);
                 OldMember = null;
             }
-            if (ProgramData.Mode == WorkMode.CORE_ENGINE)
+            if (ProgramData.ProjectManager.projectType == ProjectType.COREENGINE)
             {
                 range.ClearStyle(NamespaceStyle);
                 range.ClearStyle(MemberStyle);

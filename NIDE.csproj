@@ -75,12 +75,6 @@
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="CoreEngine.cs" />
-    <Compile Include="fAutocompleteItems.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fAutocompleteItems.Designer.cs">
-      <DependentUpon>fAutocompleteItems.cs</DependentUpon>
-    </Compile>
     <Compile Include="fCraft.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +98,12 @@
     </Compile>
     <Compile Include="fMain.Designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fNewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fNewProject.Designer.cs">
+      <DependentUpon>fNewProject.cs</DependentUpon>
     </Compile>
     <Compile Include="fPngEditor.cs">
       <SubType>Form</SubType>
@@ -132,9 +132,6 @@
     <Compile Include="Enums.cs" />
     <Compile Include="RegisterWorker.cs" />
     <Compile Include="Util.cs" />
-    <EmbeddedResource Include="fAutocompleteItems.resx">
-      <DependentUpon>fAutocompleteItems.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="fCraft.resx">
       <DependentUpon>fCraft.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fNewProject.resx">
+      <DependentUpon>fNewProject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fPngEditor.resx">
       <DependentUpon>fPngEditor.cs</DependentUpon>

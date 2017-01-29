@@ -176,9 +176,7 @@ namespace NIDE
             name = tbFilename.Text;
             try
             {
-                filename = ProgramData.Folder + "\\images\\items\\" + name + ".json";
-                if (!Directory.Exists(ProgramData.Folder + "\\images\\items\\"))
-                    Directory.CreateDirectory(ProgramData.Folder + "\\images\\items\\");
+                filename = ProgramData.ProjectManager.OtherResourcesPath + name + ".json";
                 File.WriteAllText(filename, json);
             }
             catch (Exception e)

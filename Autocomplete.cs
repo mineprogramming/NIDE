@@ -61,7 +61,7 @@ namespace NIDE
             List<AutocompleteItem> items = new List<AutocompleteItem>();
             foreach (var item in Autocomplete.UserItems)
                 items.Add(new AutocompleteItem(item));
-            if (ProgramData.Mode == WorkMode.CORE_ENGINE)
+            if (ProgramData.ProjectManager != null && ProgramData.ProjectManager.projectType == ProjectType.COREENGINE)
             {
                 if (parts.Length < 2)
                 {

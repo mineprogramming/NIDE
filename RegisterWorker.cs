@@ -12,7 +12,7 @@ namespace NIDE
             try
             {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                key = key.CreateSubKey("ModPE");
+                key = key.CreateSubKey("NIDE");
                 key.SetValue("maximized", sender.WindowState == FormWindowState.Maximized);
                 key.SetValue("Width", sender.Width.ToString());
                 key.SetValue("Height", sender.Height.ToString());
@@ -23,7 +23,7 @@ namespace NIDE
                 key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
                 AddRecent();
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    key.SetValue("Save" + i, ProgramData.Recent[i]);
+                    key.SetValue("Save" + i, ProgramData.Recent[i] != null ? ProgramData.Recent[i] : "");
             }
             catch (Exception e)
             {
@@ -36,9 +36,9 @@ namespace NIDE
             try
             {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                if (!key.GetSubKeyNames().Contains("ModPE"))
+                if (!key.GetSubKeyNames().Contains("NIDE"))
                     return;
-                key = key.OpenSubKey("ModPE");
+                key = key.OpenSubKey("NIDE");
                 sender.Width = Convert.ToInt32(key.GetValue("Width"));
                 sender.Height = Convert.ToInt32(key.GetValue("Height"));
                 sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
@@ -63,18 +63,21 @@ namespace NIDE
 
         public static void AddRecent()
         {
-            string path = ProgramData.Mode == WorkMode.JAVASCRIPT ? ProgramData.File : ProgramData.Folder;
-            if (ProgramData.File != "" && !ProgramData.Recent.Contains(path))
+            if (ProgramData.ProjectManager != null)
             {
-                for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
-                    ProgramData.Recent[i] = ProgramData.Recent[i - 1];
-                ProgramData.Recent[0] = path;
-            }
-            else if (ProgramData.File != "")
-            {
-                for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
-                    ProgramData.Recent[i + 1] = ProgramData.Recent[i];
-                ProgramData.Recent[0] = path;
+                string path = ProgramData.ProjectManager.ProjectFilePath;
+                if (!ProgramData.Recent.Contains(path))
+                {
+                    for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
+                        ProgramData.Recent[i] = ProgramData.Recent[i - 1];
+                    ProgramData.Recent[0] = path;
+                }
+                else
+                {
+                    for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
+                        ProgramData.Recent[i + 1] = ProgramData.Recent[i];
+                    ProgramData.Recent[0] = path;
+                }
             }
         }
     }

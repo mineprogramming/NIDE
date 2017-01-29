@@ -49,23 +49,26 @@ namespace NIDE
 
         private void find_texture()
         {
-            if (Directory.Exists(ProgramData.Folder + "\\images\\items"))
+            if (Directory.Exists(ProgramData.ProjectManager.OtherResourcesPath))
             {
-                foreach (var file in Directory.GetFiles(ProgramData.Folder + "\\images\\items"))
+                foreach (var file in Directory.GetFiles(ProgramData.ProjectManager.OtherResourcesPath))
                 {
-                    Creatable item = File.ReadAllText(file).ToObject<Creatable>();
-                    if (item.id == (int)nudId.Value)
+                    if (Path.GetExtension(file).ToLower() == ".json")
                     {
-                        string path = ProgramData.Folder + "\\images\\items-opaque\\" + item.texture.name + "_" + item.texture.meta + ".png";
-                        if (!File.Exists(path))
-                            path = ProgramData.Folder + "\\images\\terrain-atlas\\" + item.texture.name + "_" + item.texture.meta + ".png";
-                        if (!File.Exists(path))
+                        Creatable item = File.ReadAllText(file).ToObject<Creatable>();
+                        if (item.id == (int)nudId.Value)
                         {
-                            MessageBox.Show("Cannot find texture for id: " + nudId.Value);
+                            string path = ProgramData.ProjectManager.ItemsOpaquePath + item.texture.name + "_" + item.texture.meta + ".png";
+                            if (!File.Exists(path))
+                                path = ProgramData.ProjectManager.TerrainAtlasPath + item.texture.name + "_" + item.texture.meta + ".png";
+                            if (!File.Exists(path))
+                            {
+                                MessageBox.Show("Cannot find texture for id: " + nudId.Value);
+                                return;
+                            }
+                            checkedNow.BackgroundImage = new Bitmap(path);
                             return;
                         }
-                        checkedNow.BackgroundImage = new Bitmap(path);
-                        return;
                     }
                 }
             }

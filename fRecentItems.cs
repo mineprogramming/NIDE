@@ -5,7 +5,7 @@ namespace NIDE
 {
     public partial class fRecentItems : Form
     {
-        public static string Path;
+        public string path;
 
         public fRecentItems()
         {
@@ -15,8 +15,8 @@ namespace NIDE
 
         private void lvMain_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Path = Convert.ToString(lbMain.SelectedItem);
-            if (Path != "")
+            path = Convert.ToString(lbMain.SelectedItem);
+            if (path != "")
             {
                 DialogResult = DialogResult.OK;
                 Close();

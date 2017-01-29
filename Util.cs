@@ -9,15 +9,5 @@ namespace NIDE
         {
             return new JavaScriptSerializer().Deserialize<type>(JSON);
         }
-
-        public static void CreateFile(string PathRelative)
-        {
-            File.Create(ProgramData.Folder + "\\" + PathRelative).Close();
-        }
-
-        public static void CreateDirectory(string PathRelative)
-        {
-            Directory.CreateDirectory(ProgramData.Folder + "\\" + PathRelative);
-        }
     }
 }
