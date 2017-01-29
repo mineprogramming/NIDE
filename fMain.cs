@@ -59,6 +59,19 @@ namespace NIDE
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!saved)
+            {
+                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
             RegisterWorker.Save(this);
         }
 

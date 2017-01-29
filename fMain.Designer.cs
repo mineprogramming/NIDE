@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
-            this.fctbMain = new FastColoredTextBoxNS.FastColoredTextBox();
             this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,54 +64,24 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewScript = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.openProjectInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitter = new System.Windows.Forms.Splitter();
+            this.panel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
+            this.splitter = new System.Windows.Forms.Splitter();
+            this.fctbMain = new FastColoredTextBoxNS.FastColoredTextBox();
+            this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsMain.SuspendLayout();
             this.msMain.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
+            this.panel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.SuspendLayout();
-            // 
-            // fctbMain
-            // 
-            this.fctbMain.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fctbMain.AutoScrollMinSize = new System.Drawing.Size(27, 14);
-            this.fctbMain.BackBrush = null;
-            this.fctbMain.CharHeight = 14;
-            this.fctbMain.CharWidth = 8;
-            this.fctbMain.ContextMenuStrip = this.cmsMain;
-            this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fctbMain.IsReplaceMode = false;
-            this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
-            this.fctbMain.Location = new System.Drawing.Point(115, 24);
-            this.fctbMain.Name = "fctbMain";
-            this.fctbMain.Paddings = new System.Windows.Forms.Padding(0);
-            this.fctbMain.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fctbMain.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fctbMain.ServiceColors")));
-            this.fctbMain.Size = new System.Drawing.Size(545, 309);
-            this.fctbMain.TabIndex = 0;
-            this.fctbMain.Zoom = 100;
-            this.fctbMain.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fctbMain_TextChanged);
             // 
             // cmsMain
             // 
@@ -372,19 +341,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // tvFolders
-            // 
-            this.tvFolders.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.tvFolders.ContextMenuStrip = this.cmsTreeView;
-            this.tvFolders.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tvFolders.Dock = System.Windows.Forms.DockStyle.Left;
-            this.tvFolders.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tvFolders.Location = new System.Drawing.Point(0, 24);
-            this.tvFolders.Name = "tvFolders";
-            this.tvFolders.Size = new System.Drawing.Size(115, 309);
-            this.tvFolders.TabIndex = 2;
-            this.tvFolders.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseDoubleClick);
-            // 
             // cmsTreeView
             // 
             this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -423,22 +379,26 @@
             this.openProjectInExplorerToolStripMenuItem.Text = "Open project in explorer";
             this.openProjectInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
             // 
-            // splitter
+            // panel
             // 
-            this.splitter.Location = new System.Drawing.Point(115, 24);
-            this.splitter.Name = "splitter";
-            this.splitter.Size = new System.Drawing.Size(3, 309);
-            this.splitter.TabIndex = 3;
-            this.splitter.TabStop = false;
+            this.panel.Controls.Add(this.statusStrip1);
+            this.panel.Controls.Add(this.splitter);
+            this.panel.Controls.Add(this.fctbMain);
+            this.panel.Controls.Add(this.tvFolders);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(0, 24);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(660, 309);
+            this.panel.TabIndex = 2;
             // 
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslFile});
-            this.statusStrip1.Location = new System.Drawing.Point(118, 311);
+            this.statusStrip1.Location = new System.Drawing.Point(118, 287);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(542, 22);
-            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.TabIndex = 8;
             this.statusStrip1.Text = "Status";
             // 
             // tsslFile
@@ -446,36 +406,87 @@
             this.tsslFile.Name = "tsslFile";
             this.tsslFile.Size = new System.Drawing.Size(0, 17);
             // 
+            // splitter
+            // 
+            this.splitter.Location = new System.Drawing.Point(115, 0);
+            this.splitter.Name = "splitter";
+            this.splitter.Size = new System.Drawing.Size(3, 309);
+            this.splitter.TabIndex = 7;
+            this.splitter.TabStop = false;
+            // 
+            // fctbMain
+            // 
+            this.fctbMain.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
+            this.fctbMain.AutoScrollMinSize = new System.Drawing.Size(27, 14);
+            this.fctbMain.BackBrush = null;
+            this.fctbMain.CharHeight = 14;
+            this.fctbMain.CharWidth = 8;
+            this.fctbMain.ContextMenuStrip = this.cmsMain;
+            this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fctbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fctbMain.IsReplaceMode = false;
+            this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
+            this.fctbMain.Location = new System.Drawing.Point(115, 0);
+            this.fctbMain.Name = "fctbMain";
+            this.fctbMain.Paddings = new System.Windows.Forms.Padding(0);
+            this.fctbMain.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.fctbMain.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fctbMain.ServiceColors")));
+            this.fctbMain.Size = new System.Drawing.Size(545, 309);
+            this.fctbMain.TabIndex = 5;
+            this.fctbMain.Zoom = 100;
+            this.fctbMain.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fctbMain_TextChanged);
+            // 
+            // tvFolders
+            // 
+            this.tvFolders.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.tvFolders.ContextMenuStrip = this.cmsTreeView;
+            this.tvFolders.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tvFolders.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tvFolders.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tvFolders.Location = new System.Drawing.Point(0, 0);
+            this.tvFolders.Name = "tvFolders";
+            this.tvFolders.Size = new System.Drawing.Size(115, 309);
+            this.tvFolders.TabIndex = 6;
+            this.tvFolders.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseDoubleClick);
+            // 
             // fMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 333);
-            this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.splitter);
-            this.Controls.Add(this.fctbMain);
-            this.Controls.Add(this.tvFolders);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.msMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.msMain;
             this.Name = "fMain";
             this.Text = "NIDE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).EndInit();
             this.cmsMain.ResumeLayout(false);
             this.msMain.ResumeLayout(false);
             this.msMain.PerformLayout();
             this.cmsTreeView.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private FastColoredTextBoxNS.FastColoredTextBox fctbMain;
         private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.ToolStripMenuItem tsmiFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiSave;
@@ -493,7 +504,6 @@
         private System.Windows.Forms.ToolStripMenuItem ctsmiFind;
         private System.Windows.Forms.ToolStripMenuItem ctsmiReplace;
         private System.Windows.Forms.ToolStripMenuItem ctsmiAutoIndent;
-        private System.Windows.Forms.Splitter splitter;
         private System.Windows.Forms.ContextMenuStrip cmsTreeView;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteTexture;
@@ -513,12 +523,15 @@
         private System.Windows.Forms.ToolStripMenuItem craftRecipieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmiOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
-        private System.Windows.Forms.TreeView tvFolders;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenProject;
         private System.Windows.Forms.ToolStripMenuItem buildToolStripMenuItem;
+        private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsslFile;
+        private System.Windows.Forms.Splitter splitter;
+        private FastColoredTextBoxNS.FastColoredTextBox fctbMain;
+        private System.Windows.Forms.TreeView tvFolders;
     }
 }
 
