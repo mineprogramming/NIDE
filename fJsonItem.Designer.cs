@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fJsonItem));
             this.label1 = new System.Windows.Forms.Label();
             this.item_name = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -101,9 +100,8 @@
             this.throwable_id = new System.Windows.Forms.NumericUpDown();
             this.label33 = new System.Windows.Forms.Label();
             this.throwable_name = new System.Windows.Forms.TextBox();
-            this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.tbFilename = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.item_id)).BeginInit();
             this.tcMain.SuspendLayout();
             this.tpItem.SuspendLayout();
@@ -130,7 +128,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.throwable_stack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_index)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_id)).BeginInit();
-            this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -179,7 +176,7 @@
             this.tcMain.Controls.Add(this.tpFood);
             this.tcMain.Controls.Add(this.tpArmor);
             this.tcMain.Controls.Add(this.tpThrowable);
-            this.tcMain.Location = new System.Drawing.Point(12, 28);
+            this.tcMain.Location = new System.Drawing.Point(12, 12);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
             this.tcMain.Size = new System.Drawing.Size(349, 168);
@@ -908,26 +905,6 @@
             this.throwable_name.TabIndex = 1;
             this.throwable_name.TextChanged += new System.EventHandler(this.SomethingChanged);
             // 
-            // tsMain
-            // 
-            this.tsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbSave});
-            this.tsMain.Location = new System.Drawing.Point(0, 0);
-            this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(373, 25);
-            this.tsMain.TabIndex = 9;
-            this.tsMain.Text = "toolStrip1";
-            // 
-            // tsbSave
-            // 
-            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSave.Image = ((System.Drawing.Image)(resources.GetObject("tsbSave.Image")));
-            this.tsbSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Size = new System.Drawing.Size(23, 22);
-            this.tsbSave.Text = "Save";
-            this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
-            // 
             // tbFilename
             // 
             this.tbFilename.Location = new System.Drawing.Point(254, 24);
@@ -935,13 +912,23 @@
             this.tbFilename.Size = new System.Drawing.Size(100, 20);
             this.tbFilename.TabIndex = 10;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(286, 182);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.tsbSave_Click);
+            // 
             // fJsonItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(373, 208);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tbFilename);
-            this.Controls.Add(this.tsMain);
             this.Controls.Add(this.tcMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "fJsonItem";
@@ -978,8 +965,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.throwable_stack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_index)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.throwable_id)).EndInit();
-            this.tsMain.ResumeLayout(false);
-            this.tsMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1031,8 +1016,6 @@
         private System.Windows.Forms.NumericUpDown food_id;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox food_name;
-        private System.Windows.Forms.ToolStrip tsMain;
-        private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.TabPage tpArmor;
         private System.Windows.Forms.NumericUpDown armor_index;
         private System.Windows.Forms.Label label21;
@@ -1062,5 +1045,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox throwable_name;
         private System.Windows.Forms.TextBox tbFilename;
+        private System.Windows.Forms.Button button1;
     }
 }
