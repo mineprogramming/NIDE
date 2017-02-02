@@ -83,6 +83,7 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.tsmiCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -320,7 +321,8 @@
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewProject,
             this.tsmiOpenProject,
-            this.tsmiSave});
+            this.tsmiSave,
+            this.tsmiCloseProject});
             this.tsmiFile.Name = "tsmiFile";
             resources.ApplyResources(this.tsmiFile, "tsmiFile");
             // 
@@ -476,6 +478,12 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // tsmiCloseProject
+            // 
+            this.tsmiCloseProject.Name = "tsmiCloseProject";
+            resources.ApplyResources(this.tsmiCloseProject, "tsmiCloseProject");
+            this.tsmiCloseProject.Click += new System.EventHandler(this.tsmiCloseProject_Click);
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -485,6 +493,7 @@
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "fMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
+            this.Load += new System.EventHandler(this.fMain_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
@@ -559,6 +568,7 @@
         private System.Windows.Forms.ToolStripButton tsbCut;
         private System.Windows.Forms.ToolStripButton tsbPaste;
         private System.Windows.Forms.ToolStripButton tsbNewFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCloseProject;
     }
 }
 

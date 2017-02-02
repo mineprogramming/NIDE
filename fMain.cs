@@ -11,9 +11,11 @@ namespace NIDE
     public partial class fMain : Form
     {
         private bool saved = true;
+        private string[] args;
 
         public fMain(string[] args)
         {
+            this.args = args;
             InitializeComponent();
             CodeAnalysisEngine.Initialize(fctbMain);
             RegisterWorker.Load(this);
@@ -30,7 +32,10 @@ namespace NIDE
                 MessageBox.Show(ex.Message, "Unable to load ModPE or CoreEngine data");
                 Close();
             }
+        }
 
+        private void fMain_Load(object sender, EventArgs e)
+        {
             if (args.Length > 0)
             {
                 try
@@ -43,22 +48,24 @@ namespace NIDE
                 catch (Exception ex)
                 {
                     MessageBox.Show("Unable to open this project!");
+                    Close();
                 }
             }// Open with
             else
             {
                 fStartWindow form = new fStartWindow();
-                if (form.ShowDialog() == DialogResult.OK) {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
                     switch (form.result)
                     {
                         case "recent":
                             OpenProject(form.path);
                             break;
                         case "new":
-                            tsmiNewProject_Click(this, new EventArgs());
+                            NewProjectDlg(true);
                             break;
                         case "open":
-                            tsmiOpenProject_Click(this, new EventArgs());
+                            OpenProjectDlg(true);
                             break;
                     }
                 }
@@ -66,7 +73,7 @@ namespace NIDE
                 {
                     Close();
                 }
-            }
+            }//StartScreen
         }
 
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
@@ -81,6 +88,7 @@ namespace NIDE
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (!CanChangeFile()) e.Cancel = true;
             RegisterWorker.Save(this);
         }
 
@@ -168,7 +176,8 @@ namespace NIDE
                 {
                     File.Delete(GetTreeViewPath(tvFolders.SelectedNode));
                     UpdateProject();
-                } catch (Exception ex)
+                }
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Cannot delete this file");
                 }
@@ -269,18 +278,7 @@ namespace NIDE
         //new project system
         private void OpenProject(string FileName)
         {
-            if (!saved)
-            {
-                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    return;
-                }
-            }
+            if (!CanChangeFile()) return;
             try
             {
                 ProgramData.ProjectManager = new ProjectManager(FileName);
@@ -346,7 +344,7 @@ namespace NIDE
         }
 
 
-        private void tsmiNewProject_Click(object sender, EventArgs e)
+        private void NewProjectDlg(bool closeIfNotChecked = false)
         {
             var form = new fNewProject();
             if (form.ShowDialog() == DialogResult.OK)
@@ -362,20 +360,64 @@ namespace NIDE
                     MessageBox.Show(ex.Message, "An error occured while creating a new project");
                 }
             }
+            else if (closeIfNotChecked)
+            {
+                Close();
+            }
         }
 
-        private void tsmiOpenProject_Click(object sender, EventArgs e)
+        private void OpenProjectDlg(bool closeIfNotChecked = false)
         {
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
                 OpenProject(dlgOpen.FileName);
             }
+            else if (closeIfNotChecked)
+            {
+                Close();
+            }
+        }
+
+
+        private void tsmiNewProject_Click(object sender, EventArgs e)
+        {
+            NewProjectDlg();
+        }
+
+        private void tsmiOpenProject_Click(object sender, EventArgs e)
+        {
+            OpenProjectDlg();
         }
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
             saved = true;
+        }
+
+        private bool CanChangeFile()
+        {
+            if (!saved && fctbMain.Text != "")
+            {
+                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+                    return true;
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return false;
+                }
+                else return true;
+            }
+            else return true;
+        }
+
+        private void tsmiCloseProject_Click(object sender, EventArgs e)
+        {
+            if (!CanChangeFile()) return;
+            Application.Restart();
         }
     }
 }
