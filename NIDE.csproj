@@ -111,17 +111,17 @@
     <Compile Include="fPngEditor.Designer.cs">
       <DependentUpon>fPngEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="fRecentItems.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fRecentItems.Designer.cs">
-      <DependentUpon>fRecentItems.cs</DependentUpon>
-    </Compile>
     <Compile Include="fSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="fSettings.Designer.cs">
       <DependentUpon>fSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fStartWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fStartWindow.Designer.cs">
+      <DependentUpon>fStartWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="ModPe.cs" />
     <Compile Include="Program.cs" />
@@ -150,11 +150,11 @@
     <EmbeddedResource Include="fPngEditor.resx">
       <DependentUpon>fPngEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fRecentItems.resx">
-      <DependentUpon>fRecentItems.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="fSettings.resx">
       <DependentUpon>fSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fStartWindow.resx">
+      <DependentUpon>fStartWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

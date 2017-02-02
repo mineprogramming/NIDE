@@ -17,7 +17,6 @@ namespace NIDE
             InitializeComponent();
             CodeAnalysisEngine.Initialize(fctbMain);
             RegisterWorker.Load(this);
-            fctbMain.Language = Language.JS;
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
 
@@ -29,6 +28,7 @@ namespace NIDE
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Unable to load ModPE or CoreEngine data");
+                Close();
             }
 
             if (args.Length > 0)
@@ -42,9 +42,31 @@ namespace NIDE
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Unable");
+                    MessageBox.Show("Unable to open this project!");
                 }
             }// Open with
+            else
+            {
+                fStartWindow form = new fStartWindow();
+                if (form.ShowDialog() == DialogResult.OK) {
+                    switch (form.result)
+                    {
+                        case "recent":
+                            OpenProject(form.path);
+                            break;
+                        case "new":
+                            tsmiNewProject_Click(this, new EventArgs());
+                            break;
+                        case "open":
+                            tsmiOpenProject_Click(this, new EventArgs());
+                            break;
+                    }
+                }
+                else
+                {
+                    Close();
+                }
+            }
         }
 
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
@@ -347,15 +369,6 @@ namespace NIDE
             if (dlgOpen.ShowDialog() == DialogResult.OK)
             {
                 OpenProject(dlgOpen.FileName);
-            }
-        }
-
-        private void tsmiOpenRecent_Click(object sender, EventArgs e)
-        {
-            var form = new fRecentItems();
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                OpenProject(form.path);
             }
         }
 
