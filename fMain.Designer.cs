@@ -74,9 +74,9 @@
             this.tsmiInserts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.craftRecipieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDebug = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,8 +146,8 @@
         '\''};
             resources.ApplyResources(this.fctbMain, "fctbMain");
             this.fctbMain.BackBrush = null;
-            this.fctbMain.CharHeight = 18;
-            this.fctbMain.CharWidth = 10;
+            this.fctbMain.CharHeight = 14;
+            this.fctbMain.CharWidth = 8;
             this.fctbMain.ContextMenuStrip = this.cmsMain;
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
@@ -322,7 +322,7 @@
             this.tsmiFile,
             this.tsmiEdit,
             this.tsmiInserts,
-            this.tsmiDebug,
+            this.tsmiRun,
             this.tsmiOptions,
             this.tsmiHelp});
             resources.ApplyResources(this.MenuStrip, "MenuStrip");
@@ -442,24 +442,25 @@
             resources.ApplyResources(this.craftRecipieToolStripMenuItem, "craftRecipieToolStripMenuItem");
             this.craftRecipieToolStripMenuItem.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
             // 
-            // tsmiDebug
+            // tsmiRun
             // 
-            this.tsmiDebug.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiCheck,
-            this.buildToolStripMenuItem});
-            this.tsmiDebug.Name = "tsmiDebug";
-            resources.ApplyResources(this.tsmiDebug, "tsmiDebug");
+            this.tsmiRun.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.buildToolStripMenuItem,
+            this.tsmiCheck});
+            this.tsmiRun.Name = "tsmiRun";
+            resources.ApplyResources(this.tsmiRun, "tsmiRun");
+            // 
+            // buildToolStripMenuItem
+            // 
+            this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
+            resources.ApplyResources(this.buildToolStripMenuItem, "buildToolStripMenuItem");
+            this.buildToolStripMenuItem.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
             // 
             // tsmiCheck
             // 
             this.tsmiCheck.Name = "tsmiCheck";
             resources.ApplyResources(this.tsmiCheck, "tsmiCheck");
             this.tsmiCheck.Click += new System.EventHandler(this.tsmiRun_Click);
-            // 
-            // buildToolStripMenuItem
-            // 
-            this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
-            resources.ApplyResources(this.buildToolStripMenuItem, "buildToolStripMenuItem");
             // 
             // tsmiOptions
             // 
@@ -547,7 +548,7 @@
         private System.Windows.Forms.ContextMenuStrip cmsTreeView;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteTexture;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDebug;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRun;
         private System.Windows.Forms.ToolStripMenuItem tsmiCheck;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;

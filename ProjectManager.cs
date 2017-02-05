@@ -13,6 +13,7 @@ namespace NIDE
         private const string ITEMS_OPAQUE_PATH = "\\source\\res\\images\\items-opaque\\";
         private const string TERRAIN_ATLAS_PATH = "\\source\\res\\images\\terrain-atlas\\";
         private const string OTHER_RESOURCES_PATH = "\\source\\res\\images\\other\\";
+        private const string BUILD_PATH = "\\build\\";
 
         public readonly ProjectType projectType;
         public readonly string path;
@@ -28,7 +29,11 @@ namespace NIDE
         public string TerrainAtlasPath { get { return path + TERRAIN_ATLAS_PATH; } }
         public string ProjectFilePath { get { return projectFile; } }
         public string MainScriptPath { get { return path + SCRIPTS_PATH + "main.js"; } }
+        private string BuildPath { get { return path + BUILD_PATH; } }
+        private string ScriptsPath { get { return path + SCRIPTS_PATH; } }
+
         public string ProjectName { get { return projectName; } }
+        
 
         public ProjectManager(string projectFile)
         {
@@ -81,7 +86,7 @@ namespace NIDE
                 SCRIPTS_PATH,
                 "\\source\\scripts\\main.js",
                 "\\source\\libs\\",
-                "\\build\\",
+                BUILD_PATH,
                 "\\out\\"
                 })
             {
@@ -119,6 +124,16 @@ namespace NIDE
             }
             png.Save(TexturePath);
         }
+
+        public void build()
+        {
+            foreach(var file in Directory.GetFiles(ScriptsPath))
+            {
+                string text = File.ReadAllText(file);
+                File.AppendAllText(BuildPath + "main.js", "\n" + text);
+            }
+        }
+
 
         private string ProjectTypeToString(ProjectType type)
         {

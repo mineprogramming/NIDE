@@ -426,6 +426,10 @@ namespace NIDE
             if (!CanChangeFile()) return;
             Application.Restart();
         }
-        
+
+        private void buildToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProgramData.ProjectManager.build();
+        }
     }
 }
