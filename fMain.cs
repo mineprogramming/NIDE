@@ -207,30 +207,37 @@ namespace NIDE
         {
             fctbMain.Redo();
         }
-
         private void tsmiFind_Click(object sender, EventArgs e)
         {
             fctbMain.ShowFindDialog();
         }
-
         private void tsmiReplace_Click(object sender, EventArgs e)
         {
             fctbMain.ShowReplaceDialog();
         }
-
         private void ctsmiAutoIndent_Click(object sender, EventArgs e)
         {
             fctbMain.DoAutoIndent();
         }
-
         private void tsmiComment_Click(object sender, EventArgs e)
         {
             fctbMain.CommentSelected();
         }
-
         private void tsmiSelectAll_Click(object sender, EventArgs e)
         {
             fctbMain.SelectAll();
+        }
+        private void tsbCut_Click(object sender, EventArgs e)
+        {
+            fctbMain.Cut();
+        }
+        private void tsbCopy_Click(object sender, EventArgs e)
+        {
+            fctbMain.Copy();
+        }
+        private void tsbPaste_Click(object sender, EventArgs e)
+        {
+            fctbMain.Paste();
         }
 
 
@@ -419,5 +426,6 @@ namespace NIDE
             if (!CanChangeFile()) return;
             Application.Restart();
         }
+        
     }
 }

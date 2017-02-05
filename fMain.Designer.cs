@@ -61,6 +61,7 @@
             this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tsmiCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -114,6 +114,7 @@
             // 
             // StatusStrip
             // 
+            this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsslFile});
             resources.ApplyResources(this.StatusStrip, "StatusStrip");
@@ -145,8 +146,8 @@
         '\''};
             resources.ApplyResources(this.fctbMain, "fctbMain");
             this.fctbMain.BackBrush = null;
-            this.fctbMain.CharHeight = 14;
-            this.fctbMain.CharWidth = 8;
+            this.fctbMain.CharHeight = 18;
+            this.fctbMain.CharWidth = 10;
             this.fctbMain.ContextMenuStrip = this.cmsMain;
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
@@ -161,6 +162,7 @@
             // 
             // cmsMain
             // 
+            this.cmsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ctsmiUndo,
             this.ctsmiRedo,
@@ -211,6 +213,7 @@
             // 
             // cmsTreeView
             // 
+            this.cmsTreeView.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewScript,
             this.tsmiNewTexture,
@@ -246,6 +249,7 @@
             // ToolStrip
             // 
             resources.ApplyResources(this.ToolStrip, "ToolStrip");
+            this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbCreate,
             this.tsbOpen,
@@ -262,24 +266,28 @@
             this.tsbCreate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbCreate, "tsbCreate");
             this.tsbCreate.Name = "tsbCreate";
+            this.tsbCreate.Click += new System.EventHandler(this.tsmiNewProject_Click);
             // 
             // tsbOpen
             // 
             this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbOpen, "tsbOpen");
             this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Click += new System.EventHandler(this.tsmiOpenProject_Click);
             // 
             // tsbSave
             // 
             this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbSave, "tsbSave");
             this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Click += new System.EventHandler(this.tsmiSave_Click);
             // 
             // tsbNewFile
             // 
             this.tsbNewFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbNewFile, "tsbNewFile");
             this.tsbNewFile.Name = "tsbNewFile";
+            this.tsbNewFile.Click += new System.EventHandler(this.tsmiNewScript_Click);
             // 
             // toolStripSeparator
             // 
@@ -291,21 +299,25 @@
             this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbCut, "tsbCut");
             this.tsbCut.Name = "tsbCut";
+            this.tsbCut.Click += new System.EventHandler(this.tsbCut_Click);
             // 
             // tsbCopy
             // 
             this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbCopy, "tsbCopy");
             this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
             // 
             // tsbPaste
             // 
             this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.tsbPaste, "tsbPaste");
             this.tsbPaste.Name = "tsbPaste";
+            this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
             // 
             // MenuStrip
             // 
+            this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiFile,
             this.tsmiEdit,
@@ -343,6 +355,12 @@
             this.tsmiSave.Name = "tsmiSave";
             resources.ApplyResources(this.tsmiSave, "tsmiSave");
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
+            // 
+            // tsmiCloseProject
+            // 
+            this.tsmiCloseProject.Name = "tsmiCloseProject";
+            resources.ApplyResources(this.tsmiCloseProject, "tsmiCloseProject");
+            this.tsmiCloseProject.Click += new System.EventHandler(this.tsmiCloseProject_Click);
             // 
             // tsmiEdit
             // 
@@ -477,12 +495,6 @@
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "nproj";
-            // 
-            // tsmiCloseProject
-            // 
-            this.tsmiCloseProject.Name = "tsmiCloseProject";
-            resources.ApplyResources(this.tsmiCloseProject, "tsmiCloseProject");
-            this.tsmiCloseProject.Click += new System.EventHandler(this.tsmiCloseProject_Click);
             // 
             // fMain
             // 
