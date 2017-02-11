@@ -460,7 +460,7 @@
             // 
             this.tsmiCheck.Name = "tsmiCheck";
             resources.ApplyResources(this.tsmiCheck, "tsmiCheck");
-            this.tsmiCheck.Click += new System.EventHandler(this.tsmiRun_Click);
+            this.tsmiCheck.Click += new System.EventHandler(this.tsmiCheck_Click);
             // 
             // tsmiOptions
             // 

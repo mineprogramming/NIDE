@@ -240,23 +240,6 @@ namespace NIDE
             fctbMain.Paste();
         }
 
-
-        //build
-        private void tsmiRun_Click(object sender, EventArgs e)
-        {
-            if (fctbMain.Text != "")
-                try
-                {
-                    JavaScriptCompressor compressor = new JavaScriptCompressor();
-                    string compressed = compressor.Compress(fctbMain.Text);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error in your Javascript code found!");
-                }
-        }
-
-
         //inserts
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
@@ -430,6 +413,20 @@ namespace NIDE
         private void buildToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ProgramData.ProjectManager.build();
+        }
+
+        private void tsmiCheck_Click(object sender, EventArgs e)
+        {
+            if (fctbMain.Text != "")
+                try
+                {
+                    JavaScriptCompressor compressor = new JavaScriptCompressor();
+                    string compressed = compressor.Compress(fctbMain.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error in your Javascript code found!");
+                }
         }
     }
 }
