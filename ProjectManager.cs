@@ -9,6 +9,7 @@ namespace NIDE
     {
         private const int API_LEVEL = 1;
         private const string SOURCE_CODE_PATH = "\\source\\";
+        private const string LIB_PATH = "\\source\\lib\\";
         private const string SCRIPTS_PATH = "\\source\\scripts\\";
         private const string ITEMS_OPAQUE_PATH = "\\source\\res\\images\\items-opaque\\";
         private const string TERRAIN_ATLAS_PATH = "\\source\\res\\images\\terrain-atlas\\";
@@ -21,7 +22,7 @@ namespace NIDE
         private bool compress;
         private string projectFile;
         private string projectName;
-        private List<string> libraries = new List<string>();
+        private List<Library> libraries = new List<Library>();
 
         public string SourceCodePath { get { return path + SOURCE_CODE_PATH; } }
         public string OtherResourcesPath { get { return path + OTHER_RESOURCES_PATH; } }
@@ -31,9 +32,39 @@ namespace NIDE
         public string MainScriptPath { get { return path + SCRIPTS_PATH + "main.js"; } }
         private string BuildPath { get { return path + BUILD_PATH; } }
         private string ScriptsPath { get { return path + SCRIPTS_PATH; } }
+        private string LibrariesPath { get { return path + LIB_PATH; } }
 
         public string ProjectName { get { return projectName; } }
         
+        private class Library
+        {
+            string path;
+            List<string> items = new List<string>();
+
+            public Library(string path)
+            {
+                string location = path.Split('/')[0];
+                string name = path.Split('/')[1];
+                string dirpath = location == "nide" ? "\\libraries\\" : ProgramData.ProjectManager.LibrariesPath;
+                bool loaded = false;
+                foreach (var folder in Directory.GetDirectories(dirpath))
+                {
+                    if (new DirectoryInfo(folder).Name == name)
+                    {
+                        LoadLibrary(folder);
+                        loaded = true;
+                    }
+                }
+                if (!loaded)
+                    throw new DirectoryNotFoundException("Cannot find library " + path);
+            }
+
+            private void LoadLibrary(string path)
+            {
+                this.path = path;
+
+            }
+        }
 
         public ProjectManager(string projectFile)
         {
@@ -60,7 +91,7 @@ namespace NIDE
                         compress = Convert.ToBoolean(keyValue[1]);
                         break;
                     case "include-library":
-                        libraries.Add(keyValue[1]);
+                        libraries.Add(new Library(keyValue[1]));
                         break;
                     case "project-name":
                         projectName = keyValue[1];
