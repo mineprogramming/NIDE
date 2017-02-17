@@ -41,7 +41,7 @@ namespace NIDE
         private string OutPath { get { return path + OUT_PATH; } }
 
         public string ProjectName { get { return projectName; } }
-        
+
         public ProjectManager(string projectFile)
         {
             this.projectFile = projectFile;
@@ -134,50 +134,64 @@ namespace NIDE
 
         public void build()
         {
-            foreach (var line in File.ReadAllLines(projectFile))
+            switch (ProgramData.ProjectManager.projectType)
             {
-                string[] keyValue = line.Split(':');
-                if (keyValue.Length != 2)
-                    continue;
-                switch (keyValue[0])
-                {
-                    case "project-version":
-                        version = keyValue[1];
-                        break;
-                    case "settings-compress":
-                        compress = Convert.ToBoolean(keyValue[1]);
-                        break;
-                    case "include-library":
-                        libraries.Add(new Library(keyValue[1], LibrariesPath));
-                        break;
-                }
-            }
-            string outp = BuildPath + "main.js";
-            File.Delete(outp);
-            foreach (var file in Directory.GetFiles(ScriptsPath))
-            {
-                string text = File.ReadAllText(file);
-                File.AppendAllText(outp, "\n" + text);
+                case ProjectType.MODPE:
+                    foreach (var line in File.ReadAllLines(projectFile))
+                    {
+                        string[] keyValue = line.Split(':');
+                        if (keyValue.Length != 2)
+                            continue;
+                        switch (keyValue[0])
+                        {
+                            case "project-version":
+                                version = keyValue[1];
+                                break;
+                            case "settings-compress":
+                                compress = Convert.ToBoolean(keyValue[1]);
+                                break;
+                            case "include-library":
+                                libraries.Add(new Library(keyValue[1], LibrariesPath));
+                                break;
+                        }
+                    }
+                    string outp = BuildPath + "main.js";
+                    File.Delete(outp);
+                    foreach (var file in Directory.GetFiles(ScriptsPath))
+                    {
+                        string text = File.ReadAllText(file);
+                        File.AppendAllText(outp, "\n" + text);
+                    }
+
+                    foreach (var library in libraries)
+                    {
+                        string text = library.GetCode();
+                        File.AppendAllText(outp, "\n" + text);
+                    }
+                    if (compress)
+                    {
+                        JavaScriptCompressor compressor = new JavaScriptCompressor();
+                        File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp)));
+                    }
+
+                    using (ZipFile zip = new ZipFile())
+                    {
+                        zip.AddFile(outp, "\\");
+                        zip.AddDirectoryByName("images");
+                        zip.AddDirectory(ResPath, "images");
+                        zip.Save(OutPath + projectName + ".modpkg");
+                    }
+                    break;
+
+                case ProjectType.COREENGINE:
+
+                    break;
+
+                case ProjectType.LIBRARY:
+
+                    break;
             }
 
-            foreach (var library in libraries)
-            {
-                string text = library.GetCode();
-                File.AppendAllText(outp, "\n" + text);
-            }
-            if (compress)
-            {
-                JavaScriptCompressor compressor = new JavaScriptCompressor();
-                File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp)));
-            }
-
-            using (ZipFile zip = new ZipFile())
-            {
-                zip.AddFile(outp, "\\");
-                zip.AddDirectoryByName("images");
-                zip.AddDirectory(ResPath, "images");
-                zip.Save(OutPath + projectName + ".modpkg");
-            }
         }
 
 
