@@ -55,20 +55,22 @@ namespace NIDE
                 range.ClearStyle(OldMember);
                 OldMember = null;
             }
+
+            range.ClearStyle(NamespaceStyle);
+            range.ClearStyle(MemberStyle);
+
+            range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
+            range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
+
             if (ProgramData.ProjectManager.projectType == ProjectType.COREENGINE)
             {
-                range.ClearStyle(NamespaceStyle);
-                range.ClearStyle(MemberStyle);
-
                 range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", CoreEngine.Items) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", CoreEngine.members) + @")(\W|$)", RegexOptions.Multiline);
             }
             else
             {
-                range.ClearStyle(NamespaceStyle);
                 range.ClearStyle(HookStyle);
                 range.ClearStyle(GlobalStyle);
-                range.ClearStyle(MemberStyle);
 
                 range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ModPe.namespaces) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(HookStyle, @"(\W|^)(" + string.Join("|", ModPe.hooks) + @")(\W|$)", RegexOptions.Multiline);

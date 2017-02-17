@@ -123,6 +123,7 @@
     <Compile Include="fStartWindow.Designer.cs">
       <DependentUpon>fStartWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Library.cs" />
     <Compile Include="ModPe.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramData.cs" />

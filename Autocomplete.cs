@@ -1,6 +1,7 @@
 ﻿using FastColoredTextBoxNS;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -11,7 +12,16 @@ namespace NIDE
         static AutocompleteMenu menu;
         static DynamicCollection dynamic;
         static FastColoredTextBox textBox;
-        public static string[] UserItems = new string[0];
+        public static Dictionary<string, List<string>> UserItems = new Dictionary<string, List<string>>();
+
+        public static IEnumerable<string> members
+        {
+            get
+            {
+                var items = UserItems.SelectMany(x => x.Value);
+                return items;
+            }
+        }
 
         public static void SetAutoompleteMenu(FastColoredTextBox fctb)
         {
@@ -59,7 +69,7 @@ namespace NIDE
             var text = menu.Fragment.Text;
             var parts = text.Split('.');
             List<AutocompleteItem> items = new List<AutocompleteItem>();
-            foreach (var item in Autocomplete.UserItems)
+            foreach (var item in Autocomplete.UserItems.Keys)
                 items.Add(new AutocompleteItem(item));
             if (ProgramData.ProjectManager != null && ProgramData.ProjectManager.projectType == ProjectType.COREENGINE)
             {
@@ -76,6 +86,9 @@ namespace NIDE
                     var className = parts[parts.Length - 2];
                     foreach (var methodName in CoreEngine.GetListByClassName(className))
                         yield return methodName;
+                    if(Autocomplete.UserItems.ContainsKey(className))
+                        foreach(var methodName in Autocomplete.UserItems[className])
+                        yield return new MethodAutocompleteItem(methodName);
                 }
             }
             else
@@ -93,6 +106,9 @@ namespace NIDE
                     var className = parts[parts.Length - 2];
                     foreach (var methodName in ModPe.GetListByClassName(className))
                         yield return methodName;
+                    if (Autocomplete.UserItems.ContainsKey(className))
+                        foreach (var methodName in Autocomplete.UserItems[className])
+                            yield return new MethodAutocompleteItem(methodName);
                 }
             }
         }

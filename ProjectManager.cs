@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Ionic.Zip;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using Yahoo.Yui.Compressor;
 
 namespace NIDE
 {
     class ProjectManager
     {
-        private const int API_LEVEL = 1;
+        public const int API_LEVEL = 1;
         private const string SOURCE_CODE_PATH = "\\source\\";
-        private const string LIB_PATH = "\\source\\lib\\";
+        private const string LIB_PATH = "\\source\\libs\\";
+        private const string OUT_PATH = "\\out\\";
         private const string SCRIPTS_PATH = "\\source\\scripts\\";
         private const string ITEMS_OPAQUE_PATH = "\\source\\res\\images\\items-opaque\\";
         private const string TERRAIN_ATLAS_PATH = "\\source\\res\\images\\terrain-atlas\\";
+        private const string RES_PATH = "\\source\\res\\images\\";
         private const string OTHER_RESOURCES_PATH = "\\source\\res\\images\\other\\";
         private const string BUILD_PATH = "\\build\\";
 
@@ -20,7 +24,7 @@ namespace NIDE
         public readonly string path;
         private string version;
         private bool compress;
-        private string projectFile;
+        public string projectFile;
         private string projectName;
         private List<Library> libraries = new List<Library>();
 
@@ -32,40 +36,12 @@ namespace NIDE
         public string MainScriptPath { get { return path + SCRIPTS_PATH + "main.js"; } }
         private string BuildPath { get { return path + BUILD_PATH; } }
         private string ScriptsPath { get { return path + SCRIPTS_PATH; } }
-        private string LibrariesPath { get { return path + LIB_PATH; } }
+        public string LibrariesPath { get { return path + LIB_PATH; } }
+        private string ResPath { get { return path + RES_PATH; } }
+        private string OutPath { get { return path + OUT_PATH; } }
 
         public string ProjectName { get { return projectName; } }
         
-        private class Library
-        {
-            string path;
-            List<string> items = new List<string>();
-
-            public Library(string path)
-            {
-                string location = path.Split('/')[0];
-                string name = path.Split('/')[1];
-                string dirpath = location == "nide" ? "\\libraries\\" : ProgramData.ProjectManager.LibrariesPath;
-                bool loaded = false;
-                foreach (var folder in Directory.GetDirectories(dirpath))
-                {
-                    if (new DirectoryInfo(folder).Name == name)
-                    {
-                        LoadLibrary(folder);
-                        loaded = true;
-                    }
-                }
-                if (!loaded)
-                    throw new DirectoryNotFoundException("Cannot find library " + path);
-            }
-
-            private void LoadLibrary(string path)
-            {
-                this.path = path;
-
-            }
-        }
-
         public ProjectManager(string projectFile)
         {
             this.projectFile = projectFile;
@@ -91,7 +67,7 @@ namespace NIDE
                         compress = Convert.ToBoolean(keyValue[1]);
                         break;
                     case "include-library":
-                        libraries.Add(new Library(keyValue[1]));
+                        libraries.Add(new Library(keyValue[1], LibrariesPath));
                         break;
                     case "project-name":
                         projectName = keyValue[1];
@@ -158,10 +134,49 @@ namespace NIDE
 
         public void build()
         {
-            foreach(var file in Directory.GetFiles(ScriptsPath))
+            foreach (var line in File.ReadAllLines(projectFile))
+            {
+                string[] keyValue = line.Split(':');
+                if (keyValue.Length != 2)
+                    continue;
+                switch (keyValue[0])
+                {
+                    case "project-version":
+                        version = keyValue[1];
+                        break;
+                    case "settings-compress":
+                        compress = Convert.ToBoolean(keyValue[1]);
+                        break;
+                    case "include-library":
+                        libraries.Add(new Library(keyValue[1], LibrariesPath));
+                        break;
+                }
+            }
+            string outp = BuildPath + "main.js";
+            File.Delete(outp);
+            foreach (var file in Directory.GetFiles(ScriptsPath))
             {
                 string text = File.ReadAllText(file);
-                File.AppendAllText(BuildPath + "main.js", "\n" + text);
+                File.AppendAllText(outp, "\n" + text);
+            }
+
+            foreach (var library in libraries)
+            {
+                string text = library.GetCode();
+                File.AppendAllText(outp, "\n" + text);
+            }
+            if (compress)
+            {
+                JavaScriptCompressor compressor = new JavaScriptCompressor();
+                File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp)));
+            }
+
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.AddFile(outp, "\\");
+                zip.AddDirectoryByName("images");
+                zip.AddDirectory(ResPath, "images");
+                zip.Save(OutPath + projectName + ".modpkg");
             }
         }
 
