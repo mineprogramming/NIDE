@@ -11,4 +11,11 @@
         MODPE,
         COREENGINE
     }
+
+    public enum DialogType
+    {
+        SCRIPT,
+        TEXTURE,
+        LIBRARY
+    }
 }

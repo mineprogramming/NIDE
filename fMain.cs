@@ -108,7 +108,7 @@ namespace NIDE
             }
             string path = GetTreeViewPath(e.Node);
             string extension = Path.GetExtension(path).ToLower();
-            if (extension == ".js" || extension == ".nproj" || extension == ".includes" || extension == ".info")
+            if (extension == ".js" || extension == ".nproj" || extension == ".nlib" || extension == ".includes" || extension == ".info")
             {
                 OpenScript(path);
             }
@@ -133,7 +133,7 @@ namespace NIDE
 
         private void tsmiNewScript_Click(object sender, EventArgs e)
         {
-            fDialog form = new fDialog();
+            fDialog form = new fDialog(DialogType.SCRIPT);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -150,7 +150,7 @@ namespace NIDE
 
         private void tsmiNewTexture_Click(object sender, EventArgs e)
         {
-            var form = new fDialog(true);
+            var form = new fDialog(DialogType.TEXTURE);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -334,8 +334,8 @@ namespace NIDE
             string extension = Path.GetExtension(FileName).ToLower();
             if (extension == ".js")
                 InitJS();
-            else if (extension == ".nproj" || extension == ".includes" || extension == ".info")
-                InitNproj();
+            else if (extension == ".nproj" || extension == ".includes" || extension == ".info" || extension == ".nlib")
+                InitOther();
         }
 
         private void InitJS()
@@ -343,7 +343,7 @@ namespace NIDE
             fctbMain.Language = Language.JS;
         }
 
-        private void InitNproj()
+        private void InitOther()
         {
             fctbMain.Language = Language.Custom;
         }
@@ -448,7 +448,20 @@ namespace NIDE
 
         private void tsmiLibrary_Click(object sender, EventArgs e)
         {
+            var form = new fDialog(DialogType.LIBRARY);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ProgramData.ProjectManager.AddLibrary(form.name);
+                    UpdateProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Unable to create new library");
+                }
 
+            }
         }
     }
 }

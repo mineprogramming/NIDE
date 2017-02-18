@@ -7,20 +7,26 @@ namespace NIDE
         public ImageType type;
         public string name;
 
-        public fDialog(bool texture = false)
+        public fDialog(DialogType dialog)
         {
             InitializeComponent();
-            if (!texture)
+            switch (dialog)
             {
-                rbItemsOpaque.Visible = false;
-                rbTerrainAtlas.Visible = false;
-                Text = "New script";
-            }
-            else
-            {
-                rbItemsOpaque.Visible = true;
-                rbTerrainAtlas.Visible = true;
-                Text = "New texture";
+                case DialogType.SCRIPT:
+                    rbItemsOpaque.Visible = false;
+                    rbTerrainAtlas.Visible = false;
+                    Text = "New script";
+                    break;
+                case DialogType.TEXTURE:
+                    rbItemsOpaque.Visible = true;
+                    rbTerrainAtlas.Visible = true;
+                    Text = "New texture";
+                    break;
+                case DialogType.LIBRARY:
+                    rbItemsOpaque.Visible = false;
+                    rbTerrainAtlas.Visible = false;
+                    Text = "New library";
+                    break;
             }
         }
 

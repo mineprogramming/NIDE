@@ -191,6 +191,7 @@ namespace NIDE
             File.WriteAllText(projectFile, nproj);
         }
 
+
         public void AddScript(string name)
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
@@ -212,6 +213,16 @@ namespace NIDE
             }
             png.Save(TexturePath);
         }
+
+        public void AddLibrary(string name)
+        {
+            string path = LibrariesPath + name + "\\";
+            Directory.CreateDirectory(path);
+            File.CreateText(path + "lib.js").Close();
+            File.WriteAllText(path + "info.nlib", String.Format("nide-api:{0}\nlibrary-version:1.0", API_LEVEL));
+            File.AppendAllText(projectFile, "\ninclude-library:project/" + name);
+        }
+
 
         public void build()
         {
