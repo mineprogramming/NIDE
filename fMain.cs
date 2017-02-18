@@ -223,7 +223,7 @@ namespace NIDE
 
         private void tsmiNewCraft_Click(object sender, EventArgs e)
         {
-            var form = new fCraft();
+            var form = new fCraft(ProgramData.ProjectManager.projectType);
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }

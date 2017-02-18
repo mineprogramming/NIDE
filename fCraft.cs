@@ -9,9 +9,11 @@ namespace NIDE
     {
         private CheckBox checkedNow;
         public static string recipie;
+        private ProjectType projectType;
 
-        public fCraft()
+        public fCraft(ProjectType projectType)
         {
+            this.projectType = projectType;
             InitializeComponent();
             checkedNow = checkBox10;
             DialogResult = DialogResult.Cancel;
@@ -99,7 +101,9 @@ namespace NIDE
                     return;
                 }
                 string[] splitted = checkBox10.Tag.ToString().Split('_');
-                recipie = "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});";
+                recipie = projectType == ProjectType.MODPE?
+                    "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});":
+                    "Recipes.addShaped({{id: {0}, count: {1}, data: {2}}}, {3}, {4});";
                 string object1 = "";
                 string object2 = "";
                 Item[] items;
