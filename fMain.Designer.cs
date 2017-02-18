@@ -73,7 +73,7 @@
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiInserts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.craftRecipieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiCraftRecipie = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
@@ -426,7 +426,7 @@
             // 
             this.tsmiInserts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewItem,
-            this.craftRecipieToolStripMenuItem});
+            this.tsmiCraftRecipie});
             this.tsmiInserts.Name = "tsmiInserts";
             resources.ApplyResources(this.tsmiInserts, "tsmiInserts");
             // 
@@ -436,11 +436,11 @@
             this.tsmiNewItem.Name = "tsmiNewItem";
             this.tsmiNewItem.Click += new System.EventHandler(this.tsmiNewItem_Click);
             // 
-            // craftRecipieToolStripMenuItem
+            // tsmiCraftRecipie
             // 
-            resources.ApplyResources(this.craftRecipieToolStripMenuItem, "craftRecipieToolStripMenuItem");
-            this.craftRecipieToolStripMenuItem.Name = "craftRecipieToolStripMenuItem";
-            this.craftRecipieToolStripMenuItem.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
+            resources.ApplyResources(this.tsmiCraftRecipie, "tsmiCraftRecipie");
+            this.tsmiCraftRecipie.Name = "tsmiCraftRecipie";
+            this.tsmiCraftRecipie.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
             // 
             // tsmiRun
             // 
@@ -560,7 +560,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiInserts;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewItem;
         private System.Windows.Forms.ToolStripMenuItem openProjectInExplorerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem craftRecipieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiCraftRecipie;
         private System.Windows.Forms.ToolStripMenuItem tsmiOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewProject;

@@ -260,7 +260,7 @@ namespace NIDE
                 else File.CreateText(path + item).Close();
             }
         }
-
+        
         private void BuildModPE()
         {
             foreach (var line in File.ReadAllLines(projectFile))

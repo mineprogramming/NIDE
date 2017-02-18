@@ -285,6 +285,18 @@ namespace NIDE
         private void InitProject()
         {
             UpdateProject();
+            switch (ProgramData.ProjectManager.projectType)
+            {
+                case ProjectType.MODPE:
+                    tsmiNewItem.Enabled = true;
+                    tsmiCraftRecipie.Enabled = true;
+                    break;
+                case ProjectType.COREENGINE:
+                case ProjectType.LIBRARY:
+                    tsmiNewItem.Enabled = false;
+                    tsmiCraftRecipie.Enabled = false;
+                    break;
+            }
         }
 
         private void UpdateProject()
