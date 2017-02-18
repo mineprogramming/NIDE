@@ -331,6 +331,13 @@ namespace NIDE
 
             using (ZipFile zip = new ZipFile())
             {
+                zip.AddDirectoryByName("images");
+                zip.AddDirectory(ResPath, "images");
+                zip.Save(BuildPath + "resources.zip");
+            }
+
+            using (ZipFile zip = new ZipFile())
+            {
                 zip.AddFile(outp, "\\");
                 zip.AddDirectoryByName("images");
                 zip.AddDirectory(ResPath, "images");
