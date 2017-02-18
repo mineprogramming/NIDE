@@ -243,12 +243,16 @@ namespace NIDE
         //inserts
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
+            if (!ProgramData.ProjectManager.LibraryInstalled("ItemsEngine"))
+            {
+                MessageBox.Show("You need to have nide/ItemsEngine library to be installed!");
+                return;
+            }
             fJsonItem form = new fJsonItem();
             if (form.ShowDialog() != DialogResult.Cancel)
             {
-                fctbMain.AppendText("\nSetTileFromJson(\"" + fJsonItem.name + ".json\");");
+                fctbMain.AppendText("\nItemsEngine.SetItemFromJson(\"" + fJsonItem.name + ".json\");");
             }
-
         }
 
         private void craftRecipieToolStripMenuItem_Click(object sender, EventArgs e)

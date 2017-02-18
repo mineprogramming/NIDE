@@ -32,7 +32,7 @@ namespace NIDE
         private bool compress;
         public string projectFile;
         private string projectName;
-        private List<Library> libraries = new List<Library>();
+        private List<Library> Libraries = new List<Library>();
 
         public string SourceCodePath
         {
@@ -155,7 +155,7 @@ namespace NIDE
                         compress = Convert.ToBoolean(keyValue[1]);
                         break;
                     case "include-library":
-                        libraries.Add(new Library(keyValue[1], LibrariesPath));
+                        Libraries.Add(new Library(keyValue[1], LibrariesPath));
                         break;
                     case "project-name":
                         projectName = keyValue[1];
@@ -227,6 +227,16 @@ namespace NIDE
         }
 
 
+        public bool LibraryInstalled(string name)
+        {
+            foreach(var library in Libraries)
+            {
+                if (library.name == name) return true;
+            }
+            return false;
+        }
+
+
         private void CreateModPEFileSystem()
         {
             foreach (string item in new string[]{
@@ -283,7 +293,7 @@ namespace NIDE
                         compress = Convert.ToBoolean(keyValue[1]);
                         break;
                     case "include-library":
-                        libraries.Add(new Library(keyValue[1], LibrariesPath));
+                        Libraries.Add(new Library(keyValue[1], LibrariesPath));
                         break;
                 }
             }
@@ -296,7 +306,7 @@ namespace NIDE
                 File.AppendAllText(outp, "\n" + text);
             }
 
-            foreach (var library in libraries)
+            foreach (var library in Libraries)
             {
                 string text = library.GetCode();
                 File.AppendAllText(outp, "\n" + text);

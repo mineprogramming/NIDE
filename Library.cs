@@ -6,15 +6,15 @@ namespace NIDE
 {
     class Library
     {
-        string path;
-        string version;
-        string name;
+        public string path;
+        public string version;
+        public string name;
 
         public Library(string path, string LibrariesPath)
         {
             string location = path.Split('/')[0];
             name = path.Split('/')[1];
-            string dirpath = (location == "nide") ? "\\libraries\\" : LibrariesPath;
+            string dirpath = (location == "nide") ? Directory.GetCurrentDirectory() + "\\libraries\\" : LibrariesPath;
             bool loaded = false;
             foreach (var folder in Directory.GetDirectories(dirpath))
             {
