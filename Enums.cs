@@ -9,7 +9,6 @@
     public enum ProjectType
     {
         MODPE,
-        LIBRARY,
         COREENGINE
     }
 }

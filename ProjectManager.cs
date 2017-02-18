@@ -44,8 +44,6 @@ namespace NIDE
                         return path + SOURCE_CODE_PATH;
                     case ProjectType.COREENGINE:
                         return path;
-                    case ProjectType.LIBRARY:
-                        return path;
                     default: return null;
                 }
             }
@@ -97,7 +95,21 @@ namespace NIDE
             }
         }
         private string BuildPath { get { return path + BUILD_PATH; } }
-        private string ScriptsPath { get { return path + SCRIPTS_PATH; } }
+        private string ScriptsPath
+        {
+            get
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        return path + SCRIPTS_PATH;
+                    case ProjectType.COREENGINE:
+                        return path + CE_DEV_PATH;
+                    default: return null;
+                }
+                
+            }
+        }
         public string LibrariesPath { get { return path + LIB_PATH; } }
         private string ResPath
         {
@@ -111,7 +123,7 @@ namespace NIDE
                         return path + CE_RES_PATH;
                     default: return null;
                 }
-                
+
             }
         }
         private string OutPath { get { return path + OUT_PATH; } }
@@ -168,9 +180,6 @@ namespace NIDE
                 case ProjectType.COREENGINE:
                     CreateCoreEngineFileSystem();
                     break;
-                case ProjectType.LIBRARY:
-
-                    break;
             }
 
             projectFile = path + "\\" + projectName + ".nproj";
@@ -185,14 +194,14 @@ namespace NIDE
         public void AddScript(string name)
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
-            string ScriptPath = path + SCRIPTS_PATH + name;
+            string ScriptPath = ScriptsPath + name;
             File.CreateText(ScriptPath).Close();
         }
 
         public void AddTexture(string name, ImageType type)
         {
             name = name.ToLower().EndsWith(".png") ? name : name + ".png";
-            string TexturePath = path + (type == ImageType.ITEMS_OPAQUE ? ITEMS_OPAQUE_PATH : TERRAIN_ATLAS_PATH) + name;
+            string TexturePath = (type == ImageType.ITEMS_OPAQUE ? ItemsOpaquePath : TerrainAtlasPath) + name;
             Bitmap png = new Bitmap(16, 16);
             for (int i = 0; i < 16; i++)
             {
@@ -213,9 +222,6 @@ namespace NIDE
                     break;
                 case ProjectType.COREENGINE:
                     BuildCoreEngine();
-                    break;
-                case ProjectType.LIBRARY:
-
                     break;
             }
         }
@@ -260,7 +266,7 @@ namespace NIDE
                 else File.CreateText(path + item).Close();
             }
         }
-        
+
         private void BuildModPE()
         {
             foreach (var line in File.ReadAllLines(projectFile))
@@ -329,8 +335,6 @@ namespace NIDE
                     return "MODPE";
                 case ProjectType.COREENGINE:
                     return "COREENGINE";
-                case ProjectType.LIBRARY:
-                    return "LIBRARY";
                 default:
                     return null;
             }
@@ -344,8 +348,6 @@ namespace NIDE
                     return ProjectType.MODPE;
                 case "COREENGINE":
                     return ProjectType.COREENGINE;
-                case "LIBRARY":
-                    return ProjectType.LIBRARY;
                 default:
                     throw new ArgumentException("Unknown project type " + type);
             }

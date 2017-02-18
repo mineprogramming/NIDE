@@ -35,8 +35,6 @@ namespace NIDE
                     type = ProjectType.MODPE;
                 else if (rbCoreEngine.Checked)
                     type = ProjectType.COREENGINE;
-                else
-                    type = ProjectType.LIBRARY;
                 DialogResult = DialogResult.OK;
                 Close();
             }

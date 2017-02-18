@@ -292,7 +292,6 @@ namespace NIDE
                     tsmiCraftRecipie.Enabled = true;
                     break;
                 case ProjectType.COREENGINE:
-                case ProjectType.LIBRARY:
                     tsmiNewItem.Enabled = false;
                     tsmiCraftRecipie.Enabled = false;
                     break;

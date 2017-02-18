@@ -37,7 +37,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.rbModPE = new System.Windows.Forms.RadioButton();
             this.rbCoreEngine = new System.Windows.Forms.RadioButton();
-            this.rbLibrary = new System.Windows.Forms.RadioButton();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
@@ -125,22 +124,11 @@
             this.rbCoreEngine.Text = "CoreEngine";
             this.rbCoreEngine.UseVisualStyleBackColor = true;
             // 
-            // rbLibrary
-            // 
-            this.rbLibrary.AutoSize = true;
-            this.rbLibrary.Location = new System.Drawing.Point(15, 58);
-            this.rbLibrary.Name = "rbLibrary";
-            this.rbLibrary.Size = new System.Drawing.Size(56, 17);
-            this.rbLibrary.TabIndex = 10;
-            this.rbLibrary.Text = "Library";
-            this.rbLibrary.UseVisualStyleBackColor = true;
-            // 
             // fNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 167);
-            this.Controls.Add(this.rbLibrary);
             this.Controls.Add(this.rbCoreEngine);
             this.Controls.Add(this.rbModPE);
             this.Controls.Add(this.btnCancel);
@@ -170,7 +158,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.RadioButton rbModPE;
         private System.Windows.Forms.RadioButton rbCoreEngine;
-        private System.Windows.Forms.RadioButton rbLibrary;
         private System.Windows.Forms.FolderBrowserDialog dlgFolder;
     }
 }
