@@ -108,7 +108,7 @@ namespace NIDE
             }
             string path = GetTreeViewPath(e.Node);
             string extension = Path.GetExtension(path).ToLower();
-            if (extension == ".js" || extension == ".nproj")
+            if (extension == ".js" || extension == ".nproj" || extension == ".includes" || extension == ".info")
             {
                 OpenScript(path);
             }
@@ -127,7 +127,7 @@ namespace NIDE
             {
                 string path_relative = node.FullPath;
                 path_relative = path_relative.Substring(path_relative.IndexOf('\\') + 1);
-                return ProgramData.ProjectManager.SourceCodePath + path_relative;
+                return ProgramData.ProjectManager.SourceCodePath + "\\" + path_relative;
             }
         }
 
@@ -319,7 +319,7 @@ namespace NIDE
             string extension = Path.GetExtension(FileName).ToLower();
             if (extension == ".js")
                 InitJS();
-            else if (extension == ".nproj")
+            else if (extension == ".nproj" || extension == ".includes" || extension == ".info")
                 InitNproj();
         }
 

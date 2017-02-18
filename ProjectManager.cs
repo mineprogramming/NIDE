@@ -10,6 +10,7 @@ namespace NIDE
     class ProjectManager
     {
         public const int API_LEVEL = 1;
+
         private const string SOURCE_CODE_PATH = "\\source\\";
         private const string LIB_PATH = "\\source\\libs\\";
         private const string OUT_PATH = "\\out\\";
@@ -20,6 +21,11 @@ namespace NIDE
         private const string OTHER_RESOURCES_PATH = "\\source\\res\\images\\other\\";
         private const string BUILD_PATH = "\\build\\";
 
+        private const string CE_ITEMS_OPAQUE_PATH = "\\assets\\items-opaque\\";
+        private const string CE_TERRAIN_ATLAS_PATH = "\\assets\\terrain-atlas\\";
+        private const string CE_RES_PATH = "\\assets\\";
+        private const string CE_DEV_PATH = "\\dev\\";
+
         public readonly ProjectType projectType;
         public readonly string path;
         private string version;
@@ -28,16 +34,86 @@ namespace NIDE
         private string projectName;
         private List<Library> libraries = new List<Library>();
 
-        public string SourceCodePath { get { return path + SOURCE_CODE_PATH; } }
+        public string SourceCodePath
+        {
+            get
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        return path + SOURCE_CODE_PATH;
+                    case ProjectType.COREENGINE:
+                        return path;
+                    case ProjectType.LIBRARY:
+                        return path;
+                    default: return null;
+                }
+            }
+        }
         public string OtherResourcesPath { get { return path + OTHER_RESOURCES_PATH; } }
-        public string ItemsOpaquePath { get { return path + ITEMS_OPAQUE_PATH; } }
-        public string TerrainAtlasPath { get { return path + TERRAIN_ATLAS_PATH; } }
+        public string ItemsOpaquePath
+        {
+            get
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        return path + ITEMS_OPAQUE_PATH;
+                    case ProjectType.COREENGINE:
+                        return path + CE_ITEMS_OPAQUE_PATH;
+                    default: return null;
+                }
+            }
+        }
+        public string TerrainAtlasPath
+        {
+            get
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        return path + TERRAIN_ATLAS_PATH;
+                    case ProjectType.COREENGINE:
+                        return path + CE_TERRAIN_ATLAS_PATH;
+                    default: return null;
+                }
+
+            }
+        }
         public string ProjectFilePath { get { return projectFile; } }
-        public string MainScriptPath { get { return path + SCRIPTS_PATH + "main.js"; } }
+        public string MainScriptPath
+        {
+            get
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        return path + SCRIPTS_PATH + "main.js";
+                    case ProjectType.COREENGINE:
+                        return path + CE_DEV_PATH + ".includes";
+                    default: return null;
+                }
+
+            }
+        }
         private string BuildPath { get { return path + BUILD_PATH; } }
         private string ScriptsPath { get { return path + SCRIPTS_PATH; } }
         public string LibrariesPath { get { return path + LIB_PATH; } }
-        private string ResPath { get { return path + RES_PATH; } }
+        private string ResPath
+        {
+            get
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        return path + RES_PATH;
+                    case ProjectType.COREENGINE:
+                        return path + CE_RES_PATH;
+                    default: return null;
+                }
+                
+            }
+        }
         private string OutPath { get { return path + OUT_PATH; } }
 
         public string ProjectName { get { return projectName; } }
@@ -83,24 +159,20 @@ namespace NIDE
             this.path = path;
             version = "1.0.0";
             compress = false;
-            foreach (string item in new string[]{
-                SOURCE_CODE_PATH,
-                "\\source\\res\\",
-                "\\source\\res\\images\\",
-                ITEMS_OPAQUE_PATH,
-                TERRAIN_ATLAS_PATH,
-                OTHER_RESOURCES_PATH,
-                SCRIPTS_PATH,
-                "\\source\\scripts\\main.js",
-                "\\source\\libs\\",
-                BUILD_PATH,
-                "\\out\\"
-                })
+
+            switch (projectType)
             {
-                if (item.EndsWith("\\"))
-                    Directory.CreateDirectory(path + item);
-                else File.CreateText(path + item).Close();
+                case ProjectType.MODPE:
+                    CreateModPEFileSystem();
+                    break;
+                case ProjectType.COREENGINE:
+                    CreateCoreEngineFileSystem();
+                    break;
+                case ProjectType.LIBRARY:
+
+                    break;
             }
+
             projectFile = path + "\\" + projectName + ".nproj";
             string nproj = string.Format(
                 "nide-api:{0}\nproject-name:{1}\nproject-version:1.0.0\nproject-type:{2}\nsettings-compress:false",
@@ -134,64 +206,118 @@ namespace NIDE
 
         public void build()
         {
-            switch (ProgramData.ProjectManager.projectType)
+            switch (projectType)
             {
                 case ProjectType.MODPE:
-                    foreach (var line in File.ReadAllLines(projectFile))
-                    {
-                        string[] keyValue = line.Split(':');
-                        if (keyValue.Length != 2)
-                            continue;
-                        switch (keyValue[0])
-                        {
-                            case "project-version":
-                                version = keyValue[1];
-                                break;
-                            case "settings-compress":
-                                compress = Convert.ToBoolean(keyValue[1]);
-                                break;
-                            case "include-library":
-                                libraries.Add(new Library(keyValue[1], LibrariesPath));
-                                break;
-                        }
-                    }
-                    string outp = BuildPath + "main.js";
-                    File.Delete(outp);
-                    foreach (var file in Directory.GetFiles(ScriptsPath))
-                    {
-                        string text = File.ReadAllText(file);
-                        File.AppendAllText(outp, "\n" + text);
-                    }
-
-                    foreach (var library in libraries)
-                    {
-                        string text = library.GetCode();
-                        File.AppendAllText(outp, "\n" + text);
-                    }
-                    if (compress)
-                    {
-                        JavaScriptCompressor compressor = new JavaScriptCompressor();
-                        File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp)));
-                    }
-
-                    using (ZipFile zip = new ZipFile())
-                    {
-                        zip.AddFile(outp, "\\");
-                        zip.AddDirectoryByName("images");
-                        zip.AddDirectory(ResPath, "images");
-                        zip.Save(OutPath + projectName + ".modpkg");
-                    }
+                    BuildModPE();
                     break;
-
                 case ProjectType.COREENGINE:
-
+                    BuildCoreEngine();
                     break;
-
                 case ProjectType.LIBRARY:
 
                     break;
             }
+        }
 
+
+        private void CreateModPEFileSystem()
+        {
+            foreach (string item in new string[]{
+                SOURCE_CODE_PATH,
+                "\\source\\res\\",
+                RES_PATH,
+                ITEMS_OPAQUE_PATH,
+                TERRAIN_ATLAS_PATH,
+                OTHER_RESOURCES_PATH,
+                SCRIPTS_PATH,
+                "\\source\\scripts\\main.js",
+                LIB_PATH,
+                BUILD_PATH,
+                OUT_PATH
+                })
+            {
+                if (item.EndsWith("\\"))
+                    Directory.CreateDirectory(path + item);
+                else File.CreateText(path + item).Close();
+            }
+        }
+
+        private void CreateCoreEngineFileSystem()
+        {
+            foreach (string item in new string[]{
+                "\\mod.info",
+                "\\gui\\",
+                "\\dev\\",
+                "\\dev\\.includes",
+                "\\assets\\",
+                "\\assets\\items-opaque\\",
+                "\\assets\\terrain-atlas\\"
+            })
+            {
+                if (item.EndsWith("\\"))
+                    Directory.CreateDirectory(path + item);
+                else File.CreateText(path + item).Close();
+            }
+        }
+
+        private void BuildModPE()
+        {
+            foreach (var line in File.ReadAllLines(projectFile))
+            {
+                string[] keyValue = line.Split(':');
+                if (keyValue.Length != 2)
+                    continue;
+                switch (keyValue[0])
+                {
+                    case "project-version":
+                        version = keyValue[1];
+                        break;
+                    case "settings-compress":
+                        compress = Convert.ToBoolean(keyValue[1]);
+                        break;
+                    case "include-library":
+                        libraries.Add(new Library(keyValue[1], LibrariesPath));
+                        break;
+                }
+            }
+
+            string outp = BuildPath + "main.js";
+            File.Delete(outp);
+            foreach (var file in Directory.GetFiles(ScriptsPath))
+            {
+                string text = File.ReadAllText(file);
+                File.AppendAllText(outp, "\n" + text);
+            }
+
+            foreach (var library in libraries)
+            {
+                string text = library.GetCode();
+                File.AppendAllText(outp, "\n" + text);
+            }
+            if (compress)
+            {
+                JavaScriptCompressor compressor = new JavaScriptCompressor();
+                File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp)));
+            }
+
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.AddFile(outp, "\\");
+                zip.AddDirectoryByName("images");
+                zip.AddDirectory(ResPath, "images");
+                zip.Save(OutPath + projectName + ".modpkg");
+            }
+        }
+
+        private void BuildCoreEngine()
+        {
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.AddDirectoryByName("assets");
+                zip.AddDirectory(ResPath, "assets");
+                zip.Save(path + "\\resources.zip");
+            }
         }
 
 

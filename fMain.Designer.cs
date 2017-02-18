@@ -432,14 +432,14 @@
             // 
             // tsmiNewItem
             // 
-            this.tsmiNewItem.Name = "tsmiNewItem";
             resources.ApplyResources(this.tsmiNewItem, "tsmiNewItem");
+            this.tsmiNewItem.Name = "tsmiNewItem";
             this.tsmiNewItem.Click += new System.EventHandler(this.tsmiNewItem_Click);
             // 
             // craftRecipieToolStripMenuItem
             // 
-            this.craftRecipieToolStripMenuItem.Name = "craftRecipieToolStripMenuItem";
             resources.ApplyResources(this.craftRecipieToolStripMenuItem, "craftRecipieToolStripMenuItem");
+            this.craftRecipieToolStripMenuItem.Name = "craftRecipieToolStripMenuItem";
             this.craftRecipieToolStripMenuItem.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
             // 
             // tsmiRun
