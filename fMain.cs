@@ -445,5 +445,10 @@ namespace NIDE
                     MessageBox.Show(ex.Message, "Error in your Javascript code found!");
                 }
         }
+
+        private void tsmiLibrary_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

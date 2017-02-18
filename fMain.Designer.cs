@@ -84,6 +84,7 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.tsmiLibrary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -426,7 +427,8 @@
             // 
             this.tsmiInserts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewItem,
-            this.tsmiCraftRecipie});
+            this.tsmiCraftRecipie,
+            this.tsmiLibrary});
             this.tsmiInserts.Name = "tsmiInserts";
             resources.ApplyResources(this.tsmiInserts, "tsmiInserts");
             // 
@@ -496,6 +498,12 @@
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "nproj";
+            // 
+            // tsmiLibrary
+            // 
+            this.tsmiLibrary.Name = "tsmiLibrary";
+            resources.ApplyResources(this.tsmiLibrary, "tsmiLibrary");
+            this.tsmiLibrary.Click += new System.EventHandler(this.tsmiLibrary_Click);
             // 
             // fMain
             // 
@@ -582,6 +590,7 @@
         private System.Windows.Forms.ToolStripButton tsbPaste;
         private System.Windows.Forms.ToolStripButton tsbNewFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiCloseProject;
+        private System.Windows.Forms.ToolStripMenuItem tsmiLibrary;
     }
 }
 

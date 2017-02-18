@@ -74,7 +74,7 @@ namespace NIDE
             }
             try
             {
-                checkedNow.BackgroundImage = new Bitmap("textures\\minecraft-textures\\" + (int)nudId.Value + "_" + (int)nudMeta.Value + ".png");
+                checkedNow.BackgroundImage = new Bitmap("icons\\items\\" + (int)nudId.Value + "_" + (int)nudMeta.Value + ".png");
             }
             catch (Exception ex)
             {
