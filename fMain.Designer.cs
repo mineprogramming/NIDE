@@ -43,8 +43,8 @@
             this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
             this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiNewScript = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewScript2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.openProjectInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
@@ -74,6 +74,9 @@
             this.tsmiInserts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCraftRecipie = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewScript = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewLibrary = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +87,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tsmiLibrary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -216,24 +218,24 @@
             // 
             this.cmsTreeView.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiNewScript,
-            this.tsmiNewTexture,
+            this.tsmiNewScript2,
+            this.tsmiNewTexture2,
             this.tsmiDeleteTexture,
             this.openProjectInExplorerToolStripMenuItem});
             this.cmsTreeView.Name = "contextMenuStrip1";
             resources.ApplyResources(this.cmsTreeView, "cmsTreeView");
             // 
-            // tsmiNewScript
+            // tsmiNewScript2
             // 
-            this.tsmiNewScript.Name = "tsmiNewScript";
-            resources.ApplyResources(this.tsmiNewScript, "tsmiNewScript");
-            this.tsmiNewScript.Click += new System.EventHandler(this.tsmiNewScript_Click);
+            this.tsmiNewScript2.Name = "tsmiNewScript2";
+            resources.ApplyResources(this.tsmiNewScript2, "tsmiNewScript2");
+            this.tsmiNewScript2.Click += new System.EventHandler(this.tsmiNewScript_Click);
             // 
-            // tsmiNewTexture
+            // tsmiNewTexture2
             // 
-            this.tsmiNewTexture.Name = "tsmiNewTexture";
-            resources.ApplyResources(this.tsmiNewTexture, "tsmiNewTexture");
-            this.tsmiNewTexture.Click += new System.EventHandler(this.tsmiNewTexture_Click);
+            this.tsmiNewTexture2.Name = "tsmiNewTexture2";
+            resources.ApplyResources(this.tsmiNewTexture2, "tsmiNewTexture2");
+            this.tsmiNewTexture2.Click += new System.EventHandler(this.tsmiNewTexture_Click);
             // 
             // tsmiDeleteTexture
             // 
@@ -428,21 +430,41 @@
             this.tsmiInserts.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewItem,
             this.tsmiCraftRecipie,
-            this.tsmiLibrary});
+            this.tsmiNewScript,
+            this.tsmiNewTexture,
+            this.tsmiNewLibrary});
             this.tsmiInserts.Name = "tsmiInserts";
             resources.ApplyResources(this.tsmiInserts, "tsmiInserts");
             // 
             // tsmiNewItem
             // 
-            resources.ApplyResources(this.tsmiNewItem, "tsmiNewItem");
             this.tsmiNewItem.Name = "tsmiNewItem";
+            resources.ApplyResources(this.tsmiNewItem, "tsmiNewItem");
             this.tsmiNewItem.Click += new System.EventHandler(this.tsmiNewItem_Click);
             // 
             // tsmiCraftRecipie
             // 
-            resources.ApplyResources(this.tsmiCraftRecipie, "tsmiCraftRecipie");
             this.tsmiCraftRecipie.Name = "tsmiCraftRecipie";
-            this.tsmiCraftRecipie.Click += new System.EventHandler(this.craftRecipieToolStripMenuItem_Click);
+            resources.ApplyResources(this.tsmiCraftRecipie, "tsmiCraftRecipie");
+            this.tsmiCraftRecipie.Click += new System.EventHandler(this.tsmiNewCraft_Click);
+            // 
+            // tsmiNewScript
+            // 
+            this.tsmiNewScript.Name = "tsmiNewScript";
+            resources.ApplyResources(this.tsmiNewScript, "tsmiNewScript");
+            this.tsmiNewScript.Click += new System.EventHandler(this.tsmiNewScript_Click);
+            // 
+            // tsmiNewTexture
+            // 
+            this.tsmiNewTexture.Name = "tsmiNewTexture";
+            resources.ApplyResources(this.tsmiNewTexture, "tsmiNewTexture");
+            this.tsmiNewTexture.Click += new System.EventHandler(this.tsmiNewTexture_Click);
+            // 
+            // tsmiNewLibrary
+            // 
+            this.tsmiNewLibrary.Name = "tsmiNewLibrary";
+            resources.ApplyResources(this.tsmiNewLibrary, "tsmiNewLibrary");
+            this.tsmiNewLibrary.Click += new System.EventHandler(this.tsmiLibrary_Click);
             // 
             // tsmiRun
             // 
@@ -499,12 +521,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // tsmiLibrary
-            // 
-            this.tsmiLibrary.Name = "tsmiLibrary";
-            resources.ApplyResources(this.tsmiLibrary, "tsmiLibrary");
-            this.tsmiLibrary.Click += new System.EventHandler(this.tsmiLibrary_Click);
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -554,11 +570,11 @@
         private System.Windows.Forms.ToolStripMenuItem ctsmiReplace;
         private System.Windows.Forms.ToolStripMenuItem ctsmiAutoIndent;
         private System.Windows.Forms.ContextMenuStrip cmsTreeView;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteTexture;
         private System.Windows.Forms.ToolStripMenuItem tsmiRun;
         private System.Windows.Forms.ToolStripMenuItem tsmiCheck;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewScript2;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;
         private System.Windows.Forms.ToolStripSeparator tss2;
         private System.Windows.Forms.ToolStripSeparator tss3;
@@ -590,7 +606,9 @@
         private System.Windows.Forms.ToolStripButton tsbPaste;
         private System.Windows.Forms.ToolStripButton tsbNewFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiCloseProject;
-        private System.Windows.Forms.ToolStripMenuItem tsmiLibrary;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewLibrary;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
     }
 }
 

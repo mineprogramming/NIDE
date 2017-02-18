@@ -130,41 +130,7 @@ namespace NIDE
                 return ProgramData.ProjectManager.SourceCodePath + "\\" + path_relative;
             }
         }
-
-        private void tsmiNewScript_Click(object sender, EventArgs e)
-        {
-            fDialog form = new fDialog(DialogType.SCRIPT);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    ProgramData.ProjectManager.AddScript(form.name);
-                    UpdateProject();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Unable to add script");
-                }
-            }
-        }
-
-        private void tsmiNewTexture_Click(object sender, EventArgs e)
-        {
-            var form = new fDialog(DialogType.TEXTURE);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    ProgramData.ProjectManager.AddTexture(form.name, form.type);
-                    UpdateProject();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Unable to create new texture");
-                }
-
-            }
-        }
+        
 
         private void tsmiDeleteTexture_Click(object sender, EventArgs e)
         {
@@ -255,7 +221,7 @@ namespace NIDE
             }
         }
 
-        private void craftRecipieToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmiNewCraft_Click(object sender, EventArgs e)
         {
             var form = new fCraft();
             if (form.ShowDialog() == DialogResult.OK)
@@ -266,6 +232,59 @@ namespace NIDE
         {
             new fSettings().ShowDialog();
             Highlighting.ResetStyles(fctbMain.Range);
+        }
+
+        private void tsmiNewScript_Click(object sender, EventArgs e)
+        {
+            fDialog form = new fDialog(DialogType.SCRIPT);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ProgramData.ProjectManager.AddScript(form.name);
+                    UpdateProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Unable to add script");
+                }
+            }
+        }
+
+        private void tsmiNewTexture_Click(object sender, EventArgs e)
+        {
+            var form = new fDialog(DialogType.TEXTURE);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ProgramData.ProjectManager.AddTexture(form.name, form.type);
+                    UpdateProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Unable to create new texture");
+                }
+
+            }
+        }
+
+        private void tsmiLibrary_Click(object sender, EventArgs e)
+        {
+            var form = new fDialog(DialogType.LIBRARY);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ProgramData.ProjectManager.AddLibrary(form.name);
+                    UpdateProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Unable to create new library");
+                }
+
+            }
         }
 
 
@@ -293,11 +312,11 @@ namespace NIDE
             {
                 case ProjectType.MODPE:
                     tsmiNewItem.Enabled = true;
-                    tsmiCraftRecipie.Enabled = true;
+                    tsmiNewLibrary.Enabled = true;
                     break;
                 case ProjectType.COREENGINE:
                     tsmiNewItem.Enabled = false;
-                    tsmiCraftRecipie.Enabled = false;
+                    tsmiNewLibrary.Enabled = false;
                     break;
             }
         }
@@ -446,22 +465,6 @@ namespace NIDE
                 }
         }
 
-        private void tsmiLibrary_Click(object sender, EventArgs e)
-        {
-            var form = new fDialog(DialogType.LIBRARY);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    ProgramData.ProjectManager.AddLibrary(form.name);
-                    UpdateProject();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Unable to create new library");
-                }
-
-            }
-        }
+        
     }
 }
