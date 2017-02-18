@@ -13,6 +13,7 @@ namespace NIDE
         Bitmap png;
         bool saved = true;
         bool _16_16 = true;
+        bool mouseDown = false;
 
         private PanelEx DrawPanel;
 
@@ -23,6 +24,9 @@ namespace NIDE
             DrawPanel.BackgroundImage = Resources.background;
             DrawPanel.Paint += DrawPanel_Paint;
             DrawPanel.Click += DrawPanel_Click;
+            DrawPanel.MouseMove += DrawPanel_MouseMove;
+            DrawPanel.MouseDown += DrawPanel_MouseDown;
+            DrawPanel.MouseUp += DrawPanel_MouseUp;
             Controls.Add(DrawPanel);
 
             InitializeComponent();
@@ -50,7 +54,7 @@ namespace NIDE
                 MessageBox.Show("Unable to load image: " + e.Message);
             }
         }
-
+        
         public new void ShowDialog()
         {
             if (_16_16)
@@ -63,8 +67,7 @@ namespace NIDE
         {
             dlgColor.ShowDialog();
         }
-
-
+        
         private void tsbDraw_Click(object sender, EventArgs e)
         {
             tsbDraw.Checked = true;
@@ -179,6 +182,34 @@ namespace NIDE
             }
         }
 
+
+        private void DrawPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+        private void DrawPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+        }
+
+        private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                saved = false;
+                int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
+                int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
+                int x = cursorX / 21;
+                int y = cursorY / 21;
+                if(tsbDraw.Checked)
+                    pixels[x, y] = dlgColor.Color;
+                else if(tsbClear.Checked)
+                    pixels[x, y] = Color.Transparent;
+                DrawPanel.Refresh();
+            }
+        }
+
         private void DrawPanel_Click(object sender, EventArgs e)
         {
             saved = false;
@@ -186,11 +217,7 @@ namespace NIDE
             int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
             int x = cursorX / 21;
             int y = cursorY / 21;
-            if (tsbDraw.Checked)
-                pixels[x, y] = dlgColor.Color;
-            else if (tsbClear.Checked)
-                pixels[x, y] = Color.Transparent;
-            else if (tsbPicker.Checked)
+            if (tsbPicker.Checked)
             {
                 dlgColor.Color = pixels[x, y];
                 tsbPicker.Checked = false;
@@ -201,9 +228,12 @@ namespace NIDE
             DrawPanel.Refresh();
         }
 
+
         private void FillRecursive(int x, int y)
         {
             Color prevColor = pixels[x, y];
+            if (dlgColor.Color == prevColor)
+                return;
             pixels[x, y] = dlgColor.Color;
             if (x > 0 && pixels[x - 1, y] == prevColor)
                 FillRecursive(x - 1, y);
