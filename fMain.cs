@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using Yahoo.Yui.Compressor;
 using System.Diagnostics;
+using System.Linq;
 
 namespace NIDE
 {
@@ -94,6 +95,9 @@ namespace NIDE
 
         private void tvFolders_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            string path = GetTreeViewPath(e.Node);
+            if (Directory.Exists(path))
+                return;
             if (!saved)
             {
                 var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
@@ -106,9 +110,8 @@ namespace NIDE
                     return;
                 }
             }
-            string path = GetTreeViewPath(e.Node);
             string extension = Path.GetExtension(path).ToLower();
-            if (extension == ".js" || extension == ".nproj" || extension == ".nlib" || extension == ".includes" || extension == ".info")
+            if (Constants.TextExtensions.Contains(extension))
             {
                 OpenScript(path);
             }
