@@ -290,6 +290,7 @@ namespace NIDE
 
         private void BuildModPE()
         {
+            Libraries.Clear();
             foreach (var line in File.ReadAllLines(projectFile))
             {
                 string[] keyValue = line.Split(':');
