@@ -30,16 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fPngEditor));
             this.tsMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.dlgColor = new System.Windows.Forms.ColorDialog();
-            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbColor = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tsbPicker = new System.Windows.Forms.ToolStripButton();
             this.tsbDraw = new System.Windows.Forms.ToolStripButton();
+            this.tsbFill = new System.Windows.Forms.ToolStripButton();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
-            this.DrawPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.dlgColor = new System.Windows.Forms.ColorDialog();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,29 +50,15 @@
             this.tsbSave,
             this.toolStripSeparator1,
             this.tsbColor,
-            this.toolStripButton1,
+            this.tsbPicker,
             this.tsbDraw,
+            this.tsbFill,
             this.tsbClear});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(337, 25);
+            this.tsMain.Size = new System.Drawing.Size(335, 25);
             this.tsMain.TabIndex = 0;
             this.tsMain.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // dlgColor
-            // 
-            this.dlgColor.FullOpen = true;
-            // 
-            // dlgOpen
-            // 
-            this.dlgOpen.DefaultExt = "png";
-            this.dlgOpen.FileName = "/textures";
-            this.dlgOpen.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgOpen_FileOk);
             // 
             // tsbOpen
             // 
@@ -94,6 +80,11 @@
             this.tsbSave.Text = "Save";
             this.tsbSave.Click += new System.EventHandler(this.tsbSave_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // tsbColor
             // 
             this.tsbColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -104,14 +95,15 @@
             this.tsbColor.Text = "Choose color";
             this.tsbColor.Click += new System.EventHandler(this.tsbColor_Click);
             // 
-            // toolStripButton1
+            // tsbPicker
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Pick color";
+            this.tsbPicker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbPicker.Image = ((System.Drawing.Image)(resources.GetObject("tsbPicker.Image")));
+            this.tsbPicker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbPicker.Name = "tsbPicker";
+            this.tsbPicker.Size = new System.Drawing.Size(23, 22);
+            this.tsbPicker.Text = "Pick color";
+            this.tsbPicker.Click += new System.EventHandler(this.tsbPicker_Click);
             // 
             // tsbDraw
             // 
@@ -125,6 +117,16 @@
             this.tsbDraw.Text = "Draw";
             this.tsbDraw.Click += new System.EventHandler(this.tsbDraw_Click);
             // 
+            // tsbFill
+            // 
+            this.tsbFill.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbFill.Image = ((System.Drawing.Image)(resources.GetObject("tsbFill.Image")));
+            this.tsbFill.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbFill.Name = "tsbFill";
+            this.tsbFill.Size = new System.Drawing.Size(23, 22);
+            this.tsbFill.Text = "Fill";
+            this.tsbFill.Click += new System.EventHandler(this.tsbFill_Click);
+            // 
             // tsbClear
             // 
             this.tsbClear.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -135,60 +137,22 @@
             this.tsbClear.Text = "Erase";
             this.tsbClear.Click += new System.EventHandler(this.tsbClear_Click);
             // 
-            // DrawPanel
+            // dlgColor
             // 
-            this.DrawPanel.BackColor = System.Drawing.Color.White;
-            this.DrawPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("DrawPanel.BackgroundImage")));
-            this.DrawPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.DrawPanel.ColumnCount = 16;
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.DrawPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DrawPanel.Location = new System.Drawing.Point(0, 28);
-            this.DrawPanel.Name = "DrawPanel";
-            this.DrawPanel.RowCount = 16;
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.DrawPanel.Size = new System.Drawing.Size(337, 336);
-            this.DrawPanel.TabIndex = 0;
-            this.DrawPanel.CellPaint += new System.Windows.Forms.TableLayoutCellPaintEventHandler(this.DrawPanel_CellPaint);
-            this.DrawPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.DrawPanel_MouseClick);
+            this.dlgColor.FullOpen = true;
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.DefaultExt = "png";
+            this.dlgOpen.FileName = "/textures";
+            this.dlgOpen.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgOpen_FileOk);
             // 
             // fPngEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(337, 364);
+            this.ClientSize = new System.Drawing.Size(335, 360);
             this.Controls.Add(this.tsMain);
-            this.Controls.Add(this.DrawPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "fPngEditor";
             this.Text = "Texture Editor";
@@ -201,8 +165,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TableLayoutPanel DrawPanel;
         private System.Windows.Forms.ToolStrip tsMain;
         private System.Windows.Forms.ColorDialog dlgColor;
         private System.Windows.Forms.ToolStripButton tsbColor;
@@ -211,7 +173,8 @@
         private System.Windows.Forms.ToolStripButton tsbSave;
         private System.Windows.Forms.ToolStripButton tsbOpen;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton tsbPicker;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsbFill;
     }
 }
