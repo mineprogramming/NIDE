@@ -87,6 +87,7 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -470,7 +471,8 @@
             // 
             this.tsmiRun.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buildToolStripMenuItem,
-            this.tsmiCheck});
+            this.tsmiCheck,
+            this.tsmiRunJs});
             this.tsmiRun.Name = "tsmiRun";
             resources.ApplyResources(this.tsmiRun, "tsmiRun");
             // 
@@ -520,6 +522,12 @@
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "nproj";
+            // 
+            // tsmiRunJs
+            // 
+            this.tsmiRunJs.Name = "tsmiRunJs";
+            resources.ApplyResources(this.tsmiRunJs, "tsmiRunJs");
+            this.tsmiRunJs.Click += new System.EventHandler(this.tsmiRunJs_Click);
             // 
             // fMain
             // 
@@ -609,6 +617,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewLibrary;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRunJs;
     }
 }
 

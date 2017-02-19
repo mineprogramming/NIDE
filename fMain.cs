@@ -468,6 +468,9 @@ namespace NIDE
                 }
         }
 
-        
+        private void tsmiRunJs_Click(object sender, EventArgs e)
+        {
+            new fJsRunner(fctbMain.Text).ShowDialog();
+        }
     }
 }
