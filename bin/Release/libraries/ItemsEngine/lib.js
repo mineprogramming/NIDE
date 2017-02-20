@@ -1,19 +1,8 @@
 ﻿ItemsEngine = {};
 
-ItemsEngine.convertStreamToString = function(is) { 
-    var bis = new java.io.BufferedInputStream(is); 
-    var buf = new java.io.ByteArrayOutputStream(); 
-    var res = bis.read(); 
-    while(res != -1) { 
-        buf.write(res); 
-        res = bis.read(); 
-    } 
-    return buf.toString(); 
-}
-
 ItemsEngine.SetItemFromJson = function(name){
     var str    = ModPE.openInputStreamFromTexturePack("items//" + name);
-    var string = convertStreamToString(str);
+    var string = Util.convertStreamToString(str);
     var json   = JSON.parse(string);
     if (json.type == "item"){
         ModPE.setItem(json.id, json.texture.name, json.texture.meta, json.name, json.maxStack);
