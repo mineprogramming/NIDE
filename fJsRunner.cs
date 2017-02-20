@@ -5,14 +5,17 @@ namespace NIDE
 {
     public partial class fJsRunner : Form
     {
+        public delegate void Log(object iString);
+
         public fJsRunner(string code)
         {
             InitializeComponent();
             log("Running code...");
-            MessageBox.Show(code);
             using (JavascriptContext context = new JavascriptContext())
             {
-                context.SetParameter("Console", this);
+                Log print = log;
+                context.SetParameter("print", print);
+                context.SetParameter("clientMessage", print);
                 try
                 {
                     context.Run(code);
@@ -25,9 +28,9 @@ namespace NIDE
 
         }
 
-        public void log(string iString)
+        private void log(object iString)
         {
-            tbLog.AppendText(iString + "\n");
+            tbLog.AppendText(iString.ToString() + "\n");
         }
     }
 }

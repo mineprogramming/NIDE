@@ -32,12 +32,16 @@ namespace NIDE
             {
                 if (regex.IsMatch(line) && line.IndexOf('(') != -1 && line.IndexOf(')') != -1)
                 {
-                    string params_line = line.Split('(')[1].Split(')')[0];
-                    string function_line = line.Split('(')[0].Split()[1];
-                    foreach (var param in params_line.Split(','))
-                        Variables.Add(param.Trim());
-                    if (!ModPe.hooks.Contains(function_line))
-                        Variables.Add(function_line);
+                    try
+                    {
+                        string params_line = line.Split('(')[1].Split(')')[0];
+                        string function_line = line.Split('(')[0].Split()[1];
+                        foreach (var param in params_line.Split(','))
+                            Variables.Add(param.Trim());
+                        if (!ModPe.hooks.Contains(function_line))
+                            Variables.Add(function_line);
+                    }
+                    catch { }
                 }
             }
         }
