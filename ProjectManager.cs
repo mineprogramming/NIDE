@@ -312,15 +312,14 @@ namespace NIDE
 
             string outp = BuildPath + "main.js";
             File.Delete(outp);
-            foreach (var file in Directory.GetFiles(ScriptsPath))
-            {
-                string text = File.ReadAllText(file);
-                File.AppendAllText(outp, "\n" + text);
-            }
-
             foreach (var library in Libraries)
             {
                 string text = library.GetCode();
+                File.AppendAllText(outp, "\n" + text);
+            }
+            foreach (var file in Directory.GetFiles(ScriptsPath))
+            {
+                string text = File.ReadAllText(file);
                 File.AppendAllText(outp, "\n" + text);
             }
             if (compress)
