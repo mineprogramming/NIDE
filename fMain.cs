@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
+using NIDE.Project;
 
 namespace NIDE
 {
@@ -167,11 +168,9 @@ namespace NIDE
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
 
         //textworking
-        private void tsmiUndo_Click(object sender, EventArgs e)
-        {
+        private void tsmiUndo_Click(object sender, EventArgs e){
             fctbMain.Undo();
         }
-
         private void tsmiRedo_Click(object sender, EventArgs e)
         {
             fctbMain.Redo();
