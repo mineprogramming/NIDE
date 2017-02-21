@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
-using NIDE.Project;
 
 namespace NIDE
 {
@@ -134,7 +133,7 @@ namespace NIDE
                 return ProgramData.ProjectManager.SourceCodePath + "\\" + path_relative;
             }
         }
-        
+
 
         private void tsmiDeleteTexture_Click(object sender, EventArgs e)
         {
@@ -168,45 +167,16 @@ namespace NIDE
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
 
         //textworking
-        private void tsmiUndo_Click(object sender, EventArgs e){
-            fctbMain.Undo();
-        }
-        private void tsmiRedo_Click(object sender, EventArgs e)
-        {
-            fctbMain.Redo();
-        }
-        private void tsmiFind_Click(object sender, EventArgs e)
-        {
-            fctbMain.ShowFindDialog();
-        }
-        private void tsmiReplace_Click(object sender, EventArgs e)
-        {
-            fctbMain.ShowReplaceDialog();
-        }
-        private void ctsmiAutoIndent_Click(object sender, EventArgs e)
-        {
-            fctbMain.DoAutoIndent();
-        }
-        private void tsmiComment_Click(object sender, EventArgs e)
-        {
-            fctbMain.CommentSelected();
-        }
-        private void tsmiSelectAll_Click(object sender, EventArgs e)
-        {
-            fctbMain.SelectAll();
-        }
-        private void tsbCut_Click(object sender, EventArgs e)
-        {
-            fctbMain.Cut();
-        }
-        private void tsbCopy_Click(object sender, EventArgs e)
-        {
-            fctbMain.Copy();
-        }
-        private void tsbPaste_Click(object sender, EventArgs e)
-        {
-            fctbMain.Paste();
-        }
+        private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
+        private void tsmiRedo_Click(object sender, EventArgs e) { fctbMain.Redo(); }
+        private void tsmiFind_Click(object sender, EventArgs e) { fctbMain.ShowFindDialog(); }
+        private void tsmiReplace_Click(object sender, EventArgs e) { fctbMain.ShowReplaceDialog(); }
+        private void ctsmiAutoIndent_Click(object sender, EventArgs e) { fctbMain.DoAutoIndent(); }
+        private void tsmiComment_Click(object sender, EventArgs e) { fctbMain.CommentSelected(); }
+        private void tsmiSelectAll_Click(object sender, EventArgs e) { fctbMain.SelectAll(); }
+        private void tsbCut_Click(object sender, EventArgs e) { fctbMain.Cut(); }
+        private void tsbCopy_Click(object sender, EventArgs e) { fctbMain.Copy(); }
+        private void tsbPaste_Click(object sender, EventArgs e) { fctbMain.Paste(); }
 
         //inserts
         private void tsmiNewItem_Click(object sender, EventArgs e)
@@ -420,7 +390,7 @@ namespace NIDE
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
             if (ProgramData.file.EndsWith(".nproj"))
 
-            saved = true;
+                saved = true;
         }
 
         private bool CanChangeFile()

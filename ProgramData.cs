@@ -1,6 +1,4 @@
-﻿using NIDE.Project;
-
-namespace NIDE
+﻿namespace NIDE
 {
     static class ProgramData
     {
