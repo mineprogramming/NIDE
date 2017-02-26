@@ -1,15 +1,15 @@
 ﻿using Noesis.Javascript;
-using System.Windows.Forms;
 
 namespace NIDE
 {
-    public partial class fJsRunner : Form
+    public class JsRunner
     {
         public delegate void Log(object iString);
+        private fMain form;
 
-        public fJsRunner(string code)
+        public JsRunner(string code, fMain form)
         {
-            InitializeComponent();
+            this.form = form;
             log("Running code...");
             using (JavascriptContext context = new JavascriptContext())
             {
@@ -30,7 +30,7 @@ namespace NIDE
 
         private void log(object iString)
         {
-            tbLog.AppendText(iString.ToString() + "\n");
+            form.Log("JsRunner", iString.ToString());
         }
     }
 }

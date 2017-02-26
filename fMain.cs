@@ -18,7 +18,7 @@ namespace NIDE
         {
             this.args = args;
             InitializeComponent();
-            CodeAnalysisEngine.Initialize(fctbMain);
+            CodeAnalysisEngine.Initialize(this, fctbMain);
             RegisterWorker.Load(this);
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
@@ -81,7 +81,7 @@ namespace NIDE
         {
             if (fctbMain.Language == Language.JS && ProgramData.ProjectManager != null)
             {
-                Highlighting.ResetStyles(e.ChangedRange);
+                Highlighting.ResetStyles(e.ChangedRange, fctbMain.Range);
                 CodeAnalysisEngine.Update();
             }
             saved = false;
@@ -165,6 +165,7 @@ namespace NIDE
 
         //connections
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
+        public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
 
         //textworking
         private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
@@ -203,7 +204,7 @@ namespace NIDE
         private void tsmiSettings_Click(object sender, EventArgs e)
         {
             new fSettings().ShowDialog();
-            Highlighting.ResetStyles(fctbMain.Range);
+            Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
         }
 
         private void tsmiNewScript_Click(object sender, EventArgs e)
@@ -439,7 +440,33 @@ namespace NIDE
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
         {
-            new fJsRunner(fctbMain.Text).ShowDialog();
+            new JsRunner(fctbMain.Text, this);
+        }
+
+
+        public void Log(string source, string message)
+        {
+            Invoke(new AddMessageDelegate(_log), new object[] { source, message });
+            
+        }
+
+        private void _log(string source, string message)
+        {
+            string format = "[{0}]:{1} \n";
+            console.AppendText(string.Format(format, source, message));
+        }
+
+        public delegate void AddMessageDelegate(string source, string message);
+        public delegate void ClearLogDelegate();
+
+        public void ClearLog()
+        {
+            Invoke(new ClearLogDelegate(console.Clear));
+        }
+
+        public void HighlightError(int line)
+        {
+            Highlighting.HighlightError(new Range(fctbMain, line));
         }
     }
 }

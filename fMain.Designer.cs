@@ -30,10 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.StatusStrip = new System.Windows.Forms.StatusStrip();
-            this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
-            this.splitter = new System.Windows.Forms.Splitter();
+            this.container = new System.Windows.Forms.ToolStripContainer();
+            this.mainSplit = new System.Windows.Forms.SplitContainer();
             this.fctbMain = new FastColoredTextBoxNS.FastColoredTextBox();
             this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,12 +39,16 @@
             this.ctsmiFind = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
+            this.console = new System.Windows.Forms.TextBox();
+            this.StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
+            this.splitter = new System.Windows.Forms.Splitter();
             this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewScript2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
-            this.openProjectInExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStrip = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -78,8 +80,9 @@
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewLibrary = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
-            this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBuild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,53 +90,50 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
-            this.StatusStrip.SuspendLayout();
+            this.container.ContentPanel.SuspendLayout();
+            this.container.TopToolStripPanel.SuspendLayout();
+            this.container.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).BeginInit();
+            this.mainSplit.Panel1.SuspendLayout();
+            this.mainSplit.Panel2.SuspendLayout();
+            this.mainSplit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
+            this.StatusStrip.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
             this.ToolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStripContainer1
+            // container
             // 
             // 
-            // toolStripContainer1.ContentPanel
+            // container.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.StatusStrip);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitter);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.fctbMain);
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.tvFolders);
-            resources.ApplyResources(this.toolStripContainer1.ContentPanel, "toolStripContainer1.ContentPanel");
-            resources.ApplyResources(this.toolStripContainer1, "toolStripContainer1");
-            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.container.ContentPanel.Controls.Add(this.mainSplit);
+            this.container.ContentPanel.Controls.Add(this.StatusStrip);
+            this.container.ContentPanel.Controls.Add(this.splitter);
+            this.container.ContentPanel.Controls.Add(this.tvFolders);
+            resources.ApplyResources(this.container.ContentPanel, "container.ContentPanel");
+            resources.ApplyResources(this.container, "container");
+            this.container.Name = "container";
             // 
-            // toolStripContainer1.TopToolStripPanel
+            // container.TopToolStripPanel
             // 
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.ToolStrip);
+            this.container.TopToolStripPanel.Controls.Add(this.ToolStrip);
             // 
-            // StatusStrip
+            // mainSplit
             // 
-            this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsslFile});
-            resources.ApplyResources(this.StatusStrip, "StatusStrip");
-            this.StatusStrip.Name = "StatusStrip";
+            resources.ApplyResources(this.mainSplit, "mainSplit");
+            this.mainSplit.Name = "mainSplit";
             // 
-            // tsslFile
+            // mainSplit.Panel1
             // 
-            this.tsslFile.Name = "tsslFile";
-            resources.ApplyResources(this.tsslFile, "tsslFile");
+            this.mainSplit.Panel1.Controls.Add(this.fctbMain);
             // 
-            // splitter
+            // mainSplit.Panel2
             // 
-            resources.ApplyResources(this.splitter, "splitter");
-            this.splitter.Name = "splitter";
-            this.splitter.TabStop = false;
+            this.mainSplit.Panel2.Controls.Add(this.console);
             // 
             // fctbMain
             // 
@@ -206,6 +206,31 @@
             resources.ApplyResources(this.ctsmiAutoIndent, "ctsmiAutoIndent");
             this.ctsmiAutoIndent.Click += new System.EventHandler(this.ctsmiAutoIndent_Click);
             // 
+            // console
+            // 
+            resources.ApplyResources(this.console, "console");
+            this.console.Name = "console";
+            this.console.ReadOnly = true;
+            // 
+            // StatusStrip
+            // 
+            this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslFile});
+            resources.ApplyResources(this.StatusStrip, "StatusStrip");
+            this.StatusStrip.Name = "StatusStrip";
+            // 
+            // tsslFile
+            // 
+            this.tsslFile.Name = "tsslFile";
+            resources.ApplyResources(this.tsslFile, "tsslFile");
+            // 
+            // splitter
+            // 
+            resources.ApplyResources(this.splitter, "splitter");
+            this.splitter.Name = "splitter";
+            this.splitter.TabStop = false;
+            // 
             // tvFolders
             // 
             this.tvFolders.BackColor = System.Drawing.SystemColors.MenuBar;
@@ -222,7 +247,7 @@
             this.tsmiNewScript2,
             this.tsmiNewTexture2,
             this.tsmiDeleteTexture,
-            this.openProjectInExplorerToolStripMenuItem});
+            this.tsmiOpenInExplorer});
             this.cmsTreeView.Name = "contextMenuStrip1";
             resources.ApplyResources(this.cmsTreeView, "cmsTreeView");
             // 
@@ -244,11 +269,11 @@
             resources.ApplyResources(this.tsmiDeleteTexture, "tsmiDeleteTexture");
             this.tsmiDeleteTexture.Click += new System.EventHandler(this.tsmiDeleteTexture_Click);
             // 
-            // openProjectInExplorerToolStripMenuItem
+            // tsmiOpenInExplorer
             // 
-            this.openProjectInExplorerToolStripMenuItem.Name = "openProjectInExplorerToolStripMenuItem";
-            resources.ApplyResources(this.openProjectInExplorerToolStripMenuItem, "openProjectInExplorerToolStripMenuItem");
-            this.openProjectInExplorerToolStripMenuItem.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
+            this.tsmiOpenInExplorer.Name = "tsmiOpenInExplorer";
+            resources.ApplyResources(this.tsmiOpenInExplorer, "tsmiOpenInExplorer");
+            this.tsmiOpenInExplorer.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
             // 
             // ToolStrip
             // 
@@ -470,23 +495,29 @@
             // tsmiRun
             // 
             this.tsmiRun.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.buildToolStripMenuItem,
+            this.tsmiBuild,
             this.tsmiCheck,
             this.tsmiRunJs});
             this.tsmiRun.Name = "tsmiRun";
             resources.ApplyResources(this.tsmiRun, "tsmiRun");
             // 
-            // buildToolStripMenuItem
+            // tsmiBuild
             // 
-            this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
-            resources.ApplyResources(this.buildToolStripMenuItem, "buildToolStripMenuItem");
-            this.buildToolStripMenuItem.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
+            this.tsmiBuild.Name = "tsmiBuild";
+            resources.ApplyResources(this.tsmiBuild, "tsmiBuild");
+            this.tsmiBuild.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
             // 
             // tsmiCheck
             // 
             this.tsmiCheck.Name = "tsmiCheck";
             resources.ApplyResources(this.tsmiCheck, "tsmiCheck");
             this.tsmiCheck.Click += new System.EventHandler(this.tsmiCheck_Click);
+            // 
+            // tsmiRunJs
+            // 
+            this.tsmiRunJs.Name = "tsmiRunJs";
+            resources.ApplyResources(this.tsmiRunJs, "tsmiRunJs");
+            this.tsmiRunJs.Click += new System.EventHandler(this.tsmiRunJs_Click);
             // 
             // tsmiOptions
             // 
@@ -523,32 +554,31 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // tsmiRunJs
-            // 
-            this.tsmiRunJs.Name = "tsmiRunJs";
-            resources.ApplyResources(this.tsmiRunJs, "tsmiRunJs");
-            this.tsmiRunJs.Click += new System.EventHandler(this.tsmiRunJs_Click);
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this.container);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "fMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
             this.Load += new System.EventHandler(this.fMain_Load);
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.ContentPanel.PerformLayout();
-            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
-            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
-            this.StatusStrip.ResumeLayout(false);
-            this.StatusStrip.PerformLayout();
+            this.container.ContentPanel.ResumeLayout(false);
+            this.container.ContentPanel.PerformLayout();
+            this.container.TopToolStripPanel.ResumeLayout(false);
+            this.container.TopToolStripPanel.PerformLayout();
+            this.container.ResumeLayout(false);
+            this.container.PerformLayout();
+            this.mainSplit.Panel1.ResumeLayout(false);
+            this.mainSplit.Panel2.ResumeLayout(false);
+            this.mainSplit.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).EndInit();
+            this.mainSplit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).EndInit();
             this.cmsMain.ResumeLayout(false);
+            this.StatusStrip.ResumeLayout(false);
+            this.StatusStrip.PerformLayout();
             this.cmsTreeView.ResumeLayout(false);
             this.ToolStrip.ResumeLayout(false);
             this.ToolStrip.PerformLayout();
@@ -591,14 +621,14 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCoreEngineDocs;
         private System.Windows.Forms.ToolStripMenuItem tsmiInserts;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewItem;
-        private System.Windows.Forms.ToolStripMenuItem openProjectInExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiOpenInExplorer;
         private System.Windows.Forms.ToolStripMenuItem tsmiCraftRecipie;
         private System.Windows.Forms.ToolStripMenuItem tsmiOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenProject;
-        private System.Windows.Forms.ToolStripMenuItem buildToolStripMenuItem;
-        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBuild;
+        private System.Windows.Forms.ToolStripContainer container;
         private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel tsslFile;
         private System.Windows.Forms.Splitter splitter;
@@ -618,6 +648,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
         private System.Windows.Forms.ToolStripMenuItem tsmiRunJs;
+        private System.Windows.Forms.TextBox console;
+        private System.Windows.Forms.SplitContainer mainSplit;
     }
 }
 

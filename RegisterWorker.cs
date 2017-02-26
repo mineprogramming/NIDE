@@ -17,6 +17,7 @@ namespace NIDE
                 key.SetValue("Width", sender.Width.ToString());
                 key.SetValue("Height", sender.Height.ToString());
                 key.SetValue("dvWidth", sender.TextViewWidth.ToString());
+                key.SetValue("dvHeight", sender.TextViewHeight.ToString());
                 key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
                 key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
                 key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
@@ -42,6 +43,7 @@ namespace NIDE
                 sender.Width = Convert.ToInt32(key.GetValue("Width"));
                 sender.Height = Convert.ToInt32(key.GetValue("Height"));
                 sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
+                sender.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
                 if (key.GetValueNames().Contains("maximized"))
                     sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)

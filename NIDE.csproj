@@ -94,12 +94,6 @@
     <Compile Include="fJsonItem.Designer.cs">
       <DependentUpon>fJsonItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="fJsRunner.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fJsRunner.Designer.cs">
-      <DependentUpon>fJsRunner.cs</DependentUpon>
-    </Compile>
     <Compile Include="fMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +124,7 @@
     <Compile Include="fStartWindow.Designer.cs">
       <DependentUpon>fStartWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="JsRunner.cs" />
     <Compile Include="Library.cs" />
     <Compile Include="ModPe.cs" />
     <Compile Include="Program.cs" />
@@ -148,9 +143,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fJsonItem.resx">
       <DependentUpon>fJsonItem.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fJsRunner.resx">
-      <DependentUpon>fJsRunner.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>

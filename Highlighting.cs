@@ -15,6 +15,7 @@ namespace NIDE
         static Style HookStyle = new TextStyle(new SolidBrush(HookColor), null, FontStyle.Bold);
         static Style GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
         static Style MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
+        static Style ErrorStyle = new TextStyle(new SolidBrush(Color.Red), null, FontStyle.Regular);
 
         static Style OldNamespace;
         static Style OldHook;
@@ -33,7 +34,7 @@ namespace NIDE
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
         }
 
-        public static void ResetStyles(Range range)
+        public static void ResetStyles(Range range, Range visible)
         {
             if (OldNamespace != null)
             {
@@ -58,6 +59,7 @@ namespace NIDE
 
             range.ClearStyle(NamespaceStyle);
             range.ClearStyle(MemberStyle);
+            visible.ClearStyle(ErrorStyle);
 
             range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
             range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
@@ -77,6 +79,11 @@ namespace NIDE
                 range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPe.global) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPe.members) + @")(\W|$)", RegexOptions.Multiline);
             }
+        }
+
+        public static void HighlightError(Range range)
+        {
+            range.SetStyle(ErrorStyle);
         }
     }
 }
