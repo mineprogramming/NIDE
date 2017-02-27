@@ -64,7 +64,7 @@ namespace NIDE
             range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
             range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
 
-            if (ProgramData.ProjectManager.projectType == ProjectType.COREENGINE)
+            if (ProgramData.ProjectManager?.projectType == ProjectType.COREENGINE)
             {
                 range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", CoreEngine.Items) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", CoreEngine.members) + @")(\W|$)", RegexOptions.Multiline);

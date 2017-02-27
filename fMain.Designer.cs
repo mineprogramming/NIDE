@@ -49,7 +49,7 @@
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStrip = new System.Windows.Forms.ToolStrip();
+            this.ToolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -81,7 +81,6 @@
             this.tsmiNewLibrary = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBuild = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiCheck = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,6 +89,9 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
+            this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -101,8 +103,9 @@
             this.cmsMain.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
-            this.ToolStrip.SuspendLayout();
+            this.ToolStripGeneral.SuspendLayout();
             this.MenuStrip.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -120,7 +123,7 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.ToolStrip);
+            this.container.TopToolStripPanel.Controls.Add(this.ToolStripGeneral);
             // 
             // mainSplit
             // 
@@ -275,11 +278,11 @@
             resources.ApplyResources(this.tsmiOpenInExplorer, "tsmiOpenInExplorer");
             this.tsmiOpenInExplorer.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
             // 
-            // ToolStrip
+            // ToolStripGeneral
             // 
-            resources.ApplyResources(this.ToolStrip, "ToolStrip");
-            this.ToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.ToolStripGeneral, "ToolStripGeneral");
+            this.ToolStripGeneral.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.ToolStripGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbCreate,
             this.tsbOpen,
             this.tsbSave,
@@ -288,7 +291,7 @@
             this.tsbCut,
             this.tsbCopy,
             this.tsbPaste});
-            this.ToolStrip.Name = "ToolStrip";
+            this.ToolStripGeneral.Name = "ToolStripGeneral";
             // 
             // tsbCreate
             // 
@@ -496,7 +499,6 @@
             // 
             this.tsmiRun.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBuild,
-            this.tsmiCheck,
             this.tsmiRunJs});
             this.tsmiRun.Name = "tsmiRun";
             resources.ApplyResources(this.tsmiRun, "tsmiRun");
@@ -506,12 +508,6 @@
             this.tsmiBuild.Name = "tsmiBuild";
             resources.ApplyResources(this.tsmiBuild, "tsmiBuild");
             this.tsmiBuild.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
-            // 
-            // tsmiCheck
-            // 
-            this.tsmiCheck.Name = "tsmiCheck";
-            resources.ApplyResources(this.tsmiCheck, "tsmiCheck");
-            this.tsmiCheck.Click += new System.EventHandler(this.tsmiCheck_Click);
             // 
             // tsmiRunJs
             // 
@@ -554,10 +550,33 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // toolStrip1
+            // 
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbBuild,
+            this.tsbRun});
+            this.toolStrip1.Name = "toolStrip1";
+            // 
+            // tsbBuild
+            // 
+            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbBuild, "tsbBuild");
+            this.tsbBuild.Name = "tsbBuild";
+            this.tsbBuild.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
+            // 
+            // tsbRun
+            // 
+            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRun, "tsbRun");
+            this.tsbRun.Name = "tsbRun";
+            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.container);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
@@ -580,10 +599,12 @@
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.cmsTreeView.ResumeLayout(false);
-            this.ToolStrip.ResumeLayout(false);
-            this.ToolStrip.PerformLayout();
+            this.ToolStripGeneral.ResumeLayout(false);
+            this.ToolStripGeneral.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -611,7 +632,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
         private System.Windows.Forms.ToolStripMenuItem tsmiDeleteTexture;
         private System.Windows.Forms.ToolStripMenuItem tsmiRun;
-        private System.Windows.Forms.ToolStripMenuItem tsmiCheck;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript2;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;
         private System.Windows.Forms.ToolStripSeparator tss2;
@@ -634,7 +654,7 @@
         private System.Windows.Forms.Splitter splitter;
         private FastColoredTextBoxNS.FastColoredTextBox fctbMain;
         private System.Windows.Forms.TreeView tvFolders;
-        private System.Windows.Forms.ToolStrip ToolStrip;
+        private System.Windows.Forms.ToolStrip ToolStripGeneral;
         private System.Windows.Forms.ToolStripButton tsbCreate;
         private System.Windows.Forms.ToolStripButton tsbOpen;
         private System.Windows.Forms.ToolStripButton tsbSave;
@@ -650,6 +670,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRunJs;
         private System.Windows.Forms.TextBox console;
         private System.Windows.Forms.SplitContainer mainSplit;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbRun;
+        private System.Windows.Forms.ToolStripButton tsbBuild;
     }
 }
 

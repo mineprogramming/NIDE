@@ -9,5 +9,7 @@
         public static ProjectManager ProjectManager { get { return projectManager; } set { projectManager = value; } }
 
         public static string file;
+
+        public static bool FileOnly = false;
     }
 }

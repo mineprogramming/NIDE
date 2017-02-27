@@ -45,10 +45,14 @@ namespace NIDE
                     {
                         OpenProject(args[0]);
                     }
+                    else if (Path.GetExtension(args[0]).ToLower() == ".js")
+                    {
+                        InitFileOnly(args[0]);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Unable to open this project!");
+                    MessageBox.Show(ex.Message, "Unable to open this project!");
                     Close();
                 }
             }// Open with
@@ -196,7 +200,7 @@ namespace NIDE
 
         private void tsmiNewCraft_Click(object sender, EventArgs e)
         {
-            var form = new fCraft(ProgramData.ProjectManager.projectType);
+            var form = new fCraft(ProgramData.FileOnly ? ProjectType.MODPE : ProgramData.ProjectManager.projectType);
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
@@ -267,6 +271,7 @@ namespace NIDE
             if (!CanChangeFile()) return;
             try
             {
+                ProgramData.FileOnly = false;
                 ProgramData.ProjectManager = new ProjectManager(FileName);
                 OpenScript(ProgramData.ProjectManager.MainScriptPath);
                 InitProject();
@@ -280,6 +285,13 @@ namespace NIDE
 
         private void InitProject()
         {
+            tsmiNewItem.Enabled = true;
+            tsmiNewScript.Enabled = true;
+            tsmiNewTexture.Enabled = true;
+            tsmiNewLibrary.Enabled = true;
+            tsmiBuild.Enabled = true;
+            tsbBuild.Enabled = true;
+            tvFolders.ContextMenuStrip = cmsTreeView;
             UpdateProject();
             switch (ProgramData.ProjectManager.projectType)
             {
@@ -301,6 +313,19 @@ namespace NIDE
             tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
             DirectoryRecursive(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.ProjectManager.SourceCodePath));
             tvFolders.Nodes[0].Expand();
+        }
+
+        private void InitFileOnly(string filename)
+        {
+            ProgramData.FileOnly = true;
+            OpenScript(filename);
+            tsmiNewItem.Enabled = false;
+            tsmiNewScript.Enabled = false;
+            tsmiNewTexture.Enabled = false;
+            tsmiNewLibrary.Enabled = false;
+            tsmiBuild.Enabled = false;
+            tsbBuild.Enabled = false;
+            tvFolders.ContextMenuStrip = null;
         }
 
         private void DirectoryRecursive(TreeNode node, DirectoryInfo dir)
@@ -328,6 +353,7 @@ namespace NIDE
                 InitJS();
             else if (extension == ".nproj" || extension == ".includes" || extension == ".info" || extension == ".nlib")
                 InitOther();
+            Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
         }
 
         private void InitJS()
@@ -374,7 +400,7 @@ namespace NIDE
                 Close();
             }
         }
-
+        
 
         private void tsmiNewProject_Click(object sender, EventArgs e)
         {
@@ -385,7 +411,7 @@ namespace NIDE
         {
             OpenProjectDlg();
         }
-
+        
         private void tsmiSave_Click(object sender, EventArgs e)
         {
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
@@ -447,7 +473,7 @@ namespace NIDE
         public void Log(string source, string message)
         {
             Invoke(new AddMessageDelegate(_log), new object[] { source, message });
-            
+
         }
 
         private void _log(string source, string message)
@@ -468,5 +494,6 @@ namespace NIDE
         {
             Highlighting.HighlightError(new Range(fctbMain, line));
         }
+        
     }
 }
