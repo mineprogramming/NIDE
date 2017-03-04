@@ -18,6 +18,7 @@ namespace NIDE
         {
             this.args = args;
             InitializeComponent();
+            ProgramData.MainForm = this;
             CodeAnalysisEngine.Initialize(this, fctbMain);
             RegisterWorker.Load(this);
             Autocomplete.SetAutoompleteMenu(fctbMain);

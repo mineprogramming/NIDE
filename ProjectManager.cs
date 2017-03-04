@@ -145,23 +145,12 @@ namespace NIDE
                         if (Convert.ToInt32(keyValue[1]) > API_LEVEL)
                             throw new Exception("Api level is not supported");
                         break;
-                    case "project-version":
-                        version = keyValue[1];
-                        break;
                     case "project-type":
                         projectType = StringToProjectType(keyValue[1]);
                         break;
-                    case "settings-compress":
-                        compress = Convert.ToBoolean(keyValue[1]);
-                        break;
-                    case "include-library":
-                        Libraries.Add(new Library(keyValue[1], LibrariesPath));
-                        break;
-                    case "project-name":
-                        projectName = keyValue[1];
-                        break;
                 }
             }
+            UpdateNlib();
         }
 
         public ProjectManager(string path, ProjectType type, string projectName)
@@ -191,6 +180,42 @@ namespace NIDE
             File.WriteAllText(projectFile, nproj);
         }
 
+        private void UpdateNlib()
+        {
+            Libraries.Clear();
+            Autocomplete.UserItems.Clear();
+            foreach (var line in File.ReadAllLines(projectFile))
+            {
+                string[] keyValue = line.Split(':');
+                if (keyValue.Length != 2)
+                    continue;
+                switch (keyValue[0])
+                {
+
+                    case "project-name":
+                        projectName = keyValue[1];
+                        break;
+                    case "project-version":
+                        version = keyValue[1];
+                        break;
+                    case "settings-compress":
+                        compress = Convert.ToBoolean(keyValue[1]);
+                        break;
+                    case "include-library":
+                        try
+                        {
+                            var l = new Library(keyValue[1], LibrariesPath);
+                            Libraries.Add(l);
+                        }
+                        catch (Exception e)
+                        {
+                            ProgramData.MainForm?.Log("ProjectManager", e.Message);
+                        }
+                        break;
+                }
+
+            }
+        }
 
         public void AddScript(string name)
         {
@@ -290,27 +315,7 @@ namespace NIDE
 
         private void BuildModPE()
         {
-            Libraries.Clear();
-            Autocomplete.UserItems.Clear();
-            foreach (var line in File.ReadAllLines(projectFile))
-            {
-                string[] keyValue = line.Split(':');
-                if (keyValue.Length != 2)
-                    continue;
-                switch (keyValue[0])
-                {
-                    case "project-version":
-                        version = keyValue[1];
-                        break;
-                    case "settings-compress":
-                        compress = Convert.ToBoolean(keyValue[1]);
-                        break;
-                    case "include-library":
-                        Libraries.Add(new Library(keyValue[1], LibrariesPath));
-                        break;
-                }
-            }
-
+            UpdateNlib();
             string outp = BuildPath + "main.js";
             File.Delete(outp);
             foreach (var library in Libraries)

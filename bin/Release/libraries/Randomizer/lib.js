@@ -12,3 +12,11 @@ Randomizer.GaussRandom = function(max, depth){
     }
     return Math.round(Math.abs(result / depth));
 };
+
+Randomizer.Double = function(){
+    return this.Random.nextDouble();
+}
+
+Randomizer.Int = function(max){
+    return this.Random.nextInt(max);
+}

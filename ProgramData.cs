@@ -11,5 +11,7 @@
         public static string file;
 
         public static bool FileOnly = false;
+
+        public static fMain MainForm { get; set; }
     }
 }
