@@ -5,11 +5,9 @@ namespace NIDE
     public class JsRunner
     {
         public delegate void Log(object iString);
-        private fMain form;
 
-        public JsRunner(string code, fMain form)
+        public JsRunner(string code)
         {
-            this.form = form;
             log("Running code...");
             using (JavascriptContext context = new JavascriptContext())
             {
@@ -30,7 +28,7 @@ namespace NIDE
 
         private void log(object iString)
         {
-            form.Log("JsRunner", iString.ToString());
+            ProgramData.MainForm?.Log("JsRunner", iString.ToString());
         }
     }
 }

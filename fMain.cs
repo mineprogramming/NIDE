@@ -19,7 +19,7 @@ namespace NIDE
             this.args = args;
             InitializeComponent();
             ProgramData.MainForm = this;
-            CodeAnalysisEngine.Initialize(this, fctbMain);
+            CodeAnalysisEngine.Initialize(fctbMain);
             RegisterWorker.Load(this);
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
@@ -467,7 +467,7 @@ namespace NIDE
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
         {
-            new JsRunner(fctbMain.Text, this);
+            new JsRunner(fctbMain.Text);
         }
 
 

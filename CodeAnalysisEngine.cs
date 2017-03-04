@@ -10,16 +10,14 @@ namespace NIDE
     static class CodeAnalysisEngine
     {
         static FastColoredTextBox fctb;
-        static fMain form;
         public static List<string> Variables = new List<string>();
         static Parser parser;
         static ErrorReporterEx reporter;
 
-        public static void Initialize(fMain form, FastColoredTextBox fctb)
+        public static void Initialize(FastColoredTextBox fctb)
         {
-            CodeAnalysisEngine.form = form;
             CodeAnalysisEngine.fctb = fctb;
-            reporter = new ErrorReporterEx(form);
+            reporter = new ErrorReporterEx();
             parser = new Parser(new CompilerEnvirons(), reporter);
         }
 
@@ -66,7 +64,7 @@ namespace NIDE
                 {
                     parser.Parse(fctb.Text, "", 0);
                     reporter.Clear();
-                    form.ClearLog();
+                    ProgramData.MainForm?.ClearLog();
                 }
                 catch (Exception e) { }
             }
@@ -76,16 +74,10 @@ namespace NIDE
 
     class ErrorReporterEx : ErrorReporter
     {
-        fMain form;
         List<int> lines = new List<int>();
 
         private delegate void Logs(string source, string message);
-
-        public ErrorReporterEx(fMain form)
-        {
-            this.form = form;
-        }
-
+        
         public void Clear()
         {
             lines.Clear();
@@ -95,8 +87,8 @@ namespace NIDE
         {
             if (!lines.Contains(line))
             {
-                form.Log("CodeAnalysisEngine", "Line " + line + ": " + message);
-                form.HighlightError(line);
+                ProgramData.MainForm?.Log("CodeAnalysisEngine", "Line " + line + ": " + message);
+                ProgramData.MainForm?.HighlightError(line);
                 lines.Add(line);
             }
         }
@@ -110,8 +102,8 @@ namespace NIDE
         {
             if (!lines.Contains(line))
             {
-                form.Log("CodeAnalysisEngine", message);
-                form.HighlightError(line);
+                ProgramData.MainForm?.Log("CodeAnalysisEngine", message);
+                ProgramData.MainForm?.HighlightError(line);
                 lines.Add(line);
             }
         }
