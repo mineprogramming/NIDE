@@ -41,6 +41,7 @@
             this.tbPath = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
+            this.cbLast = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -139,7 +140,7 @@
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(189, 52);
+            this.tbPath.Location = new System.Drawing.Point(186, 84);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(243, 20);
             this.tbPath.TabIndex = 1;
@@ -147,7 +148,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(186, 28);
+            this.label5.Location = new System.Drawing.Point(183, 60);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 13);
             this.label5.TabIndex = 2;
@@ -163,11 +164,22 @@
             this.btnApply.UseVisualStyleBackColor = true;
             this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
+            // cbLast
+            // 
+            this.cbLast.AutoSize = true;
+            this.cbLast.Location = new System.Drawing.Point(186, 27);
+            this.cbLast.Name = "cbLast";
+            this.cbLast.Size = new System.Drawing.Size(104, 17);
+            this.cbLast.TabIndex = 4;
+            this.cbLast.Text = "Load last project";
+            this.cbLast.UseVisualStyleBackColor = true;
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(444, 158);
+            this.Controls.Add(this.cbLast);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.tbPath);
@@ -197,5 +209,6 @@
         private System.Windows.Forms.TextBox tbPath;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.CheckBox cbLast;
     }
 }

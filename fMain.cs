@@ -403,7 +403,7 @@ namespace NIDE
                 Close();
             }
         }
-        
+
 
         private void tsmiNewProject_Click(object sender, EventArgs e)
         {
@@ -414,7 +414,7 @@ namespace NIDE
         {
             OpenProjectDlg();
         }
-        
+
         private void tsmiSave_Click(object sender, EventArgs e)
         {
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
@@ -500,7 +500,8 @@ namespace NIDE
 
         private void tsmiPush_Click(object sender, EventArgs e)
         {
-            ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js");
+            ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js",
+                ProgramData.ProjectManager.BuildPath + "resources.zip");
         }
     }
 }

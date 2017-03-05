@@ -82,6 +82,7 @@
             this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBuild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPush = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +93,8 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbBuild = new System.Windows.Forms.ToolStripButton();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
-            this.tsmiPush = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbPush = new System.Windows.Forms.ToolStripButton();
+            this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -220,6 +222,7 @@
             // 
             this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ProgressBarStatus,
             this.tsslFile});
             resources.ApplyResources(this.StatusStrip, "StatusStrip");
             this.StatusStrip.Name = "StatusStrip";
@@ -517,6 +520,12 @@
             resources.ApplyResources(this.tsmiRunJs, "tsmiRunJs");
             this.tsmiRunJs.Click += new System.EventHandler(this.tsmiRunJs_Click);
             // 
+            // tsmiPush
+            // 
+            this.tsmiPush.Name = "tsmiPush";
+            resources.ApplyResources(this.tsmiPush, "tsmiPush");
+            this.tsmiPush.Click += new System.EventHandler(this.tsmiPush_Click);
+            // 
             // tsmiOptions
             // 
             this.tsmiOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -557,7 +566,8 @@
             resources.ApplyResources(this.toolStrip1, "toolStrip1");
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbBuild,
-            this.tsbRun});
+            this.tsbRun,
+            this.tsbPush});
             this.toolStrip1.Name = "toolStrip1";
             // 
             // tsbBuild
@@ -574,11 +584,17 @@
             this.tsbRun.Name = "tsbRun";
             this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
             // 
-            // tsmiPush
+            // tsbPush
             // 
-            this.tsmiPush.Name = "tsmiPush";
-            resources.ApplyResources(this.tsmiPush, "tsmiPush");
-            this.tsmiPush.Click += new System.EventHandler(this.tsmiPush_Click);
+            this.tsbPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbPush, "tsbPush");
+            this.tsbPush.Name = "tsbPush";
+            this.tsbPush.Click += new System.EventHandler(this.tsmiPush_Click);
+            // 
+            // ProgressBarStatus
+            // 
+            this.ProgressBarStatus.Name = "ProgressBarStatus";
+            resources.ApplyResources(this.ProgressBarStatus, "ProgressBarStatus");
             // 
             // fMain
             // 
@@ -682,6 +698,8 @@
         private System.Windows.Forms.ToolStripButton tsbRun;
         private System.Windows.Forms.ToolStripButton tsbBuild;
         private System.Windows.Forms.ToolStripMenuItem tsmiPush;
+        private System.Windows.Forms.ToolStripButton tsbPush;
+        public System.Windows.Forms.ToolStripProgressBar ProgressBarStatus;
     }
 }
 

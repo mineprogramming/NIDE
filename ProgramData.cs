@@ -13,5 +13,7 @@
         public static bool FileOnly = false;
 
         public static fMain MainForm { get; set; }
+
+        public static bool LoadLast = true;
     }
 }

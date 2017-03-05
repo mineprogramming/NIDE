@@ -13,6 +13,7 @@ namespace NIDE
             btnGlobal.BackColor = Highlighting.GlobalColor;
             btnMembers.BackColor = Highlighting.MemberColor;
             tbPath.Text = ADBWorker.Path;
+            cbLast.Checked = ProgramData.LoadLast;
         }
 
         private void btnNamespaces_Click(object sender, EventArgs e)
@@ -62,6 +63,7 @@ namespace NIDE
         private void btnApply_Click(object sender, EventArgs e)
         {
             ADBWorker.Path = tbPath.Text;
+            ProgramData.LoadLast = cbLast.Checked;
             Close();
         }
     }
