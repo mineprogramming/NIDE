@@ -12,6 +12,7 @@ namespace NIDE
             btnHooks.BackColor = Highlighting.HookColor;
             btnGlobal.BackColor = Highlighting.GlobalColor;
             btnMembers.BackColor = Highlighting.MemberColor;
+            tbPath.Text = ADBWorker.Path;
         }
 
         private void btnNamespaces_Click(object sender, EventArgs e)
@@ -56,6 +57,12 @@ namespace NIDE
                 Highlighting.MemberColor = dlgColor.Color;
                 Highlighting.RefreshStyles();
             }
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            ADBWorker.Path = tbPath.Text;
+            Close();
         }
     }
 }

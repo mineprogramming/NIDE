@@ -18,6 +18,7 @@ namespace NIDE
                 key.SetValue("Height", sender.Height.ToString());
                 key.SetValue("dvWidth", sender.TextViewWidth.ToString());
                 key.SetValue("dvHeight", sender.TextViewHeight.ToString());
+                key.SetValue("ADBPath", ADBWorker.Path);
                 key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
                 key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
                 key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
@@ -38,12 +39,16 @@ namespace NIDE
             {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
                 if (!key.GetSubKeyNames().Contains("NIDE"))
+                {
+                    ADBWorker.Path = "/storage/emulated/0/!Nide/scripts/";
                     return;
+                }
                 key = key.OpenSubKey("NIDE");
                 sender.Width = Convert.ToInt32(key.GetValue("Width"));
                 sender.Height = Convert.ToInt32(key.GetValue("Height"));
                 sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
                 sender.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
+                ADBWorker.Path = key.GetValue("ADBPath").ToString();
                 if (key.GetValueNames().Contains("maximized"))
                     sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)

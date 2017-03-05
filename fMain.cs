@@ -299,10 +299,12 @@ namespace NIDE
                 case ProjectType.MODPE:
                     tsmiNewItem.Enabled = true;
                     tsmiNewLibrary.Enabled = true;
+                    tsmiPush.Enabled = true;
                     break;
                 case ProjectType.COREENGINE:
                     tsmiNewItem.Enabled = false;
                     tsmiNewLibrary.Enabled = false;
+                    tsmiPush.Enabled = false;
                     break;
             }
         }
@@ -495,6 +497,10 @@ namespace NIDE
         {
             Highlighting.HighlightError(new Range(fctbMain, line));
         }
-        
+
+        private void tsmiPush_Click(object sender, EventArgs e)
+        {
+            ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js");
+        }
     }
 }

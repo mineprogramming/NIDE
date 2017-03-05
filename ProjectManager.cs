@@ -94,7 +94,7 @@ namespace NIDE
 
             }
         }
-        private string BuildPath { get { return path + BUILD_PATH; } }
+        public string BuildPath { get { return path + BUILD_PATH; } }
         private string ScriptsPath
         {
             get

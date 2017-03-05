@@ -92,6 +92,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbBuild = new System.Windows.Forms.ToolStripButton();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
+            this.tsmiPush = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -499,7 +500,8 @@
             // 
             this.tsmiRun.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiBuild,
-            this.tsmiRunJs});
+            this.tsmiRunJs,
+            this.tsmiPush});
             this.tsmiRun.Name = "tsmiRun";
             resources.ApplyResources(this.tsmiRun, "tsmiRun");
             // 
@@ -571,6 +573,12 @@
             resources.ApplyResources(this.tsbRun, "tsbRun");
             this.tsbRun.Name = "tsbRun";
             this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
+            // 
+            // tsmiPush
+            // 
+            this.tsmiPush.Name = "tsmiPush";
+            resources.ApplyResources(this.tsmiPush, "tsmiPush");
+            this.tsmiPush.Click += new System.EventHandler(this.tsmiPush_Click);
             // 
             // fMain
             // 
@@ -673,6 +681,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbRun;
         private System.Windows.Forms.ToolStripButton tsbBuild;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPush;
     }
 }
 
