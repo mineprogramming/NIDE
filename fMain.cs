@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace NIDE
 {
-    public partial class fMain : Form
+    public partial class fMain : StyleableForm
     {
         private bool saved = true;
         private string[] args;
@@ -184,7 +184,7 @@ namespace NIDE
         //connections
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
         public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
-
+        
         //textworking
         private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
         private void tsmiRedo_Click(object sender, EventArgs e) { fctbMain.Redo(); }

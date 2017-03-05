@@ -41,6 +41,7 @@
             this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
             this.console = new System.Windows.Forms.TextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
+            this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitter = new System.Windows.Forms.Splitter();
             this.tvFolders = new System.Windows.Forms.TreeView();
@@ -94,7 +95,6 @@
             this.tsbBuild = new System.Windows.Forms.ToolStripButton();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbPush = new System.Windows.Forms.ToolStripButton();
-            this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -127,6 +127,7 @@
             // container.TopToolStripPanel
             // 
             this.container.TopToolStripPanel.Controls.Add(this.ToolStripGeneral);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStrip1);
             // 
             // mainSplit
             // 
@@ -226,6 +227,11 @@
             this.tsslFile});
             resources.ApplyResources(this.StatusStrip, "StatusStrip");
             this.StatusStrip.Name = "StatusStrip";
+            // 
+            // ProgressBarStatus
+            // 
+            this.ProgressBarStatus.Name = "ProgressBarStatus";
+            resources.ApplyResources(this.ProgressBarStatus, "ProgressBarStatus");
             // 
             // tsslFile
             // 
@@ -591,16 +597,10 @@
             this.tsbPush.Name = "tsbPush";
             this.tsbPush.Click += new System.EventHandler(this.tsmiPush_Click);
             // 
-            // ProgressBarStatus
-            // 
-            this.ProgressBarStatus.Name = "ProgressBarStatus";
-            resources.ApplyResources(this.ProgressBarStatus, "ProgressBarStatus");
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.container);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
