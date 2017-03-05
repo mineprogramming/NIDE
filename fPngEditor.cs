@@ -141,6 +141,7 @@ namespace NIDE
                 MessageBox.Show(ex.ToString());
             }
             saved = true;
+            png.Dispose();
         }
 
         private void tsbOpen_Click(object sender, EventArgs e)
