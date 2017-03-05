@@ -20,6 +20,7 @@ namespace NIDE
                 key.SetValue("dvHeight", sender.TextViewHeight.ToString());
                 key.SetValue("ADBPath", ADBWorker.Path);
                 key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
+                key.SetValue("LoadLast", ProgramData.LoadLast);
                 key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
                 key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
                 key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
@@ -49,6 +50,7 @@ namespace NIDE
                 sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
                 sender.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
                 ADBWorker.Path = key.GetValue("ADBPath").ToString();
+                ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
                 if (key.GetValueNames().Contains("maximized"))
                     sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)

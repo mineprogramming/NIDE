@@ -57,29 +57,42 @@ namespace NIDE
                     Close();
                 }
             }// Open with
+            else if (ProgramData.LoadLast)
+            {
+                try
+                {
+                    OpenProject(ProgramData.Recent[0]);
+                }
+                catch { ShowStartWindow(); }
+            }
             else
             {
-                fStartWindow form = new fStartWindow();
-                if (form.ShowDialog() == DialogResult.OK)
+                ShowStartWindow();
+            }
+        }
+
+        private void ShowStartWindow()
+        {
+            fStartWindow form = new fStartWindow();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                switch (form.result)
                 {
-                    switch (form.result)
-                    {
-                        case "recent":
-                            OpenProject(form.path);
-                            break;
-                        case "new":
-                            NewProjectDlg(true);
-                            break;
-                        case "open":
-                            OpenProjectDlg(true);
-                            break;
-                    }
+                    case "recent":
+                        OpenProject(form.path);
+                        break;
+                    case "new":
+                        NewProjectDlg(true);
+                        break;
+                    case "open":
+                        OpenProjectDlg(true);
+                        break;
                 }
-                else
-                {
-                    Close();
-                }
-            }//StartScreen
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
