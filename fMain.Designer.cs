@@ -50,6 +50,10 @@
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
+            this.tsbRun = new System.Windows.Forms.ToolStripButton();
+            this.tsbPush = new System.Windows.Forms.ToolStripButton();
             this.ToolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -91,10 +95,7 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
-            this.tsbRun = new System.Windows.Forms.ToolStripButton();
-            this.tsbPush = new System.Windows.Forms.ToolStripButton();
+            this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -106,9 +107,10 @@
             this.cmsMain.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.ToolStripGeneral.SuspendLayout();
             this.MenuStrip.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visualStyler)).BeginInit();
             this.SuspendLayout();
             // 
             // container
@@ -287,6 +289,36 @@
             this.tsmiOpenInExplorer.Name = "tsmiOpenInExplorer";
             resources.ApplyResources(this.tsmiOpenInExplorer, "tsmiOpenInExplorer");
             this.tsmiOpenInExplorer.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
+            // 
+            // toolStrip1
+            // 
+            resources.ApplyResources(this.toolStrip1, "toolStrip1");
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbBuild,
+            this.tsbRun,
+            this.tsbPush});
+            this.toolStrip1.Name = "toolStrip1";
+            // 
+            // tsbBuild
+            // 
+            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbBuild, "tsbBuild");
+            this.tsbBuild.Name = "tsbBuild";
+            this.tsbBuild.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
+            // 
+            // tsbRun
+            // 
+            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRun, "tsbRun");
+            this.tsbRun.Name = "tsbRun";
+            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
+            // 
+            // tsbPush
+            // 
+            this.tsbPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbPush, "tsbPush");
+            this.tsbPush.Name = "tsbPush";
+            this.tsbPush.Click += new System.EventHandler(this.tsmiPush_Click);
             // 
             // ToolStripGeneral
             // 
@@ -567,35 +599,11 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // toolStrip1
+            // visualStyler
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbBuild,
-            this.tsbRun,
-            this.tsbPush});
-            this.toolStrip1.Name = "toolStrip1";
-            // 
-            // tsbBuild
-            // 
-            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbBuild, "tsbBuild");
-            this.tsbBuild.Name = "tsbBuild";
-            this.tsbBuild.Click += new System.EventHandler(this.buildToolStripMenuItem_Click);
-            // 
-            // tsbRun
-            // 
-            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRun, "tsbRun");
-            this.tsbRun.Name = "tsbRun";
-            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
-            // 
-            // tsbPush
-            // 
-            this.tsbPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbPush, "tsbPush");
-            this.tsbPush.Name = "tsbPush";
-            this.tsbPush.Click += new System.EventHandler(this.tsmiPush_Click);
+            this.visualStyler.HostForm = this;
+            this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
+            this.visualStyler.LoadVisualStyle(null, "OSX (Brushed).vssf");
             // 
             // fMain
             // 
@@ -623,12 +631,13 @@
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.cmsTreeView.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ToolStripGeneral.ResumeLayout(false);
             this.ToolStripGeneral.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.visualStyler)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -700,6 +709,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPush;
         private System.Windows.Forms.ToolStripButton tsbPush;
         public System.Windows.Forms.ToolStripProgressBar ProgressBarStatus;
+        private SkinSoft.VisualStyler.VisualStyler visualStyler;
     }
 }
 

@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace NIDE
 {
-    public partial class fMain : StyleableForm
+    public partial class fMain : Form
     {
         private bool saved = true;
         private string[] args;
