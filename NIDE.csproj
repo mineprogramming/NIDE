@@ -152,7 +152,6 @@
     <Compile Include="StyleableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Styler.cs" />
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="fCraft.resx">
       <DependentUpon>fCraft.cs</DependentUpon>
