@@ -14,6 +14,7 @@ namespace NIDE
         bool saved = true;
         bool _16_16 = true;
         bool mouseDown = false;
+        Random rnd;
 
         private PanelEx DrawPanel;
 
@@ -28,8 +29,8 @@ namespace NIDE
             DrawPanel.MouseDown += DrawPanel_MouseDown;
             DrawPanel.MouseUp += DrawPanel_MouseUp;
             Controls.Add(DrawPanel);
-
             InitializeComponent();
+            rnd = new Random();
             this.path = path;
             try
             {
@@ -74,6 +75,7 @@ namespace NIDE
             tsbPicker.Checked = false;
             tsbClear.Checked = false;
             tsbFill.Checked = false;
+            tsbTexturize.Checked = false;
         }
 
         private void tsbClear_Click(object sender, EventArgs e)
@@ -82,6 +84,7 @@ namespace NIDE
             tsbPicker.Checked = false;
             tsbClear.Checked = true;
             tsbFill.Checked = false;
+            tsbTexturize.Checked = false;
         }
 
         private void tsbPicker_Click(object sender, EventArgs e)
@@ -90,6 +93,7 @@ namespace NIDE
             tsbPicker.Checked = true;
             tsbClear.Checked = false;
             tsbFill.Checked = false;
+            tsbTexturize.Checked = false;
         }
 
         private void tsbFill_Click(object sender, EventArgs e)
@@ -98,6 +102,16 @@ namespace NIDE
             tsbPicker.Checked = false;
             tsbClear.Checked = false;
             tsbFill.Checked = true;
+            tsbTexturize.Checked = false;
+        }
+
+        private void tsbTexturize_Click(object sender, EventArgs e)
+        {
+            tsbDraw.Checked = false;
+            tsbPicker.Checked = false;
+            tsbClear.Checked = false;
+            tsbFill.Checked = false;
+            tsbTexturize.Checked = true;
         }
 
         private void fPngEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -202,8 +216,12 @@ namespace NIDE
                 int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
                 int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
                 int x = cursorX / 21;
+                if (x < 0) x = 0;
+                if (x > 15) x = 15;
                 int y = cursorY / 21;
-                if(tsbDraw.Checked)
+                if (y < 0) y = 0;
+                if (y > 15) y = 15;
+                if (tsbDraw.Checked)
                     pixels[x, y] = dlgColor.Color;
                 else if(tsbClear.Checked)
                     pixels[x, y] = Color.Transparent;
@@ -226,9 +244,38 @@ namespace NIDE
             }
             else if (tsbFill.Checked)
                 FillRecursive(x, y);
+            else if (tsbTexturize.Checked)
+                TexturizeRecursive(x, y);
             DrawPanel.Refresh();
         }
 
+        private void TexturizeRecursive(int x, int y)
+        {
+            Color prevColor = pixels[x, y];
+            int darkness = rnd.Next(-30, 30);
+            int A = prevColor.A + darkness;
+            if (A > 255) A = 255;
+            if (A < 0) A = 0;
+            int R = prevColor.R + darkness;
+            if (R > 255) R = 255;
+            if (R < 0) R = 0;
+            int G = prevColor.G + darkness;
+            if (G > 255) G = 255;
+            if (G < 0) G = 0;
+            int B = prevColor.B + darkness;
+            if (B > 255) B = 255;
+            if (B < 0) B = 0;
+
+            pixels[x, y] = Color.FromArgb(A, R, G, B);
+            if (x > 0 && pixels[x - 1, y] == prevColor)
+               TexturizeRecursive(x - 1, y);
+            if (x < 15 && pixels[x + 1, y] == prevColor)
+                TexturizeRecursive(x + 1, y);
+            if (y > 0 && pixels[x, y - 1] == prevColor)
+                TexturizeRecursive(x, y - 1);
+            if (y < 15 && pixels[x, y + 1] == prevColor)
+                TexturizeRecursive(x, y + 1);
+        }
 
         private void FillRecursive(int x, int y)
         {
@@ -245,6 +292,7 @@ namespace NIDE
             if (y < 15 && pixels[x, y + 1] == prevColor)
                 FillRecursive(x, y + 1);
         }
+        
     }
 
     class PanelEx : Panel

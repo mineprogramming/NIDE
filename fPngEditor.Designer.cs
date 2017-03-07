@@ -38,6 +38,7 @@
             this.tsbDraw = new System.Windows.Forms.ToolStripButton();
             this.tsbFill = new System.Windows.Forms.ToolStripButton();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
+            this.tsbTexturize = new System.Windows.Forms.ToolStripButton();
             this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.tsMain.SuspendLayout();
@@ -53,7 +54,8 @@
             this.tsbPicker,
             this.tsbDraw,
             this.tsbFill,
-            this.tsbClear});
+            this.tsbClear,
+            this.tsbTexturize});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(335, 25);
@@ -137,6 +139,16 @@
             this.tsbClear.Text = "Erase";
             this.tsbClear.Click += new System.EventHandler(this.tsbClear_Click);
             // 
+            // tsbTexturize
+            // 
+            this.tsbTexturize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbTexturize.Image = ((System.Drawing.Image)(resources.GetObject("tsbTexturize.Image")));
+            this.tsbTexturize.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbTexturize.Name = "tsbTexturize";
+            this.tsbTexturize.Size = new System.Drawing.Size(23, 22);
+            this.tsbTexturize.Text = "Texturize";
+            this.tsbTexturize.Click += new System.EventHandler(this.tsbTexturize_Click);
+            // 
             // dlgColor
             // 
             this.dlgColor.FullOpen = true;
@@ -176,5 +188,6 @@
         private System.Windows.Forms.ToolStripButton tsbPicker;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbFill;
+        private System.Windows.Forms.ToolStripButton tsbTexturize;
     }
 }
