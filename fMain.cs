@@ -100,8 +100,11 @@ namespace NIDE
         {
             if (fctbMain.Language == Language.JS && ProgramData.ProjectManager != null)
             {
-                Highlighting.ResetStyles(e.ChangedRange, fctbMain.Range);
-                CodeAnalysisEngine.Update();
+                if (ProgramData.file.EndsWith(".js"))
+                {
+                    Highlighting.ResetStyles(e.ChangedRange, fctbMain.Range);
+                    CodeAnalysisEngine.Update();
+                }
             }
             saved = false;
         }
