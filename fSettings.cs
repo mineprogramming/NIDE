@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SkinSoft.VisualStyler;
+using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NIDE
@@ -14,6 +16,7 @@ namespace NIDE
             btnMembers.BackColor = Highlighting.MemberColor;
             tbPath.Text = ADBWorker.Path;
             cbLast.Checked = ProgramData.LoadLast;
+            cbTheme.SelectedIndex = ProgramData.DarkTheme ? 0 : 1;
         }
 
         private void btnNamespaces_Click(object sender, EventArgs e)
@@ -64,6 +67,12 @@ namespace NIDE
         {
             ADBWorker.Path = tbPath.Text;
             ProgramData.LoadLast = cbLast.Checked;
+            ProgramData.DarkTheme = cbTheme.SelectedIndex == 0;
+            if (ProgramData.DarkTheme)
+                ProgramData.MainForm.visualStyler.LoadVisualStyle("Black (tochpcru).vssf");
+            else
+                ProgramData.MainForm.visualStyler.LoadVisualStyle("Vista (Aero).vssf");
+            ProgramData.MainForm.visualStyler.Refresh();
             Close();
         }
     }

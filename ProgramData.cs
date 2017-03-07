@@ -15,5 +15,7 @@
         public static fMain MainForm { get; set; }
 
         public static bool LoadLast = true;
+
+        public static bool DarkTheme = true;
     }
 }

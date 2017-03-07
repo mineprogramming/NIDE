@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
+using System.Drawing;
 
 namespace NIDE
 {
@@ -515,6 +516,11 @@ namespace NIDE
         {
             ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js",
                 ProgramData.ProjectManager.BuildPath + "resources.zip");
+        }
+
+        public override void Refresh()
+        {
+            tvFolders.BackColor = SystemColors.MenuBar;
         }
     }
 }

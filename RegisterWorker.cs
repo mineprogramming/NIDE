@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using SkinSoft.VisualStyler;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -19,8 +20,9 @@ namespace NIDE
                 key.SetValue("dvWidth", sender.TextViewWidth.ToString());
                 key.SetValue("dvHeight", sender.TextViewHeight.ToString());
                 key.SetValue("ADBPath", ADBWorker.Path);
-                key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
                 key.SetValue("LoadLast", ProgramData.LoadLast);
+                key.SetValue("DarkTheme", ProgramData.DarkTheme);
+                key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
                 key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
                 key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
                 key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
@@ -51,18 +53,20 @@ namespace NIDE
                 sender.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
                 ADBWorker.Path = key.GetValue("ADBPath").ToString();
                 ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
-                if (key.GetValueNames().Contains("maximized"))
-                    sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
+                sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
                     ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
-                if (key.GetValueNames().Contains("NamespaceStyle"))
-                {
-                    Highlighting.NamespaceColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
-                    Highlighting.GlobalColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
-                    Highlighting.HookColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
-                    Highlighting.MemberColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
-                    Highlighting.RefreshStyles();
-                }
+                ProgramData.DarkTheme = Convert.ToBoolean(key.GetValue("DarkTheme"));
+                if (ProgramData.DarkTheme)
+                    ProgramData.MainForm.visualStyler.LoadVisualStyle("Black (tochpcru).vssf");
+                else
+                    ProgramData.MainForm.visualStyler.LoadVisualStyle("Vista (Aero).vssf");
+                ProgramData.MainForm.visualStyler.Refresh();
+                Highlighting.NamespaceColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
+                Highlighting.GlobalColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
+                Highlighting.HookColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
+                Highlighting.MemberColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
+                Highlighting.RefreshStyles();
             }
             catch (Exception e)
             {
