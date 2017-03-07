@@ -19,5 +19,7 @@
         public static string Last = "";
 
         public static bool DarkTheme = true;
+
+        public static bool Restart = false;
     }
 }

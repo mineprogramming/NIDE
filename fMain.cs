@@ -462,6 +462,7 @@ namespace NIDE
         private void tsmiCloseProject_Click(object sender, EventArgs e)
         {
             if (!CanChangeFile()) return;
+            ProgramData.Restart = true;
             Application.Restart();
         }
 

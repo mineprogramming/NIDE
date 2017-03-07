@@ -9,7 +9,7 @@ namespace NIDE
 {
     static class RegisterWorker
     {
-        public static void Save(fMain sender)
+        public static void Save(fMain sender, bool Last = true)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace NIDE
                 key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
                 key.SetValue("BackStyle", ProgramData.MainForm.fctbMain.BackColor.ToArgb().ToString());
 
-                if (ProgramData.ProjectManager != null)
+                if (ProgramData.ProjectManager != null && !ProgramData.Restart)
                 {
                     key.SetValue("Last", ProgramData.ProjectManager.ProjectFilePath);
                 }

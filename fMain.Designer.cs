@@ -128,8 +128,8 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.ToolStripGeneral);
             this.container.TopToolStripPanel.Controls.Add(this.toolStrip);
+            this.container.TopToolStripPanel.Controls.Add(this.ToolStripGeneral);
             // 
             // mainSplit
             // 
