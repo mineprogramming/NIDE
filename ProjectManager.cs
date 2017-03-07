@@ -247,6 +247,13 @@ namespace NIDE
             File.CreateText(path + "lib.js").Close();
             File.WriteAllText(path + "info.nlib", String.Format("nide-api:{0}\nlibrary-version:1.0", API_LEVEL));
             File.AppendAllText(projectFile, "\ninclude-library:project/" + name);
+            UpdateNlib();
+        }
+
+        public void IncludeLibrary(string name)
+        {
+            File.AppendAllText(projectFile, "\ninclude-library:nide/" + name);
+            UpdateNlib();
         }
 
 

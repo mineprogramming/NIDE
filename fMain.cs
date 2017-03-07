@@ -534,5 +534,10 @@ namespace NIDE
         {
             tvFolders.BackColor = SystemColors.MenuBar;
         }
+
+        private void tsmiManageLibraries_Click(object sender, EventArgs e)
+        {
+            new fLibraries().ShowDialog();
+        }
     }
 }
