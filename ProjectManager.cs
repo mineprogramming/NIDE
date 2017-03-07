@@ -204,8 +204,9 @@ namespace NIDE
                     case "include-library":
                         try
                         {
-                            var l = new Library(keyValue[1], LibrariesPath);
-                            Libraries.Add(l);
+                            var l = new Library(keyValue[1], LibrariesPath, Libraries);
+                            if (!LibraryInstalled(l.name))
+                                Libraries.Add(l);
                         }
                         catch (Exception e)
                         {

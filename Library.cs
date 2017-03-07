@@ -10,7 +10,7 @@ namespace NIDE
         public string version;
         public string name;
 
-        public Library(string path, string LibrariesPath)
+        public Library(string path, string LibrariesPath, List<Library> Libraries)
         {
             string location = path.Split('/')[0];
             name = path.Split('/')[1];
@@ -20,7 +20,7 @@ namespace NIDE
             {
                 if (new DirectoryInfo(folder).Name == name)
                 {
-                    LoadLibrary(folder);
+                    LoadLibrary(folder, LibrariesPath, Libraries);
                     loaded = true;
                 }
             }
@@ -28,7 +28,7 @@ namespace NIDE
                 throw new DirectoryNotFoundException("Cannot find library " + path);
         }
 
-        private void LoadLibrary(string path)
+        private void LoadLibrary(string path, string LibrariesPath, List<Library> Libraries)
         {
             this.path = path;
             string pathToNlib = path + "\\info.nlib";
@@ -50,6 +50,16 @@ namespace NIDE
                         if (!Autocomplete.UserItems.ContainsKey(name))
                             Autocomplete.UserItems.Add(name, new List<string>());
                         Autocomplete.UserItems[name].Add(keyValue[1]);
+                        break;
+                    case "requires-library":
+                        var l = new Library(keyValue[1], LibrariesPath, Libraries);
+                        var installed = false;
+                        foreach (var library in Libraries)
+                        {
+                            if (library.name == l.name) installed = true;
+                        }
+                        if(!installed)
+                            Libraries.Add(l);
                         break;
                 }
             }

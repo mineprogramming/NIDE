@@ -1,5 +1,6 @@
 ﻿nide-api:1
 library-version:1.0
+requires-library:nide/Util
 keyword:GaussRandom
 keyword:Int
 keyword:Double
