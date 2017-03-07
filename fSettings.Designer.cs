@@ -80,6 +80,7 @@
             this.btnBack.TabIndex = 11;
             this.btnBack.Text = "Change";
             this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // label7
             // 
@@ -98,6 +99,7 @@
             this.btnNormal.TabIndex = 9;
             this.btnNormal.Text = "Change";
             this.btnNormal.UseVisualStyleBackColor = true;
+            this.btnNormal.Click += new System.EventHandler(this.btnNormal_Click);
             // 
             // label6
             // 

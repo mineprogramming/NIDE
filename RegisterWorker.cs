@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using SkinSoft.VisualStyler;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -22,10 +23,19 @@ namespace NIDE
                 key.SetValue("ADBPath", ADBWorker.Path);
                 key.SetValue("LoadLast", ProgramData.LoadLast);
                 key.SetValue("DarkTheme", ProgramData.DarkTheme);
+
+                key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain.ForeColor.ToArgb().ToString());
                 key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
                 key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
                 key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
                 key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
+                key.SetValue("BackStyle", ProgramData.MainForm.fctbMain.BackColor.ToArgb().ToString());
+
+                if (ProgramData.ProjectManager != null)
+                {
+                    key.SetValue("Last", ProgramData.ProjectManager.ProjectFilePath);
+                }
+                else { key.SetValue("Last", ""); }
                 AddRecent();
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
                     key.SetValue("Save" + i, ProgramData.Recent[i] != null ? ProgramData.Recent[i] : "");
@@ -56,16 +66,21 @@ namespace NIDE
                 sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
                     ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
+                ProgramData.Last = key.GetValue("Last").ToString();
                 ProgramData.DarkTheme = Convert.ToBoolean(key.GetValue("DarkTheme"));
                 if (ProgramData.DarkTheme)
                     ProgramData.MainForm.visualStyler.LoadVisualStyle("Black (tochpcru).vssf");
                 else
                     ProgramData.MainForm.visualStyler.LoadVisualStyle("Vista (Aero).vssf");
                 ProgramData.MainForm.visualStyler.Refresh();
-                Highlighting.NamespaceColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
-                Highlighting.GlobalColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
-                Highlighting.HookColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
-                Highlighting.MemberColor = System.Drawing.Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
+
+                ProgramData.MainForm.fctbMain.ForeColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NormalStyle")));
+                Highlighting.NamespaceColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
+                Highlighting.GlobalColor = Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
+                Highlighting.HookColor = Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
+                Highlighting.MemberColor = Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
+                ProgramData.MainForm.fctbMain.BackColor = Color.FromArgb(Convert.ToInt32(key.GetValue("BackStyle")));
+                
                 Highlighting.RefreshStyles();
             }
             catch (Exception e)

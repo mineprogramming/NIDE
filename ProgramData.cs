@@ -16,6 +16,8 @@
 
         public static bool LoadLast = true;
 
+        public static string Last = "";
+
         public static bool DarkTheme = true;
     }
 }

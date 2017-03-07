@@ -59,7 +59,7 @@
             this.tsbCut = new System.Windows.Forms.ToolStripButton();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.tsbPaste = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.tsbBuild = new System.Windows.Forms.ToolStripButton();
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbPush = new System.Windows.Forms.ToolStripButton();
@@ -108,7 +108,7 @@
             this.StatusStrip.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
             this.ToolStripGeneral.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visualStyler)).BeginInit();
             this.SuspendLayout();
@@ -129,7 +129,7 @@
             // container.TopToolStripPanel
             // 
             this.container.TopToolStripPanel.Controls.Add(this.ToolStripGeneral);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStrip1);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStrip);
             // 
             // mainSplit
             // 
@@ -359,14 +359,14 @@
             this.tsbPaste.Name = "tsbPaste";
             this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            resources.ApplyResources(this.toolStrip1, "toolStrip1");
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.toolStrip, "toolStrip");
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbBuild,
             this.tsbRun,
             this.tsbPush});
-            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip.Name = "toolStrip";
             // 
             // tsbBuild
             // 
@@ -603,7 +603,7 @@
             // 
             this.visualStyler.HostForm = this;
             this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
-            this.visualStyler.LoadVisualStyle(null, "Vista (Aero).vssf");
+            this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
             // 
             // fMain
             // 
@@ -633,8 +633,8 @@
             this.cmsTreeView.ResumeLayout(false);
             this.ToolStripGeneral.ResumeLayout(false);
             this.ToolStripGeneral.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.visualStyler)).EndInit();
@@ -685,7 +685,6 @@
         private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel tsslFile;
         private System.Windows.Forms.Splitter splitter;
-        private FastColoredTextBoxNS.FastColoredTextBox fctbMain;
         private System.Windows.Forms.TreeView tvFolders;
         private System.Windows.Forms.ToolStrip ToolStripGeneral;
         private System.Windows.Forms.ToolStripButton tsbCreate;
@@ -703,13 +702,14 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRunJs;
         private System.Windows.Forms.TextBox console;
         private System.Windows.Forms.SplitContainer mainSplit;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton tsbRun;
         private System.Windows.Forms.ToolStripButton tsbBuild;
         private System.Windows.Forms.ToolStripMenuItem tsmiPush;
         private System.Windows.Forms.ToolStripButton tsbPush;
         public System.Windows.Forms.ToolStripProgressBar ProgressBarStatus;
         public SkinSoft.VisualStyler.VisualStyler visualStyler;
+        public FastColoredTextBoxNS.FastColoredTextBox fctbMain;
     }
 }
 

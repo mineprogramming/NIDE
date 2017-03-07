@@ -58,11 +58,11 @@ namespace NIDE
                     Close();
                 }
             }// Open with
-            else if (ProgramData.LoadLast)
+            else if (ProgramData.LoadLast && ProgramData.Last != "")
             {
                 try
                 {
-                    OpenProject(ProgramData.Recent[0]);
+                    OpenProject(ProgramData.Last);
                 }
                 catch { ShowStartWindow(); }
             }
