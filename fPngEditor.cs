@@ -153,9 +153,9 @@ namespace NIDE
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+                png.Dispose();
             }
             saved = true;
-            png.Dispose();
         }
 
         private void tsbOpen_Click(object sender, EventArgs e)

@@ -142,6 +142,14 @@ namespace NIDE
                 var form = new fPngEditor(path);
                 form.ShowDialog();
             }
+            else if (extension == ".json")
+            {
+                try
+                {
+                    new fJsonItem(GetTreeViewPath(e.Node)).Show();
+                }
+                catch { }
+            }
         }
 
         private string GetTreeViewPath(TreeNode node)

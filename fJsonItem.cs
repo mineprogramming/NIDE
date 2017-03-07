@@ -199,6 +199,7 @@ namespace NIDE
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Unable to  open JSON");
+                Close();
                 return;
             }
             tbFilename.Enabled = false;
