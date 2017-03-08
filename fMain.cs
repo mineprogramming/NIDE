@@ -474,7 +474,7 @@ namespace NIDE
             Application.Restart();
         }
 
-        private void buildToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmiBuild_Click(object sender, EventArgs e)
         {
             ProgramData.ProjectManager.build();
         }
@@ -538,6 +538,12 @@ namespace NIDE
         private void tsmiManageLibraries_Click(object sender, EventArgs e)
         {
             new fLibraries().ShowDialog();
+        }
+
+        private void tsbBuildPush_Click(object sender, EventArgs e)
+        {
+            tsmiBuild_Click(sender, e);
+            tsmiPush_Click(sender, e);
         }
     }
 }
