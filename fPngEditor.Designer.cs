@@ -33,14 +33,14 @@
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbColor = new System.Windows.Forms.ToolStripButton();
             this.tsbPicker = new System.Windows.Forms.ToolStripButton();
             this.tsbDraw = new System.Windows.Forms.ToolStripButton();
             this.tsbFill = new System.Windows.Forms.ToolStripButton();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
             this.tsbTexturize = new System.Windows.Forms.ToolStripButton();
-            this.dlgColor = new System.Windows.Forms.ColorDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.themeColorPicker1 = new System.Windows.Forms.ThemeColorPicker();
+            this.tsbColorPicker = new ExHtmlEditor.ColorPicker.ThemeColorPickerToolStripSplitButton();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             this.tsbOpen,
             this.tsbSave,
             this.toolStripSeparator1,
-            this.tsbColor,
+            this.tsbColorPicker,
             this.tsbPicker,
             this.tsbDraw,
             this.tsbFill,
@@ -86,16 +86,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbColor
-            // 
-            this.tsbColor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbColor.Image = ((System.Drawing.Image)(resources.GetObject("tsbColor.Image")));
-            this.tsbColor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbColor.Name = "tsbColor";
-            this.tsbColor.Size = new System.Drawing.Size(23, 22);
-            this.tsbColor.Text = "Choose color";
-            this.tsbColor.Click += new System.EventHandler(this.tsbColor_Click);
             // 
             // tsbPicker
             // 
@@ -149,15 +139,35 @@
             this.tsbTexturize.Text = "Texturize";
             this.tsbTexturize.Click += new System.EventHandler(this.tsbTexturize_Click);
             // 
-            // dlgColor
-            // 
-            this.dlgColor.FullOpen = true;
-            // 
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "png";
             this.dlgOpen.FileName = "/textures";
             this.dlgOpen.FileOk += new System.ComponentModel.CancelEventHandler(this.dlgOpen_FileOk);
+            // 
+            // themeColorPicker1
+            // 
+            this.themeColorPicker1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("themeColorPicker1.BackgroundImage")));
+            this.themeColorPicker1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.themeColorPicker1.Color = System.Drawing.Color.Empty;
+            this.themeColorPicker1.CustomColors = new int[0];
+            this.themeColorPicker1.Location = new System.Drawing.Point(0, 0);
+            this.themeColorPicker1.Name = "themeColorPicker1";
+            this.themeColorPicker1.Size = new System.Drawing.Size(174, 166);
+            this.themeColorPicker1.TabIndex = 0;
+            // 
+            // tsbColorPicker
+            // 
+            this.tsbColorPicker.Color = System.Drawing.Color.Black;
+            this.tsbColorPicker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbColorPicker.Image = ((System.Drawing.Image)(resources.GetObject("tsbColorPicker.Image")));
+            this.tsbColorPicker.ImageHeight = 16;
+            this.tsbColorPicker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbColorPicker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbColorPicker.ImageWidth = 32;
+            this.tsbColorPicker.Name = "tsbColorPicker";
+            this.tsbColorPicker.Size = new System.Drawing.Size(32, 22);
+            this.tsbColorPicker.Text = "Color";
             // 
             // fPngEditor
             // 
@@ -178,8 +188,6 @@
 
         #endregion
         private System.Windows.Forms.ToolStrip tsMain;
-        private System.Windows.Forms.ColorDialog dlgColor;
-        private System.Windows.Forms.ToolStripButton tsbColor;
         private System.Windows.Forms.ToolStripButton tsbDraw;
         private System.Windows.Forms.ToolStripButton tsbClear;
         private System.Windows.Forms.ToolStripButton tsbSave;
@@ -189,5 +197,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbFill;
         private System.Windows.Forms.ToolStripButton tsbTexturize;
+        private ExHtmlEditor.ColorPicker.ThemeColorPickerToolStripSplitButton tsbColorPicker;
+        private System.Windows.Forms.ThemeColorPicker themeColorPicker1;
     }
 }

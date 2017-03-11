@@ -63,11 +63,6 @@ namespace NIDE
             else
                 Process.Start(path);
         }
-
-        private void tsbColor_Click(object sender, EventArgs e)
-        {
-            dlgColor.ShowDialog();
-        }
         
         private void tsbDraw_Click(object sender, EventArgs e)
         {
@@ -222,7 +217,7 @@ namespace NIDE
                 if (y < 0) y = 0;
                 if (y > 15) y = 15;
                 if (tsbDraw.Checked)
-                    pixels[x, y] = dlgColor.Color;
+                    pixels[x, y] = tsbColorPicker.Color;
                 else if(tsbClear.Checked)
                     pixels[x, y] = Color.Transparent;
                 DrawPanel.Refresh();
@@ -238,7 +233,7 @@ namespace NIDE
             int y = cursorY / 21;
             if (tsbPicker.Checked)
             {
-                dlgColor.Color = pixels[x, y];
+                tsbColorPicker.Color = pixels[x, y];
                 tsbPicker.Checked = false;
                 tsbDraw.Checked = true;
             }
@@ -280,9 +275,9 @@ namespace NIDE
         private void FillRecursive(int x, int y)
         {
             Color prevColor = pixels[x, y];
-            if (dlgColor.Color == prevColor)
+            if (tsbColorPicker.Color == prevColor)
                 return;
-            pixels[x, y] = dlgColor.Color;
+            pixels[x, y] = tsbColorPicker.Color;
             if (x > 0 && pixels[x - 1, y] == prevColor)
                 FillRecursive(x - 1, y);
             if (x < 15 && pixels[x + 1, y] == prevColor)
