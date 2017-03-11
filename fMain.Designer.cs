@@ -91,6 +91,7 @@
             this.tsmiBuild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPush = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildAndPushToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,7 +100,6 @@
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
-            this.buildAndPushToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -571,7 +571,6 @@
             this.buildAndPushToolStripMenuItem});
             this.tsmiRun.Name = "tsmiRun";
             resources.ApplyResources(this.tsmiRun, "tsmiRun");
-            this.tsmiRun.Click += new System.EventHandler(this.tsbBuildPush_Click);
             // 
             // tsmiBuild
             // 
@@ -590,6 +589,12 @@
             this.tsmiPush.Name = "tsmiPush";
             resources.ApplyResources(this.tsmiPush, "tsmiPush");
             this.tsmiPush.Click += new System.EventHandler(this.tsmiPush_Click);
+            // 
+            // buildAndPushToolStripMenuItem
+            // 
+            this.buildAndPushToolStripMenuItem.Name = "buildAndPushToolStripMenuItem";
+            resources.ApplyResources(this.buildAndPushToolStripMenuItem, "buildAndPushToolStripMenuItem");
+            this.buildAndPushToolStripMenuItem.Click += new System.EventHandler(this.tsbBuildPush_Click);
             // 
             // tsmiOptions
             // 
@@ -631,11 +636,6 @@
             this.visualStyler.HostForm = this;
             this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
             this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
-            // 
-            // buildAndPushToolStripMenuItem
-            // 
-            this.buildAndPushToolStripMenuItem.Name = "buildAndPushToolStripMenuItem";
-            resources.ApplyResources(this.buildAndPushToolStripMenuItem, "buildAndPushToolStripMenuItem");
             // 
             // fMain
             // 
