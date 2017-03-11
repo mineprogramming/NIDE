@@ -51,5 +51,12 @@ namespace NIDE
             result = "recent";
             Close();
         }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            result = "import";
+            Close();
+        }
     }
 }

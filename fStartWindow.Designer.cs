@@ -33,11 +33,14 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnRecent = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.SuspendLayout();
             // 
             // lvRecent
             // 
-            this.lvRecent.Location = new System.Drawing.Point(12, 83);
+            this.lvRecent.Location = new System.Drawing.Point(12, 128);
             this.lvRecent.MultiSelect = false;
             this.lvRecent.Name = "lvRecent";
             this.lvRecent.Size = new System.Drawing.Size(241, 137);
@@ -48,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 67);
+            this.label1.Location = new System.Drawing.Point(12, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 1;
@@ -76,7 +79,7 @@
             // 
             // btnRecent
             // 
-            this.btnRecent.Location = new System.Drawing.Point(12, 227);
+            this.btnRecent.Location = new System.Drawing.Point(12, 272);
             this.btnRecent.Name = "btnRecent";
             this.btnRecent.Size = new System.Drawing.Size(241, 23);
             this.btnRecent.TabIndex = 4;
@@ -84,11 +87,22 @@
             this.btnRecent.UseVisualStyleBackColor = true;
             this.btnRecent.Click += new System.EventHandler(this.btnRecent_Click);
             // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(12, 70);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(241, 23);
+            this.btnImport.TabIndex = 5;
+            this.btnImport.Text = "Import .modpkg";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
             // fStartWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 262);
+            this.ClientSize = new System.Drawing.Size(265, 306);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnRecent);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnNew);
@@ -111,5 +125,8 @@
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnRecent;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.OpenFileDialog dlgOpen;
+        private System.Windows.Forms.FolderBrowserDialog dlgFolder;
     }
 }

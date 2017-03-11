@@ -38,6 +38,10 @@
             this.rbModPE = new System.Windows.Forms.RadioButton();
             this.rbCoreEngine = new System.Windows.Forms.RadioButton();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnSource = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tbSource = new System.Windows.Forms.TextBox();
+            this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // tbPath
@@ -124,11 +128,40 @@
             this.rbCoreEngine.Text = "CoreEngine";
             this.rbCoreEngine.UseVisualStyleBackColor = true;
             // 
+            // btnSource
+            // 
+            this.btnSource.Location = new System.Drawing.Point(314, 57);
+            this.btnSource.Name = "btnSource";
+            this.btnSource.Size = new System.Drawing.Size(24, 23);
+            this.btnSource.TabIndex = 12;
+            this.btnSource.Text = "...";
+            this.btnSource.UseVisualStyleBackColor = true;
+            this.btnSource.Click += new System.EventHandler(this.btnSource_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Source file";
+            // 
+            // tbSource
+            // 
+            this.tbSource.Location = new System.Drawing.Point(75, 59);
+            this.tbSource.Name = "tbSource";
+            this.tbSource.Size = new System.Drawing.Size(233, 20);
+            this.tbSource.TabIndex = 10;
+            // 
             // fNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 167);
+            this.Controls.Add(this.btnSource);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.tbSource);
             this.Controls.Add(this.rbCoreEngine);
             this.Controls.Add(this.rbModPE);
             this.Controls.Add(this.btnCancel);
@@ -159,5 +192,9 @@
         private System.Windows.Forms.RadioButton rbModPE;
         private System.Windows.Forms.RadioButton rbCoreEngine;
         private System.Windows.Forms.FolderBrowserDialog dlgFolder;
+        private System.Windows.Forms.Button btnSource;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tbSource;
+        private System.Windows.Forms.OpenFileDialog dlgOpen;
     }
 }

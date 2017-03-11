@@ -88,9 +88,34 @@ namespace NIDE
                     case "open":
                         OpenProjectDlg(true);
                         break;
+                    case "import":
+                        ImportModpkg(true);
+                        break;
                 }
             }
             else
+            {
+                Close();
+            }
+        }
+
+        private void ImportModpkg(bool closeIfNotChecked = false)
+        {
+            var form = new fNewProject(true);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ProgramData.ProjectManager = new ProjectManager(form.source, form.path, form.name);
+                    OpenScript(ProgramData.ProjectManager.MainScriptPath);
+                    InitProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "An error occured while creating a new project");
+                }
+            }
+            else if (closeIfNotChecked)
             {
                 Close();
             }
