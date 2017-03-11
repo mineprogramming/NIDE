@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lvRecent = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnNew = new System.Windows.Forms.Button();
@@ -36,10 +37,14 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvRecent
             // 
+            this.lvRecent.ContextMenuStrip = this.contextMenuStrip;
             this.lvRecent.Location = new System.Drawing.Point(12, 128);
             this.lvRecent.MultiSelect = false;
             this.lvRecent.Name = "lvRecent";
@@ -97,6 +102,19 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            // 
+            // removeToolStripMenuItem
+            // 
+            this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
+            this.removeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeToolStripMenuItem.Text = "Remove";
+            // 
             // fStartWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,6 +131,7 @@
             this.MinimizeBox = false;
             this.Name = "fStartWindow";
             this.Text = "NIDE - welcome";
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +147,7 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.FolderBrowserDialog dlgFolder;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
     }
 }
