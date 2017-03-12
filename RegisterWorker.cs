@@ -35,10 +35,13 @@ namespace NIDE
                 {
                     key.SetValue("Last", ProgramData.ProjectManager.ProjectFilePath);
                 }
-                else { key.SetValue("Last", ""); }
+                else {
+                    key.SetValue("Last", "");
+                }
                 AddRecent();
+                key.SetValue("Saves", ProgramData.Recent.Count);
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    key.SetValue("Save" + i, ProgramData.Recent[i] != null ? ProgramData.Recent[i] : "");
+                    key.SetValue("Save" + i, ProgramData.Recent[i]);
             }
             catch (Exception e)
             {
@@ -64,9 +67,11 @@ namespace NIDE
                 ADBWorker.Path = key.GetValue("ADBPath").ToString();
                 ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
                 sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
-                for (int i = 0; i < ProgramData.Recent.Count(); i++)
-                    ProgramData.Recent[i] = Convert.ToString(key.GetValue("Save" + i));
+                int count = Convert.ToInt32(key.GetValue("Saves"));
+                for (int i = 0; i < count; i++)
+                    ProgramData.Recent.Add(Convert.ToString(key.GetValue("Save" + i)));
                 ProgramData.Last = key.GetValue("Last").ToString();
+
                 ProgramData.DarkTheme = Convert.ToBoolean(key.GetValue("DarkTheme"));
                 if (ProgramData.DarkTheme)
                     ProgramData.MainForm.visualStyler.LoadVisualStyle("Black (tochpcru).vssf");
@@ -80,7 +85,7 @@ namespace NIDE
                 Highlighting.HookColor = Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
                 Highlighting.MemberColor = Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
                 ProgramData.MainForm.fctbMain.BackColor = Color.FromArgb(Convert.ToInt32(key.GetValue("BackStyle")));
-                
+
                 Highlighting.RefreshStyles();
             }
             catch (Exception e)
@@ -94,18 +99,9 @@ namespace NIDE
             if (ProgramData.ProjectManager != null)
             {
                 string path = ProgramData.ProjectManager.ProjectFilePath;
-                if (!ProgramData.Recent.Contains(path))
-                {
-                    for (int i = ProgramData.Recent.Count() - 1; i > 0; i--)
-                        ProgramData.Recent[i] = ProgramData.Recent[i - 1];
-                    ProgramData.Recent[0] = path;
-                }
-                else
-                {
-                    for (int i = 0; i < Array.IndexOf(ProgramData.Recent, path); i++)
-                        ProgramData.Recent[i + 1] = ProgramData.Recent[i];
-                    ProgramData.Recent[0] = path;
-                }
+                if (ProgramData.Recent.Contains(path))
+                    ProgramData.Recent.Remove(path);
+                ProgramData.Recent.Insert(0, path);
             }
         }
     }

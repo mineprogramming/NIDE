@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NIDE
@@ -57,6 +50,26 @@ namespace NIDE
             DialogResult = DialogResult.OK;
             result = "import";
             Close();
+        }
+
+        private void tsmiRemove_Click(object sender, EventArgs e)
+        {
+            if(lvRecent.SelectedItems.Count > 0)
+            {
+                ProgramData.Recent.Remove(lvRecent.SelectedItems[0].Text);
+                lvRecent.Items.Remove(lvRecent.SelectedItems[0]);
+            }
+        }
+
+        private void lvRecent_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lvRecent.SelectedItems.Count > 0)
+            {
+                path = lvRecent.SelectedItems[0].Text;
+                DialogResult = DialogResult.OK;
+                result = "recent";
+                Close();
+            }
         }
     }
 }

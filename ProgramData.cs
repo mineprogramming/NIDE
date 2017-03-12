@@ -1,8 +1,10 @@
-﻿namespace NIDE
+﻿using System.Collections.Generic;
+
+namespace NIDE
 {
     static class ProgramData
     {
-        public static string[] Recent = new string[10];
+        public static List<string> Recent = new List<string>();
 
         private static ProjectManager projectManager = null;
 
