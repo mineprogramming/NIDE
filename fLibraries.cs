@@ -9,7 +9,7 @@ namespace NIDE
         public fLibraries()
         {
             InitializeComponent();
-            foreach(var dir in Directory.GetDirectories(Directory.GetCurrentDirectory() + "\\libraries\\"))
+            foreach (var dir in Directory.GetDirectories(Directory.GetCurrentDirectory() + "\\libraries\\"))
             {
                 var name = Path.GetFileName(dir);
                 if (ProgramData.ProjectManager.LibraryInstalled(name))
@@ -25,11 +25,16 @@ namespace NIDE
 
         private void btnApply_Click(object sender, EventArgs e)
         {
-            foreach(var item in clbLibraries.CheckedItems)
+            for (int i = 0; i < clbLibraries.Items.Count; i++)
             {
-                if (!ProgramData.ProjectManager.LibraryInstalled(item.ToString()))
+                var item = clbLibraries.Items[i];
+                if (clbLibraries.GetItemChecked(i))
                 {
                     ProgramData.ProjectManager.IncludeLibrary(item.ToString());
+                }
+                else
+                {
+                    ProgramData.ProjectManager.ExcludeLibrary(item.ToString());
                 }
             }
             Close();

@@ -1,5 +1,4 @@
-﻿using Ionic.Zip;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -276,10 +275,22 @@ namespace NIDE
 
         public void IncludeLibrary(string name)
         {
-            File.AppendAllText(projectFile, "\ninclude-library:nide/" + name);
-            UpdateNlib();
+            if (!LibraryInstalled(name))
+            {
+                File.AppendAllText(projectFile, "\ninclude-library:nide/" + name);
+                UpdateNlib();
+            }
         }
 
+        public void ExcludeLibrary(string name)
+        {
+            List<string> lines = new List<string>();
+            lines.AddRange(File.ReadAllLines(projectFile));
+            if (lines.Contains("include-library:nide/" + name))
+                lines.Remove("include-library:nide/" + name);
+            File.WriteAllLines(projectFile, lines);
+            UpdateNlib();
+        }
 
         public void build()
         {
