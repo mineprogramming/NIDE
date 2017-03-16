@@ -221,7 +221,7 @@ namespace NIDE
         //connections
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
         public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
-        
+
         //textworking
         private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
         private void tsmiRedo_Click(object sender, EventArgs e) { fctbMain.Redo(); }
@@ -569,6 +569,11 @@ namespace NIDE
         {
             tsmiBuild_Click(sender, e);
             tsmiPush_Click(sender, e);
+        }
+
+        private void tvFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            tvFolders.SelectedNode = e.Node;
         }
     }
 }

@@ -256,6 +256,7 @@
             this.tvFolders.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.tvFolders, "tvFolders");
             this.tvFolders.Name = "tvFolders";
+            this.tvFolders.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseClick);
             this.tvFolders.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseDoubleClick);
             // 
             // cmsTreeView
