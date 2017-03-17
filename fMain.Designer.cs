@@ -47,8 +47,7 @@
             this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewScript2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDeleteTexture = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
@@ -100,6 +99,7 @@
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
+            this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -263,9 +263,9 @@
             // 
             this.cmsTreeView.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiNewScript2,
             this.tsmiNewTexture2,
-            this.tsmiDeleteTexture,
+            this.tsmiNewScript2,
+            this.tsmiDelete,
             this.tsmiOpenInExplorer});
             this.cmsTreeView.Name = "contextMenuStrip1";
             resources.ApplyResources(this.cmsTreeView, "cmsTreeView");
@@ -276,17 +276,11 @@
             resources.ApplyResources(this.tsmiNewScript2, "tsmiNewScript2");
             this.tsmiNewScript2.Click += new System.EventHandler(this.tsmiNewScript_Click);
             // 
-            // tsmiNewTexture2
+            // tsmiDelete
             // 
-            this.tsmiNewTexture2.Name = "tsmiNewTexture2";
-            resources.ApplyResources(this.tsmiNewTexture2, "tsmiNewTexture2");
-            this.tsmiNewTexture2.Click += new System.EventHandler(this.tsmiNewTexture_Click);
-            // 
-            // tsmiDeleteTexture
-            // 
-            this.tsmiDeleteTexture.Name = "tsmiDeleteTexture";
-            resources.ApplyResources(this.tsmiDeleteTexture, "tsmiDeleteTexture");
-            this.tsmiDeleteTexture.Click += new System.EventHandler(this.tsmiDeleteTexture_Click);
+            this.tsmiDelete.Name = "tsmiDelete";
+            resources.ApplyResources(this.tsmiDelete, "tsmiDelete");
+            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // tsmiOpenInExplorer
             // 
@@ -638,6 +632,12 @@
             this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
             this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
             // 
+            // tsmiNewTexture2
+            // 
+            this.tsmiNewTexture2.Name = "tsmiNewTexture2";
+            resources.ApplyResources(this.tsmiNewTexture2, "tsmiNewTexture2");
+            this.tsmiNewTexture2.Click += new System.EventHandler(this.tsmiNewTexture_Click);
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -696,8 +696,7 @@
         private System.Windows.Forms.ToolStripMenuItem ctsmiReplace;
         private System.Windows.Forms.ToolStripMenuItem ctsmiAutoIndent;
         private System.Windows.Forms.ContextMenuStrip cmsTreeView;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDeleteTexture;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
         private System.Windows.Forms.ToolStripMenuItem tsmiRun;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript2;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;
@@ -748,6 +747,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiManageLibraries;
         private System.Windows.Forms.ToolStripButton tsbBuildPush;
         private System.Windows.Forms.ToolStripMenuItem buildAndPushToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
     }
 }
 

@@ -190,15 +190,18 @@ namespace NIDE
         }
 
 
-        private void tsmiDeleteTexture_Click(object sender, EventArgs e)
+        private void tsmiDelete_Click(object sender, EventArgs e)
         {
             if (tvFolders.SelectedNode.Text != "main.js"
-                && Path.GetExtension(tvFolders.SelectedNode.Text).ToLower() != ".nproj"
-                && Path.GetExtension(tvFolders.SelectedNode.Text) != "")
+                && Path.GetExtension(tvFolders.SelectedNode.Text).ToLower() != ".nproj")
             {
                 try
                 {
-                    File.Delete(GetTreeViewPath(tvFolders.SelectedNode));
+                    string path = GetTreeViewPath(tvFolders.SelectedNode);
+                    if (File.Exists(path))
+                        File.Delete(path);
+                    else if (Directory.Exists(path))
+                        Directory.Delete(path, true);
                     UpdateProject();
                 }
                 catch (Exception ex)
