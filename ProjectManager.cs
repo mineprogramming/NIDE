@@ -203,7 +203,7 @@ namespace NIDE
             }
         }
 
-        private void UpdateNlib()
+        public void UpdateNlib()
         {
             Libraries.Clear();
             Autocomplete.UserItems.Clear();

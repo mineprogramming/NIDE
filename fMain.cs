@@ -578,5 +578,11 @@ namespace NIDE
         {
             tvFolders.SelectedNode = e.Node;
         }
+
+        private void tsmiUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateProject();
+            ProgramData.ProjectManager.UpdateNlib();
+        }
     }
 }
