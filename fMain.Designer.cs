@@ -48,6 +48,8 @@
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewScript2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRename = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripGeneral = new System.Windows.Forms.ToolStrip();
@@ -102,6 +104,7 @@
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
+            this.tsmiNewDirectory = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -258,6 +261,7 @@
             this.tvFolders.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.tvFolders, "tvFolders");
             this.tvFolders.Name = "tvFolders";
+            this.tvFolders.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvFolders_AfterLabelEdit);
             this.tvFolders.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseClick);
             this.tvFolders.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseDoubleClick);
             // 
@@ -267,6 +271,9 @@
             this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewTexture2,
             this.tsmiNewScript2,
+            this.tsmiNewFile,
+            this.tsmiNewDirectory,
+            this.tsmiRename,
             this.tsmiDelete,
             this.tsmiOpenInExplorer});
             this.cmsTreeView.Name = "contextMenuStrip1";
@@ -283,6 +290,18 @@
             this.tsmiNewScript2.Name = "tsmiNewScript2";
             resources.ApplyResources(this.tsmiNewScript2, "tsmiNewScript2");
             this.tsmiNewScript2.Click += new System.EventHandler(this.tsmiNewScript_Click);
+            // 
+            // tsmiNewFile
+            // 
+            this.tsmiNewFile.Name = "tsmiNewFile";
+            resources.ApplyResources(this.tsmiNewFile, "tsmiNewFile");
+            this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
+            // 
+            // tsmiRename
+            // 
+            this.tsmiRename.Name = "tsmiRename";
+            resources.ApplyResources(this.tsmiRename, "tsmiRename");
+            this.tsmiRename.Click += new System.EventHandler(this.tsmiRename_Click);
             // 
             // tsmiDelete
             // 
@@ -655,6 +674,12 @@
             this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
             this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
             // 
+            // tsmiNewDirectory
+            // 
+            this.tsmiNewDirectory.Name = "tsmiNewDirectory";
+            resources.ApplyResources(this.tsmiNewDirectory, "tsmiNewDirectory");
+            this.tsmiNewDirectory.Click += new System.EventHandler(this.tsmiNewDirectory_Click);
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -767,6 +792,9 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
         private System.Windows.Forms.ToolStripButton tsbUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmiUpdate;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRename;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
+        private System.Windows.Forms.ToolStripMenuItem tsmiNewDirectory;
     }
 }
 

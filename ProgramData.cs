@@ -4,6 +4,18 @@ namespace NIDE
 {
     static class ProgramData
     {
+        public static void Log(string source, string message)
+        {
+            if(MainForm != null)
+            {
+                MainForm.Log(source, message);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show(message, source);
+            }
+        }
+
         public static List<string> Recent = new List<string>();
 
         private static ProjectManager projectManager = null;

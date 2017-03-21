@@ -14,6 +14,7 @@ namespace NIDE
     {
         private bool saved = true;
         private string[] args;
+        private string OldPath = "";
 
         public fMain(string[] args)
         {
@@ -557,12 +558,7 @@ namespace NIDE
             ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js",
                 ProgramData.ProjectManager.BuildPath + "resources.zip");
         }
-
-        public override void Refresh()
-        {
-            tvFolders.BackColor = SystemColors.MenuBar;
-        }
-
+        
         private void tsmiManageLibraries_Click(object sender, EventArgs e)
         {
             new fLibraries().ShowDialog();
@@ -583,6 +579,93 @@ namespace NIDE
         {
             UpdateProject();
             ProgramData.ProjectManager.UpdateNlib();
+        }
+
+        private void tsmiRename_Click(object sender, EventArgs e)
+        {
+            var node = tvFolders.SelectedNode;
+            OldPath = GetTreeViewPath(node);
+            tvFolders.LabelEdit = true;
+            node.BeginEdit();
+        }
+
+        private void tvFolders_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            BeginInvoke(new Action(() => afterAfterEdit(e.Node)));
+        }
+
+        private void afterAfterEdit(TreeNode node)
+        {
+            tvFolders.LabelEdit = false;
+            string path = GetTreeViewPath(node);
+            if (node.Parent != null && !OldPath.EndsWith(".nproj", StringComparison.OrdinalIgnoreCase) && path != OldPath)
+            {
+                try
+                {
+                    if (File.Exists(OldPath))
+                        File.Move(OldPath, path);
+                    if (Directory.Exists(OldPath))
+                        Directory.Move(OldPath, path);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+        }
+
+        private void tsmiNewFile_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string dir = GetTreeViewPath(tvFolders.SelectedNode);
+                if (!Directory.Exists(dir))
+                    return;
+                string fileName = "file.js";
+                int i = 1;
+                while (File.Exists(Path.Combine(dir, fileName)))
+                {
+                    fileName = "file" + i + ".js";
+                    i++;
+                }
+                File.Create(Path.Combine(dir, fileName)).Close();
+                TreeNode node = new TreeNode(fileName);
+                tvFolders.SelectedNode.Nodes.Add(node);
+                OldPath = GetTreeViewPath(node);
+                tvFolders.LabelEdit = true;
+                node.BeginEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void tsmiNewDirectory_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string dir = GetTreeViewPath(tvFolders.SelectedNode);
+                if (!Directory.Exists(dir))
+                    return;
+                string folderName = "folder";
+                int i = 1;
+                while (Directory.Exists(Path.Combine(dir, folderName)))
+                {
+                    folderName = "folder" + i;
+                    i++;
+                }
+                Directory.CreateDirectory(Path.Combine(dir, folderName));
+                TreeNode node = new TreeNode(folderName);
+                tvFolders.SelectedNode.Nodes.Add(node);
+                OldPath = GetTreeViewPath(node);
+                tvFolders.LabelEdit = true;
+                node.BeginEdit();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

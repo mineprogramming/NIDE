@@ -87,7 +87,7 @@ namespace NIDE
         {
             if (!lines.Contains(line))
             {
-                ProgramData.MainForm?.Log("CodeAnalysisEngine", "Line " + line + ": " + message);
+                ProgramData.Log("CodeAnalysisEngine", "Line " + line + ": " + message);
                 ProgramData.MainForm?.HighlightError(line);
                 lines.Add(line);
             }
@@ -102,7 +102,7 @@ namespace NIDE
         {
             if (!lines.Contains(line))
             {
-                ProgramData.MainForm?.Log("CodeAnalysisEngine", message);
+                ProgramData.Log("CodeAnalysisEngine", message);
                 ProgramData.MainForm?.HighlightError(line);
                 lines.Add(line);
             }

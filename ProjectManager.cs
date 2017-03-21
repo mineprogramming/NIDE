@@ -33,7 +33,8 @@ namespace NIDE
         public string projectFile;
         private string projectName;
         private List<Library> Libraries = new List<Library>();
-
+        private List<string> OutFiles = new List<string>();
+ 
         public string SourceCodePath
         {
             get
@@ -227,13 +228,13 @@ namespace NIDE
                     case "include-library":
                         try
                         {
-                            var l = new Library(keyValue[1], LibrariesPath, Libraries);
+                            var l = new Library(keyValue[1], LibrariesPath, Libraries, OutFiles);
                             if (!LibraryInstalled(l.name))
                                 Libraries.Add(l);
                         }
                         catch (Exception e)
                         {
-                            ProgramData.MainForm?.Log("ProjectManager", e.Message);
+                            ProgramData.Log("ProjectManager", e.Message);
                         }
                         break;
                 }
@@ -375,6 +376,19 @@ namespace NIDE
             {
                 JavaScriptCompressor compressor = new JavaScriptCompressor();
                 File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp)));
+            }
+
+            foreach (var file in OutFiles)
+            {
+                try
+                {
+                    File.Copy(file, BuildPath + Path.GetFileName(file), true);
+                    File.Copy(file, OutPath + Path.GetFileName(file), true);
+                }
+                catch (Exception ex)
+                {
+                    ProgramData.Log("ProjectManager", ex.Message);
+                }
             }
 
             using (var zip = new Ionic.Zip.ZipFile())
