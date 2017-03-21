@@ -52,7 +52,8 @@ namespace NIDE
             }
             catch (Exception e)
             {
-                MessageBox.Show("Unable to load image: " + e.Message);
+                png?.Dispose();
+                png = new Bitmap(16, 16);
             }
         }
         
