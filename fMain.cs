@@ -203,7 +203,7 @@ namespace NIDE
                         File.Delete(path);
                     else if (Directory.Exists(path))
                         Directory.Delete(path, true);
-                    UpdateProject();
+                    tvFolders.SelectedNode.Remove();
                 }
                 catch (Exception ex)
                 {
@@ -631,6 +631,7 @@ namespace NIDE
                 File.Create(Path.Combine(dir, fileName)).Close();
                 TreeNode node = new TreeNode(fileName);
                 tvFolders.SelectedNode.Nodes.Add(node);
+                tvFolders.SelectedNode.Expand();
                 OldPath = GetTreeViewPath(node);
                 tvFolders.LabelEdit = true;
                 node.BeginEdit();
@@ -658,6 +659,7 @@ namespace NIDE
                 Directory.CreateDirectory(Path.Combine(dir, folderName));
                 TreeNode node = new TreeNode(folderName);
                 tvFolders.SelectedNode.Nodes.Add(node);
+                tvFolders.SelectedNode.Expand();
                 OldPath = GetTreeViewPath(node);
                 tvFolders.LabelEdit = true;
                 node.BeginEdit();
