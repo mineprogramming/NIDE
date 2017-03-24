@@ -154,6 +154,7 @@
             // 
             // fctbMain
             // 
+            this.fctbMain.AutoCompleteBrackets = true;
             this.fctbMain.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -165,6 +166,7 @@
         '\"',
         '\'',
         '\''};
+            this.fctbMain.AutoIndentChars = false;
             resources.ApplyResources(this.fctbMain, "fctbMain");
             this.fctbMain.BackBrush = null;
             this.fctbMain.CharHeight = 14;
@@ -172,6 +174,7 @@
             this.fctbMain.ContextMenuStrip = this.cmsMain;
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.fctbMain.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.VisibleRange;
             this.fctbMain.IsReplaceMode = false;
             this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
             this.fctbMain.Name = "fctbMain";
