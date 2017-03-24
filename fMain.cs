@@ -669,5 +669,10 @@ namespace NIDE
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void tsmiLinks_Click(object sender, EventArgs e)
+        {
+            Process.Start("links.html");
+        }
     }
 }
