@@ -49,6 +49,7 @@
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewScript2 = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiNewDirectory = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRename = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,7 +105,6 @@
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
-            this.tsmiNewDirectory = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -296,6 +296,12 @@
             this.tsmiNewFile.Name = "tsmiNewFile";
             resources.ApplyResources(this.tsmiNewFile, "tsmiNewFile");
             this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
+            // 
+            // tsmiNewDirectory
+            // 
+            this.tsmiNewDirectory.Name = "tsmiNewDirectory";
+            resources.ApplyResources(this.tsmiNewDirectory, "tsmiNewDirectory");
+            this.tsmiNewDirectory.Click += new System.EventHandler(this.tsmiNewDirectory_Click);
             // 
             // tsmiRename
             // 
@@ -673,12 +679,6 @@
             this.visualStyler.HostForm = this;
             this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
             this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
-            // 
-            // tsmiNewDirectory
-            // 
-            this.tsmiNewDirectory.Name = "tsmiNewDirectory";
-            resources.ApplyResources(this.tsmiNewDirectory, "tsmiNewDirectory");
-            this.tsmiNewDirectory.Click += new System.EventHandler(this.tsmiNewDirectory_Click);
             // 
             // fMain
             // 
