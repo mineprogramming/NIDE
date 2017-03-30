@@ -12,13 +12,17 @@ namespace NIDE
             foreach (var dir in Directory.GetDirectories(Directory.GetCurrentDirectory() + "\\libraries\\"))
             {
                 var name = Path.GetFileName(dir);
-                if (ProgramData.ProjectManager.LibraryInstalled(name))
+                if (!File.Exists(dir + "\\guidisable"))
                 {
-                    clbLibraries.Items.Add(name, true);
-                }
-                else
-                {
-                    clbLibraries.Items.Add(name, false);
+                    if (ProgramData.ProjectManager.LibraryInstalled(name))
+                    {
+
+                        clbLibraries.Items.Add(name, true);
+                    }
+                    else
+                    {
+                        clbLibraries.Items.Add(name, false);
+                    }
                 }
             }
         }
