@@ -1,4 +1,4 @@
-using FastColoredTextBoxNS;
+﻿using FastColoredTextBoxNS;
 using System;
 using System.IO;
 using System.Text;
@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
-using System.Drawing;
 
 namespace NIDE
 {
@@ -18,6 +17,7 @@ namespace NIDE
 
         public fMain(string[] args)
         {
+            Directory.SetCurrentDirectory(Application.StartupPath);
             this.args = args;
             InitializeComponent();
             ProgramData.MainForm = this;
