@@ -101,11 +101,12 @@
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCoreEngineDocs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiLinks = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
-            this.tsmiLinks = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -659,6 +660,7 @@
             // tsmiHelp
             // 
             this.tsmiHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiVersion,
             this.tsmiCoreEngineDocs,
             this.tsmiLinks});
             this.tsmiHelp.Name = "tsmiHelp";
@@ -669,6 +671,12 @@
             this.tsmiCoreEngineDocs.Name = "tsmiCoreEngineDocs";
             resources.ApplyResources(this.tsmiCoreEngineDocs, "tsmiCoreEngineDocs");
             this.tsmiCoreEngineDocs.Click += new System.EventHandler(this.tsmiCoreEngineDocs_Click);
+            // 
+            // tsmiLinks
+            // 
+            this.tsmiLinks.Name = "tsmiLinks";
+            resources.ApplyResources(this.tsmiLinks, "tsmiLinks");
+            this.tsmiLinks.Click += new System.EventHandler(this.tsmiLinks_Click);
             // 
             // dlgSave
             // 
@@ -685,11 +693,11 @@
             this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
             this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
             // 
-            // tsmiLinks
+            // tsmiVersion
             // 
-            this.tsmiLinks.Name = "tsmiLinks";
-            resources.ApplyResources(this.tsmiLinks, "tsmiLinks");
-            this.tsmiLinks.Click += new System.EventHandler(this.tsmiLinks_Click);
+            this.tsmiVersion.Name = "tsmiVersion";
+            resources.ApplyResources(this.tsmiVersion, "tsmiVersion");
+            this.tsmiVersion.Click += new System.EventHandler(this.tsmiVersion_Click);
             // 
             // fMain
             // 
@@ -807,6 +815,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewDirectory;
         private System.Windows.Forms.ToolStripMenuItem tsmiLinks;
+        private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
     }
 }
 

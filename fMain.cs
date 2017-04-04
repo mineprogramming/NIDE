@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 
 namespace NIDE
 {
@@ -678,6 +679,27 @@ namespace NIDE
         private void tsmiLinks_Click(object sender, EventArgs e)
         {
             Process.Start("links.html");
+        }
+
+        private void tsmiVersion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                int version = Convert.ToInt32(client.DownloadString("http://api.mineprogramming.org/nide-version/"));
+                client.Dispose();
+                if (version > ProgramData.PROGRAM_VERSION)
+                {
+                    if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Process.Start("https://www.mineprogramming.org/nide/");
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Cannot connect to the service!");
+            }
         }
     }
 }
