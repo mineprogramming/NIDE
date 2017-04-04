@@ -33,6 +33,7 @@
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbColorPicker = new ExHtmlEditor.ColorPicker.ThemeColorPickerToolStripSplitButton();
             this.tsbPicker = new System.Windows.Forms.ToolStripButton();
             this.tsbDraw = new System.Windows.Forms.ToolStripButton();
             this.tsbFill = new System.Windows.Forms.ToolStripButton();
@@ -40,7 +41,9 @@
             this.tsbTexturize = new System.Windows.Forms.ToolStripButton();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.themeColorPicker1 = new System.Windows.Forms.ThemeColorPicker();
-            this.tsbColorPicker = new ExHtmlEditor.ColorPicker.ThemeColorPickerToolStripSplitButton();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +53,9 @@
             this.tsbOpen,
             this.tsbSave,
             this.toolStripSeparator1,
+            this.tsbUndo,
+            this.tsbRedo,
+            this.toolStripSeparator2,
             this.tsbColorPicker,
             this.tsbPicker,
             this.tsbDraw,
@@ -86,6 +92,19 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbColorPicker
+            // 
+            this.tsbColorPicker.Color = System.Drawing.Color.Black;
+            this.tsbColorPicker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbColorPicker.Image = ((System.Drawing.Image)(resources.GetObject("tsbColorPicker.Image")));
+            this.tsbColorPicker.ImageHeight = 16;
+            this.tsbColorPicker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.tsbColorPicker.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbColorPicker.ImageWidth = 32;
+            this.tsbColorPicker.Name = "tsbColorPicker";
+            this.tsbColorPicker.Size = new System.Drawing.Size(48, 22);
+            this.tsbColorPicker.Text = "Color";
             // 
             // tsbPicker
             // 
@@ -156,18 +175,32 @@
             this.themeColorPicker1.Size = new System.Drawing.Size(174, 166);
             this.themeColorPicker1.TabIndex = 0;
             // 
-            // tsbColorPicker
+            // tsbUndo
             // 
-            this.tsbColorPicker.Color = System.Drawing.Color.Black;
-            this.tsbColorPicker.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbColorPicker.Image = ((System.Drawing.Image)(resources.GetObject("tsbColorPicker.Image")));
-            this.tsbColorPicker.ImageHeight = 16;
-            this.tsbColorPicker.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.tsbColorPicker.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbColorPicker.ImageWidth = 32;
-            this.tsbColorPicker.Name = "tsbColorPicker";
-            this.tsbColorPicker.Size = new System.Drawing.Size(32, 22);
-            this.tsbColorPicker.Text = "Color";
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbUndo.Enabled = false;
+            this.tsbUndo.Image = ((System.Drawing.Image)(resources.GetObject("tsbUndo.Image")));
+            this.tsbUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Size = new System.Drawing.Size(23, 22);
+            this.tsbUndo.Text = "Undo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsbUndo_Click);
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRedo.Enabled = false;
+            this.tsbRedo.Image = ((System.Drawing.Image)(resources.GetObject("tsbRedo.Image")));
+            this.tsbRedo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Size = new System.Drawing.Size(23, 22);
+            this.tsbRedo.Text = "Redo";
+            this.tsbRedo.Click += new System.EventHandler(this.tsbRedo_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // fPngEditor
             // 
@@ -179,6 +212,7 @@
             this.Name = "fPngEditor";
             this.Text = "Texture Editor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fPngEditor_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fPngEditor_FormClosed);
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
             this.ResumeLayout(false);
@@ -199,5 +233,8 @@
         private System.Windows.Forms.ToolStripButton tsbTexturize;
         private ExHtmlEditor.ColorPicker.ThemeColorPickerToolStripSplitButton tsbColorPicker;
         private System.Windows.Forms.ThemeColorPicker themeColorPicker1;
+        private System.Windows.Forms.ToolStripButton tsbUndo;
+        private System.Windows.Forms.ToolStripButton tsbRedo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

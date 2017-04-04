@@ -1,5 +1,6 @@
 ﻿using NIDE.Properties;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
@@ -15,6 +16,8 @@ namespace NIDE
         bool _16_16 = true;
         bool mouseDown = false;
         Random rnd;
+        List<Color[,]> UndoBuffer = new List<Color[,]>();
+        List<Color[,]> RedoBuffer = new List<Color[,]>();
 
         private PanelEx DrawPanel;
 
@@ -56,7 +59,7 @@ namespace NIDE
                 png = new Bitmap(16, 16);
             }
         }
-        
+
         public new void ShowDialog()
         {
             if (_16_16)
@@ -64,7 +67,7 @@ namespace NIDE
             else
                 Process.Start(path);
         }
-        
+
         private void tsbDraw_Click(object sender, EventArgs e)
         {
             tsbDraw.Checked = true;
@@ -201,7 +204,9 @@ namespace NIDE
 
         private void DrawPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            BackupForUndo();
             mouseDown = true;
+            DrawPanel_MouseMove(sender, e);
         }
 
         private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
@@ -219,7 +224,7 @@ namespace NIDE
                 if (y > 15) y = 15;
                 if (tsbDraw.Checked)
                     pixels[x, y] = tsbColorPicker.Color;
-                else if(tsbClear.Checked)
+                else if (tsbClear.Checked)
                     pixels[x, y] = Color.Transparent;
                 DrawPanel.Refresh();
             }
@@ -238,11 +243,15 @@ namespace NIDE
                 tsbPicker.Checked = false;
                 tsbDraw.Checked = true;
             }
-            else if (tsbFill.Checked)
-                FillRecursive(x, y);
-            else if (tsbTexturize.Checked)
-                TexturizeRecursive(x, y);
-            DrawPanel.Refresh();
+            else if (tsbFill.Checked || tsbTexturize.Checked)
+            {
+                BackupForUndo();
+                if (tsbFill.Checked)
+                    FillRecursive(x, y);
+                else if (tsbTexturize.Checked)
+                    TexturizeRecursive(x, y);
+                DrawPanel.Refresh();
+            }
         }
 
         private void TexturizeRecursive(int x, int y)
@@ -264,7 +273,7 @@ namespace NIDE
 
             pixels[x, y] = Color.FromArgb(A, R, G, B);
             if (x > 0 && pixels[x - 1, y] == prevColor)
-               TexturizeRecursive(x - 1, y);
+                TexturizeRecursive(x - 1, y);
             if (x < 15 && pixels[x + 1, y] == prevColor)
                 TexturizeRecursive(x + 1, y);
             if (y > 0 && pixels[x, y - 1] == prevColor)
@@ -287,6 +296,49 @@ namespace NIDE
                 FillRecursive(x, y - 1);
             if (y < 15 && pixels[x, y + 1] == prevColor)
                 FillRecursive(x, y + 1);
+        }
+
+        private void fPngEditor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            png.Dispose();
+        }
+
+        private void tsbUndo_Click(object sender, EventArgs e)
+        {
+            Color[,] last = UndoBuffer[UndoBuffer.Count - 1];
+            RedoBuffer.Add(pixels);
+            tsbRedo.Enabled = true;
+            pixels = last;
+            UndoBuffer.Remove(last);
+            DrawPanel.Refresh();
+            if(UndoBuffer.Count <= 0)
+                tsbUndo.Enabled = false;
+        }
+
+        private void tsbRedo_Click(object sender, EventArgs e)
+        {
+            Color[,] last = RedoBuffer[RedoBuffer.Count - 1];
+            UndoBuffer.Add(pixels);
+            tsbUndo.Enabled = true;
+            pixels = last;
+            RedoBuffer.Remove(last);
+            DrawPanel.Refresh();
+            if (RedoBuffer.Count <= 0)
+                tsbRedo.Enabled = false;
+        }
+
+        private void BackupForUndo()
+        {
+            var n = new Color[16, 16];
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 0; j < 16; j++)
+                {
+                    n[i, j] = pixels[i, j];
+                }
+            }
+            UndoBuffer.Add(n);
+            tsbUndo.Enabled = true;
         }
         
     }

@@ -58,7 +58,7 @@ namespace NIDE
                     MessageBox.Show(ex.Message, "Unable to open this project!");
                     Close();
                 }
-            }// Open with
+            }
             else if (ProgramData.LoadLast && ProgramData.Last != "")
             {
                 try
@@ -75,29 +75,33 @@ namespace NIDE
 
         private void ShowStartWindow()
         {
-            fStartWindow form = new fStartWindow();
-            if (form.ShowDialog() == DialogResult.OK)
+            try
             {
-                switch (form.result)
+                fStartWindow form = new fStartWindow();
+                if (form.ShowDialog() == DialogResult.OK)
                 {
-                    case "recent":
-                        OpenProject(form.path);
-                        break;
-                    case "new":
-                        NewProjectDlg(true);
-                        break;
-                    case "open":
-                        OpenProjectDlg(true);
-                        break;
-                    case "import":
-                        ImportModpkg(true);
-                        break;
+                    switch (form.result)
+                    {
+                        case "recent":
+                            OpenProject(form.path);
+                            break;
+                        case "new":
+                            NewProjectDlg(true);
+                            break;
+                        case "open":
+                            OpenProjectDlg(true);
+                            break;
+                        case "import":
+                            ImportModpkg(true);
+                            break;
+                    }
+                }
+                else
+                {
+                    Close();
                 }
             }
-            else
-            {
-                Close();
-            }
+            catch { ShowStartWindow(); }
         }
 
         private void ImportModpkg(bool closeIfNotChecked = false)
@@ -335,6 +339,7 @@ namespace NIDE
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "An error occured while opening an existing project");
+                throw new Exception();
             }
         }
 
@@ -472,9 +477,7 @@ namespace NIDE
         private void tsmiSave_Click(object sender, EventArgs e)
         {
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
-            if (ProgramData.file.EndsWith(".nproj"))
-
-                saved = true;
+            saved = true;
         }
 
         private bool CanChangeFile()
@@ -505,6 +508,8 @@ namespace NIDE
 
         private void tsmiBuild_Click(object sender, EventArgs e)
         {
+            fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+            saved = true;
             ProgramData.ProjectManager.build();
         }
 
