@@ -16,6 +16,7 @@ namespace NIDE
         bool _16_16 = true;
         bool mouseDown = false;
         Random rnd;
+        Point startPoint;
         List<Color[,]> UndoBuffer = new List<Color[,]>();
         List<Color[,]> RedoBuffer = new List<Color[,]>();
 
@@ -70,47 +71,48 @@ namespace NIDE
 
         private void tsbDraw_Click(object sender, EventArgs e)
         {
+            UncheckAll();
             tsbDraw.Checked = true;
-            tsbPicker.Checked = false;
-            tsbClear.Checked = false;
-            tsbFill.Checked = false;
-            tsbTexturize.Checked = false;
         }
 
         private void tsbClear_Click(object sender, EventArgs e)
         {
-            tsbDraw.Checked = false;
-            tsbPicker.Checked = false;
+            UncheckAll();
             tsbClear.Checked = true;
-            tsbFill.Checked = false;
-            tsbTexturize.Checked = false;
         }
 
         private void tsbPicker_Click(object sender, EventArgs e)
         {
-            tsbDraw.Checked = false;
+            UncheckAll();
             tsbPicker.Checked = true;
-            tsbClear.Checked = false;
-            tsbFill.Checked = false;
-            tsbTexturize.Checked = false;
         }
 
         private void tsbFill_Click(object sender, EventArgs e)
         {
-            tsbDraw.Checked = false;
-            tsbPicker.Checked = false;
-            tsbClear.Checked = false;
+            UncheckAll();
             tsbFill.Checked = true;
-            tsbTexturize.Checked = false;
         }
 
         private void tsbTexturize_Click(object sender, EventArgs e)
+        {
+            UncheckAll();
+            tsbTexturize.Checked = true;
+        }
+
+        private void tsbRectangle_Click(object sender, EventArgs e)
+        {
+            UncheckAll();
+            tsbRectangle.Checked = true;
+        }
+
+        private void UncheckAll()
         {
             tsbDraw.Checked = false;
             tsbPicker.Checked = false;
             tsbClear.Checked = false;
             tsbFill.Checked = false;
-            tsbTexturize.Checked = true;
+            tsbTexturize.Checked = false;
+            tsbRectangle.Checked = false;
         }
 
         private void fPngEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -206,6 +208,7 @@ namespace NIDE
         {
             BackupForUndo();
             mouseDown = true;
+            startPoint = new Point(GetCursorX(), GetCursorY());
             DrawPanel_MouseMove(sender, e);
         }
 
@@ -214,18 +217,33 @@ namespace NIDE
             if (mouseDown)
             {
                 saved = false;
-                int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
-                int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
-                int x = cursorX / 21;
-                if (x < 0) x = 0;
-                if (x > 15) x = 15;
-                int y = cursorY / 21;
-                if (y < 0) y = 0;
-                if (y > 15) y = 15;
+                int x = GetCursorX();
+                int y = GetCursorY();
                 if (tsbDraw.Checked)
                     pixels[x, y] = tsbColorPicker.Color;
                 else if (tsbClear.Checked)
                     pixels[x, y] = Color.Transparent;
+                else if (tsbRectangle.Checked)
+                {
+                    for (int i = 0; i < 16; i++)
+                    {
+                        for (int j = 0; j < 16; j++)
+                        {
+                            pixels[i, j] = UndoBuffer[UndoBuffer.Count - 1][i, j];
+                        }
+                    }
+                    int sx = Math.Min(startPoint.X, x);
+                    int fx = Math.Max(startPoint.X, x);
+                    int sy = Math.Min(startPoint.Y, y);
+                    int fy = Math.Max(startPoint.Y, y);
+                    for (int i = sx; i <= fx; i++)
+                    {
+                        for (int j = sy; j <= fy; j++)
+                        {
+                            pixels[i, j] = tsbColorPicker.Color;
+                        }
+                    }
+                }
                 DrawPanel.Refresh();
             }
         }
@@ -233,10 +251,8 @@ namespace NIDE
         private void DrawPanel_Click(object sender, EventArgs e)
         {
             saved = false;
-            int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
-            int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
-            int x = cursorX / 21;
-            int y = cursorY / 21;
+            int x = GetCursorX();
+            int y = GetCursorY();
             if (tsbPicker.Checked)
             {
                 tsbColorPicker.Color = pixels[x, y];
@@ -311,7 +327,7 @@ namespace NIDE
             pixels = last;
             UndoBuffer.Remove(last);
             DrawPanel.Refresh();
-            if(UndoBuffer.Count <= 0)
+            if (UndoBuffer.Count <= 0)
                 tsbUndo.Enabled = false;
         }
 
@@ -338,9 +354,28 @@ namespace NIDE
                 }
             }
             UndoBuffer.Add(n);
+            RedoBuffer.Clear();
+            tsbRedo.Enabled = false;
             tsbUndo.Enabled = true;
         }
-        
+
+        int GetCursorX()
+        {
+            int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
+            int x = cursorX / 21;
+            if (x < 0) x = 0;
+            if (x > 15) x = 15;
+            return x;
+        }
+        int GetCursorY()
+        {
+            int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
+            int y = cursorY / 21;
+            if (y < 0) y = 0;
+            if (y > 15) y = 15;
+            return y;
+        }
+
     }
 
     class PanelEx : Panel
