@@ -7,6 +7,7 @@ using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Threading;
 
 namespace NIDE
 {

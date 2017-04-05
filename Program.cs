@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace NIDE
 {
     static class Program
     {
+        public static fSplashScreen splashForm = null;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -16,7 +19,30 @@ namespace NIDE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new fMain(args));
+            Thread splashThread = new Thread(new ThreadStart(
+            delegate
+            {
+                splashForm = new fSplashScreen();
+                Application.Run(splashForm);
+            }
+            ));
+            splashThread.SetApartmentState(ApartmentState.STA);
+            splashThread.Start();
+            fMain mainForm = new fMain(args);
+            mainForm.Load += new EventHandler(fMain_Load);
+            Application.Run(mainForm);
+        }
+
+        private static void fMain_Load(object sender, EventArgs e)
+        {
+            if (splashForm == null)
+            {
+                return;
+            }
+
+            splashForm.Invoke(new Action(splashForm.Close));
+            splashForm.Dispose();
+            splashForm = null;
         }
     }
 }
