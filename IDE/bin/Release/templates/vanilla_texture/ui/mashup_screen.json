@@ -1,0 +1,464 @@
+{
+  "namespace": "mashup",
+
+  //--------------------------------------------------------------------------------
+  // Art Assets
+  //--------------------------------------------------------------------------------
+
+  "navigation_toggle_icon": {
+    "type": "image",
+    "size": [ 24, 24 ],
+    "uv_size": [ 24, 24 ],
+    "layer": 1,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "navigation_tabs"
+      },
+      {
+        "binding_name": "#navigation_tab_icon",
+        "binding_name_override": "#texture",
+        "binding_type": "collection",
+        "binding_collection_name": "navigation_tabs"
+      }
+    ]
+  },
+
+  "title_lock_panel": {
+    "type": "panel",
+    "size": [ 8, 10 ],
+    "controls": [
+      {
+        "lock_image": {
+          "type": "image",
+          "texture": "textures/gui/newgui/lock",
+          "size": [ 8, 8 ],
+          "uv_size": [ 8, 8 ],
+          "color": "$default_text_color",
+          "bindings": [
+            {
+              "binding_type": "global",
+              "binding_name": "#mashup_locked",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  //--------------------------------------------------------------------------------
+  // Navigation Grid
+  //--------------------------------------------------------------------------------
+
+  "navigation_grid_panel": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "padding": {
+          "type": "panel",
+          "size": [ 0, 2 ]
+        }
+      },
+      { "navigation_grid@mashup.navigation_grid": { } }
+    ]
+  },
+
+  "navigation_grid": {
+    "type": "grid",
+    "grid_item_template": "mashup.navigation_grid_item",
+    "grid_dimension_binding": "#navigation_tab_grid_size",
+    "collection_name": "navigation_tabs",
+    "anchor_to": "top_left",
+    "anchor_from": "top_left",
+    "size": [ "100%", "100%c" ],
+    "bindings": [
+      {
+        "binding_name": "#navigation_tab_grid_size",
+        "binding_type": "global"
+      }
+    ]
+  },
+
+  "navigation_grid_item": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      { "navigation_toggle@navigation_toggle": { } },
+      {
+        "padding": {
+          "type": "panel",
+          "size": [ 0, 2 ]
+        }
+      }
+    ]
+  },
+
+  "navigation_toggle@common_toggles.light_image_toggle": {
+    "size": [ "100%", "100%x" ],
+    "layer": 1,
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "$checked_image": "mashup.navigation_toggle_icon",
+    "$unchecked_image": "mashup.navigation_toggle_icon",
+    "$toggle_name": "navigation_tab",
+    "$toggle_state_binding_name": "#navigation_tab",
+    "$toggle_binding_type": "collection",
+    "$toggle_grid_collection_name": "navigation_tabs",
+    "$toggle_group_default_selected": 0,
+    "$radio_toggle_group": true
+  },
+
+  "navigation_pane@common.scrolling_panel": {
+    "anchor_to": "top_left",
+    "anchor_from": "top_left",
+    "$show_background": false,
+    "$scroll_size": [ 5, "100% - 4px" ],
+    "$scrolling_content": "mashup.navigation_grid_panel",
+    "$scroll_bar_right_padding_size": [ 0, 0 ]
+  },
+
+
+  "navigation_stack_panel": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "$home_toggle_index": 0,
+    "$textures_toggle_index": 1,
+    "$skin_pack_toggle_index": 2,
+    "$map_pack_toggle_index": 3,
+    "controls": [
+      { "vertical_padding_0@vertical_padding": { } },
+      {
+        "home_tab@navigation_toggle": {
+          "$toggle_group_forced_index": "$home_toggle_index",
+          "$navigation_tab_icon": "#home_tab_icon",
+          "$toggle_view_binding_name": "home_tab"
+        }
+      },
+      { "vertical_padding_1@vertical_padding": { } },
+      {
+        "textures_tab@navigation_toggle": {
+          "$toggle_group_forced_index": "$textures_toggle_index",
+          "$navigation_tab_icon": "#texture_pack_tab_icon",
+          "$toggle_view_binding_name": "textures_tab"
+        }
+      },
+      { "vertical_padding_2@vertical_padding": { } },
+      {
+        "skin_pack_tab@navigation_toggle": {
+          "$toggle_group_forced_index": "$skin_pack_toggle_index",
+          "$navigation_tab_icon": "#skin_pack_tab_icon",
+          "$toggle_view_binding_name": "skin_pack_tab"
+        }
+      },
+      { "vertical_padding_3@vertical_padding": { } },
+      {
+        "map_pack_tab@navigation_toggle": {
+          "$toggle_group_forced_index": "$map_pack_toggle_index",
+          "$navigation_tab_icon": "#map_pack_tab_icon",
+          "$toggle_view_binding_name": "map_pack_tab"
+        }
+      },
+      { "vertical_padding_4@vertical_padding": { } }
+    ]
+  },
+
+  "vertical_padding": {
+    "type": "panel",
+    "size": [ 0, 2 ]
+  },
+
+  //--------------------------------------------------------------------------------
+  // Content
+  //--------------------------------------------------------------------------------
+
+  "button_content": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "line1_panel": {
+          "type": "panel",
+          "size": [ "100%", 10 ],
+          "controls": [
+            {
+              "upsell_text": {
+                "type": "label",
+                "size": [ "default", 10 ],
+                "max_size": [ "100%", 10 ],
+                "text": "#button_text",
+                "color": "$text_color",
+                "bindings": [
+                  {
+                    "binding_name": "#button_text",
+                    "binding_type": "global"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "line2_panel": {
+          "type": "panel",
+          "size": [ "100%", 10 ],
+          "controls": [
+            {
+              "price_text": {
+                "type": "label",
+                "size": [ "default", 10 ],
+                "max_size": [ "100%", 10 ],
+                "text": "$unlock_price",
+                "color": "$text_color"
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "global",
+              "binding_name": "#mashup_locked",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "content_section": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_name": "$visibility_toggle",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      { "$content_section_name@$content_section_name": { } }
+    ]
+  },
+
+  "content_section_wrapper": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "$content_button_name|default": "name of selection toggle button",
+    "$content_section_name|default": "name of class defining the content",
+    "controls": [
+      { "content_section@mashup.content_section": { } }
+    ]
+  },
+
+  "tab_content_stack_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "home_content@mashup.content_section_wrapper": {
+          "$content_button_name|default": "home_tab",
+          "$content_section_name|default": "mashup_home.home_tab_content",
+          "$visibility_toggle": "#home_tab_visible"
+        }
+      },
+      {
+        "texture_content@mashup.content_section_wrapper": {
+          "$content_button_name|default": "texture_pack_tab",
+          "$content_section_name|default": "resource_pack_purchase.mashup_content",
+          "$visibility_toggle": "#texture_pack_tab_visible"
+        }
+      },
+      {
+        "skin_pack_content@mashup.content_section_wrapper": {
+          "layer": 1,
+          "$content_button_name|default": "skin_pack_tab",
+          "$content_section_name|default": "skin_pack_purchase.mashup_content",
+          "$skins_grid_size": [ "100% - 44px", "100% - 2px" ],
+          "$skins_grid_item_size": [ 35, "100%" ],
+          "$skin_model_size": [ "100%", "100%" ],
+          "$skin_model_offset": [ 0, -5 ],
+          "$skin_lock_offset": [ -3, -4.0 ],
+          "$visibility_toggle": "#skin_pack_tab_visible"
+        }
+      },
+      {
+        "map_pack_content@mashup.content_section_wrapper": {
+          "$content_button_name|default": "map_pack_tab",
+          "$content_section_name|default": "world_panorama.map_pack_tab_content",
+          "$visibility_toggle": "#world_tab_visible"
+        }
+      }
+    ]
+  },
+    
+  //--------------------------------------------------------------------------------
+  // Base Screen
+  //--------------------------------------------------------------------------------
+  "mashup_screen@common.base_screen": {
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_cancel",
+        "to_button_id": "button.menu_exit",
+        "mapping_type": "global"
+      },
+      {
+        "from_button_id": "button.menu_up",
+        "to_button_id": "button.menu_up",
+        "mapping_type": "global",
+        "scope": "view"
+      },
+      {
+        "from_button_id": "button.menu_down",
+        "to_button_id": "button.menu_down",
+        "mapping_type": "global",
+        "scope": "view"
+      },
+      {
+        "from_button_id": "button.menu_left",
+        "to_button_id": "button.menu_left",
+        "mapping_type": "global",
+        "scope": "view"
+      },
+      {
+        "from_button_id": "button.menu_right",
+        "to_button_id": "button.menu_right",
+        "mapping_type": "global",
+        "scope": "view"
+      }
+    ],
+
+    "$default_text_color": [ 0.3, 0.3, 0.3 ],
+    "$screen_content": "mashup.dialog"
+  },
+
+  "dialog@common_dialogs.main_panel_no_buttons": {
+    "size": "$mashup_screen_size",
+    "$dialog_background": "dialog_background_hollow_3",
+    "$divider_offset": [ 52, 22 ],
+    "$show_divider": true,
+    "$show_close_button": true,
+    "$text_name": "#title_text",
+    "$title_text_binding_type": "global",
+    "$use_custom_title_control": true,
+    "$custom_title_label": "mashup.dialog_title",
+    "$child_control": "mashup.dialog_content"
+  },
+
+  "dialog_title": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", 10 ],
+    "layer": 2,
+    "controls": [
+      {
+        "title_lock_panel@mashup.title_lock_panel": { }
+      },
+      {
+        "horizontal_padding": {
+          "type": "panel",
+          "size": [ 1, 0 ]
+        }
+      },
+      {
+        "standard_title_label@common_dialogs.standard_title_label": { }
+      }
+    ]
+  },
+
+  "dialog_content": {
+    "type": "panel",
+    "controls": [
+      { "dialog_content_stack_panel@dialog_content_stack_panel": { } }
+    ]
+  },
+
+  "dialog_content_stack_panel": {
+    "type": "stack_panel",
+    "size": [ "100% - 4px", "100%" ],
+    "orientation": "horizontal",
+    "$tab_content|default": "common.empty_panel",
+    "property_bag": {
+      "$tab_content": "#tab_content"
+    },
+    "controls": [
+      {
+        "container": {
+          "type": "panel",
+          "size": [ 40, "100%" ],
+          "layer": 1,
+          "controls": [
+            { "navigation_pane@mashup.navigation_pane": { } }
+          ]
+        }
+      },
+      {
+        "divider_padding": {
+          "type": "panel",
+          "size": [ 9, "100%" ]
+        }
+      },
+      {
+        "screen_content": {
+          "type": "stack_panel",
+          "size": [ "fill", "100%" ],
+          "controls": [
+            {
+              "padding_0": {
+                "type": "panel",
+                "size": [ 0, 2 ]
+              }
+            },
+            {
+              "content_section_wrapper": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "controls": [
+                  {
+                    "content_pane@tab_content_stack_panel": { }
+                  }
+                ]
+              }
+            },
+            {
+              "padding_1": {
+                "type": "panel",
+                "size": [ 0, 2 ]
+              }
+            },
+            {
+              "interaction_panel": {
+                "type": "panel",
+                "size": [ "100%", 28 ],
+                "controls": [
+                  {
+                    "content_action_button@common_buttons.light_content_button": {
+                      "$button_content": "mashup.button_content",
+                      "$pressed_button_name": "button.prompt_for_action",
+                      "bindings": [
+                        {
+                          "binding_name": "#polymorphic_button_visible",
+                          "binding_name_override": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "progress_bar@resource_pack_purchase.download_progress": { }
+                  }
+                ]
+              }
+            },
+            {
+              "padding_2": {
+                "type": "panel",
+                "size": [ 0, 2 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

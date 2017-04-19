@@ -1,0 +1,486 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                     *
++*   (c) Microsoft. All rights reserved.                 *
++*********************************************************/
+
+{
+  "namespace": "structure_editor",
+
+  //---------------------------------------------------------------------------
+  // UI Entities
+  //---------------------------------------------------------------------------
+
+  "structure_button@common_buttons.light_text_button": {
+    "size": [ "100% - 45px", "100% - 4px" ],
+    "layer": 1
+  },
+
+  "structure_mode_title": {
+    "type": "label",
+    "offset": [ 0, "-45%" ],
+    "layer": 2,
+    "anchor_from": "center",
+    "anchor_to": "center"
+  },
+
+  "structure_label": {
+    "type": "label",
+    "layer": 2,
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle"
+  },
+
+  "structure_label_right@structure_label": {
+    "anchor_from": "right_middle",
+    "anchor_to": "right_middle"
+  },
+
+  "structure_text_box@common.text_edit_box": {
+    "size": [ "100%", "8%" ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "max_length": 40
+  },
+
+  "structure_text_box_small@structure_text_box": {
+    "size": [ "20%", "8%" ],
+    "max_length": 8
+  },
+
+  //---------------------------------------------------------------------------
+  // UI Entity Helper Presets
+  //---------------------------------------------------------------------------
+
+  "structure_vector_panel": {
+    "type": "panel",
+    "$text_box_structure_x_binding_name": "text_box_structure_offset_x",
+    "$text_box_structure_y_binding_name": "text_box_structure_offset_y",
+    "$text_box_structure_z_binding_name": "text_box_structure_offset_z",
+    "controls": [
+      {
+        "structure_x_text_box@structure_text_box_small": {
+          "offset": [ "-40%", 0 ],
+          "$text_edit_box_content_binding_name":  "$text_box_structure_x_binding_name",
+          "$text_box_name": "$text_box_structure_x_binding_name"
+        }
+      },
+      {
+        "structure_y_text_box@structure_text_box_small": {
+          "offset": [ "-20%", 0 ],
+          "$text_edit_box_content_binding_name":  "$text_box_structure_y_binding_name",
+          "$text_box_name": "$text_box_structure_y_binding_name"
+        }
+      },
+      {
+        "structure_z_text_box@structure_text_box_small": {
+          "offset": [ "0%", 0 ],
+          "$text_edit_box_content_binding_name":  "$text_box_structure_z_binding_name",
+          "$text_box_name": "$text_box_structure_z_binding_name"
+        }
+      }
+    ]
+  },
+
+  "structure_offset_panel@structure_vector_panel": {
+    "offset": [ "0%", "-20%" ],
+    "$text_box_structure_x_binding_name": "#text_box_structure_offset_x",
+    "$text_box_structure_y_binding_name": "#text_box_structure_offset_y",
+    "$text_box_structure_z_binding_name": "#text_box_structure_offset_z"
+  },
+
+  "structure_size_panel@structure_vector_panel": {
+    "offset": [ "0%", "-5%" ],
+    "$text_box_structure_x_binding_name": "#text_box_structure_size_x",
+    "$text_box_structure_y_binding_name": "#text_box_structure_size_y",
+    "$text_box_structure_z_binding_name": "#text_box_structure_size_z"
+  },
+
+  "structure_integrity_seed_panel": {
+    "type": "panel",
+    "controls": [
+      {
+        "structure_integrity_text_box@structure_text_box_small": {
+          "offset": [ "-40%", "-5%" ],
+          "$text_edit_box_content_binding_name":  "#text_box_structure_integrity",
+          "$text_box_name": "#text_box_structure_integrity"
+        }
+      },
+      {
+        "structure_seed_text_box@structure_text_box_small": {
+          "offset": [ "-20%", "-5%" ],
+          "$text_edit_box_content_binding_name":  "#text_box_structure_seed",
+          "$text_box_name": "#text_box_structure_seed"
+        }
+      }
+    ]
+  },
+
+  "structure_selector_panel": {
+    "type": "panel",
+    "$selector_label_text": "structure_editor.rotation_label",
+    "$selector_data_text_binding": "#selector_data_text_binding",
+    "$button_selector_prev": "#button_selector_prev",
+    "$button_selector_next": "#button_selector_next",
+    "controls": [
+      { // Left arrow "<"
+        "selector_prev_button@structure_button": {
+          "$pressed_button_name": "$button_selector_prev",
+          "$button_text": "structure_editor.selector_prev",
+          "size": [ "4% - 1px", "8%" ],
+          "offset": [ "-8% - 1px", 0 ]
+        }
+      },
+      { // right arrow ">"
+        "selector_next_button@structure_button": {
+          "$pressed_button_name": "$button_selector_next",
+          "$button_text": "structure_editor.selector_next",
+          "size": [ "4% - 1px", "8%" ],
+          "offset": [ "8% + 1px", 0 ]
+        }
+      },
+      { // Text that shows the data in between the 2 arrows
+        "selector_data@structure_label": {
+          "offset": [ 0, 0 ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "text": "#text",
+          "bindings": [
+            {
+              "binding_name": "$selector_data_text_binding",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      },
+      { // Top label
+        "selector_label@structure_label": {
+          "offset": [ "40%", "-5% - 2px" ],
+          "text": "$selector_label_text"
+        }
+      }
+    ]
+  },
+
+  //---------------------------------------------------------------------------
+  // Data Mode Specific
+  //---------------------------------------------------------------------------
+
+  "data_mode_panel": {
+    "type": "panel",
+    "visible": "#data_mode_visible",
+    "bindings": [
+      {
+        "binding_name": "#data_mode_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "metadata_name_text_box@structure_text_box": {
+          "offset": [ 0, "-5%" ],
+          "$text_edit_box_content_binding_name":  "#text_box_metadata_name",
+          "$text_box_name": "#text_box_metadata_name"
+        }
+      },
+      {
+        "data_mode_label@structure_mode_title": {
+          "text": "structure_editor.data_mode"
+        }
+      },
+      {
+        "data_name_label@structure_label": {
+          "offset": [ "1px", "-10% - 2px" ],
+          "text": "structure_editor.data_name_label"
+        }
+      }
+    ]
+  },
+
+  //---------------------------------------------------------------------------
+  // Save Mode Specific
+  //---------------------------------------------------------------------------
+
+  "save_mode_panel": {
+    "type": "panel",
+    "visible": "#save_mode_visible",
+    "bindings": [
+      {
+        "binding_name": "#save_mode_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "structure_name_text_box@structure_text_box": {
+          "offset": [ 0, "-35%" ],
+          "$text_edit_box_content_binding_name":  "#text_box_structure_name",
+          "$text_box_name": "#text_box_structure_name"
+        }
+      },
+      {
+        "save_mode_label@structure_mode_title": {
+          "text": "structure_editor.save_mode"
+        }
+      },
+      {
+        "structure_name_label@structure_label": {
+          "offset": [ "1px", "-40% - 2px" ],
+          "text": "structure_editor.name_label"
+        }
+      },
+      {
+        "structure_offset_label@structure_label": {
+          "offset": [ "1px", "-25% - 2px" ],
+          "text": "structure_editor.position_label"
+        }
+      },
+      { "structure_offset_panel@structure_offset_panel": { } },
+      {
+        "structure_size_label@structure_label": {
+          "offset": [ "1px", "-10% - 2px" ],
+          "text": "structure_editor.size_label"
+        }
+      },
+      {
+        "structure_detect_label@structure_label_right": {
+          "offset": [ "1px", "-25% - 2px" ],
+          "text": "structure_editor.detect_size_and_offset"
+        }
+      },
+      {
+        "detect_button@structure_button": {
+          "$pressed_button_name": "#button_detect_structure",
+          "$button_text": "structure_editor.detect",
+          "size": [ "20%", "8%" ],
+          "offset": [ "40%", "-20%" ]
+        }
+      },
+      {
+        "structure_show_invisible_blocks_selector@structure_selector_panel": {
+          "offset": [ "40%", "-5%" ],
+          "$selector_label_text": "structure_editor.show_invisible_blocks",
+          "$selector_data_text_binding": "#show_invisible_blocks_text_binding",
+          "$button_selector_prev": "#button_selector_show_invisible_blocks_prev",
+          "$button_selector_next": "#button_selector_show_invisible_blocks_next"
+        }
+      },
+      {
+        "structure_include_entities_selector@structure_selector_panel": {
+          "offset": [ "40%", "10%" ],
+          "$selector_label_text": "structure_editor.include_entities",
+          "$selector_data_text_binding": "#include_entities_text_binding",
+          "$button_selector_prev": "#button_selector_include_entities_prev",
+          "$button_selector_next": "#button_selector_include_entities_next"
+        }
+      },
+      { "structure_size_panel@structure_size_panel": { } },
+      {
+        "save_button@structure_button": {
+          "$pressed_button_name": "#button_save_structure",
+          "$button_text": "structure_editor.save",
+          "size": [ "20%", "8%" ],
+          "offset": [ "40%", "35%" ]
+        }
+      }
+    ]
+  },
+
+  //---------------------------------------------------------------------------
+  // Load Mode Specific
+  //---------------------------------------------------------------------------
+
+  "load_mode_panel": {
+    "type": "panel",
+    "visible": "#load_mode_visible",
+    "bindings": [
+      {
+        "binding_name": "#load_mode_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "structure_name_text_box@structure_text_box": {
+          "offset": [ 0, "-35%" ],
+          "$text_edit_box_content_binding_name":  "#text_box_structure_name",
+          "$text_box_name": "#text_box_structure_name"
+        }
+      },
+      {
+        "load_mode_label@structure_mode_title": {
+          "text": "structure_editor.load_mode"
+        }
+      },
+      {
+        "structure_name_label@structure_label": {
+          "offset": [ "1px", "-40% - 2px" ],
+          "text": "structure_editor.name_label"
+        }
+      },
+      {
+        "structure_offset_label@structure_label": {
+          "offset": [ "1px", "-25% - 2px" ],
+          "text": "structure_editor.position_label"
+        }
+      },
+      { "structure_offset_panel@structure_offset_panel": { } },
+      {
+        "structure_integrity_label@structure_label": {
+          "offset": [ "1px", "-10% - 2px" ],
+          "text": "structure_editor.integrity_and_seed_label"
+        }
+      },
+      { "structure_integrity_seed_panel@structure_integrity_seed_panel": { } },
+      {
+        "structure_rotation_panel@structure_selector_panel": {
+          "offset": [ "-40%", "10%" ],
+          "$selector_label_text": "structure_editor.rotation_label",
+          "$selector_data_text_binding": "#selector_rotation_data_text_binding",
+          "$button_selector_prev": "#button_selector_rotation_prev",
+          "$button_selector_next": "#button_selector_rotation_next"
+        }
+      },
+      {
+        "structure_mirror_panel@structure_selector_panel": {
+          "offset": [ "0%", "10%" ],
+          "$selector_label_text": "structure_editor.mirror_label",
+          "$selector_data_text_binding": "#selector_mirror_data_text_binding",
+          "$button_selector_prev": "#button_selector_mirror_prev",
+          "$button_selector_next": "#button_selector_mirror_next"
+        }
+      },
+      {
+        "structure_bounding_box_selector@structure_selector_panel": {
+          "offset": [ "40%", "-20%" ],
+          "$selector_label_text": "structure_editor.show_bounding_box",
+          "$selector_data_text_binding": "#show_bounding_box_text_binding",
+          "$button_selector_prev": "#button_selector_show_bounding_box_prev",
+          "$button_selector_next": "#button_selector_show_bounding_box_next"
+        }
+      },
+      {
+        "structure_include_entities_selector@structure_selector_panel": {
+          "offset": [ "40%", "10%" ],
+          "$selector_label_text": "structure_editor.include_entities",
+          "$selector_data_text_binding": "#include_entities_text_binding",
+          "$button_selector_prev": "#button_selector_include_entities_prev",
+          "$button_selector_next": "#button_selector_include_entities_next"
+        }
+      },
+      {
+        "load_button@structure_button": {
+          "$pressed_button_name": "#button_load_structure",
+          "$button_text": "structure_editor.load",
+          "size": [ "20%", "8%" ],
+          "offset": [ "40%", "35%" ]
+        }
+      }
+    ]
+  },
+
+  //---------------------------------------------------------------------------
+  // Corner Mode Specific
+  //---------------------------------------------------------------------------
+
+  "corner_mode_panel": {
+    "type": "panel",
+    "visible": "#corner_mode_visible",
+    "bindings": [
+      {
+        "binding_name": "#corner_mode_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "structure_name_text_box@structure_text_box": {
+          "offset": [ 0, "-35%" ],
+          "$text_edit_box_content_binding_name":  "#text_box_structure_name",
+          "$text_box_name": "#text_box_structure_name"
+        }
+      },
+      {
+        "corner_mode_label@structure_mode_title": {
+          "text": "structure_editor.corner_mode"
+        }
+      },
+      {
+        "corner_name_label@structure_label": {
+          "offset": [ "1px", "-40% - 2px" ],
+          "text": "structure_editor.name_label"
+        }
+      }
+    ]
+  },
+
+  //---------------------------------------------------------------------------
+  // Main Screen Base
+  //---------------------------------------------------------------------------
+
+  "no_mode_panel": {
+    "type": "panel",
+    "size": [ "100%", "8%" ],
+    "offset": [ 0, "45%" ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "controls": [
+      {
+        "cancel_button@structure_button": {
+          "$pressed_button_name": "#button_cancel",
+          "$button_text": "structure_editor.cancel",
+          "size": [ "50% - 1px", "100%" ],
+          "offset": [ "25% + 1px", 0 ]
+        }
+      },
+      {
+        "accept_button@structure_button": {
+          "$pressed_button_name": "#button_accept",
+          "$button_text": "structure_editor.accept",
+          "size": [ "50% - 1px", "100%" ],
+          "offset": [ "-25% - 1px", 0 ]
+        }
+      }
+    ]
+  },
+
+  "all_mode_panel": {
+    "type": "panel",
+    "size": [ "80%", "90%" ],
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "controls": [
+      {
+        "structure_change_mode_selector@structure_selector_panel": {
+          "offset": [ "-40%", "35%" ],
+          "$selector_label_text": "structure_editor.change_mode",
+          "$selector_data_text_binding": "#change_mode_text_binding",
+          "$button_selector_prev": "#button_change_mode_prev",
+          "$button_selector_next": "#button_change_mode_next"
+        }
+      },
+      { "no_mode_panel@no_mode_panel": { } },
+      { "data_mode_panel@data_mode_panel": { } },
+      { "save_mode_panel@save_mode_panel": { } },
+      { "load_mode_panel@load_mode_panel": { } },
+      { "corner_mode_panel@corner_mode_panel": { } }
+    ]
+  },
+
+  "structure_editor_screen@common.base_screen": {
+
+    "controls": [
+      {
+        "title@common.section_heading_label": {
+          "type": "label",
+          "size": [ "default", "8%" ],
+          "offset": [ 0, "-44%" ],
+          "text": "structure_editor.title",
+          "anchor_from": "center",
+          "anchor_to": "center"
+        }
+      },
+      { "screen_background@common.screen_background": { } },
+      { "all_mode_panel@all_mode_panel": { } }
+    ]
+  }
+}
