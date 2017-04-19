@@ -170,8 +170,7 @@ namespace NIDE
             }
             else if (extension == ".png")
             {
-                var form = new fPngEditor(path);
-                form.ShowDialog();
+                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin/NPixelPaint"), path);
             }
             else if (extension == ".json")
             {
