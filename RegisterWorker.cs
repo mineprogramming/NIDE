@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using SkinSoft.VisualStyler;
 using System;
 using System.Drawing;
 using System.Linq;
@@ -22,7 +21,6 @@ namespace NIDE
                 key.SetValue("dvHeight", sender.TextViewHeight.ToString());
                 key.SetValue("ADBPath", ADBWorker.Path);
                 key.SetValue("LoadLast", ProgramData.LoadLast);
-                key.SetValue("DarkTheme", ProgramData.DarkTheme);
 
                 key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain.ForeColor.ToArgb().ToString());
                 key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
@@ -71,13 +69,6 @@ namespace NIDE
                 for (int i = 0; i < count; i++)
                     ProgramData.Recent.Add(Convert.ToString(key.GetValue("Save" + i)));
                 ProgramData.Last = key.GetValue("Last").ToString();
-
-                ProgramData.DarkTheme = Convert.ToBoolean(key.GetValue("DarkTheme"));
-                if (ProgramData.DarkTheme)
-                    ProgramData.MainForm.visualStyler.LoadVisualStyle("Black (tochpcru).vssf");
-                else
-                    ProgramData.MainForm.visualStyler.LoadVisualStyle("Vista (Aero).vssf");
-                ProgramData.MainForm.visualStyler.Refresh();
 
                 ProgramData.MainForm.fctbMain.ForeColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NormalStyle")));
                 Highlighting.NamespaceColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));

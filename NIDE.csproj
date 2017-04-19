@@ -66,9 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Release\Noesis.Javascript.dll</HintPath>
     </Reference>
-    <Reference Include="SkinSoft.VisualStyler, Version=2.4.0.0, Culture=neutral, PublicKeyToken=0fda9f423e1d9830, processorArchitecture=MSIL">
-      <HintPath>C:\Program Files (x86)\SkinSoft\VisualStyler.Net\Bin\SkinSoft.VisualStyler.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />

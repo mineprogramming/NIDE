@@ -1,6 +1,4 @@
-﻿using SkinSoft.VisualStyler;
-using System;
-using System.Drawing;
+﻿using System;
 using System.Windows.Forms;
 
 namespace NIDE
@@ -18,7 +16,6 @@ namespace NIDE
             btnBack.ForeColor = ProgramData.MainForm.fctbMain.BackColor;
             tbPath.Text = ADBWorker.Path;
             cbLast.Checked = ProgramData.LoadLast;
-            cbTheme.SelectedIndex = ProgramData.DarkTheme ? 0 : 1;
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -89,12 +86,6 @@ namespace NIDE
         {
             ADBWorker.Path = tbPath.Text;
             ProgramData.LoadLast = cbLast.Checked;
-            ProgramData.DarkTheme = cbTheme.SelectedIndex == 0;
-            if (ProgramData.DarkTheme)
-                ProgramData.MainForm.visualStyler.LoadVisualStyle("Black (tochpcru).vssf");
-            else
-                ProgramData.MainForm.visualStyler.LoadVisualStyle("Vista (Aero).vssf");
-            ProgramData.MainForm.visualStyler.Refresh();
             Close();
         }
     }

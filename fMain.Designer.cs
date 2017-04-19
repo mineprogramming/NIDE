@@ -100,13 +100,12 @@
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCoreEngineDocs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiLinks = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.visualStyler = new SkinSoft.VisualStyler.VisualStyler(this.components);
-            this.tsmiVersion = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -121,7 +120,6 @@
             this.ToolStripGeneral.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visualStyler)).BeginInit();
             this.SuspendLayout();
             // 
             // container
@@ -666,6 +664,12 @@
             this.tsmiHelp.Name = "tsmiHelp";
             resources.ApplyResources(this.tsmiHelp, "tsmiHelp");
             // 
+            // tsmiVersion
+            // 
+            this.tsmiVersion.Name = "tsmiVersion";
+            resources.ApplyResources(this.tsmiVersion, "tsmiVersion");
+            this.tsmiVersion.Click += new System.EventHandler(this.tsmiVersion_Click);
+            // 
             // tsmiCoreEngineDocs
             // 
             this.tsmiCoreEngineDocs.Name = "tsmiCoreEngineDocs";
@@ -686,18 +690,6 @@
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "nproj";
-            // 
-            // visualStyler
-            // 
-            this.visualStyler.HostForm = this;
-            this.visualStyler.License = ((SkinSoft.VisualStyler.Licensing.VisualStylerLicense)(resources.GetObject("visualStyler.License")));
-            this.visualStyler.LoadVisualStyle(null, "Black (tochpcru).vssf");
-            // 
-            // tsmiVersion
-            // 
-            this.tsmiVersion.Name = "tsmiVersion";
-            resources.ApplyResources(this.tsmiVersion, "tsmiVersion");
-            this.tsmiVersion.Click += new System.EventHandler(this.tsmiVersion_Click);
             // 
             // fMain
             // 
@@ -732,7 +724,6 @@
             this.toolStrip.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.visualStyler)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -801,7 +792,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPush;
         private System.Windows.Forms.ToolStripButton tsbPush;
         public System.Windows.Forms.ToolStripProgressBar ProgressBarStatus;
-        public SkinSoft.VisualStyler.VisualStyler visualStyler;
         public FastColoredTextBoxNS.FastColoredTextBox fctbMain;
         private System.Windows.Forms.ToolStripMenuItem tsmiProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewLibrary;
