@@ -42,6 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbSource = new System.Windows.Forms.TextBox();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.rbTexturePack = new System.Windows.Forms.RadioButton();
+            this.rbBehaviourPack = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // tbPath
@@ -154,11 +156,33 @@
             this.tbSource.Size = new System.Drawing.Size(233, 20);
             this.tbSource.TabIndex = 10;
             // 
+            // rbTexturePack
+            // 
+            this.rbTexturePack.AutoSize = true;
+            this.rbTexturePack.Location = new System.Drawing.Point(101, 12);
+            this.rbTexturePack.Name = "rbTexturePack";
+            this.rbTexturePack.Size = new System.Drawing.Size(89, 17);
+            this.rbTexturePack.TabIndex = 13;
+            this.rbTexturePack.Text = "Texture Pack";
+            this.rbTexturePack.UseVisualStyleBackColor = true;
+            // 
+            // rbBehaviourPack
+            // 
+            this.rbBehaviourPack.AutoSize = true;
+            this.rbBehaviourPack.Location = new System.Drawing.Point(101, 36);
+            this.rbBehaviourPack.Name = "rbBehaviourPack";
+            this.rbBehaviourPack.Size = new System.Drawing.Size(101, 17);
+            this.rbBehaviourPack.TabIndex = 14;
+            this.rbBehaviourPack.Text = "Behaviour Pack";
+            this.rbBehaviourPack.UseVisualStyleBackColor = true;
+            // 
             // fNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 167);
+            this.Controls.Add(this.rbBehaviourPack);
+            this.Controls.Add(this.rbTexturePack);
             this.Controls.Add(this.btnSource);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbSource);
@@ -196,5 +220,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbSource;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
+        private System.Windows.Forms.RadioButton rbTexturePack;
+        private System.Windows.Forms.RadioButton rbBehaviourPack;
     }
 }

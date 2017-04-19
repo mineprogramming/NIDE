@@ -26,6 +26,9 @@ namespace NIDE
         private const string CE_RES_PATH = "\\assets\\";
         private const string CE_DEV_PATH = "\\dev\\";
 
+        private const string TP_ITEMS_OPAQUE_PATH = "\\source\\textures\\items\\";
+        private const string TP_TERRAIN_ATLAS_PATH = "\\source\\textures\\blocks\\";
+
         public readonly ProjectType projectType;
         public readonly string path;
         private string version;
@@ -34,7 +37,7 @@ namespace NIDE
         private string projectName;
         private List<Library> Libraries = new List<Library>();
         private List<string> OutFiles = new List<string>();
- 
+
         public string SourceCodePath
         {
             get
@@ -43,7 +46,9 @@ namespace NIDE
                 {
                     case ProjectType.MODPE:
                         return path + SOURCE_CODE_PATH;
+                    case ProjectType.BEHAVIOUR_PACK:
                     case ProjectType.COREENGINE:
+                    case ProjectType.TEXTURE_PACK:
                         return path;
                     default: return null;
                 }
@@ -60,6 +65,8 @@ namespace NIDE
                         return path + ITEMS_OPAQUE_PATH;
                     case ProjectType.COREENGINE:
                         return path + CE_ITEMS_OPAQUE_PATH;
+                    case ProjectType.TEXTURE_PACK:
+                        return path + TP_ITEMS_OPAQUE_PATH;
                     default: return null;
                 }
             }
@@ -74,6 +81,8 @@ namespace NIDE
                         return path + TERRAIN_ATLAS_PATH;
                     case ProjectType.COREENGINE:
                         return path + CE_TERRAIN_ATLAS_PATH;
+                    case ProjectType.TEXTURE_PACK:
+                        return path + TP_TERRAIN_ATLAS_PATH;
                     default: return null;
                 }
 
@@ -90,6 +99,9 @@ namespace NIDE
                         return path + SCRIPTS_PATH + "main.js";
                     case ProjectType.COREENGINE:
                         return path + CE_DEV_PATH + ".includes";
+                    case ProjectType.BEHAVIOUR_PACK:
+                    case ProjectType.TEXTURE_PACK:
+                        return path + "\\source\\manifest.json";
                     default: return null;
                 }
 
@@ -170,20 +182,49 @@ namespace NIDE
                 case ProjectType.COREENGINE:
                     CreateCoreEngineFileSystem();
                     break;
+                case ProjectType.BEHAVIOUR_PACK:
+                    CreateBehaviourPackFileSystem();
+                    break;
+                case ProjectType.TEXTURE_PACK:
+                    CreateResourcePackFileSystem();
+                    break;
+
             }
 
             projectFile = path + "\\" + projectName + ".nproj";
             string nproj = string.Format(
                 "nide-api:{0}\nproject-name:{1}\nproject-version:1.0.0\nproject-type:{2}\nsettings-compress:false",
                 API_LEVEL, projectName, ProjectTypeToString(type));
-            if (type == ProjectType.MODPE)
-                nproj += "\nsettings-mode:modpkg";
             File.WriteAllText(projectFile, nproj);
+        }
+
+        private void CreateResourcePackFileSystem()
+        {
+            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_texture", path + SOURCE_CODE_PATH);
+        }
+
+        private void CreateBehaviourPackFileSystem()
+        {
+            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_behaviour", path + SOURCE_CODE_PATH);
+        }
+
+        void CopyDirectory(string FromDir, string ToDir)
+        {
+            Directory.CreateDirectory(ToDir);
+            foreach (string s1 in Directory.GetFiles(FromDir))
+            {
+                string s2 = ToDir + "\\" + Path.GetFileName(s1);
+                File.Copy(s1, s2);
+            }
+            foreach (string s in Directory.GetDirectories(FromDir))
+            {
+                CopyDirectory(s, ToDir + "\\" + Path.GetFileName(s));
+            }
         }
 
         public ProjectManager(string source, string path, string projectName) : this(path, ProjectType.MODPE, projectName)
         {
-            using (ZipArchive archive = System.IO.Compression.ZipFile.OpenRead(source))
+            using (ZipArchive archive = ZipFile.OpenRead(source))
             {
                 foreach (ZipArchiveEntry entry in archive.Entries)
                 {
@@ -427,6 +468,10 @@ namespace NIDE
                     return "MODPE";
                 case ProjectType.COREENGINE:
                     return "COREENGINE";
+                case ProjectType.BEHAVIOUR_PACK:
+                    return "BEHAVIOUR_PACK";
+                case ProjectType.TEXTURE_PACK:
+                    return "TEXTURE_PACK";
                 default:
                     return null;
             }
@@ -440,6 +485,10 @@ namespace NIDE
                     return ProjectType.MODPE;
                 case "COREENGINE":
                     return ProjectType.COREENGINE;
+                case "BEHAVIOUR_PACK":
+                    return ProjectType.BEHAVIOUR_PACK;
+                case "TEXTURE_PACK":
+                    return ProjectType.TEXTURE_PACK;
                 default:
                     throw new ArgumentException("Unknown project type " + type);
             }

@@ -49,6 +49,10 @@ namespace NIDE
                     type = ProjectType.MODPE;
                 else if (rbCoreEngine.Checked)
                     type = ProjectType.COREENGINE;
+                else if (rbBehaviourPack.Checked)
+                    type = ProjectType.BEHAVIOUR_PACK;
+                else if (rbTexturePack.Checked)
+                    type = ProjectType.TEXTURE_PACK;
                 DialogResult = DialogResult.OK;
                 Close();
             }
