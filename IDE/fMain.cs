@@ -170,7 +170,7 @@ namespace NIDE
             }
             else if (extension == ".png")
             {
-                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin/NPixelPaint"), path);
+                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
             }
             else if (extension == ".json")
             {
