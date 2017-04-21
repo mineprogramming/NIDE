@@ -157,6 +157,7 @@ namespace NIDE
                 if (result == DialogResult.Yes)
                 {
                     fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+                    saved = true;
                 }
                 else if (result == DialogResult.Cancel)
                 {
