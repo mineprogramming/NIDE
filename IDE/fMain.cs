@@ -26,7 +26,6 @@ namespace NIDE
             RegisterWorker.Load(this);
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
-
             try
             {
                 ModPe.LoadModPeData("modpescript_dump.txt");
@@ -39,7 +38,7 @@ namespace NIDE
             }
         }
 
-        private void fMain_Load(object sender, EventArgs e)
+        private void fMain_Shown(object sender, EventArgs e)
         {
             if (args.Length > 0)
             {
@@ -356,11 +355,13 @@ namespace NIDE
             tsmiBuildAndPush.Enabled = true;
             tsbBuildPush.Enabled = true;
             tsbPush.Enabled = true;
+            tsbShowMain.Enabled = false;
             tvFolders.ContextMenuStrip = cmsTreeView;
             UpdateProject();
             switch (ProgramData.ProjectManager.projectType)
             {
                 case ProjectType.MODPE:
+                    tsbShowMain.Enabled = true;
                     break;
                 case ProjectType.COREENGINE:
                     tsmiNewItem.Enabled = false;
@@ -435,15 +436,22 @@ namespace NIDE
 
         private void OpenScript(string FileName)
         {
-            ProgramData.file = FileName;
-            tsslFile.Text = Path.GetFileName(FileName);
-            fctbMain.OpenFile(FileName);
-            string extension = Path.GetExtension(FileName).ToLower();
-            if (extension == ".js")
-                InitJS();
-            else
-                InitOther();
-            Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
+            try
+            {
+                ProgramData.file = FileName;
+                tsslFile.Text = Path.GetFileName(FileName);
+                fctbMain.OpenFile(FileName);
+                fctbMain.ReadOnly = false;
+                string extension = Path.GetExtension(FileName).ToLower();
+                if (extension == ".js")
+                    InitJS();
+                else
+                    InitOther();
+                Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
+            }catch(Exception e)
+            {
+                Log("FileSystem", "Unable to open script! " + e.Message);
+            }
         }
 
         private void InitJS()
@@ -728,6 +736,12 @@ namespace NIDE
             {
                 MessageBox.Show(ex.Message, "Cannot connect to the service!");
             }
+        }
+
+        private void tsbShowMain_Click(object sender, EventArgs e)
+        {
+            OpenScript(ProgramData.ProjectManager.BuildPath + "main.js");
+            fctbMain.ReadOnly = true;
         }
     }
 }

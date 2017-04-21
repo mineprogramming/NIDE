@@ -198,15 +198,7 @@ namespace NIDE
             File.WriteAllText(projectFile, nproj);
         }
 
-        private void CreateResourcePackFileSystem()
-        {
-            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_texture", path + SOURCE_CODE_PATH);
-        }
-
-        private void CreateBehaviourPackFileSystem()
-        {
-            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_behaviour", path + SOURCE_CODE_PATH);
-        }
+        
 
         void CopyDirectory(string FromDir, string ToDir)
         {
@@ -356,16 +348,7 @@ namespace NIDE
                 ProgramData.Log("Build", "Unable to build " + ProjectTypeToString(projectType) + "; " + e.Message);
             }
         }
-
-        private void BuildPack()
-        {
-            using (var zip = new Ionic.Zip.ZipFile())
-            {
-                zip.AddDirectory(path + SOURCE_CODE_PATH);
-                zip.Save(path + "\\" + ProjectName + ".mcpack");
-            }
-        }
-
+        
         public bool LibraryInstalled(string name)
         {
             foreach (var library in Libraries)
@@ -415,6 +398,17 @@ namespace NIDE
                 else File.CreateText(path + item).Close();
             }
         }
+
+        private void CreateResourcePackFileSystem()
+        {
+            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_texture", path + SOURCE_CODE_PATH);
+        }
+
+        private void CreateBehaviourPackFileSystem()
+        {
+            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_behaviour", path + SOURCE_CODE_PATH);
+        }
+
 
         private void BuildModPE()
         {
@@ -467,6 +461,15 @@ namespace NIDE
                 zip.AddDirectoryByName("assets");
                 zip.AddDirectory(ResPath, "assets");
                 zip.Save(path + "\\resources.zip");
+            }
+        }
+
+        private void BuildPack()
+        {
+            using (var zip = new Ionic.Zip.ZipFile())
+            {
+                zip.AddDirectory(path + SOURCE_CODE_PATH);
+                zip.Save(path + "\\" + ProjectName + ".mcpack");
             }
         }
 

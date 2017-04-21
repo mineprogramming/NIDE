@@ -13,10 +13,10 @@ namespace NIDE
         {
             FileInfo local = new FileInfo(script);
             FileInfo res = new FileInfo(resource);
-
+            AndroidDebugBridge adb = null;
             try
             {
-                var adb = AndroidDebugBridge.CreateBridge(Directory.GetCurrentDirectory() + "\\ADB\\adb.exe", true);
+                adb = AndroidDebugBridge.CreateBridge(Directory.GetCurrentDirectory() + "\\ADB\\adb.exe", true);
                 List<Device> devices = (List<Device>)adb.Devices;
                 if (devices.Count < 1)
                 {
@@ -35,6 +35,8 @@ namespace NIDE
             }
             catch(Exception e){
                 ProgramData.Log("ADB", e.Message);
+                if (adb != null)
+                    adb.Stop();
             }
         }
     }

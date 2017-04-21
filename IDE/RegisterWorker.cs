@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace NIDE
             {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
                 key = key.CreateSubKey("NIDE");
+                key = key.CreateSubKey("settings");
                 key.SetValue("maximized", sender.WindowState == FormWindowState.Maximized);
                 key.SetValue("Width", sender.Width.ToString());
                 key.SetValue("Height", sender.Height.ToString());
@@ -58,6 +60,14 @@ namespace NIDE
                     return;
                 }
                 key = key.OpenSubKey("NIDE");
+                if (!File.Exists(Directory.GetCurrentDirectory() + "\\NIDE.exe"))
+                    Directory.SetCurrentDirectory(key.GetValue("InstallPath").ToString());
+                if (!key.GetSubKeyNames().Contains("settings"))
+                {
+                    ADBWorker.Path = "/storage/emulated/0/!Nide/scripts/";
+                    return;
+                }
+                key = key.OpenSubKey("settings");
                 sender.Width = Convert.ToInt32(key.GetValue("Width"));
                 sender.Height = Convert.ToInt32(key.GetValue("Height"));
                 sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));

@@ -1,9 +1,9 @@
-F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csprojResolveAssemblyReference.cache
-F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.Properties.Resources.resources
-F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.GenerateResource.Cache
 F:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\NPixelPaint.exe.config
 F:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\NPixelPaint.exe
 F:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\NPixelPaint.pdb
+F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csprojResolveAssemblyReference.cache
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.fPaint.resources
+F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.Properties.Resources.resources
+F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.GenerateResource.Cache
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.exe
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.pdb

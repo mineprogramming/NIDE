@@ -23,7 +23,7 @@ Timers.modTick = function(){
 }
 
 Timers.addOnce = function(id, time, action){
-    this.Once.push({Time:time, Action:action});
+    this.Once.push({Id:id, Time:time, Action:action});
 }
 
 Timers.addRepetiteve = function(id, time, action){

@@ -68,6 +68,7 @@
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbPush = new System.Windows.Forms.ToolStripButton();
             this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
+            this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -401,7 +402,8 @@
             this.tsbBuild,
             this.tsbRun,
             this.tsbPush,
-            this.tsbUpdate});
+            this.tsbUpdate,
+            this.tsbShowMain});
             this.toolStrip.Name = "toolStrip";
             // 
             // tsbBuildPush
@@ -438,6 +440,13 @@
             resources.ApplyResources(this.tsbUpdate, "tsbUpdate");
             this.tsbUpdate.Name = "tsbUpdate";
             this.tsbUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
+            // 
+            // tsbShowMain
+            // 
+            this.tsbShowMain.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbShowMain, "tsbShowMain");
+            this.tsbShowMain.Name = "tsbShowMain";
+            this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
             // 
             // MenuStrip
             // 
@@ -701,7 +710,7 @@
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "fMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
-            this.Load += new System.EventHandler(this.fMain_Load);
+            this.Shown += new System.EventHandler(this.fMain_Shown);
             this.container.ContentPanel.ResumeLayout(false);
             this.container.ContentPanel.PerformLayout();
             this.container.TopToolStripPanel.ResumeLayout(false);
@@ -806,6 +815,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewDirectory;
         private System.Windows.Forms.ToolStripMenuItem tsmiLinks;
         private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
+        private System.Windows.Forms.ToolStripButton tsbShowMain;
     }
 }
 

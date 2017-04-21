@@ -1,5 +1,5 @@
-nide-api:1
-library-version:1.0
+nide-api:2
+library-version:1.1
 copy-to-out:ModCore beta v5.js
 requires-library:nide/ModAPI
 requires-library:nide/ToolMaterial
