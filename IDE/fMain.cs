@@ -270,14 +270,20 @@ namespace NIDE
         {
             tsmiInserts.Enabled = true;
             tsmiNewItem.Enabled = true;
+            tsmiNewScript.Enabled = true;
+            tsmiNewTexture.Enabled = true;
+            tsmiProject.Enabled = true;
             tsmiNewLibrary.Enabled = true;
             tsmiManageLibraries.Enabled = true;
             tsmiBuild.Enabled = true;
+            tsmiPush.Enabled = true;
             tsmiBuildAndPush.Enabled = true;
+            tsbBuild.Enabled = true;
             tsbBuildPush.Enabled = true;
             tsbPush.Enabled = true;
+            tsbUpdate.Enabled = true;
             tsbShowMain.Enabled = false;
-            tvFolders.ContextMenuStrip = cmsTreeView;
+            cmsTreeView.Enabled = true;
             UpdateProject();
             switch (ProgramData.ProjectManager.projectType)
             {
@@ -311,7 +317,6 @@ namespace NIDE
                     tsbBuildPush.Enabled = false;
                     tsbPush.Enabled = false;
                     break;
-
             }
         }
 
@@ -322,9 +327,13 @@ namespace NIDE
             tsmiNewItem.Enabled = false;
             tsmiNewScript.Enabled = false;
             tsmiNewTexture.Enabled = false;
-            tsmiNewLibrary.Enabled = false;
+            tsmiProject.Enabled = false;
             tsmiBuild.Enabled = false;
+            tsmiPush.Enabled = false;
+            tsmiBuildAndPush.Enabled = false;
             tsbBuild.Enabled = false;
+            tsbPush.Enabled = false;
+            tsbBuildPush.Enabled = false;
             tvFolders.ContextMenuStrip = null;
         }
 
