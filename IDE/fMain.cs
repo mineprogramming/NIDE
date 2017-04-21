@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using Yahoo.Yui.Compressor;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
@@ -16,6 +15,8 @@ namespace NIDE
         private string[] args;
         private string OldPath = "";
 
+
+        //Main form
         public fMain(string[] args)
         {
             Directory.SetCurrentDirectory(Application.StartupPath);
@@ -103,29 +104,7 @@ namespace NIDE
             }
             catch { ShowStartWindow(); }
         }
-
-        private void ImportModpkg(bool closeIfNotChecked = false)
-        {
-            var form = new fNewProject(true);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    ProgramData.ProjectManager = new ProjectManager(form.source, form.path, form.name);
-                    OpenScript(ProgramData.ProjectManager.MainScriptPath);
-                    InitProject();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "An error occured while creating a new project");
-                }
-            }
-            else if (closeIfNotChecked)
-            {
-                Close();
-            }
-        }
-
+        
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (fctbMain.Language == Language.JS && ProgramData.ProjectManager != null)
@@ -144,95 +123,14 @@ namespace NIDE
             if (!CanChangeFile()) e.Cancel = true;
             RegisterWorker.Save(this);
         }
+        
 
-        private void tvFolders_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            string path = GetTreeViewPath(e.Node);
-            if (Directory.Exists(path))
-                return;
-            if (!saved)
-            {
-                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
-                    saved = true;
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    return;
-                }
-            }
-            string extension = Path.GetExtension(path).ToLower();
-            if (Constants.TextExtensions.Contains(extension))
-            {
-                OpenScript(path);
-            }
-            else if (extension == ".png")
-            {
-                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
-            }
-            else if (extension == ".json")
-            {
-                if(ProgramData.ProjectManager.projectType == ProjectType.MODPE)
-                    try
-                    {
-                        new fJsonItem(path).Show();
-                    }
-                    catch { OpenScript(path); }
-                else OpenScript(path);
-            }
-        }
-
-        private string GetTreeViewPath(TreeNode node)
-        {
-            if (node.Text == Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath))
-                return ProgramData.ProjectManager.ProjectFilePath;
-            else
-            {
-                string path_relative = node.FullPath;
-                path_relative = path_relative.Substring(path_relative.IndexOf('\\') + 1);
-                return ProgramData.ProjectManager.SourceCodePath + "\\" + path_relative;
-            }
-        }
-
-
-        private void tsmiDelete_Click(object sender, EventArgs e)
-        {
-            if (tvFolders.SelectedNode.Text != "main.js"
-                && Path.GetExtension(tvFolders.SelectedNode.Text).ToLower() != ".nproj")
-            {
-                try
-                {
-                    string path = GetTreeViewPath(tvFolders.SelectedNode);
-                    if (File.Exists(path))
-                        File.Delete(path);
-                    else if (Directory.Exists(path))
-                        Directory.Delete(path, true);
-                    tvFolders.SelectedNode.Remove();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Cannot delete this file");
-                }
-            }
-        }
-
-        private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
-        {
-            Process.Start("CoreEngine help.chm");
-        }
-
-        private void openProjectInExplorerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(ProgramData.ProjectManager.path);
-        }
-
-        //connections
+        //Connections
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
         public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
 
-        //textworking
+
+        //Textworking
         private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
         private void tsmiRedo_Click(object sender, EventArgs e) { fctbMain.Redo(); }
         private void tsmiFind_Click(object sender, EventArgs e) { fctbMain.ShowFindDialog(); }
@@ -244,7 +142,8 @@ namespace NIDE
         private void tsbCopy_Click(object sender, EventArgs e) { fctbMain.Copy(); }
         private void tsbPaste_Click(object sender, EventArgs e) { fctbMain.Paste(); }
 
-        //inserts
+
+        //Inserts
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
             if (!ProgramData.ProjectManager.LibraryInstalled("ItemsEngine"))
@@ -326,7 +225,7 @@ namespace NIDE
         }
 
 
-        //new project system
+        //Project and files system
         private void OpenProject(string FileName)
         {
             if (!CanChangeFile()) return;
@@ -342,6 +241,28 @@ namespace NIDE
             {
                 MessageBox.Show(ex.Message, "An error occured while opening an existing project");
                 throw new Exception();
+            }
+        }
+
+        private void ImportModpkg(bool closeIfNotChecked = false)
+        {
+            var form = new fNewProject(true);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    ProgramData.ProjectManager = new ProjectManager(form.source, form.path, form.name);
+                    OpenScript(ProgramData.ProjectManager.MainScriptPath);
+                    InitProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "An error occured while creating a new project");
+                }
+            }
+            else if (closeIfNotChecked)
+            {
+                Close();
             }
         }
 
@@ -394,18 +315,6 @@ namespace NIDE
             }
         }
 
-        private void UpdateProject()
-        {
-            tvFolders.Nodes.Clear();
-            tvFolders.Nodes.Add(ProgramData.ProjectManager.ProjectName);
-            if (ProgramData.ProjectManager.projectType == ProjectType.MODPE)
-            {
-                tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
-            }
-            DirectoryRecursive(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.ProjectManager.SourceCodePath));
-            tvFolders.Nodes[0].Expand();
-        }
-
         private void InitFileOnly(string filename)
         {
             ProgramData.FileOnly = true;
@@ -419,20 +328,24 @@ namespace NIDE
             tvFolders.ContextMenuStrip = null;
         }
 
-        private void DirectoryRecursive(TreeNode node, DirectoryInfo dir)
+        private void UpdateProject()
         {
-            try
+            tvFolders.Nodes.Clear();
+            tvFolders.Nodes.Add(ProgramData.ProjectManager.ProjectName);
+            if (ProgramData.ProjectManager.projectType == ProjectType.MODPE)
             {
-                foreach (var subdir in dir.GetDirectories())
-                    DirectoryRecursive(node.Nodes.Add(subdir.Name), subdir);
-                foreach (var file in dir.GetFiles())
-                    node.Nodes.Add(file.Name);
+                tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "Unable to load filesystem");
-            }
+            Util.FillDirectoryNodes(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.ProjectManager.SourceCodePath));
+            tvFolders.Nodes[0].Expand();
         }
+
+        private void tsbShowMain_Click(object sender, EventArgs e)
+        {
+            OpenScript(ProgramData.ProjectManager.BuildPath + "main.js");
+            fctbMain.ReadOnly = true;
+        }
+
 
         private void OpenScript(string FileName)
         {
@@ -465,6 +378,7 @@ namespace NIDE
             fctbMain.Language = Language.Custom;
             Autocomplete.Enabled = false;
         }
+
 
         private void NewProjectDlg(bool closeIfNotChecked = false)
         {
@@ -517,6 +431,13 @@ namespace NIDE
             saved = true;
         }
 
+        private void tsmiCloseProject_Click(object sender, EventArgs e)
+        {
+            if (!CanChangeFile()) return;
+            ProgramData.Restart = true;
+            Application.Restart();
+        }
+
         private bool CanChangeFile()
         {
             if (!saved && fctbMain.Text != "")
@@ -535,12 +456,40 @@ namespace NIDE
             }
             else return true;
         }
+        
 
-        private void tsmiCloseProject_Click(object sender, EventArgs e)
+        //Log and errors
+        public delegate void AddMessageDelegate(string source, string message);
+        public delegate void ClearLogDelegate();
+        public void Log(string source, string message)
         {
-            if (!CanChangeFile()) return;
-            ProgramData.Restart = true;
-            Application.Restart();
+            Invoke(new AddMessageDelegate(_log), new object[] { source, message });
+        }
+        public void ClearLog()
+        {
+            Invoke(new ClearLogDelegate(console.Clear));
+        }
+        private void _log(string source, string message)
+        {
+            string format = "[{0}]:{1} \n";
+            console.AppendText(string.Format(format, source, message));
+        }
+        public void HighlightError(int line)
+        {
+            Highlighting.HighlightError(new Range(fctbMain, line));
+        }
+
+
+        //Project managing
+        private void tsmiUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateProject();
+            ProgramData.ProjectManager.UpdateNlib();
+        }
+
+        private void tsmiManageLibraries_Click(object sender, EventArgs e)
+        {
+            new fLibraries().ShowDialog();
         }
 
         private void tsmiBuild_Click(object sender, EventArgs e)
@@ -550,60 +499,10 @@ namespace NIDE
             ProgramData.ProjectManager.build();
         }
 
-        private void tsmiCheck_Click(object sender, EventArgs e)
-        {
-            if (fctbMain.Text != "")
-                try
-                {
-                    JavaScriptCompressor compressor = new JavaScriptCompressor();
-                    string compressed = compressor.Compress(fctbMain.Text);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error in your Javascript code found!");
-                }
-        }
-
-        private void tsmiRunJs_Click(object sender, EventArgs e)
-        {
-            new JsRunner(fctbMain.Text);
-        }
-
-
-        public void Log(string source, string message)
-        {
-            Invoke(new AddMessageDelegate(_log), new object[] { source, message });
-
-        }
-
-        private void _log(string source, string message)
-        {
-            string format = "[{0}]:{1} \n";
-            console.AppendText(string.Format(format, source, message));
-        }
-
-        public delegate void AddMessageDelegate(string source, string message);
-        public delegate void ClearLogDelegate();
-
-        public void ClearLog()
-        {
-            Invoke(new ClearLogDelegate(console.Clear));
-        }
-
-        public void HighlightError(int line)
-        {
-            Highlighting.HighlightError(new Range(fctbMain, line));
-        }
-
         private void tsmiPush_Click(object sender, EventArgs e)
         {
             ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js",
                 ProgramData.ProjectManager.BuildPath + "resources.zip");
-        }
-        
-        private void tsmiManageLibraries_Click(object sender, EventArgs e)
-        {
-            new fLibraries().ShowDialog();
         }
 
         private void tsbBuildPush_Click(object sender, EventArgs e)
@@ -612,47 +511,49 @@ namespace NIDE
             tsmiPush_Click(sender, e);
         }
 
-        private void tvFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void tsmiRunJs_Click(object sender, EventArgs e)
         {
-            tvFolders.SelectedNode = e.Node;
+            new JsRunner(fctbMain.Text);
         }
 
-        private void tsmiUpdate_Click(object sender, EventArgs e)
-        {
-            UpdateProject();
-            ProgramData.ProjectManager.UpdateNlib();
-        }
 
-        private void tsmiRename_Click(object sender, EventArgs e)
+        //Tree view
+        private void tvFolders_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            var node = tvFolders.SelectedNode;
-            OldPath = GetTreeViewPath(node);
-            tvFolders.LabelEdit = true;
-            node.BeginEdit();
-        }
-
-        private void tvFolders_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            BeginInvoke(new Action(() => afterAfterEdit(e.Node)));
-        }
-
-        private void afterAfterEdit(TreeNode node)
-        {
-            tvFolders.LabelEdit = false;
-            string path = GetTreeViewPath(node);
-            if (node.Parent != null && !OldPath.EndsWith(".nproj", StringComparison.OrdinalIgnoreCase) && path != OldPath)
+            string path = GetTreeViewPath(e.Node);
+            if (Directory.Exists(path))
+                return;
+            if (!saved)
             {
-                try
+                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
                 {
-                    if (File.Exists(OldPath))
-                        File.Move(OldPath, path);
-                    if (Directory.Exists(OldPath))
-                        Directory.Move(OldPath, path);
+                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+                    saved = true;
                 }
-                catch (Exception e)
+                else if (result == DialogResult.Cancel)
                 {
-                    MessageBox.Show(e.Message);
+                    return;
                 }
+            }
+            string extension = Path.GetExtension(path).ToLower();
+            if (Constants.TextExtensions.Contains(extension))
+            {
+                OpenScript(path);
+            }
+            else if (extension == ".png")
+            {
+                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
+            }
+            else if (extension == ".json")
+            {
+                if (ProgramData.ProjectManager.projectType == ProjectType.MODPE)
+                    try
+                    {
+                        new fJsonItem(path).Show();
+                    }
+                    catch { OpenScript(path); }
+                else OpenScript(path);
             }
         }
 
@@ -712,11 +613,84 @@ namespace NIDE
             }
         }
 
-        private void tsmiLinks_Click(object sender, EventArgs e)
+        private void tsmiRename_Click(object sender, EventArgs e)
         {
-            Process.Start("links.html");
+            var node = tvFolders.SelectedNode;
+            OldPath = GetTreeViewPath(node);
+            tvFolders.LabelEdit = true;
+            node.BeginEdit();
         }
 
+        private void tsmiDelete_Click(object sender, EventArgs e)
+        {
+            if (tvFolders.SelectedNode.Text != "main.js"
+                && Path.GetExtension(tvFolders.SelectedNode.Text).ToLower() != ".nproj")
+            {
+                try
+                {
+                    string path = GetTreeViewPath(tvFolders.SelectedNode);
+                    if (File.Exists(path))
+                        File.Delete(path);
+                    else if (Directory.Exists(path))
+                        Directory.Delete(path, true);
+                    tvFolders.SelectedNode.Remove();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Cannot delete this file");
+                }
+            }
+        }
+
+        private void tsmiOpenInExplorer_Click(object sender, EventArgs e)
+        {
+            Process.Start(ProgramData.ProjectManager.path);
+        }
+
+        private string GetTreeViewPath(TreeNode node)
+        {
+            if (node.Text == Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath))
+                return ProgramData.ProjectManager.ProjectFilePath;
+            else
+            {
+                string path_relative = node.FullPath;
+                path_relative = path_relative.Substring(path_relative.IndexOf('\\') + 1);
+                return ProgramData.ProjectManager.SourceCodePath + "\\" + path_relative;
+            }
+        }
+
+        private void tvFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            tvFolders.SelectedNode = e.Node;
+        }
+
+        private void tvFolders_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            BeginInvoke(new Action(() => afterAfterEdit(e.Node)));
+        }
+
+        private void afterAfterEdit(TreeNode node)
+        {
+            tvFolders.LabelEdit = false;
+            string path = GetTreeViewPath(node);
+            if (node.Parent != null && !OldPath.EndsWith(".nproj", StringComparison.OrdinalIgnoreCase) && path != OldPath)
+            {
+                try
+                {
+                    if (File.Exists(OldPath))
+                        File.Move(OldPath, path);
+                    if (Directory.Exists(OldPath))
+                        Directory.Move(OldPath, path);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+        }
+
+
+        //Other
         private void tsmiVersion_Click(object sender, EventArgs e)
         {
             try
@@ -732,16 +706,21 @@ namespace NIDE
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Cannot connect to the service!");
             }
         }
 
-        private void tsbShowMain_Click(object sender, EventArgs e)
+        private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
         {
-            OpenScript(ProgramData.ProjectManager.BuildPath + "main.js");
-            fctbMain.ReadOnly = true;
+            Process.Start("CoreEngine help.chm");
         }
+
+        private void tsmiLinks_Click(object sender, EventArgs e)
+        {
+            Process.Start("links.html");
+        }
+        
     }
 }

@@ -409,7 +409,7 @@
     <value>Open project in explorer</value>
   </data>
   <data name="cmsTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 158</value>
+    <value>202, 180</value>
   </data>
   <data name="&gt;&gt;cmsTreeView.Name" xml:space="preserve">
     <value>cmsTreeView</value>
@@ -711,19 +711,19 @@
   <data name="tsbBuildPush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKzSURBVDhPldH/L9RxHAfw+w98Pdk58XEi3DftrvupnWi3
-        MToWsybSF2W+1AmdYvlk5Trudr6kKzkX7pjQkbJqOKamJu58KVLX0bIwc5t+8Ys9Q59fbN2sx2/vvZ/P
-        1957vWn7CTjTnK6d3XBY1zbRMr9hzxtZIamr/bFi6+KjjV+hn3ZAN+lAvXUdDyfWQQ6vmHl6uysVcy40
-        /7U9ssmG66+WUNC3hLwXP3Hl+Q9kmxZxxmgzUzHnONfeQFj1GReMNsTVziCmagoSlRUnlBZEKsYhLrfI
-        qOi/sVPaLII7Vsif2pGsmQRfNgxurhnsrAGEZvYjLHvITkX/El02kmTTqOVm6wTCszrsxDkD0qon0Te+
-        ip7RZQguDeBgvAnMuC4wYjrgL+0GVaXRgnK6Lbfer6Hb9hv5jWPga6ZAnDeguKYfNe1zOHq6C4JTJgRE
-        9sJL0AgPbi0Oidocu+UAsSqdp/sG+eAyFO9WkVwxAmHFDELlb+EpLgeTXwIfnhI+fAWY4Y8hkLyErOQj
-        mttm03cHBCfpyCN1X5DavoCMzgUkqkbBlY0gaPvJgYmt8BEVwpt9FQeCbzvovnfNYSKtKV9uitgt7whO
-        0JFC9SfUDf+CtHoaUdtb5qZ1goh6AuKYBoRYB7+IJjDYcg1V2YtBv8iXGeYx9n0D6h4beLlD4GSbEXhS
-        DwZHCS/WPdB5xaDzbzj/+/4Pi+ZC/RyEOYNgJfXCT2qCb+wzMKM74X28Ga6cMrgSBc4HSFMqI4LijWAl
-        mMCStMBb1AB3XgPcOPVwC9PCLaQWHixST8X3Kioqkigr1cjIIUEIFA5muGp74+VgcO+DfvgB6CH12wvU
-        OlxczvpTlb1aDK1b9XojMssUWy4uUldPr1SZu6/cQvergCdR5fAg1Hqn5R2PGg0oLS3dpI7/gUb7A3Qc
-        bJdtQN9CAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKzSURBVDhPldHbS9NhHAbw/QfzNJM5058zTd3J2NpVzDQG
+        ijYlRcI0O2jhoWZqs5RcUq7pxjxkq+Vc6qaY2jRLKtQpFhamm4fSrDWNJBVxYDfeyJPa70ZoSJ+7l/d5
+        vrx8X8p+As80Z2hnN5y2tU20zG848kdW5OTV/phx9Qkxpq8wTDuhn3RCZ1vHw4l1yIdXLFyDw42MuRZW
+        8NoR1WTH9VdLKOxbQv6Ln7jy/AdyzIs4Y7JbyJhr7GtvIKj+jAsmO+LrZhBbPQWxyoYTSiuiFOMQVVil
+        ZPTfWKltVv4dG2RPHUjRTIInHQYnzwJW9gDCLvcjPGfIQUb/El4yyeVNo9abrROIyO5wEOeMSK+ZRN/4
+        KnpGl8HPGsDBBDMY8V2gx3YgQNINskqhBOd2W2+9X0O3/TcKGsfA00yBOG9ESW0/atvncPR0F/inzAiM
+        6oU3vxGenDocErY5d8uBIlUGV/8NssFlKN6tIqVyBILKGYTJ3sJLVAEGrxS+XCV8eQowIh6DL34JaelH
+        NLfNZuwOCEnWy4/Uf0Fa+wIyOxeQpBoFRzqC4O0nByW1wldYBB/WVRwIue2k+d21hAu15gKZOXK3vCMk
+        US8XqD+hfvgXJDXTiN7eMie9E0T0ExDHNCBEevhHNoHOkmnIyl502kWe1DiPse8bUPfYwc0bAjvHgqCT
+        BtDZSngz74HGLQGNd8P13/d/WLQUGeYgyB0EM7kX/hIz/OKegRHTCZ/jzXBjl8ONKHQ9QJJaFRmcYAIz
+        0QymuAU+wgZ4cBvgztbBPVwL99A6eDLlBjK+V3FxsVhZpUZmrhwEX+FkRKi2N14BOuc+aIcfgBaq216g
+        1kmlng0gK3u1GFu3dAYTssoVW1SqxM3LO03q4Sez0vwr4UVUOz0JtcFlecejRiPKyso2yeN/oFD+AHMy
+        bJVbmeY5AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsbBuildPush.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -739,14 +739,14 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHmSURBVDhPY8AGioqKfIrzi/c1Vja+XLtq7YfHjx5fffr0
-        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pl/+ODBf2dPndpXWlrKC1VKHFi7Zu3nXz9/
-        /j944MC/8+fO/4+JidkSGhrKDJXGD8rLy+Xu3Lnz5PHjxx/r6zs/pKenv587d97/DRs2fmtsbMyAKsMN
+        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pl/cP/+f2dPndpXWlrKC1VKHFi7Zu3nXz9/
+        /t+/b9+/8+fO/4+JidkSGhrKDJXGD8rLy+Xu3Lnz5PHjxx/r6zs/pKenv587d97/DRs2fmtsbMyAKsMN
         1q9ev+vsiRNv582bV2lvb88CsjkyMup+cXHpv4kTJzZBlWEH7e3tmc+ePPkPtGkKVAgMgGEgFR4e3g/l
         YgfHZ3EX/Xh1483eHTsu1dfXc0CFiQMLaxkyfp9Q//9yC8/XzlKDSKgwcWBiIYPFhx18397vFvt/ehbD
         88IQBiGoFGHQU8Qg8mQD593vRxT/313B8L80kiEfKkUcWNfCsPHvae3/zzdx/J+Qx3AaKkwcmFHKkPJp
         v8z/d7uE/++fwvAzP4TBEipFGMypZpB/sZX93ddDcv+vL2H4D9TcB5UiDP7/Z2C8vZxh159Tmv+fbmD9
         v7yB4WS9PQMLVJowmJnGwH/lkMKf19sF/u+YzPAtypXBDigsjoTFgFgUiIWBmA+IOYGYFYiZgBgC1rUL
-        +2/vYTif7sfQA+Q6AbE5EGsCsQwQCwIxSBNCAxwwMAAAD4jK9BB+paQAAAAASUVORK5CYII=
+        +2/vYTif7sfQA+Q6AbE5EGsCsQwQCwIxSBNCAxwwMAAA5XPK6MVFeeIAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbBuild.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -761,17 +761,17 @@
   <data name="tsbRun.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="tsbRun.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -811,15 +811,15 @@
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI4SURBVDhPY6ALKOg7KBlTv1MMyiUS/P/PGFq/ii2meyd3
         UPXxTPfi/ZWuxYu4obK4wf///5niuk4rO+YfjjNJ2dlulLJtsnH6ntNGGXvvORbt9auvr2eCKsUE+/f/
-        Z6lf+9jJp/XKFr2UQ280Uvf+UUtb+081Y80/9dj9f02qj21x6zmqAVWOCZoPvrTKXnp3n2fzudvaWXt2
+        Z6lf+9jJp/XKFr2UQ280Uvf+UUtb/U81Y9U/9ej9f02qj21x6zmqAVWOCZoPvrTKXnp3n2fzudvaWXt2
         KyZt3qBecvC6SsP+v0rNZ/6rtxx9bdiwJz00NJQZqgUBsva/5EledrEspG9/h13BYlvVkF5ps5RZMmYz
         rs6SnnLxo1zLoVOyJasbZRIm6wKVM0J0IYGkOUd4A9pWWprGVghDhRjSVp3hN5t6pE62YWOlSNJEQxmL
         EE6oFE4AN3nVqv/M0RO38RkktooyhIayQYUJg3pgQCbufqHktuFRks2cw6HGaTNZoVIME7fd4iuYu1sp
         DUkMDurr/zPFrrur5rHsQa7xwkd7NObceazWc6DIZ+YmruJFz7krN73WKF59pzxx6u44rdB6TBeBFBpP
         ON2l3nHxo0Lrtf8K9Ze/qdWd3mTSeLnDpfPOnOiZD04mzTi3OaJpmSFUCxoAJhCZsm0RMvknH8jnnf2v
-        kHXqv2LW7n/KmWf+aCWf++ZcefxgWNUKd3t7exaoDkygkjuRTy5jT5ts8vFPstFrLkmFrdguE7J2pVLg
-        knK9wG4drPGPDuTTlmrIJW1YJhvanyBqHy8hZZotzGBsjBloOAHQFqnIWkuxoEwlqAgewMAAABER4ahU
-        G0ypAAAAAElFTkSuQmCC
+        kHXqv2LWzn/KmWf+aCWf++ZcefxgWNUKd3t7exaoDkygkjuRTy5jT5ts8vFPstFrLkmFrdguE7J2pVLg
+        knK9wG4drPGPDuTTlmrIJW1YJhvanyBqHy8hZZotzGBsjBloOAHQFqnIWkuxoEwlqAgewMAAAP3Y4aCN
+        /vGOAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsbUpdate.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -834,14 +834,14 @@
   <data name="tsbShowMain.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGhSURBVDhPlZNLSwJRGIatTf8hDFpIi2oheYHAIMg2QevW
-        tssuKLaYSMFMKoxAER1ata+NixYFEhgWRFDQP2ijeMPxMt7r7XyDM10c0T54mOFw3me+8zFH0y0tw8Aw
-        D2CSMcroKUOtVhOazeZHp9OBGo1GA+FwOMT2qkrMFK5WqxBFUaFUKqFYLCKTyUiSdDqNSCTSIxlhmGlD
-        vV4HE0lPolKpQBAEZLNZScC6BH2E53lZIpUioLAMCShQLpeRy+V+HYegTDf7LWi328oGeqdzy0fJ5/NS
-        J6lUqr/gLz8l1AnNo1AoDC8gZAkdh2ZCIlofWkC0Wi1pLiQhaO1fAuqCBEdJD/wJt7Q2UEAhGerAm+Dg
-        vnOBu92BK7Y1vKDeqIGLO7Afd+LiLYrz1xA2Lm1Y9M+/67Z1Y30FsiSQPITtag2uazv4lyBCzwE4YnZY
-        PKamkdPfKALW5qeaRGY1uozg0wkCjz6snFmhXRpfp7BcRvbniUzS9zJZTxdw/HAA370bc7uzNAO6vUpN
-        MIwMGowqFq8Jpj099M4ZTG9OkYBlNJovPUt3m+bqgQ8AAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGhSURBVDhPlZNLSwJRGIatTf8hDFpIi2oheWljtMg2QevW
+        tssuKLaY0MA0KoxAER1ata+NixYFEhgWRFDQP2ijeMPxMt7r7XyDM10c0T54mOFw3me+8w1H0y0tw8Aw
+        D2CSMcroKUOtVhPq9fpHp9OBGo1GA+FwOMT2qkrMFK5WqxBFUaFUKqFYLCKTyUiSdDqNSCTSIxlhmGkD
+        k6DZbEpPolKpQBAEZLNZScC6BH2E53lZIpUioLAMCShQLpeRy+V+HYegTDf7LWi328oGeqdzy0fJ5/NS
+        J6lUqr/gLz8l1AnNo1AoDC8gZAkdh2ZCIlofWkC0Wi1pLiQhaO1fAuqCBEfJfRwmPNLaQAGFZKgDb4KD
+        584F7nYHrtjW8IJ6owYu7oA77sTFWxTnryFsXNqw6J9/123rxvoKZEkg6Yftag2uazv4lyBCzwE4YnZY
+        3KamkdPfKAI26U81icxqdBnBpxMEHn1YObNCuzS+TmG5jOxfi0zS9zJZTxdw/HAA370Hc7uzNAO6vUpN
+        MIwMGowqFq8Jpj099M4ZTG9OkYBlNJovAhB3d6ieYEcAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbShowMain.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -857,7 +857,7 @@
     <value>190, 23</value>
   </data>
   <data name="toolStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 25</value>
+    <value>150, 25</value>
   </data>
   <data name="toolStrip.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1006,6 +1006,12 @@
   <data name="tsmiInserts.Text" xml:space="preserve">
     <value>Inserts</value>
   </data>
+  <data name="tsmiUpdate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="tsmiUpdate.Text" xml:space="preserve">
+    <value>Update project</value>
+  </data>
   <data name="tsmiNewLibrary.Size" type="System.Drawing.Size, System.Drawing">
     <value>161, 22</value>
   </data>
@@ -1017,12 +1023,6 @@
   </data>
   <data name="tsmiManageLibraries.Text" xml:space="preserve">
     <value>Manage libraries</value>
-  </data>
-  <data name="tsmiUpdate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="tsmiUpdate.Text" xml:space="preserve">
-    <value>Update project</value>
   </data>
   <data name="tsmiProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 20</value>
@@ -1528,6 +1528,12 @@
   <data name="&gt;&gt;tsmiProject.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tsmiUpdate.Name" xml:space="preserve">
+    <value>tsmiUpdate</value>
+  </data>
+  <data name="&gt;&gt;tsmiUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tsmiNewLibrary.Name" xml:space="preserve">
     <value>tsmiNewLibrary</value>
   </data>
@@ -1538,12 +1544,6 @@
     <value>tsmiManageLibraries</value>
   </data>
   <data name="&gt;&gt;tsmiManageLibraries.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsmiUpdate.Name" xml:space="preserve">
-    <value>tsmiUpdate</value>
-  </data>
-  <data name="&gt;&gt;tsmiUpdate.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiRun.Name" xml:space="preserve">

@@ -90,9 +90,9 @@
             this.tsmiNewScript = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewLibrary = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiManageLibraries = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiUpdate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBuild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
@@ -323,7 +323,7 @@
             // 
             this.tsmiOpenInExplorer.Name = "tsmiOpenInExplorer";
             resources.ApplyResources(this.tsmiOpenInExplorer, "tsmiOpenInExplorer");
-            this.tsmiOpenInExplorer.Click += new System.EventHandler(this.openProjectInExplorerToolStripMenuItem_Click);
+            this.tsmiOpenInExplorer.Click += new System.EventHandler(this.tsmiOpenInExplorer_Click);
             // 
             // ToolStripGeneral
             // 
@@ -593,11 +593,17 @@
             // tsmiProject
             // 
             this.tsmiProject.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiUpdate,
             this.tsmiNewLibrary,
-            this.tsmiManageLibraries,
-            this.tsmiUpdate});
+            this.tsmiManageLibraries});
             this.tsmiProject.Name = "tsmiProject";
             resources.ApplyResources(this.tsmiProject, "tsmiProject");
+            // 
+            // tsmiUpdate
+            // 
+            this.tsmiUpdate.Name = "tsmiUpdate";
+            resources.ApplyResources(this.tsmiUpdate, "tsmiUpdate");
+            this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
             // 
             // tsmiNewLibrary
             // 
@@ -610,12 +616,6 @@
             this.tsmiManageLibraries.Name = "tsmiManageLibraries";
             resources.ApplyResources(this.tsmiManageLibraries, "tsmiManageLibraries");
             this.tsmiManageLibraries.Click += new System.EventHandler(this.tsmiManageLibraries_Click);
-            // 
-            // tsmiUpdate
-            // 
-            this.tsmiUpdate.Name = "tsmiUpdate";
-            resources.ApplyResources(this.tsmiUpdate, "tsmiUpdate");
-            this.tsmiUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
             // 
             // tsmiRun
             // 
