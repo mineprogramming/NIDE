@@ -174,11 +174,13 @@ namespace NIDE
             }
             else if (extension == ".json")
             {
-                try
-                {
-                    new fJsonItem(GetTreeViewPath(e.Node)).Show();
-                }
-                catch { }
+                if(ProgramData.ProjectManager.projectType == ProjectType.MODPE)
+                    try
+                    {
+                        new fJsonItem(path).Show();
+                    }
+                    catch { OpenScript(path); }
+                else OpenScript(path);
             }
         }
 
