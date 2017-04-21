@@ -439,7 +439,7 @@ namespace NIDE
             string extension = Path.GetExtension(FileName).ToLower();
             if (extension == ".js")
                 InitJS();
-            else if (extension == ".nproj" || extension == ".includes" || extension == ".info" || extension == ".nlib")
+            else
                 InitOther();
             Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
         }
@@ -447,13 +447,14 @@ namespace NIDE
         private void InitJS()
         {
             fctbMain.Language = Language.JS;
+            Autocomplete.Enabled = true;
         }
 
         private void InitOther()
         {
             fctbMain.Language = Language.Custom;
+            Autocomplete.Enabled = false;
         }
-
 
         private void NewProjectDlg(bool closeIfNotChecked = false)
         {

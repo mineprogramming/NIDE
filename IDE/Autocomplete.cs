@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace NIDE
@@ -12,7 +11,24 @@ namespace NIDE
         static AutocompleteMenu menu;
         static DynamicCollection dynamic;
         static FastColoredTextBox textBox;
+        static List<string> none = new List<string>();
         public static Dictionary<string, List<string>> UserItems = new Dictionary<string, List<string>>();
+
+        private static bool enabled = false;
+        public static bool Enabled
+        {
+            get { return enabled; }
+            set
+            {
+                enabled = value;
+                if (value)
+                {
+                    dynamic = new DynamicCollection(menu, textBox);
+                    menu.Items.SetAutocompleteItems(dynamic);
+                }
+                else menu.Items.SetAutocompleteItems(none);
+            }
+        }
 
         public static IEnumerable<string> members
         {
@@ -86,9 +102,9 @@ namespace NIDE
                     var className = parts[parts.Length - 2];
                     foreach (var methodName in CoreEngine.GetListByClassName(className))
                         yield return methodName;
-                    if(Autocomplete.UserItems.ContainsKey(className))
-                        foreach(var methodName in Autocomplete.UserItems[className])
-                        yield return new MethodAutocompleteItem(methodName);
+                    if (Autocomplete.UserItems.ContainsKey(className))
+                        foreach (var methodName in Autocomplete.UserItems[className])
+                            yield return new MethodAutocompleteItem(methodName);
                 }
             }
             else

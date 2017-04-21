@@ -77,7 +77,7 @@ namespace NIDE
         List<int> lines = new List<int>();
 
         private delegate void Logs(string source, string message);
-        
+
         public void Clear()
         {
             lines.Clear();
