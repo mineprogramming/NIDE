@@ -336,18 +336,24 @@ namespace NIDE
 
         public void build()
         {
-            switch (projectType)
+            try
             {
-                case ProjectType.MODPE:
-                    BuildModPE();
-                    break;
-                case ProjectType.COREENGINE:
-                    BuildCoreEngine();
-                    break;
-                case ProjectType.BEHAVIOUR_PACK:
-                case ProjectType.TEXTURE_PACK:
-                    BuildPack();
-                    break;
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        BuildModPE();
+                        break;
+                    case ProjectType.COREENGINE:
+                        BuildCoreEngine();
+                        break;
+                    case ProjectType.BEHAVIOUR_PACK:
+                    case ProjectType.TEXTURE_PACK:
+                        BuildPack();
+                        break;
+                }
+            } catch(Exception e)
+            {
+                ProgramData.Log("Build", "Unable to build " + ProjectTypeToString(projectType) + "; " + e.Message);
             }
         }
 
@@ -433,15 +439,8 @@ namespace NIDE
 
             foreach (var file in OutFiles)
             {
-                try
-                {
-                    File.Copy(file, BuildPath + Path.GetFileName(file), true);
-                    File.Copy(file, OutPath + Path.GetFileName(file), true);
-                }
-                catch (Exception ex)
-                {
-                    ProgramData.Log("ProjectManager", ex.Message);
-                }
+                File.Copy(file, BuildPath + Path.GetFileName(file), true);
+                File.Copy(file, OutPath + Path.GetFileName(file), true);
             }
 
             using (var zip = new Ionic.Zip.ZipFile())
