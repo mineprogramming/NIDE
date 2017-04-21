@@ -4,3 +4,10 @@ copy-to-out:ModCore beta v5.js
 requires-library:nide/ModAPI
 requires-library:nide/ToolMaterial
 requires-library:nide/ToolType
+key-global:oreGeneration
+key-global:worldGeneration
+key-global:netherGeneration
+key-global:endGeneration
+key-global:random
+key-global:drop
+key-global:translate

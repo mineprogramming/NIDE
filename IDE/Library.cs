@@ -64,6 +64,9 @@ namespace NIDE
                     case "copy-to-out":
                         OutFiles.Add(path + "\\" + keyValue[1]);
                         break;
+                    case "key-global":
+                        Autocomplete.UserItems.Add(keyValue[1], new List<string>());
+                        break;
                 }
             }
         }
