@@ -345,26 +345,48 @@ namespace NIDE
 
         private void InitProject()
         {
+            tsmiInserts.Enabled = true;
             tsmiNewItem.Enabled = true;
-            tsmiNewScript.Enabled = true;
-            tsmiNewTexture.Enabled = true;
             tsmiNewLibrary.Enabled = true;
+            tsmiManageLibraries.Enabled = true;
             tsmiBuild.Enabled = true;
-            tsbBuild.Enabled = true;
+            tsmiBuildAndPush.Enabled = true;
+            tsbBuildPush.Enabled = true;
+            tsbPush.Enabled = true;
             tvFolders.ContextMenuStrip = cmsTreeView;
             UpdateProject();
             switch (ProgramData.ProjectManager.projectType)
             {
                 case ProjectType.MODPE:
-                    tsmiNewItem.Enabled = true;
-                    tsmiNewLibrary.Enabled = true;
-                    tsmiPush.Enabled = true;
                     break;
                 case ProjectType.COREENGINE:
                     tsmiNewItem.Enabled = false;
                     tsmiNewLibrary.Enabled = false;
+                    tsmiManageLibraries.Enabled = false;
                     tsmiPush.Enabled = false;
+                    tsmiBuildAndPush.Enabled = false;
+                    tsbBuildPush.Enabled = false;
+                    tsbPush.Enabled = false;
                     break;
+                case ProjectType.BEHAVIOUR_PACK:
+                    tsmiInserts.Enabled = false;
+                    tsmiNewLibrary.Enabled = false;
+                    tsmiManageLibraries.Enabled = false;
+                    tsmiPush.Enabled = false;
+                    tsmiBuildAndPush.Enabled = false;
+                    tsbBuildPush.Enabled = false;
+                    tsbPush.Enabled = false;
+                    break;
+                case ProjectType.TEXTURE_PACK:
+                    tsmiInserts.Enabled = false;
+                    tsmiNewLibrary.Enabled = false;
+                    tsmiManageLibraries.Enabled = false;
+                    tsmiPush.Enabled = false;
+                    tsmiBuildAndPush.Enabled = false;
+                    tsbBuildPush.Enabled = false;
+                    tsbPush.Enabled = false;
+                    break;
+
             }
         }
 
@@ -372,7 +394,8 @@ namespace NIDE
         {
             tvFolders.Nodes.Clear();
             tvFolders.Nodes.Add(ProgramData.ProjectManager.ProjectName);
-            tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
+            if(ProgramData.ProjectManager.projectType == ProjectType.MODPE)
+                tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
             DirectoryRecursive(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.ProjectManager.SourceCodePath));
             tvFolders.Nodes[0].Expand();
         }

@@ -96,7 +96,7 @@
             this.tsmiBuild = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiPush = new System.Windows.Forms.ToolStripMenuItem();
-            this.buildAndPushToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiBuildAndPush = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -614,7 +614,7 @@
             this.tsmiBuild,
             this.tsmiRunJs,
             this.tsmiPush,
-            this.buildAndPushToolStripMenuItem});
+            this.tsmiBuildAndPush});
             this.tsmiRun.Name = "tsmiRun";
             resources.ApplyResources(this.tsmiRun, "tsmiRun");
             // 
@@ -636,11 +636,11 @@
             resources.ApplyResources(this.tsmiPush, "tsmiPush");
             this.tsmiPush.Click += new System.EventHandler(this.tsmiPush_Click);
             // 
-            // buildAndPushToolStripMenuItem
+            // tsmiBuildAndPush
             // 
-            this.buildAndPushToolStripMenuItem.Name = "buildAndPushToolStripMenuItem";
-            resources.ApplyResources(this.buildAndPushToolStripMenuItem, "buildAndPushToolStripMenuItem");
-            this.buildAndPushToolStripMenuItem.Click += new System.EventHandler(this.tsbBuildPush_Click);
+            this.tsmiBuildAndPush.Name = "tsmiBuildAndPush";
+            resources.ApplyResources(this.tsmiBuildAndPush, "tsmiBuildAndPush");
+            this.tsmiBuildAndPush.Click += new System.EventHandler(this.tsbBuildPush_Click);
             // 
             // tsmiOptions
             // 
@@ -797,7 +797,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewLibrary;
         private System.Windows.Forms.ToolStripMenuItem tsmiManageLibraries;
         private System.Windows.Forms.ToolStripButton tsbBuildPush;
-        private System.Windows.Forms.ToolStripMenuItem buildAndPushToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmiBuildAndPush;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
         private System.Windows.Forms.ToolStripButton tsbUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmiUpdate;
