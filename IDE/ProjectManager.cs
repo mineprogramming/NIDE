@@ -37,6 +37,8 @@ namespace NIDE
         private string projectName;
         private List<Library> Libraries = new List<Library>();
         private List<string> OutFiles = new List<string>();
+        public string ProjectName { get { return projectName; } }
+
 
         public string SourceCodePath
         {
@@ -141,8 +143,8 @@ namespace NIDE
         }
         private string OutPath { get { return path + OUT_PATH; } }
 
-        public string ProjectName { get { return projectName; } }
 
+        //Constructors and project working
         public ProjectManager(string projectFile)
         {
             this.projectFile = projectFile;
@@ -159,7 +161,7 @@ namespace NIDE
                             throw new Exception("Api level is not supported");
                         break;
                     case "project-type":
-                        projectType = StringToProjectType(keyValue[1]);
+                        projectType = Util.StringToProjectType(keyValue[1]);
                         break;
                 }
             }
@@ -194,26 +196,10 @@ namespace NIDE
             projectFile = path + "\\" + projectName + ".nproj";
             string nproj = string.Format(
                 "nide-api:{0}\nproject-name:{1}\nproject-version:1.0.0\nproject-type:{2}\nsettings-compress:false",
-                API_LEVEL, projectName, ProjectTypeToString(type));
+                API_LEVEL, projectName, Util.ProjectTypeToString(type));
             File.WriteAllText(projectFile, nproj);
         }
-
         
-
-        void CopyDirectory(string FromDir, string ToDir)
-        {
-            Directory.CreateDirectory(ToDir);
-            foreach (string s1 in Directory.GetFiles(FromDir))
-            {
-                string s2 = ToDir + "\\" + Path.GetFileName(s1);
-                File.Copy(s1, s2);
-            }
-            foreach (string s in Directory.GetDirectories(FromDir))
-            {
-                CopyDirectory(s, ToDir + "\\" + Path.GetFileName(s));
-            }
-        }
-
         public ProjectManager(string source, string path, string projectName) : this(path, ProjectType.MODPE, projectName)
         {
             using (ZipArchive archive = ZipFile.OpenRead(source))
@@ -236,6 +222,7 @@ namespace NIDE
                 }
             }
         }
+
 
         public void UpdateNlib()
         {
@@ -275,6 +262,8 @@ namespace NIDE
             }
         }
 
+
+        //Inserts
         public void AddScript(string name)
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
@@ -297,6 +286,8 @@ namespace NIDE
             png.Save(TexturePath);
         }
 
+
+        //Libraries
         public void AddLibrary(string name)
         {
             string path = LibrariesPath + name + "\\";
@@ -326,29 +317,6 @@ namespace NIDE
             UpdateNlib();
         }
 
-        public void build()
-        {
-            try
-            {
-                switch (projectType)
-                {
-                    case ProjectType.MODPE:
-                        BuildModPE();
-                        break;
-                    case ProjectType.COREENGINE:
-                        BuildCoreEngine();
-                        break;
-                    case ProjectType.BEHAVIOUR_PACK:
-                    case ProjectType.TEXTURE_PACK:
-                        BuildPack();
-                        break;
-                }
-            } catch(Exception e)
-            {
-                ProgramData.Log("Build", "Unable to build " + ProjectTypeToString(projectType) + "; " + e.Message);
-            }
-        }
-        
         public bool LibraryInstalled(string name)
         {
             foreach (var library in Libraries)
@@ -357,8 +325,9 @@ namespace NIDE
             }
             return false;
         }
+        
 
-
+        //Filesystems
         private void CreateModPEFileSystem()
         {
             foreach (string item in new string[]{
@@ -401,14 +370,39 @@ namespace NIDE
 
         private void CreateResourcePackFileSystem()
         {
-            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_texture", path + SOURCE_CODE_PATH);
+            Util.CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_texture", path + SOURCE_CODE_PATH);
         }
 
         private void CreateBehaviourPackFileSystem()
         {
-            CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_behaviour", path + SOURCE_CODE_PATH);
+            Util.CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_behaviour", path + SOURCE_CODE_PATH);
         }
 
+
+        //Build
+        public void build()
+        {
+            try
+            {
+                switch (projectType)
+                {
+                    case ProjectType.MODPE:
+                        BuildModPE();
+                        break;
+                    case ProjectType.COREENGINE:
+                        BuildCoreEngine();
+                        break;
+                    case ProjectType.BEHAVIOUR_PACK:
+                    case ProjectType.TEXTURE_PACK:
+                        BuildPack();
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                ProgramData.Log("Build", "Unable to build " + Util.ProjectTypeToString(projectType) + "; " + e.Message);
+            }
+        }
 
         private void BuildModPE()
         {
@@ -472,40 +466,6 @@ namespace NIDE
                 zip.Save(path + "\\" + ProjectName + ".mcpack");
             }
         }
-
-
-        private string ProjectTypeToString(ProjectType type)
-        {
-            switch (type)
-            {
-                case ProjectType.MODPE:
-                    return "MODPE";
-                case ProjectType.COREENGINE:
-                    return "COREENGINE";
-                case ProjectType.BEHAVIOUR_PACK:
-                    return "BEHAVIOUR_PACK";
-                case ProjectType.TEXTURE_PACK:
-                    return "TEXTURE_PACK";
-                default:
-                    return null;
-            }
-        }
-
-        private ProjectType StringToProjectType(string type)
-        {
-            switch (type)
-            {
-                case "MODPE":
-                    return ProjectType.MODPE;
-                case "COREENGINE":
-                    return ProjectType.COREENGINE;
-                case "BEHAVIOUR_PACK":
-                    return ProjectType.BEHAVIOUR_PACK;
-                case "TEXTURE_PACK":
-                    return ProjectType.TEXTURE_PACK;
-                default:
-                    throw new ArgumentException("Unknown project type " + type);
-            }
-        }
+        
     }
 }
