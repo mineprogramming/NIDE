@@ -397,8 +397,10 @@ namespace NIDE
         {
             tvFolders.Nodes.Clear();
             tvFolders.Nodes.Add(ProgramData.ProjectManager.ProjectName);
-            if(ProgramData.ProjectManager.projectType == ProjectType.MODPE)
+            if (ProgramData.ProjectManager.projectType == ProjectType.MODPE)
+            {
                 tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
+            }
             DirectoryRecursive(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.ProjectManager.SourceCodePath));
             tvFolders.Nodes[0].Expand();
         }
