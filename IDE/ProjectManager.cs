@@ -344,9 +344,21 @@ namespace NIDE
                 case ProjectType.COREENGINE:
                     BuildCoreEngine();
                     break;
+                case ProjectType.BEHAVIOUR_PACK:
+                case ProjectType.TEXTURE_PACK:
+                    BuildPack();
+                    break;
             }
         }
 
+        private void BuildPack()
+        {
+            using (var zip = new Ionic.Zip.ZipFile())
+            {
+                zip.AddDirectory(path + SOURCE_CODE_PATH);
+                zip.Save(path + "\\" + ProjectName + ".mcpack");
+            }
+        }
 
         public bool LibraryInstalled(string name)
         {
