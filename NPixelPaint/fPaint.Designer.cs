@@ -45,7 +45,10 @@
             this.tsbRectangle = new System.Windows.Forms.ToolStripButton();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.themeColorPicker1 = new System.Windows.Forms.ThemeColorPicker();
+            this.DrawPanel = new NPixelPaint.PanelEx();
+            this.panel = new System.Windows.Forms.Panel();
             this.tsMain.SuspendLayout();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // tsMain
@@ -66,9 +69,9 @@
             this.tsbRectangle});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
-            this.tsMain.Size = new System.Drawing.Size(335, 25);
+            this.tsMain.Size = new System.Drawing.Size(597, 25);
             this.tsMain.TabIndex = 0;
-            this.tsMain.Text = "toolStrip1";
+            this.tsMain.Text = "toolStrip";
             // 
             // tsbOpen
             // 
@@ -214,19 +217,44 @@
             this.themeColorPicker1.Size = new System.Drawing.Size(174, 166);
             this.themeColorPicker1.TabIndex = 0;
             // 
-            // fPngEditor
+            // DrawPanel
+            // 
+            this.DrawPanel.AutoScroll = true;
+            this.DrawPanel.BackgroundImage = global::NPixelPaint.Properties.Resources.background;
+            this.DrawPanel.Location = new System.Drawing.Point(0, 0);
+            this.DrawPanel.Name = "DrawPanel";
+            this.DrawPanel.Size = new System.Drawing.Size(335, 335);
+            this.DrawPanel.TabIndex = 1;
+            this.DrawPanel.Click += new System.EventHandler(this.DrawPanel_Click);
+            this.DrawPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.DrawPanel_Paint);
+            this.DrawPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DrawPanel_MouseDown);
+            this.DrawPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DrawPanel_MouseMove);
+            this.DrawPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.DrawPanel_MouseUp);
+            // 
+            // panel
+            // 
+            this.panel.AutoScroll = true;
+            this.panel.Controls.Add(this.DrawPanel);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(0, 25);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(597, 448);
+            this.panel.TabIndex = 2;
+            // 
+            // fPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 360);
+            this.ClientSize = new System.Drawing.Size(597, 473);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.tsMain);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "fPngEditor";
+            this.Name = "fPaint";
             this.Text = "N Pixel Paint";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fPngEditor_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fPngEditor_FormClosed);
             this.tsMain.ResumeLayout(false);
             this.tsMain.PerformLayout();
+            this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,5 +277,7 @@
         private System.Windows.Forms.ToolStripButton tsbRedo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton tsbRectangle;
+        private PanelEx DrawPanel;
+        private System.Windows.Forms.Panel panel;
     }
 }

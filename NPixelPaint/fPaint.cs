@@ -1,74 +1,87 @@
-﻿using NPixelPaint.Properties;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using Keyboard = System.Windows.Input.Keyboard;
+using Key = System.Windows.Input.Key;
+using KeyStates = System.Windows.Input.KeyStates;
 
 namespace NPixelPaint
 {
     public partial class fPaint : Form
     {
         string path;
-        Color[,] pixels = new Color[16, 16];
+        int width;
+        int height;
+
+        int scale = 21;
+
+        Color[,] pixels;
         Bitmap png;
         bool saved = true;
-        bool _16_16 = true;
         bool mouseDown = false;
+
         Random rnd;
         Point startPoint;
+
         List<Color[,]> UndoBuffer = new List<Color[,]>();
         List<Color[,]> RedoBuffer = new List<Color[,]>();
 
-        private PanelEx DrawPanel;
 
         public fPaint(string path)
         {
-            DrawPanel = new PanelEx();
-            DrawPanel.Dock = DockStyle.Fill;
-            DrawPanel.BackgroundImage = Resources.background;
-            DrawPanel.Paint += DrawPanel_Paint;
-            DrawPanel.Click += DrawPanel_Click;
-            DrawPanel.MouseMove += DrawPanel_MouseMove;
-            DrawPanel.MouseDown += DrawPanel_MouseDown;
-            DrawPanel.MouseUp += DrawPanel_MouseUp;
-            Controls.Add(DrawPanel);
             InitializeComponent();
+            panel.MouseWheel += DrawPanel_MouseWheel;
             rnd = new Random();
             this.path = path;
             try
             {
                 png = new Bitmap(path);
-                if (png.Height == 16 && png.Width == 16)
+                width = png.Width;
+                height = png.Height;
+                AdjustDrawPanel();
+                pixels = new Color[width, height];
+                for (int i = 0; i < height; i++)
                 {
-                    for (int i = 0; i < 16; i++)
+                    for (int j = 0; j < width; j++)
                     {
-                        for (int j = 0; j < 16; j++)
-                        {
-                            pixels[i, j] = png.GetPixel(i, j);
-                        }
+                        pixels[i, j] = png.GetPixel(i, j);
                     }
-                }
-                else
-                {
-                    _16_16 = false;
                 }
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 png?.Dispose();
-                png = new Bitmap(16, 16);
+                png = new Bitmap(width, height);
             }
         }
 
-        public new void ShowDialog()
+        private void AdjustDrawPanel()
         {
-            if (_16_16)
-                base.ShowDialog();
-            else
-                Process.Start(path);
+            DrawPanel.Width = scale * width - 1;
+            DrawPanel.Height = scale * height - 1;
         }
 
+        private void DrawPanel_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if ((Keyboard.GetKeyStates(Key.LeftCtrl) & KeyStates.Down) > 0)
+            {
+                scale += e.Delta / 100;
+                if (scale < 2) scale = 2;
+                if (scale > 40) scale = 40;
+                AdjustDrawPanel();
+                DrawPanel.Refresh();
+            }
+        }
+
+        private void fPngEditor_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            png.Dispose();
+        }
+
+
+        //Tools
         private void tsbDraw_Click(object sender, EventArgs e)
         {
             UncheckAll();
@@ -115,6 +128,8 @@ namespace NPixelPaint
             tsbRectangle.Checked = false;
         }
 
+
+        //Fileworking
         private void fPngEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!saved)
@@ -139,10 +154,10 @@ namespace NPixelPaint
         private void save()
         {
             png.Dispose();
-            png = new Bitmap(16, 16);
-            for (int i = 0; i < 16; i++)
+            png = new Bitmap(width, height);
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < 16; j++)
+                for (int j = 0; j < height; j++)
                 {
                     png.SetPixel(i, j, pixels[i, j]);
                 }
@@ -167,11 +182,11 @@ namespace NPixelPaint
         private void dlgOpen_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Bitmap bmp = new Bitmap(dlgOpen.FileName);
-            if (bmp.Height == 16 && bmp.Width == 16)
+            if (bmp.Width == width && bmp.Height == height)
             {
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < width; i++)
                 {
-                    for (int j = 0; j < 16; j++)
+                    for (int j = 0; j < height; j++)
                     {
                         pixels[i, j] = bmp.GetPixel(i, j);
                     }
@@ -179,72 +194,29 @@ namespace NPixelPaint
             }
         }
 
+
+        //Painting
         private void DrawPanel_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             Pen coordsPen = new Pen(Color.LightGray);
-            for (var i = 1; i < 16; i++)
+            for (int i = 0; i < width; i++)
             {
-                int pos = i * 21;
-                g.DrawLine(coordsPen, 0, pos, 335, pos);
-                e.Graphics.DrawLine(coordsPen, pos, 0, pos, 335);
-            }
-            for (int i = 0; i < 16; i++)
-            {
-                for (int j = 0; j < 16; j++)
+                for (int j = 0; j < height; j++)
                 {
-                    g.FillRectangle(new SolidBrush(pixels[i, j]), i * 21 + 1, j * 21 + 1, 20, 20);
+                    g.FillRectangle(new SolidBrush(pixels[i, j]), i * scale + 1, j * scale + 1, scale, scale);
                 }
             }
-        }
 
-
-        private void DrawPanel_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseDown = false;
-        }
-
-        private void DrawPanel_MouseDown(object sender, MouseEventArgs e)
-        {
-            BackupForUndo();
-            mouseDown = true;
-            startPoint = new Point(GetCursorX(), GetCursorY());
-            DrawPanel_MouseMove(sender, e);
-        }
-
-        private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (mouseDown)
+            for (var i = 1; i < width; i++)
             {
-                saved = false;
-                int x = GetCursorX();
-                int y = GetCursorY();
-                if (tsbDraw.Checked)
-                    pixels[x, y] = tsbColorPicker.Color;
-                else if (tsbClear.Checked)
-                    pixels[x, y] = Color.Transparent;
-                else if (tsbRectangle.Checked)
-                {
-                    for (int i = 0; i < 16; i++)
-                    {
-                        for (int j = 0; j < 16; j++)
-                        {
-                            pixels[i, j] = UndoBuffer[UndoBuffer.Count - 1][i, j];
-                        }
-                    }
-                    int sx = Math.Min(startPoint.X, x);
-                    int fx = Math.Max(startPoint.X, x);
-                    int sy = Math.Min(startPoint.Y, y);
-                    int fy = Math.Max(startPoint.Y, y);
-                    for (int i = sx; i <= fx; i++)
-                    {
-                        for (int j = sy; j <= fy; j++)
-                        {
-                            pixels[i, j] = tsbColorPicker.Color;
-                        }
-                    }
-                }
-                DrawPanel.Refresh();
+                int pos = i * scale;
+                g.DrawLine(coordsPen, pos, 0, pos, DrawPanel.Width);
+            }
+            for (var i = 1; i < height; i++)
+            {
+                int pos = i * scale;
+                g.DrawLine(coordsPen, 0, pos, DrawPanel.Height, pos);
             }
         }
 
@@ -270,6 +242,56 @@ namespace NPixelPaint
             }
         }
 
+        private void DrawPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            BackupForUndo();
+            mouseDown = true;
+            startPoint = new Point(GetCursorX(), GetCursorY());
+            DrawPanel_MouseMove(sender, e);
+        }
+
+        private void DrawPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                saved = false;
+                int x = GetCursorX();
+                int y = GetCursorY();
+                if (tsbDraw.Checked)
+                    pixels[x, y] = tsbColorPicker.Color;
+                else if (tsbClear.Checked)
+                    pixels[x, y] = Color.Transparent;
+                else if (tsbRectangle.Checked)
+                {
+                    for (int i = 0; i < width; i++)
+                    {
+                        for (int j = 0; j < height; j++)
+                        {
+                            pixels[i, j] = UndoBuffer[UndoBuffer.Count - 1][i, j];
+                        }
+                    }
+                    int sx = Math.Min(startPoint.X, x);
+                    int fx = Math.Max(startPoint.X, x);
+                    int sy = Math.Min(startPoint.Y, y);
+                    int fy = Math.Max(startPoint.Y, y);
+                    for (int i = sx; i <= fx; i++)
+                    {
+                        for (int j = sy; j <= fy; j++)
+                        {
+                            pixels[i, j] = tsbColorPicker.Color;
+                        }
+                    }
+                }
+                DrawPanel.Refresh();
+            }
+        }
+
+        private void DrawPanel_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
+        }
+
+
         private void TexturizeRecursive(int x, int y)
         {
             Color prevColor = pixels[x, y];
@@ -290,11 +312,11 @@ namespace NPixelPaint
             pixels[x, y] = Color.FromArgb(A, R, G, B);
             if (x > 0 && pixels[x - 1, y] == prevColor)
                 TexturizeRecursive(x - 1, y);
-            if (x < 15 && pixels[x + 1, y] == prevColor)
+            if (x < width - 1 && pixels[x + 1, y] == prevColor)
                 TexturizeRecursive(x + 1, y);
             if (y > 0 && pixels[x, y - 1] == prevColor)
                 TexturizeRecursive(x, y - 1);
-            if (y < 15 && pixels[x, y + 1] == prevColor)
+            if (y < height - 1 && pixels[x, y + 1] == prevColor)
                 TexturizeRecursive(x, y + 1);
         }
 
@@ -306,18 +328,15 @@ namespace NPixelPaint
             pixels[x, y] = tsbColorPicker.Color;
             if (x > 0 && pixels[x - 1, y] == prevColor)
                 FillRecursive(x - 1, y);
-            if (x < 15 && pixels[x + 1, y] == prevColor)
+            if (x < width - 1 && pixels[x + 1, y] == prevColor)
                 FillRecursive(x + 1, y);
             if (y > 0 && pixels[x, y - 1] == prevColor)
                 FillRecursive(x, y - 1);
-            if (y < 15 && pixels[x, y + 1] == prevColor)
+            if (y < height - 1 && pixels[x, y + 1] == prevColor)
                 FillRecursive(x, y + 1);
         }
 
-        private void fPngEditor_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            png.Dispose();
-        }
+
 
         private void tsbUndo_Click(object sender, EventArgs e)
         {
@@ -345,10 +364,10 @@ namespace NPixelPaint
 
         private void BackupForUndo()
         {
-            var n = new Color[16, 16];
-            for (int i = 0; i < 16; i++)
+            var n = new Color[width, height];
+            for (int i = 0; i < width; i++)
             {
-                for (int j = 0; j < 16; j++)
+                for (int j = 0; j < height; j++)
                 {
                     n[i, j] = pixels[i, j];
                 }
@@ -359,31 +378,22 @@ namespace NPixelPaint
             tsbUndo.Enabled = true;
         }
 
+
         int GetCursorX()
         {
             int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
-            int x = cursorX / 21;
+            int x = cursorX / scale;
             if (x < 0) x = 0;
-            if (x > 15) x = 15;
+            if (x > width - 1) x = width - 1;
             return x;
         }
         int GetCursorY()
         {
             int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
-            int y = cursorY / 21;
+            int y = cursorY / scale;
             if (y < 0) y = 0;
-            if (y > 15) y = 15;
+            if (y > height - 1) y = height - 1;
             return y;
-        }
-
-    }
-
-    class PanelEx : Panel
-    {
-        public PanelEx()
-        {
-            this.DoubleBuffered = true;
-            this.ResizeRedraw = true;
         }
     }
 }
