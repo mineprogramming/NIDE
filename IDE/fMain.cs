@@ -49,10 +49,11 @@ namespace NIDE
                     {
                         OpenProject(args[0]);
                     }
-                    else if (Path.GetExtension(args[0]).ToLower() == ".js")
+                    else if (Constants.TextExtensions.Contains(Path.GetExtension(args[0]).ToLower()))
                     {
                         InitFileOnly(args[0]);
                     }
+                    else MessageBox.Show(args[0], "Unsupported file type!");
                 }
                 catch (Exception ex)
                 {
@@ -104,7 +105,7 @@ namespace NIDE
             }
             catch { ShowStartWindow(); }
         }
-        
+
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (fctbMain.Language == Language.JS && ProgramData.ProjectManager != null)
@@ -123,7 +124,7 @@ namespace NIDE
             if (!CanChangeFile()) e.Cancel = true;
             RegisterWorker.Save(this);
         }
-        
+
 
         //Connections
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
@@ -334,6 +335,8 @@ namespace NIDE
             tsbBuild.Enabled = false;
             tsbPush.Enabled = false;
             tsbBuildPush.Enabled = false;
+            tsbUpdate.Enabled = false;
+            tsbShowMain.Enabled = false;
             tvFolders.ContextMenuStrip = null;
         }
 
@@ -370,7 +373,8 @@ namespace NIDE
                 else
                     InitOther();
                 Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Log("FileSystem", "Unable to open script! " + e.Message);
             }
@@ -465,7 +469,7 @@ namespace NIDE
             }
             else return true;
         }
-        
+
 
         //Log and errors
         public delegate void AddMessageDelegate(string source, string message);
@@ -546,11 +550,7 @@ namespace NIDE
                 }
             }
             string extension = Path.GetExtension(path).ToLower();
-            if (Constants.TextExtensions.Contains(extension))
-            {
-                OpenScript(path);
-            }
-            else if (extension == ".png")
+            if (extension == ".png")
             {
                 Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
             }
@@ -563,6 +563,10 @@ namespace NIDE
                     }
                     catch { OpenScript(path); }
                 else OpenScript(path);
+            }
+            else if (Constants.TextExtensions.Contains(extension))
+            {
+                OpenScript(path);
             }
         }
 
@@ -730,6 +734,6 @@ namespace NIDE
         {
             Process.Start("links.html");
         }
-        
+
     }
 }
