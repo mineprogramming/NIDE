@@ -365,7 +365,7 @@ namespace NIDE
             {
                 ProgramData.file = FileName;
                 tsslFile.Text = Path.GetFileName(FileName);
-                fctbMain.OpenFile(FileName);
+                fctbMain.OpenFile(FileName, Encoding.UTF8);
                 fctbMain.ReadOnly = false;
                 string extension = Path.GetExtension(FileName).ToLower();
                 if (extension == ".js")
