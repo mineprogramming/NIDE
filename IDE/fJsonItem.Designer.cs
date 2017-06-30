@@ -102,6 +102,8 @@
             this.throwable_name = new System.Windows.Forms.TextBox();
             this.tbFilename = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.label34 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.item_id)).BeginInit();
             this.tcMain.SuspendLayout();
             this.tpItem.SuspendLayout();
@@ -176,10 +178,10 @@
             this.tcMain.Controls.Add(this.tpFood);
             this.tcMain.Controls.Add(this.tpArmor);
             this.tcMain.Controls.Add(this.tpThrowable);
-            this.tcMain.Location = new System.Drawing.Point(12, 12);
+            this.tcMain.Location = new System.Drawing.Point(12, 38);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
-            this.tcMain.Size = new System.Drawing.Size(349, 168);
+            this.tcMain.Size = new System.Drawing.Size(349, 175);
             this.tcMain.TabIndex = 8;
             // 
             // tpItem
@@ -197,7 +199,7 @@
             this.tpItem.Location = new System.Drawing.Point(4, 22);
             this.tpItem.Name = "tpItem";
             this.tpItem.Padding = new System.Windows.Forms.Padding(3);
-            this.tpItem.Size = new System.Drawing.Size(341, 142);
+            this.tpItem.Size = new System.Drawing.Size(341, 149);
             this.tpItem.TabIndex = 0;
             this.tpItem.Text = "Item";
             this.tpItem.UseVisualStyleBackColor = true;
@@ -281,7 +283,7 @@
             this.tpBlock.Location = new System.Drawing.Point(4, 22);
             this.tpBlock.Name = "tpBlock";
             this.tpBlock.Padding = new System.Windows.Forms.Padding(3);
-            this.tpBlock.Size = new System.Drawing.Size(341, 142);
+            this.tpBlock.Size = new System.Drawing.Size(341, 149);
             this.tpBlock.TabIndex = 1;
             this.tpBlock.Text = "Block";
             this.tpBlock.UseVisualStyleBackColor = true;
@@ -485,7 +487,7 @@
             this.tpFood.Controls.Add(this.food_name);
             this.tpFood.Location = new System.Drawing.Point(4, 22);
             this.tpFood.Name = "tpFood";
-            this.tpFood.Size = new System.Drawing.Size(341, 142);
+            this.tpFood.Size = new System.Drawing.Size(341, 149);
             this.tpFood.TabIndex = 2;
             this.tpFood.Text = "Food";
             this.tpFood.UseVisualStyleBackColor = true;
@@ -627,7 +629,7 @@
             this.tpArmor.Controls.Add(this.armor_name);
             this.tpArmor.Location = new System.Drawing.Point(4, 22);
             this.tpArmor.Name = "tpArmor";
-            this.tpArmor.Size = new System.Drawing.Size(341, 142);
+            this.tpArmor.Size = new System.Drawing.Size(341, 149);
             this.tpArmor.TabIndex = 3;
             this.tpArmor.Text = "Armor";
             this.tpArmor.UseVisualStyleBackColor = true;
@@ -805,7 +807,7 @@
             this.tpThrowable.Location = new System.Drawing.Point(4, 22);
             this.tpThrowable.Name = "tpThrowable";
             this.tpThrowable.Padding = new System.Windows.Forms.Padding(3);
-            this.tpThrowable.Size = new System.Drawing.Size(341, 142);
+            this.tpThrowable.Size = new System.Drawing.Size(341, 149);
             this.tpThrowable.TabIndex = 4;
             this.tpThrowable.Text = "Throwable";
             this.tpThrowable.UseVisualStyleBackColor = true;
@@ -907,14 +909,14 @@
             // 
             // tbFilename
             // 
-            this.tbFilename.Location = new System.Drawing.Point(254, 24);
+            this.tbFilename.Location = new System.Drawing.Point(80, 12);
             this.tbFilename.Name = "tbFilename";
             this.tbFilename.Size = new System.Drawing.Size(100, 20);
             this.tbFilename.TabIndex = 10;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(286, 182);
+            this.button1.Location = new System.Drawing.Point(286, 219);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 11;
@@ -922,11 +924,32 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.tsbSave_Click);
             // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(22, 15);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(52, 13);
+            this.label34.TabIndex = 12;
+            this.label34.Text = "Filename:";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(205, 219);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // fJsonItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 208);
+            this.ClientSize = new System.Drawing.Size(373, 254);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.label34);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tbFilename);
             this.Controls.Add(this.tcMain);
@@ -1046,5 +1069,7 @@
         private System.Windows.Forms.TextBox throwable_name;
         private System.Windows.Forms.TextBox tbFilename;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
