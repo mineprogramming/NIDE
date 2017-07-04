@@ -4,7 +4,7 @@ namespace NIDE
 {
     static class ProgramData
     {
-        public const int PROGRAM_VERSION = 3;
+        public const int PROGRAM_VERSION = 4;
 
         public static void Log(string source, string message)
         {
