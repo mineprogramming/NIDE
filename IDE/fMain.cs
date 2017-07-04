@@ -326,6 +326,7 @@ namespace NIDE
                     tsbPush.Enabled = false;
                     break;
             }
+            Text = ProgramData.ProjectManager.ProjectName + " - NIDE 2017v" + ProgramData.PROGRAM_VERSION;
         }
 
         private void InitFileOnly(string filename)
@@ -345,6 +346,7 @@ namespace NIDE
             tsbUpdate.Enabled = false;
             tsbShowMain.Enabled = false;
             tvFolders.ContextMenuStrip = null;
+            Text = ProgramData.file + " - NIDE 2017v" + ProgramData.PROGRAM_VERSION;
         }
 
         private void UpdateProject()
