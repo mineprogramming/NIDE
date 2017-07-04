@@ -361,8 +361,11 @@ namespace NIDE
 
         private void tsbShowMain_Click(object sender, EventArgs e)
         {
-            OpenScript(ProgramData.ProjectManager.BuildPath + "main.js");
-            fctbMain.ReadOnly = true;
+            if (CanChangeFile())
+            {
+                OpenScript(ProgramData.ProjectManager.BuildPath + "main.js");
+                fctbMain.ReadOnly = true;
+            }
         }
 
 
@@ -460,19 +463,16 @@ namespace NIDE
 
         private bool CanChangeFile()
         {
-            if (!saved && fctbMain.Text != "")
+            if (fctbMain.ReadOnly || saved || fctbMain.Text == "") return true;
+            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
             {
-                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
-                    return true;
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    return false;
-                }
-                else return true;
+                fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+                return true;
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                return false;
             }
             else return true;
         }
@@ -543,19 +543,7 @@ namespace NIDE
             string path = GetTreeViewPath(e.Node);
             if (Directory.Exists(path))
                 return;
-            if (!saved)
-            {
-                var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
-                if (result == DialogResult.Yes)
-                {
-                    fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
-                    saved = true;
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    return;
-                }
-            }
+            if (!CanChangeFile()) return;
             string extension = Path.GetExtension(path).ToLower();
             if (extension == ".png")
             {
