@@ -39,7 +39,9 @@
             this.ctsmiFind = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
-            this.console = new System.Windows.Forms.TextBox();
+            this.splitContainerLogs = new System.Windows.Forms.SplitContainer();
+            this.errors = new System.Windows.Forms.TextBox();
+            this.logger = new System.Windows.Forms.TextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
@@ -107,6 +109,8 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.gbErrors = new System.Windows.Forms.GroupBox();
+            this.gbLogger = new System.Windows.Forms.GroupBox();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -116,11 +120,17 @@
             this.mainSplit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
             this.cmsMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerLogs)).BeginInit();
+            this.splitContainerLogs.Panel1.SuspendLayout();
+            this.splitContainerLogs.Panel2.SuspendLayout();
+            this.splitContainerLogs.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
             this.ToolStripGeneral.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
+            this.gbErrors.SuspendLayout();
+            this.gbLogger.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -151,7 +161,7 @@
             // 
             // mainSplit.Panel2
             // 
-            this.mainSplit.Panel2.Controls.Add(this.console);
+            this.mainSplit.Panel2.Controls.Add(this.splitContainerLogs);
             // 
             // fctbMain
             // 
@@ -227,11 +237,30 @@
             resources.ApplyResources(this.ctsmiAutoIndent, "ctsmiAutoIndent");
             this.ctsmiAutoIndent.Click += new System.EventHandler(this.ctsmiAutoIndent_Click);
             // 
-            // console
+            // splitContainerLogs
             // 
-            resources.ApplyResources(this.console, "console");
-            this.console.Name = "console";
-            this.console.ReadOnly = true;
+            resources.ApplyResources(this.splitContainerLogs, "splitContainerLogs");
+            this.splitContainerLogs.Name = "splitContainerLogs";
+            // 
+            // splitContainerLogs.Panel1
+            // 
+            this.splitContainerLogs.Panel1.Controls.Add(this.gbErrors);
+            // 
+            // splitContainerLogs.Panel2
+            // 
+            this.splitContainerLogs.Panel2.Controls.Add(this.gbLogger);
+            // 
+            // errors
+            // 
+            resources.ApplyResources(this.errors, "errors");
+            this.errors.Name = "errors";
+            this.errors.ReadOnly = true;
+            // 
+            // logger
+            // 
+            resources.ApplyResources(this.logger, "logger");
+            this.logger.Name = "logger";
+            this.logger.ReadOnly = true;
             // 
             // StatusStrip
             // 
@@ -700,6 +729,20 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // gbErrors
+            // 
+            this.gbErrors.Controls.Add(this.errors);
+            resources.ApplyResources(this.gbErrors, "gbErrors");
+            this.gbErrors.Name = "gbErrors";
+            this.gbErrors.TabStop = false;
+            // 
+            // gbLogger
+            // 
+            this.gbLogger.Controls.Add(this.logger);
+            resources.ApplyResources(this.gbLogger, "gbLogger");
+            this.gbLogger.Name = "gbLogger";
+            this.gbLogger.TabStop = false;
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -719,11 +762,14 @@
             this.container.PerformLayout();
             this.mainSplit.Panel1.ResumeLayout(false);
             this.mainSplit.Panel2.ResumeLayout(false);
-            this.mainSplit.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).EndInit();
             this.mainSplit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).EndInit();
             this.cmsMain.ResumeLayout(false);
+            this.splitContainerLogs.Panel1.ResumeLayout(false);
+            this.splitContainerLogs.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerLogs)).EndInit();
+            this.splitContainerLogs.ResumeLayout(false);
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.cmsTreeView.ResumeLayout(false);
@@ -733,6 +779,10 @@
             this.toolStrip.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            this.gbErrors.ResumeLayout(false);
+            this.gbErrors.PerformLayout();
+            this.gbLogger.ResumeLayout(false);
+            this.gbLogger.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -793,7 +843,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiNewScript;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture;
         private System.Windows.Forms.ToolStripMenuItem tsmiRunJs;
-        private System.Windows.Forms.TextBox console;
+        private System.Windows.Forms.TextBox errors;
         private System.Windows.Forms.SplitContainer mainSplit;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton tsbRun;
@@ -816,6 +866,10 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiLinks;
         private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
         private System.Windows.Forms.ToolStripButton tsbShowMain;
+        private System.Windows.Forms.TextBox logger;
+        private System.Windows.Forms.SplitContainer splitContainerLogs;
+        private System.Windows.Forms.GroupBox gbErrors;
+        private System.Windows.Forms.GroupBox gbLogger;
     }
 }
 

@@ -18,6 +18,14 @@ namespace NIDE
             }
         }
 
+        public static void Error(int line, string message)
+        {
+            if (MainForm != null)
+            {
+                MainForm.Error(line, message);
+            }
+        }
+
         public static List<string> Recent = new List<string>();
 
         private static ProjectManager projectManager = null;

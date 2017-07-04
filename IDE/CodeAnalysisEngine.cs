@@ -64,7 +64,7 @@ namespace NIDE
                 {
                     parser.Parse(fctb.Text, "", 0);
                     reporter.Clear();
-                    ProgramData.MainForm?.ClearLog();
+                    ProgramData.MainForm?.ClearErrors();
                 }
                 catch (Exception e) { }
             }
@@ -87,7 +87,7 @@ namespace NIDE
         {
             if (!lines.Contains(line))
             {
-                ProgramData.Log("CodeAnalysisEngine", "Line " + line + ": " + message);
+                ProgramData.Error(line, message);
                 ProgramData.MainForm?.HighlightError(line);
                 lines.Add(line);
             }
@@ -102,7 +102,7 @@ namespace NIDE
         {
             if (!lines.Contains(line))
             {
-                ProgramData.Log("CodeAnalysisEngine", message);
+                ProgramData.Error(line, message);
                 ProgramData.MainForm?.HighlightError(line);
                 lines.Add(line);
             }

@@ -482,19 +482,28 @@ namespace NIDE
 
         //Log and errors
         public delegate void AddMessageDelegate(string source, string message);
+        public delegate void ErrorDelegate(int source, string message);
         public delegate void ClearLogDelegate();
         public void Log(string source, string message)
         {
             Invoke(new AddMessageDelegate(_log), new object[] { source, message });
         }
-        public void ClearLog()
+        public void Error(int line, string message)
         {
-            Invoke(new ClearLogDelegate(console.Clear));
+            Invoke(new ErrorDelegate(_error), new object[] { line, message });
+        }
+        public void ClearErrors()
+        {
+            Invoke(new ClearLogDelegate(errors.Clear));
         }
         private void _log(string source, string message)
         {
-            string format = "[{0}]:{1} \n";
-            console.AppendText(string.Format(format, source, message));
+            string format = "[{0}]: {1} \n";
+            logger.AppendText(string.Format(format, source, message));
+        }
+        private void _error(int line, string message)
+        {
+            errors.AppendText("Line " + line + ": " + message);
         }
         public void HighlightError(int line)
         {

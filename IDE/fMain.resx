@@ -188,6 +188,9 @@
   <data name="fctbMain.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
+  <data name="fctbMain.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Courier New, 9.75pt</value>
+  </data>
   <data name="fctbMain.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -240,34 +243,169 @@
   <data name="&gt;&gt;mainSplit.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="console.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="splitContainerLogs.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="console.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="splitContainerLogs.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
-  <data name="console.Multiline" type="System.Boolean, mscorlib">
+  <data name="errors.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="errors.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="errors.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="console.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+  <data name="errors.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
-  <data name="console.Size" type="System.Drawing.Size, System.Drawing">
-    <value>804, 149</value>
+  <data name="errors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 130</value>
   </data>
-  <data name="console.TabIndex" type="System.Int32, mscorlib">
+  <data name="errors.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="&gt;&gt;console.Name" xml:space="preserve">
-    <value>console</value>
+  <data name="&gt;&gt;errors.Name" xml:space="preserve">
+    <value>errors</value>
   </data>
-  <data name="&gt;&gt;console.Type" xml:space="preserve">
+  <data name="&gt;&gt;errors.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;console.Parent" xml:space="preserve">
+  <data name="&gt;&gt;errors.Parent" xml:space="preserve">
+    <value>gbErrors</value>
+  </data>
+  <data name="&gt;&gt;errors.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="gbErrors.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="gbErrors.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="gbErrors.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 149</value>
+  </data>
+  <data name="gbErrors.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="gbErrors.Text" xml:space="preserve">
+    <value>Code errors:</value>
+  </data>
+  <data name="&gt;&gt;gbErrors.Name" xml:space="preserve">
+    <value>gbErrors</value>
+  </data>
+  <data name="&gt;&gt;gbErrors.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbErrors.Parent" xml:space="preserve">
+    <value>splitContainerLogs.Panel1</value>
+  </data>
+  <data name="&gt;&gt;gbErrors.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel1.Name" xml:space="preserve">
+    <value>splitContainerLogs.Panel1</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel1.Parent" xml:space="preserve">
+    <value>splitContainerLogs</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="logger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="logger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 16</value>
+  </data>
+  <data name="logger.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="logger.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
+    <value>Vertical</value>
+  </data>
+  <data name="logger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 130</value>
+  </data>
+  <data name="logger.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;logger.Name" xml:space="preserve">
+    <value>logger</value>
+  </data>
+  <data name="&gt;&gt;logger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;logger.Parent" xml:space="preserve">
+    <value>gbLogger</value>
+  </data>
+  <data name="&gt;&gt;logger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="gbLogger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="gbLogger.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="gbLogger.Size" type="System.Drawing.Size, System.Drawing">
+    <value>400, 149</value>
+  </data>
+  <data name="gbLogger.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="gbLogger.Text" xml:space="preserve">
+    <value>Program log:</value>
+  </data>
+  <data name="&gt;&gt;gbLogger.Name" xml:space="preserve">
+    <value>gbLogger</value>
+  </data>
+  <data name="&gt;&gt;gbLogger.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;gbLogger.Parent" xml:space="preserve">
+    <value>splitContainerLogs.Panel2</value>
+  </data>
+  <data name="&gt;&gt;gbLogger.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel2.Name" xml:space="preserve">
+    <value>splitContainerLogs.Panel2</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel2.Parent" xml:space="preserve">
+    <value>splitContainerLogs</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="splitContainerLogs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>804, 149</value>
+  </data>
+  <data name="splitContainerLogs.SplitterDistance" type="System.Int32, mscorlib">
+    <value>400</value>
+  </data>
+  <data name="splitContainerLogs.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Name" xml:space="preserve">
+    <value>splitContainerLogs</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;splitContainerLogs.Parent" xml:space="preserve">
     <value>mainSplit.Panel2</value>
   </data>
-  <data name="&gt;&gt;console.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;splitContainerLogs.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;mainSplit.Panel2.Name" xml:space="preserve">
@@ -409,7 +547,7 @@
     <value>Open project in explorer</value>
   </data>
   <data name="cmsTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 180</value>
+    <value>202, 158</value>
   </data>
   <data name="&gt;&gt;cmsTreeView.Name" xml:space="preserve">
     <value>cmsTreeView</value>
@@ -711,19 +849,19 @@
   <data name="tsbBuildPush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKzSURBVDhPldHbS9NhHAbw/QfzNJM5058zTd3J2NpVzDQG
-        ijYlRcI0O2jhoWZqs5RcUq7pxjxkq+Vc6qaY2jRLKtQpFhamm4fSrDWNJBVxYDfeyJPa70ZoSJ+7l/d5
-        vrx8X8p+As80Z2hnN5y2tU20zG848kdW5OTV/phx9Qkxpq8wTDuhn3RCZ1vHw4l1yIdXLFyDw42MuRZW
-        8NoR1WTH9VdLKOxbQv6Ln7jy/AdyzIs4Y7JbyJhr7GtvIKj+jAsmO+LrZhBbPQWxyoYTSiuiFOMQVVil
-        ZPTfWKltVv4dG2RPHUjRTIInHQYnzwJW9gDCLvcjPGfIQUb/El4yyeVNo9abrROIyO5wEOeMSK+ZRN/4
-        KnpGl8HPGsDBBDMY8V2gx3YgQNINskqhBOd2W2+9X0O3/TcKGsfA00yBOG9ESW0/atvncPR0F/inzAiM
-        6oU3vxGenDocErY5d8uBIlUGV/8NssFlKN6tIqVyBILKGYTJ3sJLVAEGrxS+XCV8eQowIh6DL34JaelH
-        NLfNZuwOCEnWy4/Uf0Fa+wIyOxeQpBoFRzqC4O0nByW1wldYBB/WVRwIue2k+d21hAu15gKZOXK3vCMk
-        US8XqD+hfvgXJDXTiN7eMie9E0T0ExDHNCBEevhHNoHOkmnIyl502kWe1DiPse8bUPfYwc0bAjvHgqCT
-        BtDZSngz74HGLQGNd8P13/d/WLQUGeYgyB0EM7kX/hIz/OKegRHTCZ/jzXBjl8ONKHQ9QJJaFRmcYAIz
-        0QymuAU+wgZ4cBvgztbBPVwL99A6eDLlBjK+V3FxsVhZpUZmrhwEX+FkRKi2N14BOuc+aIcfgBaq216g
-        1kmlng0gK3u1GFu3dAYTssoVW1SqxM3LO03q4Sez0vwr4UVUOz0JtcFlecejRiPKyso2yeN/oFD+AHMy
-        bJVbmeY5AAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKzSURBVDhPldH/L9RxHAfw+w+cLyc7Jz5OhPum3XU/NaLZ
+        GB2LWRMpqeZLndAplk9WrsPtfElXl3PhjgkdKauGY2pq4s6XInUdLQszt+kXv9izo88vtm7W47f33s/n
+        a++93rT9+J9pyVDPbdot61toXdi05Y+uktTV/thxDQkxhq/QzdihnbJDY9nAw8kNkCOrJr7ORqdizoUU
+        vLZFNltx/dUyCvuXkf/iJ648/4Ec4xLOGKwmKuYc99obiGo+I9NgRXz9LGJrphFdbcEJhRmR8gmEV5il
+        VPTfOKntZuEdC2RPbUhRTUEgHQEvzwRO9iBCLg8gNGfYRkX/El8ykGTzmPlm2yTCsjttxDk90mun0D+x
+        ht6xFQgvDuJgghGs+G4wYzvhJ+kBVaXRAnN7zLfer6PH+hsFTeMQqKZBnNejpG4AdR3zOHq6G8JTRvhH
+        9sFT2AR3Xj0Oidvtu2X/8OoMvvYbZEMrkL9bQ0rlKESVswiRvYVHeAVYglJ48xXwFsjBCnsMYfRLSEs/
+        oqV9LmN3QFCyljzS8AVpHYvI6lpEUvUYeNJRBDqeHJDUBm9xEbw4V3Eg6Lad4XPXFCpWGwtkxojd8o6g
+        RC0pUn5Cw8gvSGpnEOXYMi+9C0TUExDHVCDCtfCNaAaTI1NRlb2YjAsCqX4B4983oey1gp83DG6OCQEn
+        dWByFfBk3wODXwKG4Ibzvx/4sGQq0s1DlDsEdnIffCVG+MQ9AyumC17HW0DnloNOFDofIEmtighMMICd
+        aAQ7uhVe4ka48RvhytXANVQN1+B6uLNJHRXfq7i4OFpRpURWLglCKLezwqodG68Ak3cfjMMPwAjWOBao
+        tru4nPWjKnu16tu2NToDMsvl2y4uErqHZ5rUzUdmZvhWwoOosbsTSp3T8o5HTXqUlZVtUcf/QKP9AXHT
+        bJLMhNExAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsbBuildPush.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -739,14 +877,14 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHmSURBVDhPY8AGioqKfIrzi/c1Vja+XLtq7YfHjx5fffr0
-        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pl/cP/+f2dPndpXWlrKC1VKHFi7Zu3nXz9/
-        /t+/b9+/8+fO/4+JidkSGhrKDJXGD8rLy+Xu3Lnz5PHjxx/r6zs/pKenv587d97/DRs2fmtsbMyAKsMN
+        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pm/b8+ef2dPndpXWlrKC1VKHFi7Zu3nXz9/
+        /t+ze/e/8+fO/4+JidkSGhrKDJXGD8rLy+Xu3Lnz5PHjxx/r6zs/pKenv587d97/DRs2fmtsbMyAKsMN
         1q9ev+vsiRNv582bV2lvb88CsjkyMup+cXHpv4kTJzZBlWEH7e3tmc+ePPkPtGkKVAgMgGEgFR4e3g/l
         YgfHZ3EX/Xh1483eHTsu1dfXc0CFiQMLaxkyfp9Q//9yC8/XzlKDSKgwcWBiIYPFhx18397vFvt/ehbD
         88IQBiGoFGHQU8Qg8mQD593vRxT/313B8L80kiEfKkUcWNfCsPHvae3/zzdx/J+Qx3AaKkwcmFHKkPJp
         v8z/d7uE/++fwvAzP4TBEipFGMypZpB/sZX93ddDcv+vL2H4D9TcB5UiDP7/Z2C8vZxh159Tmv+fbmD9
         v7yB4WS9PQMLVJowmJnGwH/lkMKf19sF/u+YzPAtypXBDigsjoTFgFgUiIWBmA+IOYGYFYiZgBgC1rUL
-        +2/vYTif7sfQA+Q6AbE5EGsCsQwQCwIxSBNCAxwwMAAA5XPK6MVFeeIAAAAASUVORK5CYII=
+        +2/vYTif7sfQA+Q6AbE5EGsCsQwQCwIxSBNCAxwwMAAApmrK1rnw9qUAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbBuild.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -761,17 +899,17 @@
   <data name="tsbRun.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="tsbRun.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -811,15 +949,15 @@
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAI4SURBVDhPY6ALKOg7KBlTv1MMyiUS/P/PGFq/ii2meyd3
         UPXxTPfi/ZWuxYu4obK4wf///5niuk4rO+YfjjNJ2dlulLJtsnH6ntNGGXvvORbt9auvr2eCKsUE+/f/
-        Z6lf+9jJp/XKFr2UQ280Uvf+UUtb/U81Y9U/9ej9f02qj21x6zmqAVWOCZoPvrTKXnp3n2fzudvaWXt2
+        Z6lf+9jJp/XKFr2UQ280Uvf+UUtb8U81Y/k/9Yj9f02qj21x6zmqAVWOCZoPvrTKXnp3n2fzudvaWXt2
         KyZt3qBecvC6SsP+v0rNZ/6rtxx9bdiwJz00NJQZqgUBsva/5EledrEspG9/h13BYlvVkF5ps5RZMmYz
         rs6SnnLxo1zLoVOyJasbZRIm6wKVM0J0IYGkOUd4A9pWWprGVghDhRjSVp3hN5t6pE62YWOlSNJEQxmL
         EE6oFE4AN3nVqv/M0RO38RkktooyhIayQYUJg3pgQCbufqHktuFRks2cw6HGaTNZoVIME7fd4iuYu1sp
         DUkMDurr/zPFrrur5rHsQa7xwkd7NObceazWc6DIZ+YmruJFz7krN73WKF59pzxx6u44rdB6TBeBFBpP
         ON2l3nHxo0Lrtf8K9Ze/qdWd3mTSeLnDpfPOnOiZD04mzTi3OaJpmSFUCxoAJhCZsm0RMvknH8jnnf2v
-        kHXqv2LWzn/KmWf+aCWf++ZcefxgWNUKd3t7exaoDkygkjuRTy5jT5ts8vFPstFrLkmFrdguE7J2pVLg
-        knK9wG4drPGPDuTTlmrIJW1YJhvanyBqHy8hZZotzGBsjBloOAHQFqnIWkuxoEwlqAgewMAAAP3Y4aCN
-        /vGOAAAAAElFTkSuQmCC
+        kHXqv2LWtn/KmWf+aCWf++ZcefxgWNUKd3t7exaoDkygkjuRTy5jT5ts8vFPstFrLkmFrdguE7J2pVLg
+        knK9wG4drPGPDuTTlmrIJW1YJhvanyBqHy8hZZotzGBsjBloOAHQFqnIWkuxoEwlqAgewMAAAOEZ4ZR6
+        SUgxAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsbUpdate.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -835,13 +973,13 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGhSURBVDhPlZNLSwJRGIatTf8hDFpIi2oheWljtMg2QevW
-        tssuKLaY0MA0KoxAER1ata+NixYFEhgWRFDQP2ijeMPxMt7r7XyDM10c0T54mOFw3me+8w1H0y0tw8Aw
-        D2CSMcroKUOtVhPq9fpHp9OBGo1GA+FwOMT2qkrMFK5WqxBFUaFUKqFYLCKTyUiSdDqNSCTSIxlhmGkD
-        k6DZbEpPolKpQBAEZLNZScC6BH2E53lZIpUioLAMCShQLpeRy+V+HYegTDf7LWi328oGeqdzy0fJ5/NS
-        J6lUqr/gLz8l1AnNo1AoDC8gZAkdh2ZCIlofWkC0Wi1pLiQhaO1fAuqCBEfJfRwmPNLaQAGFZKgDb4KD
-        584F7nYHrtjW8IJ6owYu7oA77sTFWxTnryFsXNqw6J9/123rxvoKZEkg6Yftag2uazv4lyBCzwE4YnZY
-        3KamkdPfKAI26U81icxqdBnBpxMEHn1YObNCuzS+TmG5jOxfi0zS9zJZTxdw/HAA370Hc7uzNAO6vUpN
-        MIwMGowqFq8Jpj099M4ZTG9OkYBlNJovAhB3d6ieYEcAAAAASUVORK5CYII=
+        tssuKLaYyMA0KoxAEZNW7WvjokWBBIYFERT0D9oo3nC8jPd6O9/gmS6OaB88zHA47zPf+Q6j6ZSWYWCY
+        +zDOGGZ0laFarYqVSuWj3W5DjXq9jlAoFGR7VSVmCjMgSZJCsVhEoVBAOp2WJalUCuFwuEsyxDDThlqt
+        hkajIT+JcrkMURSRyWRkAesS9JFIJMIlcikCCnNIQIFSqYRsNvvrOARlOtlvQavVUjbQO52bHyWXy8md
+        JJPJ3oK//JRQJzSPfD4/uIDgEjoOzYREtD6wgGg2m/JcSELQ2r8E1AUJDhN7OIi75bW+AgpxqANPXID7
+        zgXhdguu6Mbgglq9CiHmwG7MiYu3M5y/BrF2acO8b/Zdt6kb6SngEn/CB9vVClzXdkReAgg+++GI2mER
+        TA2joL9RBOyqPtUknOWzRQSejuF/9GLp1ArtwugqhXkZ2fUwh9TzZ7KezOHoYR/eezdmtqdpBvT3KjXG
+        MDJoMKpYPCaYdvTQO6cwuT5BApbRaL4Ar2l3R0lgwPoAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbShowMain.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
