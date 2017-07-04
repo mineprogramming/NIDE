@@ -40,7 +40,9 @@
             this.ctsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerLogs = new System.Windows.Forms.SplitContainer();
+            this.gbErrors = new System.Windows.Forms.GroupBox();
             this.errors = new System.Windows.Forms.TextBox();
+            this.gbLogger = new System.Windows.Forms.GroupBox();
             this.logger = new System.Windows.Forms.TextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
@@ -109,8 +111,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.gbErrors = new System.Windows.Forms.GroupBox();
-            this.gbLogger = new System.Windows.Forms.GroupBox();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -124,13 +124,13 @@
             this.splitContainerLogs.Panel1.SuspendLayout();
             this.splitContainerLogs.Panel2.SuspendLayout();
             this.splitContainerLogs.SuspendLayout();
+            this.gbErrors.SuspendLayout();
+            this.gbLogger.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
             this.ToolStripGeneral.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.MenuStrip.SuspendLayout();
-            this.gbErrors.SuspendLayout();
-            this.gbLogger.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -250,11 +250,25 @@
             // 
             this.splitContainerLogs.Panel2.Controls.Add(this.gbLogger);
             // 
+            // gbErrors
+            // 
+            this.gbErrors.Controls.Add(this.errors);
+            resources.ApplyResources(this.gbErrors, "gbErrors");
+            this.gbErrors.Name = "gbErrors";
+            this.gbErrors.TabStop = false;
+            // 
             // errors
             // 
             resources.ApplyResources(this.errors, "errors");
             this.errors.Name = "errors";
             this.errors.ReadOnly = true;
+            // 
+            // gbLogger
+            // 
+            this.gbLogger.Controls.Add(this.logger);
+            resources.ApplyResources(this.gbLogger, "gbLogger");
+            this.gbLogger.Name = "gbLogger";
+            this.gbLogger.TabStop = false;
             // 
             // logger
             // 
@@ -429,8 +443,8 @@
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbBuildPush,
             this.tsbBuild,
-            this.tsbRun,
             this.tsbPush,
+            this.tsbRun,
             this.tsbUpdate,
             this.tsbShowMain});
             this.toolStrip.Name = "toolStrip";
@@ -729,20 +743,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // gbErrors
-            // 
-            this.gbErrors.Controls.Add(this.errors);
-            resources.ApplyResources(this.gbErrors, "gbErrors");
-            this.gbErrors.Name = "gbErrors";
-            this.gbErrors.TabStop = false;
-            // 
-            // gbLogger
-            // 
-            this.gbLogger.Controls.Add(this.logger);
-            resources.ApplyResources(this.gbLogger, "gbLogger");
-            this.gbLogger.Name = "gbLogger";
-            this.gbLogger.TabStop = false;
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -770,6 +770,10 @@
             this.splitContainerLogs.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLogs)).EndInit();
             this.splitContainerLogs.ResumeLayout(false);
+            this.gbErrors.ResumeLayout(false);
+            this.gbErrors.PerformLayout();
+            this.gbLogger.ResumeLayout(false);
+            this.gbLogger.PerformLayout();
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.cmsTreeView.ResumeLayout(false);
@@ -779,10 +783,6 @@
             this.toolStrip.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
-            this.gbErrors.ResumeLayout(false);
-            this.gbErrors.PerformLayout();
-            this.gbLogger.ResumeLayout(false);
-            this.gbLogger.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
