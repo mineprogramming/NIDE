@@ -442,8 +442,8 @@ namespace NIDE
 
             using (var zip = new Ionic.Zip.ZipFile())
             {
-                zip.AddDirectoryByName("scripts");
-                zip.AddFile(outp, "scripts");
+                zip.AddDirectoryByName("script");
+                zip.AddFile(outp, "script");
                 zip.AddDirectoryByName("images");
                 zip.AddDirectory(ResPath, "images");
                 zip.Save(OutPath + projectName + ".modpkg");
