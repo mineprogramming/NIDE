@@ -381,7 +381,7 @@ namespace NIDE
 
 
         //Build
-        public void build()
+        public void Build()
         {
             try
             {
@@ -398,6 +398,7 @@ namespace NIDE
                         BuildPack();
                         break;
                 }
+                ProgramData.Log("Build", "Project successfully built!");
             }
             catch (Exception e)
             {

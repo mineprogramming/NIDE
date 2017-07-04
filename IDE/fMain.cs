@@ -527,7 +527,7 @@ namespace NIDE
         {
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
             saved = true;
-            ProgramData.ProjectManager.build();
+            ProgramData.ProjectManager.Build();
         }
 
         private void tsmiPush_Click(object sender, EventArgs e)
