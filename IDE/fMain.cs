@@ -118,6 +118,8 @@ namespace NIDE
                 }
             }
             saved = false;
+            if(!tsslFile.Text.EndsWith("*"))
+                tsslFile.Text = tsslFile.Text + "*";
         }
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -454,6 +456,7 @@ namespace NIDE
         {
             fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
             saved = true;
+            tsslFile.Text = tsslFile.Text.Replace("*", "");
         }
 
         private void tsmiCloseProject_Click(object sender, EventArgs e)
