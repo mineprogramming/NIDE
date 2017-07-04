@@ -149,8 +149,14 @@ namespace NIDE
         {
             if (!ProgramData.ProjectManager.LibraryInstalled("ItemsEngine"))
             {
-                MessageBox.Show("You need to have nide/ItemsEngine library to be installed!");
-                return;
+                var result = MessageBox.Show("You need to have ItemsEngine library to be installed!\nDo you want to install it now?", 
+                    "Confirmation", MessageBoxButtons.YesNo);
+                if(result == DialogResult.No)
+                    return;
+                else
+                {
+                    ProgramData.ProjectManager.IncludeLibrary("ItemsEngine");
+                }
             }
             fJsonItem form = new fJsonItem();
             if (form.ShowDialog() != DialogResult.Cancel)
