@@ -378,7 +378,6 @@ namespace NIDE
             try
             {
                 ProgramData.file = FileName;
-                tsslFile.Text = Path.GetFileName(FileName);
                 fctbMain.OpenFile(FileName, Encoding.UTF8);
                 fctbMain.ReadOnly = false;
                 string extension = Path.GetExtension(FileName).ToLower();
@@ -386,6 +385,8 @@ namespace NIDE
                     InitJS();
                 else
                     InitOther();
+                saved = true;
+                tsslFile.Text = Path.GetFileName(FileName);
                 Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
             }
             catch (Exception e)
