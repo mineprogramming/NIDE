@@ -11,6 +11,7 @@ namespace NIDE
 
         public static void Push(string script, string resource)
         {
+            ProgramData.Log("ADB", "Initializing ADB.......");
             FileInfo local = new FileInfo(script);
             FileInfo res = new FileInfo(resource);
             AndroidDebugBridge adb = null;
