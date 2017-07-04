@@ -41,6 +41,7 @@ namespace NIDE
 
         private void fMain_Shown(object sender, EventArgs e)
         {
+            CheckUpdates();
             if (args.Length > 0)
             {
                 try
@@ -711,6 +712,11 @@ namespace NIDE
 
         //Other
         private void tsmiVersion_Click(object sender, EventArgs e)
+        {
+            CheckUpdates();
+        }
+
+        private void CheckUpdates()
         {
             try
             {
