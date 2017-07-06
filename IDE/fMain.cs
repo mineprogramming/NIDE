@@ -452,7 +452,7 @@ namespace NIDE
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+            File.WriteAllLines(ProgramData.file, fctbMain.Lines, new UTF8Encoding(false));
             saved = true;
             tsslFile.Text = tsslFile.Text.Replace("*", "");
         }
