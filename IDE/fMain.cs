@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Collections.Generic;
 
 namespace NIDE
 {
@@ -118,7 +119,7 @@ namespace NIDE
                 }
             }
             saved = false;
-            if(!tsslFile.Text.EndsWith("*"))
+            if (!tsslFile.Text.EndsWith("*"))
                 tsslFile.Text = tsslFile.Text + "*";
         }
 
@@ -152,9 +153,9 @@ namespace NIDE
         {
             if (!ProgramData.ProjectManager.LibraryInstalled("ItemsEngine"))
             {
-                var result = MessageBox.Show("You need to have ItemsEngine library to be installed!\nDo you want to install it now?", 
+                var result = MessageBox.Show("You need to have ItemsEngine library to be installed!\nDo you want to install it now?",
                     "Confirmation", MessageBoxButtons.YesNo);
-                if(result == DialogResult.No)
+                if (result == DialogResult.No)
                     return;
                 else
                 {
@@ -304,10 +305,6 @@ namespace NIDE
                     tsmiNewItem.Enabled = false;
                     tsmiNewLibrary.Enabled = false;
                     tsmiManageLibraries.Enabled = false;
-                    tsmiPush.Enabled = false;
-                    tsmiBuildAndPush.Enabled = false;
-                    tsbBuildPush.Enabled = false;
-                    tsbPush.Enabled = false;
                     break;
                 case ProjectType.BEHAVIOUR_PACK:
                     tsmiInserts.Enabled = false;
@@ -536,8 +533,15 @@ namespace NIDE
 
         private void tsmiPush_Click(object sender, EventArgs e)
         {
-            ADBWorker.Push(ProgramData.ProjectManager.BuildPath + "main.js",
-                ProgramData.ProjectManager.BuildPath + "resources.zip");
+            switch (ProgramData.ProjectManager.projectType)
+            {
+                case ProjectType.MODPE:
+                    ADBWorker.Push(new DirectoryInfo(ProgramData.ProjectManager.BuildPath));
+                    break;
+                case ProjectType.COREENGINE:
+                    ADBWorker.Push(new DirectoryInfo(ProgramData.ProjectManager.path));
+                    break;
+            }
         }
 
         private void tsbBuildPush_Click(object sender, EventArgs e)

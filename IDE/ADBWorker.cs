@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace NIDE
 {
@@ -9,11 +10,9 @@ namespace NIDE
     {
         public static string Path { get; set; }
 
-        public static void Push(string script, string resource)
+        public static void Push(DirectoryInfo directory)
         {
             ProgramData.Log("ADB", "Initializing ADB.......");
-            FileInfo local = new FileInfo(script);
-            FileInfo res = new FileInfo(resource);
             AndroidDebugBridge adb = null;
             try
             {
@@ -27,18 +26,30 @@ namespace NIDE
                 var device = devices[0];
                 using (SyncService sync = device.SyncService)
                 {
-                    SyncResult result = sync.Push(new List<string> { local.FullName, res.FullName }, 
-                        FileEntry.FindOrCreate(device, Path),  new FileSyncProgressMonitor());
+                    ProgramData.Log("ADB", "Starting copying files.......");
+                    PushRecursive(sync, device, directory);
                     sync.Close();
+                    ProgramData.MainForm.ProgressBarStatus.Visible = false;
+                    ProgramData.Log("ADB", "Successfully pushed file to remote device");
                 }
                 adb.Stop();
-
             }
             catch(Exception e){
                 ProgramData.Log("ADB", e.Message);
                 if (adb != null)
                     adb.Stop();
+                ProgramData.MainForm.ProgressBarStatus.Visible = false;
+                ProgramData.Log("ADB", "Successfully pushed file to remote device");
             }
+        }
+
+        private static void PushRecursive(SyncService sync, Device device, DirectoryInfo directory, string subdir = "")
+        {
+            List<string> files = directory.GetFiles().Select(x => x.FullName).ToList();
+            sync.Push(files, FileEntry.FindOrCreate(device, Path + subdir), new FileSyncProgressMonitor());
+            foreach (var dir in directory.GetDirectories())
+                PushRecursive(sync, device, dir, subdir + dir.Name + "/");
+            
         }
     }
 
@@ -64,8 +75,7 @@ namespace NIDE
 
         public void Stop()
         {
-            ProgramData.MainForm.ProgressBarStatus.Visible = false;
-            ProgramData.Log("ADB", "Successfully pushed file to remote device");
+            
         }
     }
 }
