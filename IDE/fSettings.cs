@@ -84,6 +84,8 @@ namespace NIDE
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            if (!tbPath.Text.EndsWith("/"))
+                tbPath.Text += "/";
             ADBWorker.Path = tbPath.Text;
             ProgramData.LoadLast = cbLast.Checked;
             Close();
