@@ -270,6 +270,8 @@ namespace NIDE
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
             string ScriptPath = ScriptsPath + name;
             File.CreateText(ScriptPath).Close();
+            if(projectType == ProjectType.COREENGINE)
+                File.AppendAllText(MainScriptPath, "\n" + name, new UTF8Encoding(false));
         }
 
         public void AddTexture(string name, ImageType type)
