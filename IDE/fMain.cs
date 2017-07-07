@@ -31,7 +31,7 @@ namespace NIDE
             try
             {
                 ModPe.LoadModPeData("modpescript_dump.txt");
-                CoreEngine.LoadCoreEngineData("core.dump");
+                CoreEngine.LoadCoreEngineData("core.txt");
             }
             catch (Exception ex)
             {

@@ -1,14 +1,38 @@
+__name__=
+__dir__=/mnt/shared/shared/#trash/dump//
+__config__.file=/mnt/shared/shared/#trash/dump//config.json
+__config__.config.[data]
+__config__.isLoaded=true
+__config__.load()
+__config__.save()
+__config__.clear()
+__config__.get()
+__config__.access(address)
+__config__.checkAndRestore(original)
+__config__.__copyMissingValues(obj, source)
+
+__mod__.[data]
+alert(msg)
+Resources.getResourceList()
+Resources.setResourceList(list)
+Resources.setResourcePack(path, enabled, hideErrors) 
+
+importLib(libName, name)
 getCoreAPILevel()
 runOnMainThread(func)
+getMCPEVersion() 
 Debug.addParticle(x, y, z, id, vx, vy, vz, data)
 Debug.message(message)
 Debug.warning(message)
 Debug.error(message)
+Debug.m()
+Debug.bitmap(bitmap, title)
 
-FileTools.mntdir [type=string value=/mnt ]
-FileTools.root [type=string value=/storage/emulated/0/ ]
-FileTools.workdir [type=string value=games/com.mojang/coreengine/ ]
-FileTools.moddir [type=string value=games/com.mojang/mods/ ]
+FileTools.mntdir=/mnt
+FileTools.root=/storage/emulated/0/
+FileTools.workdir=games/com.mojang/coreengine/
+FileTools.moddir=games/com.mojang/mods/
+FileTools.modpedir=games/com.mojang/modpe/
 FileTools.mkdir(dir)
 FileTools.mkworkdirs()
 FileTools.getFullPath(path)
@@ -27,26 +51,29 @@ FileTools.WriteKeyValueFile(dir, data, specialSeparator)
 FileTools.ReadJSON(dir)
 FileTools.WriteJSON(dir, obj, beautify)
 
-Logger.MAX_BUFFER_LEN [type=number value=1024 ]
-Logger.CORE [type=string value=core.log ]
-Logger.MOD [type=string value=mods.log ]
-Logger.shared [type=string value=]
-Logger.hasErrorMessages [type=boolean value=false ]
+Logger.MAX_BUFFER_LEN=1024
+Logger.CORE=core.log
+Logger.MOD=mods.log
+Logger.shared
+
+Logger.hasErrorMessages=true
 Logger.wipe(log)
-Logger.buffer [... not api, possibly data value ...]
+Logger.buffer.[data]
 Logger.message(log, message)
 Logger.flush(log)
 Logger.formatLog(log)
+Logger.formatItem(id, count, data)
 Logger.showAsDialog(title, paragraf)
 Logger.Log(msg, prefix, log)
 Logger.LogError(error, log)
+Logger.LogList(prefix, list, tag, log)
 Logger.getFormattedTime(showDate)
 Logger.getShared()
 Logger.getFormattedLog()
 Logger.checkErrors()
 
-Translation.currentLanguage [... not api, possibly data value ...]
-Translation.allTranslations [... not api, possibly data value ...]
+Translation.currentLanguage.[data]
+Translation.allTranslations.[data]
 Translation.refreshLanguage()
 Translation.addTranslation(original, lang)
 Translation.getLanguage()
@@ -55,49 +82,50 @@ Translation.translateSentence(str)
 Translation.translateItem(name)
 Translation.translateAllItems()
 
-Threading.threads [... not api, possibly data value ...]
+Threading.threads=
 Threading.formatFatalErrorMessage(error, name, priority, formatFunc)
 Threading.initThread(name, func, priority, isErrorFatal, formatFunc)
 Threading.getThread(name)
 
-UI.Container(tileEntity)
-UI.WindowProvider.windows [... not api, possibly data value ...]
-UI.WindowProvider.lastOpenID [type=number value=1 ]
+UI.Container(tileEntity) 
+UI.WindowProvider.windows=
+UI.WindowProvider.lastOpenID=1
 UI.WindowProvider.refreshInventorySource()
 UI.WindowProvider.addWindow(window)
 UI.WindowProvider.removeWindow(window)
 UI.WindowProvider.openWindow(window)
 UI.WindowProvider.closeWindow(window)
-UI.WindowProvider.threadID [type=number value=0 ]
-UI.WindowProvider.backgroundThreadPriority [type=number value=0 ]
-UI.WindowProvider.renderThreadPriority [type=number value=-17 ]
-UI.WindowProvider.threadRunning [type=boolean value=false ]
+UI.WindowProvider.threadID=0
+UI.WindowProvider.backgroundThreadPriority=0
+UI.WindowProvider.renderThreadPriority=-17
+UI.WindowProvider.threadRunning=false
 UI.WindowProvider.setThreadPriority(priority)
 UI.WindowProvider.setRenderThreadPriority(priority)
 UI.WindowProvider.StartThread()
 UI.WindowProvider.ThreadFunc(id)
 UI.WindowProvider.Frame(callingThreadID)
-UI.WindowProvider.threadStack [... not api, possibly data value ...]
+UI.WindowProvider.threadStack=[]
 UI.WindowProvider.ExecInThread(func)
 UI.WindowProvider.StopThread()
-UI.WindowProvider.touchEvent [... not api, possibly data value ...]
+UI.WindowProvider.touchEvent.[data]
 UI.WindowProvider.registerTouchEvent(window, event)
-UI.WindowProvider.onClick(x, y, isLong)
-UI.WindowProvider.Images [... not api, possibly data value ...]
-UI.WindowProvider.BitmapCache.cache [... not api, possibly data value ...]
+UI.WindowProvider.onClick(x, y, isLong, eventID)
+UI.WindowProvider.Images=
+UI.WindowProvider.BitmapCache.cache.[data]
 UI.WindowProvider.BitmapCache.getScaled(name, scale)
 UI.WindowProvider.BitmapCache.getSized(name, width, height)
 UI.WindowProvider.BitmapCache.getScaledForRaw(bitmap, scale)
 
 
-UI.WindowCore()
-UI.ElementProvider(window)
-UI.Window(content)
-UI.WindowGroup()
-UI.StandartWindow(content)
-UI.Utils.colorPaint [java object: android.graphics.Paint]
-UI.Utils.textPaint [java object: android.graphics.Paint]
-UI.Utils.iconPaint [java object: android.graphics.Paint]
+UI.WindowCore() 
+UI.ElementProvider(window) 
+UI.Window(content) 
+UI.WindowGroup() 
+UI.StandartWindow(content) 
+UI.Utils.colorPaint=android.graphics.Paint@1da4d2ac
+UI.Utils.textPaint=android.graphics.Paint@34664b75
+UI.Utils.textCenterPaint=android.graphics.Paint@c09f70a
+UI.Utils.iconPaint=android.graphics.Paint@53f6b7b
 UI.Utils.GetDisplaySize()
 UI.Utils.Run(func)
 UI.Utils.GetGuiAssetName(fileName)
@@ -107,7 +135,7 @@ UI.Utils.createBitmapByMatrix(bitmap, matrix, size)
 UI.Utils.genBlockTexture(textures, shape, size)
 
 UI.run(func)
-UI.getMcContext()
+UI.getMcContext() 
 UI.testUI(ui)
 UI.openUI(ui)
 UI.addIconOverride(name1, name2)
@@ -118,10 +146,10 @@ UI.getBitmapFromCache(name)
 UI.getScreenHeight()
 UI.checkAndPlacehold(name, width, height)
 
-UpdatableAPI.updatableList [... not api, possibly data value ...]
-UpdatableAPI.uniqueUpdatableMap [... not api, possibly data value ...]
-UpdatableAPI.uniqueUpdatableID [type=number value=1 ]
-UpdatableAPI.maximumCalls [type=number value=128 ]
+UpdatableAPI.updatableList=
+UpdatableAPI.uniqueUpdatableMap=
+UpdatableAPI.uniqueUpdatableID=1
+UpdatableAPI.maximumCalls=64
 UpdatableAPI.setMaxUpdateCalls(count)
 UpdatableAPI.addUpdatable(updatable)
 UpdatableAPI.removeUpdatable(updatable)
@@ -129,15 +157,15 @@ UpdatableAPI.isInUpdate(updatable)
 UpdatableAPI.removeUpdatableFast(updatable)
 UpdatableAPI.removesUpdatableByID(id)
 UpdatableAPI.getUpdatable(uuID)
-UpdatableAPI.previousPosition [type=number value=0 ]
+UpdatableAPI.previousPosition=0
 UpdatableAPI.updateAll()
 UpdatableAPI.resetEngine()
-UpdatableAPI.Updatable(func)
+UpdatableAPI.Updatable(func) 
 
-Updatable.updatableList [... not api, possibly data value ...]
-Updatable.uniqueUpdatableMap [... not api, possibly data value ...]
-Updatable.uniqueUpdatableID [type=number value=1 ]
-Updatable.maximumCalls [type=number value=128 ]
+Updatable.updatableList=
+Updatable.uniqueUpdatableMap=
+Updatable.uniqueUpdatableID=1
+Updatable.maximumCalls=64
 Updatable.setMaxUpdateCalls(count)
 Updatable.addUpdatable(updatable)
 Updatable.removeUpdatable(updatable)
@@ -145,12 +173,12 @@ Updatable.isInUpdate(updatable)
 Updatable.removeUpdatableFast(updatable)
 Updatable.removesUpdatableByID(id)
 Updatable.getUpdatable(uuID)
-Updatable.previousPosition [type=number value=0 ]
+Updatable.previousPosition=0
 Updatable.updateAll()
 Updatable.resetEngine()
-Updatable.Updatable(func)
+Updatable.Updatable(func) 
 
-UpdatableSaver.saverPrototypes [... not api, possibly data value ...]
+UpdatableSaver.saverPrototypes.[data]
 UpdatableSaver.registerPrototype(name, Prototype)
 UpdatableSaver.attachSaverPrototype(updatable, name)
 UpdatableSaver.readUpdatable(data)
@@ -159,8 +187,8 @@ UpdatableSaver.writeUpdatable(updatable)
 UpdatableSaver.saveAllUpdatables(saverScope)
 UpdatableSaver.readAllUpdatables(saverScope)
 
-TileEntity.tileEntityPrototypes [... not api, possibly data value ...]
-TileEntity.tileEntityList [... not api, possibly data value ...]
+TileEntity.tileEntityPrototypes.[data]
+TileEntity.tileEntityList=
 TileEntity.resetEngine()
 TileEntity.registerPrototype(blockID, customPrototype)
 TileEntity.getPrototype(blockID)
@@ -174,8 +202,8 @@ TileEntity.destroyTileEntityAtCoords(x, y, z)
 TileEntity.CheckTileEntities()
 TileEntity.DeployDestroyChecker(tileEntity)
 
-MobRegistry.mobPrototypes [... not api, possibly data value ...]
-MobRegistry.loadedEntities [... not api, possibly data value ...]
+MobRegistry.mobPrototypes.[data]
+MobRegistry.loadedEntities=
 MobRegistry.registerPrototype(name, customPrototype)
 MobRegistry.createEntityUpdatable(prototypeName, addToUpdate)
 MobRegistry.registerUpdatableAsEntity(updatable)
@@ -185,12 +213,25 @@ MobRegistry.registerNativeEntity(entity)
 MobRegistry.registerEntityRemove(entity)
 MobRegistry.callPlayerAttack(attacker, victim)
 
-Callback.callbacks [... not api, possibly data value ...]
+Callback.callbacks.[data]
 Callback.formatCallbackError(name, error)
 Callback.addCallback(name, func, mod)
 Callback.invokeCallback(name, par1, par2, par3, par4, par5, par6, par7, par8, par9)
 
-ModAPI.modAPIs [... not api, possibly data value ...]
+GameObject(name, Prototype) 
+GameObjectRegistry.gameObjectTypes.[data]
+GameObjectRegistry.activeGameObjects.[data]
+GameObjectRegistry.genUniqueName(name)
+GameObjectRegistry.registerClass(gameObjectClass)
+GameObjectRegistry.deployGameObject(gameobject)
+GameObjectRegistry.addGameObject(gameobject)
+GameObjectRegistry.removeGameObject(gameobject)
+GameObjectRegistry.resetEngine()
+GameObjectRegistry.getAllByType(type, clone)
+GameObjectRegistry.callForType()
+GameObjectRegistry.callForTypeSafe()
+
+ModAPI.modAPIs.[data]
 ModAPI.registerAPI(name, api, descr)
 ModAPI.requireAPI(name)
 ModAPI.requireGlobal(name)
@@ -200,81 +241,21 @@ ModAPI.getModByName(modName)
 ModAPI.isModLoaded(modName)
 ModAPI.addAPICallback(apiName, func)
 ModAPI.addModCallback(modName, func)
+ModAPI.getModList()
+ModAPI.getModPEList()
+ModAPI.addTexturePack(path)
 ModAPI.cloneAPI(api, deep)
+ModAPI.inheritPrototypes(source, target)
 
-Saver.saverScopes [... not api, possibly data value ...]
+Saver.saverScopes.[data]
 Saver.addSavesScope(name, loadFunc, saveFunc)
 Saver.onAllLoaded(globalScope)
 Saver.onAllSaved(globalScope)
 
-World.isLoaded [type=boolean value=false ]
+World.isLoaded=false
 World.setLoaded(isLoaded)
 World.isWorldLoaded()
 World.getThreadTime()
-World.__inworld.nativeSetBlock(x, y, z, id, data)
-World.__inworld.nativeGetBlockID(x, y, z)
-World.__inworld.nativeGetBlockData(x, y, z)
-World.__inworld.setBlock(x, y, z, id, data)
-World.__inworld.setFullBlock(x, y, z, fullTile)
-World.__inworld.getBlock(x, y, z)
-World.__inworld.getBlockID(x, y, z)
-World.__inworld.getBlockData(x, y, z)
-World.__inworld.destroyBlock(x, y, z, drop)
-World.__inworld.getLightLevel(x, y, z)
-World.__inworld.getTileEntity(x, y, z)
-World.__inworld.addTileEntity(x, y, z)
-World.__inworld.removeTileEntity(x, y, z)
-World.__inworld.getContainer(x, y, z)
-World.__inworld.getWorldTime()
-World.__inworld.setWorldTime(time)
-World.__inworld.setDayMode(day)
-World.__inworld.setNightMode(night)
-World.__inworld.getWeather()
-World.__inworld.setWeather(weather)
-World.__inworld.drop(x, y, z, id, count, data)
-World.__inworld.explode(x, y, z, power, someBoolean)
-World.__inworld.getBiome(x, z)
-World.__inworld.getBiomeName(x, z)
-World.__inworld.getGrassColor(x, z)
-World.__inworld.setGrassColor(x, z, color)
-World.__inworld.getGrassColorRGB(x, z)
-World.__inworld.setGrassColorRGB(x, z, rgb)
-World.__inworld.canSeeSky(x, y, z)
-World.__inworld.playSound(x, y, z, name, volume, pitch)
-World.__inworld.playSoundAtEntity(entity, name, volume, pitch)
-
-World.__inmenu.nativeSetBlock()
-World.__inmenu.nativeGetBlockID()
-World.__inmenu.nativeGetBlockData(x, y, z)
-World.__inmenu.setBlock(x, y, z, id, data)
-World.__inmenu.setFullBlock(x, y, z, fullTile)
-World.__inmenu.getBlock(x, y, z)
-World.__inmenu.getBlockID(x, y, z)
-World.__inmenu.getBlockData(x, y, z)
-World.__inmenu.destroyBlock(x, y, z, drop)
-World.__inmenu.getLightLevel(x, y, z)
-World.__inmenu.getTileEntity(x, y, z)
-World.__inmenu.addTileEntity(x, y, z)
-World.__inmenu.removeTileEntity(x, y, z)
-World.__inmenu.getContainer(x, y, z)
-World.__inmenu.getWorldTime()
-World.__inmenu.setWorldTime(time)
-World.__inmenu.setDayMode(day)
-World.__inmenu.setNightMode(night)
-World.__inmenu.getWeather()
-World.__inmenu.setWeather(weather)
-World.__inmenu.drop(x, y, z, id, count, data)
-World.__inmenu.explode(x, y, z, power, someBoolean)
-World.__inmenu.getBiome(x, z)
-World.__inmenu.getBiomeName(x, z)
-World.__inmenu.getGrassColor(x, z)
-World.__inmenu.setGrassColor(x, z, color)
-World.__inmenu.getGrassColorRGB(x, z)
-World.__inmenu.setGrassColorRGB(x, z, rgb)
-World.__inmenu.canSeeSky(x, y, z)
-World.__inmenu.playSound(x, y, z, name, volume, pitch)
-World.__inmenu.playSoundAtEntity(entity, name, volume, pitch)
-
 World.nativeSetBlock()
 World.nativeGetBlockID()
 World.nativeGetBlockData(x, y, z)
@@ -307,14 +288,15 @@ World.canSeeSky(x, y, z)
 World.playSound(x, y, z, name, volume, pitch)
 World.playSoundAtEntity(entity, name, volume, pitch)
 
-Entity._AI.base(entity, data)
-Entity._AI.idle(entity, data)
-Entity._AI.follow(entity, data)
-Entity._AI.attack(entity, data)
-Entity._AI.panic(entity, data)
+Entity._AI.base(entity, data) 
+Entity._AI.idle(entity, data) 
+Entity._AI.follow(entity, data) 
+Entity._AI.attack(entity, data) 
+Entity._AI.panic(entity, data) 
 
 Entity.getAll()
 Entity.getAllJS()
+Entity.EXTRA_DATA_PREFIX=core.engine.
 Entity.getExtra(ent, name)
 Entity.putExtra(ent, name, extra)
 Entity.getExtraJson(ent, name)
@@ -388,8 +370,9 @@ Player.getDimension()
 Player.isPlayer(ent)
 Player.getPointed()
 Player.getInventory(loadPart, handleEnchant, handleNames)
-Player.getCarriedItem()
-Player.setCarriedItem(id, count, data)
+Player.addItemToInventory(id, count, data)
+Player.getCarriedItem(handleEnchant, handleNames)
+Player.setCarriedItem(id, count, data, enchant, name)
 Player.decreaseCarriedItem(count)
 Player.setPosition(x, y, z)
 Player.getPosition()
@@ -425,7 +408,7 @@ Player.setHealth(value)
 Player.score()
 Player.getScore()
 
-Render(renderParams)
+Render(renderParams) 
 Game.prevent()
 Game.message(msg)
 Game.tipMessage(msg)
@@ -441,8 +424,8 @@ Game.setTickingSpeed(speed)
 Game.setRenderDebug(enabled)
 Game.screenshot(name)
 
-GenerationUtils.TERRAIN [... not api, possibly data value ...]
-GenerationUtils.TRANSPARENT [... not api, possibly data value ...]
+GenerationUtils.TERRAIN.[data]
+GenerationUtils.TRANSPARENT.[data]
 GenerationUtils.isTerrainBlock(id)
 GenerationUtils.isTransparentBlock(id)
 GenerationUtils.randomXZ(cx, cz)
@@ -450,39 +433,38 @@ GenerationUtils.randomCoords(cx, cz, lowest, highest)
 GenerationUtils.findSurface(x, y, z)
 GenerationUtils.findHighSurface(x, z)
 GenerationUtils.findLowSurface(x, z)
-GenerationUtils.__lockedReal [... not api, possibly data value ...]
+GenerationUtils.__lockedReal.[data]
 GenerationUtils.lockInBlock(id, data, checkerTile, checkerMode)
 GenerationUtils.setLockedBlock(x, y, z)
 GenerationUtils.genMinable(x, y, z, params)
 
-Animation.base(x, y, z)
-Animation.Base(x, y, z)
-Animation.text(x, y, z, text)
-Animation.Text(x, y, z, text)
-Animation.item(x, y, z)
-Animation.Item(x, y, z)
+Animation.base(x, y, z) 
+Animation.Base(x, y, z) 
+Animation.text(x, y, z, text) 
+Animation.Text(x, y, z, text) 
+Animation.item(x, y, z) 
+Animation.Item(x, y, z) 
 
 Particles.addParticle(x, y, z, id, vx, vy, vz, data)
 Particles.line(particle, coords1, coords2, gap, vel, data)
 
-IDRegistry.uniqueID [... not api, possibly data value ...]
-IDRegistry.data [... not api, possibly data value ...]
-IDRegistry.reversedData [... not api, possibly data value ...]
+IDRegistry.uniqueID.[data]
+IDRegistry.data.[data]
+IDRegistry.reversedData.[data]
 IDRegistry.loadDataFromStatic(data)
 IDRegistry.genUniqueID(name, mode)
 IDRegistry.genItemID(name)
 IDRegistry.genBlockID(name)
 IDRegistry.genMiscID(name)
 IDRegistry.getNameByID(id)
-IDRegistry.addedInCreative [... not api, possibly data value ...]
+IDRegistry.addedInCreative=
 IDRegistry.requireCreativeAdd(id, data)
 
-IDData [... not api, possibly data value ...]
-ItemID [... not api, possibly data value ...]
-BlockID [... not api, possibly data value ...]
-Block.idSource [... not api, possibly data value ...]
-Block.dropFunctions [... not api, possibly data value ...]
-Block.DEFAULT_ICON_RESOLUTION [type=number value=96 ]
+IDData.[data]
+ItemID.[data]
+BlockID.[data]
+Block.idSource.[data]
+Block.DEFAULT_ICON_RESOLUTION=96
 Block.setGuiIconParams(canGenerate, size)
 Block.createBlock(namedID, defineData, blockType)
 Block.createBlockWithRotation(namedID, defineData, blockType)
@@ -495,16 +477,36 @@ Block.setDestroyLevelForID(id, level)
 Block.setDestroyLevel(namedID, level)
 Block.onBlockDestroyed(coords, fullTile)
 Block.getBlockDropViaItem(block, item, coords)
-Block.placeFuncs [... not api, possibly data value ...]
 Block.registerPlaceFunction(namedID, func)
 Block.registerPlaceFunctionForID(block, func)
 Block.getPlaceFunc(block)
 Block.setBlockShape(id, pos1, pos2, data)
-Block.createSpecialType(description)
+Block.setShape(id, x1, y1, z1, x2, y2, z2, data)
+Block.createSpecialType(description, nameKey)
+Block.TYPE_BASE=createBlock
+Block.TYPE_ROTATION=createBlockWithRotation
+Block.setPrototype(namedID, Prototype)
 
-Item.idSource [... not api, possibly data value ...]
-Item.useFunctions [... not api, possibly data value ...]
-Item.throwableFunctions [... not api, possibly data value ...]
+Item.idSource.[data]
+Item.useFunctions.513(coords, item, tile)
+Item.useFunctions.553(coords, item, block)
+Item.useFunctions.566(coords, item, block)
+Item.useFunctions.568(coords, item, block)
+Item.useFunctions.571(coords, item, block)
+Item.useFunctions.573(coords, item, block)
+Item.useFunctions.574(coords, item, block)
+Item.useFunctions.575(coords, item, block)
+Item.useFunctions.576(coords, item, block)
+Item.useFunctions.608(coords, item, block)
+Item.useFunctions.611(coords, item, block)
+Item.useFunctions.613(coords, item, block)
+Item.useFunctions.615(coords, item, block)
+Item.useFunctions.616(coords, item, block)
+Item.useFunctions.617(coords, item, block)
+
+Item.throwableFunctions.615(projectile, item, target)
+Item.throwableFunctions.616(projectile, item, target)
+
 Item.createItem(namedID, name, texture, params)
 Item.createFoodItem(namedID, name, texture, params)
 Item.createFuelItem(namedID, name, texture, params)
@@ -518,7 +520,7 @@ Item.getName(id, data, encode)
 Item.getTextureCoords(id, data)
 Item.getUseAnimation(id)
 Item.isValid(id, data)
-Item.describeItem(namedID, description)
+Item.describeItem(numericID, description)
 Item.setCategory(id, category)
 Item.setEnchantType(id, enchant, value)
 Item.setToolRender(id, enabled)
@@ -532,6 +534,11 @@ Item.onItemUsed(coords, item, block)
 Item.registerThrowableFunctionForID(numericID, useFunc)
 Item.registerThrowableFunction(namedID, useFunc)
 Item.onProjectileHit(projectile, item, target)
+Item.TYPE_BASE=createItem
+Item.TYPE_FOOD=createFoodItem
+Item.TYPE_ARMOR=createArmorItem
+Item.TYPE_THROWABLE=createThrowableItem
+Item.setPrototype(namedID, Prototype)
 
 Recipes.addShaped(result, mask, data, func, prefix)
 Recipes.addShapedNative(id, count, data, mask, data2, func, prefix)
@@ -545,8 +552,8 @@ Recipes.getRecipeResult(slots, prefix)
 Recipes.provideRecipe(slots, prefix)
 Recipes.getWorkbenchUI()
 Recipes.getRecipesByResult(id, count, data)
-Recipes.furnaceRecipes [... not api, possibly data value ...]
-Recipes.isFurnaceAdded [type=boolean value=false ]
+Recipes.furnaceRecipes.[data]
+Recipes.isFurnaceAdded=false
 Recipes.addFurnace(source, resultID, resultData, prefix, isLocked)
 Recipes.addFurnaceNative(source, resultID, resultData)
 Recipes.addAllFurnaceRecipes()
@@ -554,10 +561,11 @@ Recipes.doesFurnacePrefixesMatch(recipePrefix, actionPrefix)
 Recipes.getFurnaceRecipeResult(itemId, prefix)
 Recipes.removeFurnaceRecipe(itemId)
 
-ToolAPI.blockMaterials [... not api, possibly data value ...]
-ToolAPI.toolMaterials [... not api, possibly data value ...]
-ToolAPI.toolData [... not api, possibly data value ...]
-ToolAPI.blockData [... not api, possibly data value ...]
+ToolAPI.blockMaterials.[data]
+ToolAPI.toolMaterials.[data]
+ToolAPI.toolData.[data]
+ToolAPI.blockData.[data]
+ToolAPI.needDamagableItemFix=true
 ToolAPI.addBlockMaterial(name, breakingMultiplier)
 ToolAPI.addToolMaterial(name, material)
 ToolAPI.registerTool(id, toolMaterial, blockMaterials, params)
@@ -565,12 +573,14 @@ ToolAPI.registerSword(id, toolMaterial, params)
 ToolAPI.registerBlockMaterial(uid, materialName, level)
 ToolAPI.registerBlockDiggingLevel(uid, level)
 ToolAPI.registerBlockMaterialAsArray(materialName, UIDs)
-ToolAPI.destroyTimeData [... not api, possibly data value ...]
+ToolAPI.destroyTimeData=-1,1.5,0.6000000238418579,0.5,2,2,0,-1,100,100,100,100,0.5,0.6000000238418579,3,3,3,2,0.20000000298023224,0.6000000238418579,0.30000001192092896,3,3,3.5,0.800000011920929,0.800000011920929,0.20000000298023224,0.699999988079071,0.699999988079071,0.5,4,0,0,0.5,0.5,0.800000011920929,1,0,0,0,0,3,5,2,2,2,0,1.5,2,35,0,0,5,2,2.5,0,3,5,2.5,0,0.6000000238418579,3.5,3.5,1,3,0.4000000059604645,0.699999988079071,2,1,0.5,0.5,5,0.5,3,3,0,0,0.5,0.10000000149011612,0.5,0.20000000298023224,0.4000000059604645,0.6000000238418579,0,1,2,1,0.4000000059604645,0.5,0.30000001192092896,-1,1,0.5,0,0,-1,3,0.75,1.5,0.20000000298023224,0.20000000298023224,5,0.30000001192092896,1,0,0,0.20000000298023224,2,2,1.5,0.6000000238418579,0,2,2,2,0,5,0.5,2,-1,-1,3,3,0.30000001192092896,0.30000001192092896,3.5,0.5,0.20000000298023224,0.800000011920929,3,22.5,0,0,5,2,2,2,1,3,10,0,0,0,0.5,1,5,2.5,0.5,0.5,0,0,0.20000000298023224,5,3,3,0.800000011920929,0.800000011920929,2,2,1.25,0.30000001192092896,0.20000000298023224,2,2,2,0,1,5,1.5,0.30000001192092896,0.5,0.10000000149011612,1.25,5,0.5,0,1,0,0.20000000298023224,0.800000011920929,0.800000011920929,2,2,2,2,2,2,2,0,0,0,0,0,3,3,3,3,3,0.6499999761581421,0.25,0.4000000059604645,1.5,0,1.5,0,0,0.800000011920929,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0.4000000059604645,0.30000001192092896,1,0.5,0,2.5,10,3,1,1,-1,3,1,1,2,1
 ToolAPI.refresh()
 ToolAPI.getBlockData(blockID)
 ToolAPI.getBlockMaterial(blockID)
 ToolAPI.getBlockDestroyLevel(blockID)
-ToolAPI.getDestroyTimeViaTool(fullBlock, toolID)
+ToolAPI.getEnchantExtraData(enchant)
+ToolAPI.fortuneDropModifier(drop, level)
+ToolAPI.getDestroyTimeViaTool(fullBlock, toolItem, coords, ignoreNative)
 ToolAPI.getToolData(itemID)
 ToolAPI.getToolLevel(itemID)
 ToolAPI.getToolLevelViaBlock(itemID, blockID)
@@ -578,31 +588,38 @@ ToolAPI.getCarriedToolData()
 ToolAPI.getCarriedToolLevel()
 ToolAPI.startDestroyHook(coords, block, carried)
 ToolAPI.destroyBlockHook(coords, block, carried)
-ToolAPI.LastAttackTime [type=number value=0 ]
+ToolAPI.LastAttackTime=0
 ToolAPI.playerAttackHook(attackerPlayer, victimEntity, carried)
 ToolAPI.resetEngine()
-ToolAPI.DestoryBlockFix [... not api, possibly data value ...]
+ToolAPI.dropExpOrb(x, y, z, value)
+ToolAPI.dropExpOrbs(x, y, z, value)
+ToolAPI.dropOreExp(coords, minVal, maxVal, modifier)
+ToolAPI.checkOrbRemoved(entity, type)
+ToolAPI.breakCarriedTool(damage)
+ToolAPI.setTool(itemID, toolProperties, toolType)
 
-Armor.armorFuncs [... not api, possibly data value ...]
+Armor.armorFuncs.[data]
 Armor.registerFuncsForID(item, funcs)
 Armor.registerFuncs(namedID, funcs)
 Armor.getForSlot(slot)
 Armor.tickCallback()
 Armor.hurtCallback(attacker, damage)
 
-LiquidRegistry.liquids [... not api, possibly data value ...]
+LiquidRegistry.liquids.[data]
 LiquidRegistry.registerLiquid(key, name, uiTextures, modelTextures)
 LiquidRegistry.getLiquidData(key)
 LiquidRegistry.isExists(key)
 LiquidRegistry.getLiquidName(key)
 LiquidRegistry.getLiquidUITexture(key, width, height)
 LiquidRegistry.getLiquidUIBitmap(key, width, height)
-LiquidRegistry.FullByEmpty [... not api, possibly data value ...]
-LiquidRegistry.EmptyByFull [... not api, possibly data value ...]
+LiquidRegistry.FullByEmpty.[data]
+LiquidRegistry.EmptyByFull.[data]
 LiquidRegistry.registerItem(liquid, empty, full)
 LiquidRegistry.getEmptyItem(id, data)
 LiquidRegistry.getItemLiquid(id, data)
 LiquidRegistry.getFullItem(id, data, liquid)
 LiquidRegistry.Storage(tileEntity)
 
-Unlimited [... not api, possibly data value ...]
+Unlimited.[data]
+Native.[data]
+

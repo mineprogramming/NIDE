@@ -1,3 +1,8 @@
+//by MineExplorer
+//Версия beta v6
+//Моя страница Вконтакте - vk.com/vlad.gr2027
+//Группа мода - vk.com/modpe_scripting
+
 //define ModAPI
 var ModAPI = {
  addTranslation: function(name, translation){
@@ -10,9 +15,11 @@ var ModAPI = {
    if(type) this.setBlockType(id, type);
    if(type=="stone") type = 1
    if(type=="wood") type = 5
+   if(!properties.opacity) Block.setLightOpacity(id, 0);
    try{Block.defineBlock(id, translate(name), textures, type, properties.opacity);}
    catch(e){Block.defineBlock(id, translate(name), ["stone",0], type, properties.opacity);}
    if(properties.render) Block.setRenderType(id, properties.render);
+   if(properties.inCreative==undefined) properties.inCreative = true;
    if(properties.inCreative) Player.addItemCreativeInv(id);
   }else{
   Block.defineBlock(id, translate(name), textures);}
@@ -22,7 +29,7 @@ var ModAPI = {
   for(var damage in textures){
    for(var n = 0; n < 6; n++){
    texture.push(textures[damage]);}
-   if(properties.inCreative) Player.addItemCreativeInv(id, damage);
+   if(properties.inCreative) Player.addItemCreativeInv(id, 1, damage);
   }
   properties.inCreative = false
   this.defineBlock(id, name, texture, properties);

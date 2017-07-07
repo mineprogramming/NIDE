@@ -50,6 +50,9 @@ namespace NIDE
                 if (line == "")
                     continue;
                 string item = line.Split('[')[0].Trim();
+                item = item.Split('(')[0].Trim();
+                item = item.Split('=')[0].Trim();
+                item = item.Trim('.');
                 if (item.IndexOf('.') < 0)
                 {
                     Items.Add(item);
