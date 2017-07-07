@@ -5,14 +5,15 @@ using System.Windows.Forms;
 using Keyboard = System.Windows.Input.Keyboard;
 using Key = System.Windows.Input.Key;
 using KeyStates = System.Windows.Input.KeyStates;
+using System.Linq;
 
 namespace NPixelPaint
 {
     public partial class fPaint : Form
     {
         string path;
-        int width;
-        int height;
+        int width = 32;
+        int height = 32;
 
         int scale = 21;
 
@@ -45,7 +46,7 @@ namespace NPixelPaint
                 {
                     for (int j = 0; j < width; j++)
                     {
-                        pixels[i, j] = png.GetPixel(i, j);
+                        pixels[j, i] = png.GetPixel(j, i);
                     }
                 }
             }
@@ -335,9 +336,7 @@ namespace NPixelPaint
             if (y < height - 1 && pixels[x, y + 1] == prevColor)
                 FillRecursive(x, y + 1);
         }
-
-
-
+        
         private void tsbUndo_Click(object sender, EventArgs e)
         {
             Color[,] last = UndoBuffer[UndoBuffer.Count - 1];

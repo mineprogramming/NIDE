@@ -200,7 +200,7 @@ namespace NIDE
                 API_LEVEL, projectName, Util.ProjectTypeToString(type));
             File.WriteAllText(projectFile, nproj, ProgramData.Encoding);
         }
-        
+
         public ProjectManager(string source, string path, string projectName) : this(path, ProjectType.MODPE, projectName)
         {
             using (ZipArchive archive = ZipFile.OpenRead(source))
@@ -270,7 +270,7 @@ namespace NIDE
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
             string ScriptPath = ScriptsPath + name;
             File.CreateText(ScriptPath).Close();
-            if(projectType == ProjectType.COREENGINE)
+            if (projectType == ProjectType.COREENGINE)
                 File.AppendAllText(MainScriptPath, "\n" + name, ProgramData.Encoding);
         }
 
@@ -328,7 +328,7 @@ namespace NIDE
             }
             return false;
         }
-        
+
 
         //Filesystems
         private void CreateModPEFileSystem()
@@ -376,7 +376,6 @@ namespace NIDE
             foreach (string item in new string[]{
                 "\\source\\",
                 "\\source\\manifest.json",
-                "\\source\\pack_icon.png",
                 "\\source\\textures\\",
                 "\\source\\textures\\items\\",
                 "\\source\\textures\\blocks\\",
@@ -405,6 +404,7 @@ namespace NIDE
     ]
 }}";
             File.WriteAllText(MainScriptPath, String.Format(pattern, ProjectName, Util.GenerateUUID(), Util.GenerateUUID()), ProgramData.Encoding);
+            File.Copy(Directory.GetCurrentDirectory() + "\\icons\\pack.png", path + "\\source\\pack_icon.png");
         }
 
         private void CreateBehaviourPackFileSystem()
@@ -412,7 +412,6 @@ namespace NIDE
             foreach (string item in new string[]{
                 "\\source\\",
                 "\\source\\manifest.json",
-                "\\source\\pack_icon.png",
                 "\\source\\entities\\",
                 "\\source\\loot_tables\\",
                 "\\source\\loot_tables\\chests\\",
@@ -444,6 +443,7 @@ namespace NIDE
     ]
 }}";
             File.WriteAllText(MainScriptPath, String.Format(pattern, ProjectName, Util.GenerateUUID(), Util.GenerateUUID()), ProgramData.Encoding);
+            File.Copy("icons\\NIDE.png", path + "\\source\\pack_icon.png");
         }
 
 
@@ -535,6 +535,6 @@ namespace NIDE
                 zip.Save(path + "\\" + ProjectName + ".mcpack");
             }
         }
-        
+
     }
 }

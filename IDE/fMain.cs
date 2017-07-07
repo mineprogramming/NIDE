@@ -1,12 +1,10 @@
 ﻿using FastColoredTextBoxNS;
 using System;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Collections.Generic;
 
 namespace NIDE
 {
