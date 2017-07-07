@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace NIDE
 {
     static class ProgramData
     {
         public const int PROGRAM_VERSION = 4;
+
+        public static Encoding Encoding { get { return new ProgramData.Encoding; } }
 
         public static void Log(string source, string message)
         {

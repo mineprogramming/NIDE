@@ -150,7 +150,7 @@ namespace NIDE
         {
             this.projectFile = projectFile;
             path = Directory.GetParent(projectFile).FullName;
-            foreach (var line in File.ReadAllLines(projectFile, Encoding.UTF8))
+            foreach (var line in File.ReadAllLines(projectFile, ProgramData.Encoding))
             {
                 string[] keyValue = line.Split(':');
                 if (keyValue.Length != 2)
@@ -198,7 +198,7 @@ namespace NIDE
             string nproj = string.Format(
                 "nide-api:{0}\nproject-name:{1}\nproject-version:1.0.0\nproject-type:{2}\nsettings-compress:false",
                 API_LEVEL, projectName, Util.ProjectTypeToString(type));
-            File.WriteAllText(projectFile, nproj, Encoding.UTF8);
+            File.WriteAllText(projectFile, nproj, ProgramData.Encoding);
         }
         
         public ProjectManager(string source, string path, string projectName) : this(path, ProjectType.MODPE, projectName)
@@ -229,7 +229,7 @@ namespace NIDE
         {
             Libraries.Clear();
             Autocomplete.UserItems.Clear();
-            foreach (var line in File.ReadAllLines(projectFile, Encoding.UTF8))
+            foreach (var line in File.ReadAllLines(projectFile, ProgramData.Encoding))
             {
                 string[] keyValue = line.Split(':');
                 if (keyValue.Length != 2)
@@ -271,7 +271,7 @@ namespace NIDE
             string ScriptPath = ScriptsPath + name;
             File.CreateText(ScriptPath).Close();
             if(projectType == ProjectType.COREENGINE)
-                File.AppendAllText(MainScriptPath, "\n" + name, new UTF8Encoding(false));
+                File.AppendAllText(MainScriptPath, "\n" + name, ProgramData.Encoding);
         }
 
         public void AddTexture(string name, ImageType type)
@@ -296,8 +296,8 @@ namespace NIDE
             string path = LibrariesPath + name + "\\";
             Directory.CreateDirectory(path);
             File.CreateText(path + "lib.js").Close();
-            File.WriteAllText(path + "info.nlib", String.Format("nide-api:{0}\nlibrary-version:1.0", API_LEVEL), Encoding.UTF8);
-            File.AppendAllText(projectFile, "\ninclude-library:project/" + name, Encoding.UTF8);
+            File.WriteAllText(path + "info.nlib", String.Format("nide-api:{0}\nlibrary-version:1.0", API_LEVEL), ProgramData.Encoding);
+            File.AppendAllText(projectFile, "\ninclude-library:project/" + name, ProgramData.Encoding);
             UpdateNlib();
         }
 
@@ -305,7 +305,7 @@ namespace NIDE
         {
             if (!LibraryInstalled(name))
             {
-                File.AppendAllText(projectFile, "\ninclude-library:nide/" + name, Encoding.UTF8);
+                File.AppendAllText(projectFile, "\ninclude-library:nide/" + name, ProgramData.Encoding);
                 UpdateNlib();
             }
         }
@@ -313,10 +313,10 @@ namespace NIDE
         public void ExcludeLibrary(string name)
         {
             List<string> lines = new List<string>();
-            lines.AddRange(File.ReadAllLines(projectFile, Encoding.UTF8));
+            lines.AddRange(File.ReadAllLines(projectFile, ProgramData.Encoding));
             if (lines.Contains("include-library:nide/" + name))
                 lines.Remove("include-library:nide/" + name);
-            File.WriteAllLines(projectFile, lines, Encoding.UTF8);
+            File.WriteAllLines(projectFile, lines, ProgramData.Encoding);
             UpdateNlib();
         }
 
@@ -416,17 +416,17 @@ namespace NIDE
             foreach (var library in Libraries)
             {
                 string text = library.GetCode();
-                File.AppendAllText(outp, "\n" + text, Encoding.UTF8);
+                File.AppendAllText(outp, "\n" + text, ProgramData.Encoding);
             }
             foreach (var file in Directory.GetFiles(ScriptsPath))
             {
-                string text = File.ReadAllText(file, Encoding.UTF8);
-                File.AppendAllText(outp, "\n" + text, Encoding.UTF8);
+                string text = File.ReadAllText(file, ProgramData.Encoding);
+                File.AppendAllText(outp, "\n" + text, ProgramData.Encoding);
             }
             if (compress)
             {
                 JavaScriptCompressor compressor = new JavaScriptCompressor();
-                File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp, Encoding.UTF8)), Encoding.UTF8);
+                File.WriteAllText(outp, compressor.Compress(File.ReadAllText(outp, ProgramData.Encoding)), ProgramData.Encoding);
             }
 
             foreach (var file in OutFiles)

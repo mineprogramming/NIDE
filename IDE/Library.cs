@@ -33,7 +33,7 @@ namespace NIDE
         {
             this.path = path;
             string pathToNlib = path + "\\info.nlib";
-            foreach (var line in File.ReadAllLines(pathToNlib, Encoding.UTF8))
+            foreach (var line in File.ReadAllLines(pathToNlib, ProgramData.Encoding))
             {
                 string[] keyValue = line.Split(':');
                 if (keyValue.Length != 2)
@@ -75,7 +75,7 @@ namespace NIDE
         public string GetCode()
         {
             string CodePath = path + "\\lib.js";
-            return File.ReadAllText(CodePath, Encoding.UTF8);
+            return File.ReadAllText(CodePath, ProgramData.Encoding);
         }
     }
 }

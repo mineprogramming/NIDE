@@ -375,7 +375,7 @@ namespace NIDE
             try
             {
                 ProgramData.file = FileName;
-                fctbMain.OpenFile(FileName, Encoding.UTF8);
+                fctbMain.OpenFile(FileName, ProgramData.Encoding);
                 fctbMain.ReadOnly = false;
                 string extension = Path.GetExtension(FileName).ToLower();
                 if (extension == ".js")
@@ -452,7 +452,7 @@ namespace NIDE
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            File.WriteAllLines(ProgramData.file, fctbMain.Lines, new UTF8Encoding(false));
+            File.WriteAllLines(ProgramData.file, fctbMain.Lines, new ProgramData.Encoding);
             saved = true;
             tsslFile.Text = tsslFile.Text.Replace("*", "");
         }
@@ -470,7 +470,7 @@ namespace NIDE
             var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {
-                fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+                fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
                 return true;
             }
             else if (result == DialogResult.Cancel)
@@ -526,7 +526,7 @@ namespace NIDE
 
         private void tsmiBuild_Click(object sender, EventArgs e)
         {
-            fctbMain.SaveToFile(ProgramData.file, Encoding.UTF8);
+            fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
             saved = true;
             ProgramData.ProjectManager.Build();
         }
