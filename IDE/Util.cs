@@ -7,6 +7,8 @@ namespace NIDE
 {
     public static class Util
     {
+        private static Random rnd = new Random();
+
         public static type ToObject<type>(this string JSON)
         {
             return new JavaScriptSerializer().Deserialize<type>(JSON);
@@ -27,18 +29,17 @@ namespace NIDE
             }
         }
 
-        public static void CopyDirectory(string FromDir, string ToDir)
+        public static string GenerateUUID()
         {
-            Directory.CreateDirectory(ToDir);
-            foreach (string s1 in Directory.GetFiles(FromDir))
+            
+            string uuid = "";
+            for(int i = 0; i < 32; i++)
             {
-                string s2 = ToDir + "\\" + Path.GetFileName(s1);
-                File.Copy(s1, s2);
+                uuid += rnd.Next(16).ToString("x");
+                if (i == 7 || i == 11 || i == 15 || i == 19)
+                    uuid += "-";
             }
-            foreach (string s in Directory.GetDirectories(FromDir))
-            {
-                CopyDirectory(s, ToDir + "\\" + Path.GetFileName(s));
-            }
+            return uuid;
         }
 
         public static string ProjectTypeToString(ProjectType type)

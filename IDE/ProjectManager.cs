@@ -373,12 +373,77 @@ namespace NIDE
 
         private void CreateResourcePackFileSystem()
         {
-            Util.CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_texture", path + SOURCE_CODE_PATH);
+            foreach (string item in new string[]{
+                "\\source\\",
+                "\\source\\manifest.json",
+                "\\source\\pack_icon.png",
+                "\\source\\textures\\",
+                "\\source\\textures\\items\\",
+                "\\source\\textures\\blocks\\",
+                "\\source\\models\\"
+            })
+            {
+                if (item.EndsWith("\\"))
+                    Directory.CreateDirectory(path + item);
+                else File.CreateText(path + item).Close();
+            }
+            string pattern = @"{{
+    ""format_version"": 1,
+    ""header"": {{
+        ""description"": ""Your description"",
+        ""name"": ""{0}"",
+        ""uuid"": ""{1}"",
+        ""version"": [0, 0, 1]
+    }},
+    ""modules"": [
+        {{
+            ""description"": ""Your description"",
+            ""type"": ""resources"",
+            ""uuid"": ""{2}"",
+            ""version"": [0, 0, 1]
+        }}
+    ]
+}}";
+            File.WriteAllText(MainScriptPath, String.Format(pattern, ProjectName, Util.GenerateUUID(), Util.GenerateUUID()), ProgramData.Encoding);
         }
 
         private void CreateBehaviourPackFileSystem()
         {
-            Util.CopyDirectory(Directory.GetCurrentDirectory() + "\\templates\\vanilla_behaviour", path + SOURCE_CODE_PATH);
+            foreach (string item in new string[]{
+                "\\source\\",
+                "\\source\\manifest.json",
+                "\\source\\pack_icon.png",
+                "\\source\\entities\\",
+                "\\source\\loot_tables\\",
+                "\\source\\loot_tables\\chests\\",
+                "\\source\\loot_tables\\entities\\",
+                "\\source\\loot_tables\\equipment\\",
+                "\\source\\loot_tables\\gameplay\\",
+                "\\source\\trading\\"
+            })
+            {
+                if (item.EndsWith("\\"))
+                    Directory.CreateDirectory(path + item);
+                else File.CreateText(path + item).Close();
+            }
+            string pattern = @"{{
+    ""format_version"": 1,
+    ""header"": {{
+        ""description"": ""Your description"",
+        ""name"": ""{0}"",
+        ""uuid"": ""{1}"",
+        ""version"": [0, 0, 1]
+    }},
+    ""modules"": [
+        {{
+            ""description"": ""Your description"",
+            ""type"": ""data"",
+            ""uuid"": ""{2}"",
+            ""version"": [0, 0, 1]
+        }}
+    ]
+}}";
+            File.WriteAllText(MainScriptPath, String.Format(pattern, ProjectName, Util.GenerateUUID(), Util.GenerateUUID()), ProgramData.Encoding);
         }
 
 

@@ -452,7 +452,7 @@ namespace NIDE
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            File.WriteAllLines(ProgramData.file, fctbMain.Lines, new ProgramData.Encoding);
+            File.WriteAllLines(ProgramData.file, fctbMain.Lines, ProgramData.Encoding);
             saved = true;
             tsslFile.Text = tsslFile.Text.Replace("*", "");
         }
@@ -552,7 +552,21 @@ namespace NIDE
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
         {
-            new JsRunner(fctbMain.Text);
+            if(ProgramData.FileOnly)
+                new JsRunner(fctbMain.Text);
+            else switch (ProgramData.ProjectManager.projectType)
+                {
+                    case ProjectType.MODPE:
+                    case ProjectType.COREENGINE:
+                        new JsRunner(fctbMain.Text);
+                        break;
+                    case ProjectType.TEXTURE_PACK:
+                    case ProjectType.BEHAVIOUR_PACK:
+                        ProgramData.ProjectManager.Build();
+                        string mcpack = ProgramData.ProjectManager.path + "\\" + ProgramData.ProjectManager.ProjectName + ".mcpack";
+                        Process.Start(mcpack);
+                        break;
+                }
         }
 
 

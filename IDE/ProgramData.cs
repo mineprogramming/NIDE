@@ -7,7 +7,7 @@ namespace NIDE
     {
         public const int PROGRAM_VERSION = 4;
 
-        public static Encoding Encoding { get { return new ProgramData.Encoding; } }
+        public static Encoding Encoding { get { return new UTF8Encoding(false); } }
 
         public static void Log(string source, string message)
         {
