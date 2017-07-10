@@ -255,9 +255,9 @@ namespace NPixelPaint
             {
                 BackupForUndo();
                 if (tsbFill.Checked)
-                    FillRecursive(x, y);
+                    Fill(x, y);
                 else if (tsbTexturize.Checked)
-                    TexturizeRecursive(x, y);
+                    Texturize(x, y);
                 DrawPanel.Refresh();
             }
         }
@@ -310,50 +310,158 @@ namespace NPixelPaint
         {
             mouseDown = false;
         }
-
-
-        private void TexturizeRecursive(int x, int y)
+        
+        private void Texturize(int x, int y)
         {
-            Color prevColor = pixels[x, y];
-            int darkness = rnd.Next(-30, 30);
-            int A = prevColor.A + darkness;
-            if (A > 255) A = 255;
-            if (A < 0) A = 0;
-            int R = prevColor.R + darkness;
-            if (R > 255) R = 255;
-            if (R < 0) R = 0;
-            int G = prevColor.G + darkness;
-            if (G > 255) G = 255;
-            if (G < 0) G = 0;
-            int B = prevColor.B + darkness;
-            if (B > 255) B = 255;
-            if (B < 0) B = 0;
+            List<StackFrame> argStack = new List<StackFrame>();
 
-            pixels[x, y] = Color.FromArgb(A, R, G, B);
-            if (x > 0 && pixels[x - 1, y] == prevColor)
-                TexturizeRecursive(x - 1, y);
-            if (x < width - 1 && pixels[x + 1, y] == prevColor)
-                TexturizeRecursive(x + 1, y);
-            if (y > 0 && pixels[x, y - 1] == prevColor)
-                TexturizeRecursive(x, y - 1);
-            if (y < height - 1 && pixels[x, y + 1] == prevColor)
-                TexturizeRecursive(x, y + 1);
+            argStack.Add(new StackFrame(x, y));
+
+            while (argStack.Any())
+            {
+                var frame = argStack.Last();
+
+                bool @return = false;
+                switch (frame.Label)
+                {
+                    case 0:
+                        frame.prevColor = pixels[frame.x, frame.y];
+                        if (tsbColorPicker.Color == frame.prevColor)
+                        {
+                            @return = true;
+                        }
+                        else
+                        {
+                            int darkness = rnd.Next(-30, 30);
+                            int A = frame.prevColor.A + darkness;
+                            if (A > 255) A = 255;
+                            if (A < 0) A = 0;
+                            int R = frame.prevColor.R + darkness;
+                            if (R > 255) R = 255;
+                            if (R < 0) R = 0;
+                            int G = frame.prevColor.G + darkness;
+                            if (G > 255) G = 255;
+                            if (G < 0) G = 0;
+                            int B = frame.prevColor.B + darkness;
+                            if (B > 255) B = 255;
+                            if (B < 0) B = 0;
+                            pixels[frame.x, frame.y] = Color.FromArgb(A, R, G, B); ;
+                            if (frame.x > 0 && pixels[frame.x - 1, frame.y] == frame.prevColor)
+                            {
+                                argStack.Add(new StackFrame(frame.x - 1, frame.y));
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (frame.x < width - 1 && pixels[frame.x + 1, frame.y] == frame.prevColor)
+                        {
+                            argStack.Add(new StackFrame(frame.x + 1, frame.y));
+                        }
+                        break;
+                    case 2:
+                        if (frame.y > 0 && pixels[frame.x, frame.y - 1] == frame.prevColor)
+                        {
+                            argStack.Add(new StackFrame(frame.x, frame.y - 1));
+                        }
+                        break;
+                    case 3:
+                        if (frame.y < height - 1 && pixels[frame.x, frame.y + 1] == frame.prevColor)
+                        {
+                            argStack.Add(new StackFrame(frame.x, frame.y + 1));
+                        }
+                        break;
+                    case 4:
+                        @return = true;
+                        break;
+                }
+
+                if (@return)
+                {
+                    argStack.Remove(frame);
+                }
+                else
+                {
+                    frame.Label++;
+                }
+            }
         }
 
-        private void FillRecursive(int x, int y)
+        private void Fill(int x, int y)
         {
-            Color prevColor = pixels[x, y];
-            if (tsbColorPicker.Color == prevColor)
-                return;
-            pixels[x, y] = tsbColorPicker.Color;
-            if (x > 0 && pixels[x - 1, y] == prevColor)
-                FillRecursive(x - 1, y);
-            if (x < width - 1 && pixels[x + 1, y] == prevColor)
-                FillRecursive(x + 1, y);
-            if (y > 0 && pixels[x, y - 1] == prevColor)
-                FillRecursive(x, y - 1);
-            if (y < height - 1 && pixels[x, y + 1] == prevColor)
-                FillRecursive(x, y + 1);
+            List<StackFrame> argStack = new List<StackFrame>();
+
+            argStack.Add(new StackFrame(x, y));
+
+            while (argStack.Any())
+            {
+                var frame = argStack.Last();
+
+                bool @return = false;
+                switch (frame.Label)
+                {
+                    case 0:
+                        frame.prevColor = pixels[frame.x, frame.y];
+                        if (tsbColorPicker.Color == frame.prevColor)
+                        {
+                            @return = true;
+                        }
+                        else
+                        {
+                            pixels[frame.x, frame.y] = tsbColorPicker.Color;
+                            if (frame.x > 0 && pixels[frame.x - 1, frame.y] == frame.prevColor)
+                            {
+                                argStack.Add(new StackFrame(frame.x - 1, frame.y));
+                            }
+                        }
+                        break;
+                    case 1:
+                        if (frame.x < width - 1 && pixels[frame.x + 1, frame.y] == frame.prevColor)
+                        {
+                            argStack.Add(new StackFrame(frame.x + 1, frame.y));
+                        }
+                        break;
+                    case 2:
+                        if (frame.y > 0 && pixels[frame.x, frame.y - 1] == frame.prevColor)
+                        {
+                            argStack.Add(new StackFrame(frame.x, frame.y - 1));
+                        }
+                        break;
+                    case 3:
+                        if (frame.y < height - 1 && pixels[frame.x, frame.y + 1] == frame.prevColor)
+                        {
+                            argStack.Add(new StackFrame(frame.x, frame.y + 1));
+                        }
+                        break;
+                    case 4:
+                        @return = true;
+                        break;
+                }
+
+                if (@return)
+                {
+                    argStack.Remove(frame);
+                }
+                else
+                {
+                    frame.Label++;
+                }
+            }
+        }
+
+        private class StackFrame
+        {
+            public int x;
+            public int y;
+            public Color prevColor;
+
+            public int Label;
+
+            public StackFrame(int x, int y)
+            {
+                this.x = x;
+                this.y = y;
+                Label = 0;
+            }
         }
 
         private void tsbUndo_Click(object sender, EventArgs e)
