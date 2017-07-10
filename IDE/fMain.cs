@@ -41,6 +41,7 @@ namespace NIDE
         private void fMain_Shown(object sender, EventArgs e)
         {
             CheckUpdates();
+            SendStats();
             if (args.Length > 0)
             {
                 try
@@ -740,7 +741,7 @@ namespace NIDE
             try
             {
                 WebClient client = new WebClient();
-                int version = Convert.ToInt32(client.DownloadString("http://api.mineprogramming.org/nide-version/"));
+                int version = Convert.ToInt32(client.DownloadString("http://api.mineprogramming.org/nide/version/"));
                 client.Dispose();
                 if (version > ProgramData.PROGRAM_VERSION)
                 {
@@ -749,6 +750,21 @@ namespace NIDE
                         Process.Start("https://www.mineprogramming.org/nide/");
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Cannot connect to the service!");
+            }
+        }
+        
+        private void SendStats()
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                client.DownloadString("http://api.mineprogramming.org/nide/counters/open.php");
+                client.Dispose();
+                
             }
             catch (Exception ex)
             {
