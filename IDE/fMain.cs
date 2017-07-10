@@ -782,5 +782,10 @@ namespace NIDE
             Process.Start("links.html");
         }
 
+        private void Ads_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            e.Cancel = true;
+            Process.Start(e.Url.ToString());
+        }
     }
 }

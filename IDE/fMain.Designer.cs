@@ -48,6 +48,8 @@
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitter = new System.Windows.Forms.Splitter();
+            this.panel = new System.Windows.Forms.Panel();
+            this.Ads = new System.Windows.Forms.WebBrowser();
             this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,6 +129,7 @@
             this.gbErrors.SuspendLayout();
             this.gbLogger.SuspendLayout();
             this.StatusStrip.SuspendLayout();
+            this.panel.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
             this.ToolStripGeneral.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -141,7 +144,7 @@
             this.container.ContentPanel.Controls.Add(this.mainSplit);
             this.container.ContentPanel.Controls.Add(this.StatusStrip);
             this.container.ContentPanel.Controls.Add(this.splitter);
-            this.container.ContentPanel.Controls.Add(this.tvFolders);
+            this.container.ContentPanel.Controls.Add(this.panel);
             resources.ApplyResources(this.container.ContentPanel, "container.ContentPanel");
             resources.ApplyResources(this.container, "container");
             this.container.Name = "container";
@@ -300,6 +303,24 @@
             resources.ApplyResources(this.splitter, "splitter");
             this.splitter.Name = "splitter";
             this.splitter.TabStop = false;
+            // 
+            // panel
+            // 
+            this.panel.Controls.Add(this.tvFolders);
+            this.panel.Controls.Add(this.Ads);
+            resources.ApplyResources(this.panel, "panel");
+            this.panel.Name = "panel";
+            // 
+            // Ads
+            // 
+            this.Ads.AllowWebBrowserDrop = false;
+            resources.ApplyResources(this.Ads, "Ads");
+            this.Ads.IsWebBrowserContextMenuEnabled = false;
+            this.Ads.Name = "Ads";
+            this.Ads.ScrollBarsEnabled = false;
+            this.Ads.Url = new System.Uri("http://api.mineprogramming.org/nide/ads/index.php", System.UriKind.Absolute);
+            this.Ads.WebBrowserShortcutsEnabled = false;
+            this.Ads.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Ads_Navigating);
             // 
             // tvFolders
             // 
@@ -776,6 +797,7 @@
             this.gbLogger.PerformLayout();
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
+            this.panel.ResumeLayout(false);
             this.cmsTreeView.ResumeLayout(false);
             this.ToolStripGeneral.ResumeLayout(false);
             this.ToolStripGeneral.PerformLayout();
@@ -870,6 +892,8 @@
         private System.Windows.Forms.SplitContainer splitContainerLogs;
         private System.Windows.Forms.GroupBox gbErrors;
         private System.Windows.Forms.GroupBox gbLogger;
+        private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.WebBrowser Ads;
     }
 }
 
