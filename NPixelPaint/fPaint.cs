@@ -28,7 +28,8 @@ namespace NPixelPaint
         List<Color[,]> UndoBuffer = new List<Color[,]>();
         List<Color[,]> RedoBuffer = new List<Color[,]>();
 
-
+        int TextInt = 30;
+        
         public fPaint(string path)
         {
             InitializeComponent();
@@ -130,6 +131,24 @@ namespace NPixelPaint
             tsbFill.Checked = false;
             tsbTexturize.Checked = false;
             tsbRectangle.Checked = false;
+        }
+
+        //Texturize settings
+        private void UncheckTexturize()
+        {
+            tsmi10.Checked = false;
+            tsmi20.Checked = false;
+            tsmi30.Checked = false;
+            tsmi40.Checked = false;
+            tsmi50.Checked = false;
+        }
+
+        private void tsmiTexturizeInt_Click(object sender, EventArgs e)
+        {
+            UncheckTexturize();
+            TextInt = Convert.ToInt32((sender as ToolStripMenuItem).Tag.ToString());
+            (sender as ToolStripMenuItem).Checked = true;
+            tsbTexturize_Click(sender, e);
         }
 
 
@@ -310,7 +329,8 @@ namespace NPixelPaint
         {
             mouseDown = false;
         }
-        
+
+
         private void Texturize(int x, int y)
         {
             List<StackFrame> argStack = new List<StackFrame>();
@@ -332,7 +352,7 @@ namespace NPixelPaint
                         }
                         else
                         {
-                            int darkness = rnd.Next(-30, 30);
+                            int darkness = rnd.Next(-TextInt, TextInt);
                             int A = frame.prevColor.A + darkness;
                             if (A > 255) A = 255;
                             if (A < 0) A = 0;
@@ -464,6 +484,7 @@ namespace NPixelPaint
             }
         }
 
+
         private void tsbUndo_Click(object sender, EventArgs e)
         {
             Color[,] last = UndoBuffer[UndoBuffer.Count - 1];
@@ -503,7 +524,7 @@ namespace NPixelPaint
             tsbRedo.Enabled = false;
             tsbUndo.Enabled = true;
         }
-
+        
 
         int GetCursorX()
         {
@@ -521,5 +542,6 @@ namespace NPixelPaint
             if (y > height - 1) y = height - 1;
             return y;
         }
+                
     }
 }

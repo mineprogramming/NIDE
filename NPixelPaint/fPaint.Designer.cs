@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -41,8 +42,14 @@
             this.tsbDraw = new System.Windows.Forms.ToolStripButton();
             this.tsbFill = new System.Windows.Forms.ToolStripButton();
             this.tsbClear = new System.Windows.Forms.ToolStripButton();
-            this.tsbTexturize = new System.Windows.Forms.ToolStripButton();
             this.tsbRectangle = new System.Windows.Forms.ToolStripButton();
+            this.tsbTexturize = new System.Windows.Forms.ToolStripButton();
+            this.tsbInt = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsmi10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi20 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi30 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi40 = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmi50 = new System.Windows.Forms.ToolStripMenuItem();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.DrawPanel = new NPixelPaint.PanelEx();
             this.themeColorPicker1 = new System.Windows.Forms.ThemeColorPicker();
@@ -65,8 +72,9 @@
             this.tsbDraw,
             this.tsbFill,
             this.tsbClear,
+            this.tsbRectangle,
             this.tsbTexturize,
-            this.tsbRectangle});
+            this.tsbInt});
             this.tsMain.Location = new System.Drawing.Point(0, 0);
             this.tsMain.Name = "tsMain";
             this.tsMain.Size = new System.Drawing.Size(597, 25);
@@ -180,6 +188,16 @@
             this.tsbClear.Text = "Erase";
             this.tsbClear.Click += new System.EventHandler(this.tsbClear_Click);
             // 
+            // tsbRectangle
+            // 
+            this.tsbRectangle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tsbRectangle.Image")));
+            this.tsbRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRectangle.Name = "tsbRectangle";
+            this.tsbRectangle.Size = new System.Drawing.Size(23, 22);
+            this.tsbRectangle.Text = "Rectangle";
+            this.tsbRectangle.Click += new System.EventHandler(this.tsbRectangle_Click);
+            // 
             // tsbTexturize
             // 
             this.tsbTexturize.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -190,15 +208,62 @@
             this.tsbTexturize.Text = "Texturize";
             this.tsbTexturize.Click += new System.EventHandler(this.tsbTexturize_Click);
             // 
-            // tsbRectangle
+            // tsbInt
             // 
-            this.tsbRectangle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRectangle.Image = ((System.Drawing.Image)(resources.GetObject("tsbRectangle.Image")));
-            this.tsbRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRectangle.Name = "tsbRectangle";
-            this.tsbRectangle.Size = new System.Drawing.Size(23, 22);
-            this.tsbRectangle.Text = "Rectangle";
-            this.tsbRectangle.Click += new System.EventHandler(this.tsbRectangle_Click);
+            this.tsbInt.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.tsbInt.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmi10,
+            this.tsmi20,
+            this.tsmi30,
+            this.tsmi40,
+            this.tsmi50});
+            this.tsbInt.Image = ((System.Drawing.Image)(resources.GetObject("tsbInt.Image")));
+            this.tsbInt.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbInt.Name = "tsbInt";
+            this.tsbInt.Size = new System.Drawing.Size(16, 22);
+            this.tsbInt.Text = "toolStripSplitButton1";
+            // 
+            // tsmi10
+            // 
+            this.tsmi10.Name = "tsmi10";
+            this.tsmi10.Size = new System.Drawing.Size(152, 22);
+            this.tsmi10.Tag = "10";
+            this.tsmi10.Text = "±10";
+            this.tsmi10.Click += new System.EventHandler(this.tsmiTexturizeInt_Click);
+            // 
+            // tsmi20
+            // 
+            this.tsmi20.Name = "tsmi20";
+            this.tsmi20.Size = new System.Drawing.Size(152, 22);
+            this.tsmi20.Tag = "20";
+            this.tsmi20.Text = "±20";
+            this.tsmi20.Click += new System.EventHandler(this.tsmiTexturizeInt_Click);
+            // 
+            // tsmi30
+            // 
+            this.tsmi30.Checked = true;
+            this.tsmi30.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsmi30.Name = "tsmi30";
+            this.tsmi30.Size = new System.Drawing.Size(152, 22);
+            this.tsmi30.Tag = "30";
+            this.tsmi30.Text = "±30";
+            this.tsmi30.Click += new System.EventHandler(this.tsmiTexturizeInt_Click);
+            // 
+            // tsmi40
+            // 
+            this.tsmi40.Name = "tsmi40";
+            this.tsmi40.Size = new System.Drawing.Size(152, 22);
+            this.tsmi40.Tag = "40";
+            this.tsmi40.Text = "±40";
+            this.tsmi40.Click += new System.EventHandler(this.tsmiTexturizeInt_Click);
+            // 
+            // tsmi50
+            // 
+            this.tsmi50.Name = "tsmi50";
+            this.tsmi50.Size = new System.Drawing.Size(152, 22);
+            this.tsmi50.Tag = "50";
+            this.tsmi50.Text = "±50";
+            this.tsmi50.Click += new System.EventHandler(this.tsmiTexturizeInt_Click);
             // 
             // dlgOpen
             // 
@@ -269,7 +334,6 @@
         private System.Windows.Forms.ToolStripButton tsbPicker;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbFill;
-        private System.Windows.Forms.ToolStripButton tsbTexturize;
         private ExHtmlEditor.ColorPicker.ThemeColorPickerToolStripSplitButton tsbColorPicker;
         private System.Windows.Forms.ThemeColorPicker themeColorPicker1;
         private System.Windows.Forms.ToolStripButton tsbUndo;
@@ -278,5 +342,12 @@
         private System.Windows.Forms.ToolStripButton tsbRectangle;
         private PanelEx DrawPanel;
         private System.Windows.Forms.Panel panel;
+        private System.Windows.Forms.ToolStripButton tsbTexturize;
+        private System.Windows.Forms.ToolStripSplitButton tsbInt;
+        private System.Windows.Forms.ToolStripMenuItem tsmi10;
+        private System.Windows.Forms.ToolStripMenuItem tsmi20;
+        private System.Windows.Forms.ToolStripMenuItem tsmi30;
+        private System.Windows.Forms.ToolStripMenuItem tsmi40;
+        private System.Windows.Forms.ToolStripMenuItem tsmi50;
     }
 }
