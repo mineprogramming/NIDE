@@ -15,7 +15,7 @@ namespace NPixelPaint
         int width = 32;
         int height = 32;
 
-        int scale = 21;
+        double scale = 16;
 
         Color[,] pixels;
         Bitmap png;
@@ -32,7 +32,7 @@ namespace NPixelPaint
         public fPaint(string path)
         {
             InitializeComponent();
-            panel.MouseWheel += DrawPanel_MouseWheel;
+            DrawPanel.MouseWheel += DrawPanel_MouseWheel;
             rnd = new Random();
             this.path = path;
             try
@@ -60,17 +60,20 @@ namespace NPixelPaint
 
         private void AdjustDrawPanel()
         {
-            DrawPanel.Width = scale * width - 1;
-            DrawPanel.Height = scale * height - 1;
+            DrawPanel.Width = (int)scale * width - 1;
+            DrawPanel.Height = (int)scale * height - 1;
         }
 
         private void DrawPanel_MouseWheel(object sender, MouseEventArgs e)
         {
             if ((Keyboard.GetKeyStates(Key.LeftCtrl) & KeyStates.Down) > 0)
             {
-                scale += e.Delta / 100;
-                if (scale < 2) scale = 2;
-                if (scale > 40) scale = 40;
+                ((HandledMouseEventArgs)e).Handled = true;
+                if (e.Delta > 0)
+                    scale *= 1.3;
+                else scale /= 1.3;
+                if (scale < 1) scale = 1;
+                if (scale > 30) scale = 30;
                 AdjustDrawPanel();
                 DrawPanel.Refresh();
             }
@@ -201,23 +204,39 @@ namespace NPixelPaint
         {
             Graphics g = e.Graphics;
             Pen coordsPen = new Pen(Color.LightGray);
-            for (int i = 0; i < width; i++)
+
+            if (scale > 6)
             {
-                for (int j = 0; j < height; j++)
+                for (int i = 0; i < width; i++)
                 {
-                    g.FillRectangle(new SolidBrush(pixels[i, j]), i * scale + 1, j * scale + 1, scale, scale);
+                    for (int j = 0; j < height; j++)
+                    {
+                        g.FillRectangle(new SolidBrush(pixels[i, j]), i * (int)scale + 1, j * (int)scale + 1, (int)scale, (int)scale);
+                    }
+                }
+
+                for (var i = 1; i < width; i++)
+                {
+                    int pos = i * (int)scale;
+                    g.DrawLine(coordsPen, pos, 0, pos, DrawPanel.Width);
+                }
+
+                for (var i = 1; i < height; i++)
+                {
+                    int pos = i * (int)scale;
+                    g.DrawLine(coordsPen, 0, pos, DrawPanel.Height, pos);
                 }
             }
 
-            for (var i = 1; i < width; i++)
+            else
             {
-                int pos = i * scale;
-                g.DrawLine(coordsPen, pos, 0, pos, DrawPanel.Width);
-            }
-            for (var i = 1; i < height; i++)
-            {
-                int pos = i * scale;
-                g.DrawLine(coordsPen, 0, pos, DrawPanel.Height, pos);
+                for (int i = 0; i < width; i++)
+                {
+                    for (int j = 0; j < height; j++)
+                    {
+                        g.FillRectangle(new SolidBrush(pixels[i, j]), i * (int)scale, j * (int)scale, (int)scale, (int)scale);
+                    }
+                }
             }
         }
 
@@ -336,7 +355,7 @@ namespace NPixelPaint
             if (y < height - 1 && pixels[x, y + 1] == prevColor)
                 FillRecursive(x, y + 1);
         }
-        
+
         private void tsbUndo_Click(object sender, EventArgs e)
         {
             Color[,] last = UndoBuffer[UndoBuffer.Count - 1];
@@ -381,7 +400,7 @@ namespace NPixelPaint
         int GetCursorX()
         {
             int cursorX = Cursor.Position.X - DrawPanel.PointToScreen(Point.Empty).X;
-            int x = cursorX / scale;
+            int x = cursorX / (int)scale;
             if (x < 0) x = 0;
             if (x > width - 1) x = width - 1;
             return x;
@@ -389,7 +408,7 @@ namespace NPixelPaint
         int GetCursorY()
         {
             int cursorY = Cursor.Position.Y - DrawPanel.PointToScreen(Point.Empty).Y;
-            int y = cursorY / scale;
+            int y = cursorY / (int)scale;
             if (y < 0) y = 0;
             if (y > height - 1) y = height - 1;
             return y;
