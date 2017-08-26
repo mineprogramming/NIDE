@@ -14,6 +14,10 @@ namespace NIDE
             btnGlobal.ForeColor = Highlighting.GlobalColor;
             btnMembers.ForeColor = Highlighting.MemberColor;
             btnBack.ForeColor = ProgramData.MainForm.fctbMain.BackColor;
+
+            btnNumbers.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle.GetRTF().ForeColor;
+            btnStrings.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle.GetRTF().ForeColor;
+
             tbPath.Text = ADBWorker.Path;
             cbLast.Checked = ProgramData.LoadLast;
         }
@@ -74,12 +78,39 @@ namespace NIDE
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            dlgColor.Color = ProgramData.MainForm.fctbMain.BackColor;
-            if (dlgColor.ShowDialog() == DialogResult.OK)
+            if (ShowColorDialog(sender))
             {
-                btnBack.ForeColor = dlgColor.Color;
                 ProgramData.MainForm.fctbMain.BackColor = dlgColor.Color;
             }
+        }
+
+        private void btnNumbers_Click(object sender, EventArgs e)
+        {
+            if (ShowColorDialog(sender))
+            {
+                Highlighting.NumbersColor = dlgColor.Color;
+                Highlighting.RefreshStyles();
+            }
+        }
+
+        private void btnStrings_Click(object sender, EventArgs e)
+        {
+            if (ShowColorDialog(sender))
+            {
+                Highlighting.StringsColor = dlgColor.Color;
+                Highlighting.RefreshStyles();
+            }
+        }
+
+        private bool ShowColorDialog(object sender)
+        {
+            dlgColor.Color = ((Button)sender).ForeColor;
+            if (dlgColor.ShowDialog() == DialogResult.OK)
+            {
+                ((Button)sender).ForeColor = dlgColor.Color;
+                return true;
+            }
+            return false;
         }
 
         private void btnApply_Click(object sender, EventArgs e)

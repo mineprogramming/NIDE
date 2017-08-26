@@ -46,11 +46,19 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
             this.cbLast = new System.Windows.Forms.CheckBox();
+            this.btnNumbers = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnStrings = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnStrings);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.btnNumbers);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnBack);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.btnNormal);
@@ -65,7 +73,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(168, 194);
+            this.groupBox1.Size = new System.Drawing.Size(329, 194);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Colors";
@@ -186,7 +194,7 @@
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(186, 71);
+            this.tbPath.Location = new System.Drawing.Point(383, 71);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(246, 20);
             this.tbPath.TabIndex = 1;
@@ -194,7 +202,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(183, 55);
+            this.label5.Location = new System.Drawing.Point(380, 55);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 13);
             this.label5.TabIndex = 2;
@@ -202,7 +210,7 @@
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(357, 184);
+            this.btnApply.Location = new System.Drawing.Point(554, 184);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(75, 23);
             this.btnApply.TabIndex = 3;
@@ -213,18 +221,56 @@
             // cbLast
             // 
             this.cbLast.AutoSize = true;
-            this.cbLast.Location = new System.Drawing.Point(186, 35);
+            this.cbLast.Location = new System.Drawing.Point(383, 35);
             this.cbLast.Name = "cbLast";
             this.cbLast.Size = new System.Drawing.Size(104, 17);
             this.cbLast.TabIndex = 4;
             this.cbLast.Text = "Load last project";
             this.cbLast.UseVisualStyleBackColor = true;
             // 
+            // btnNumbers
+            // 
+            this.btnNumbers.Location = new System.Drawing.Point(248, 19);
+            this.btnNumbers.Name = "btnNumbers";
+            this.btnNumbers.Size = new System.Drawing.Size(75, 23);
+            this.btnNumbers.TabIndex = 13;
+            this.btnNumbers.Text = "Change";
+            this.btnNumbers.UseVisualStyleBackColor = true;
+            this.btnNumbers.Click += new System.EventHandler(this.btnNumbers_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(193, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Numbers";
+            // 
+            // btnStrings
+            // 
+            this.btnStrings.Location = new System.Drawing.Point(248, 48);
+            this.btnStrings.Name = "btnStrings";
+            this.btnStrings.Size = new System.Drawing.Size(75, 23);
+            this.btnStrings.TabIndex = 15;
+            this.btnStrings.Text = "Change";
+            this.btnStrings.UseVisualStyleBackColor = true;
+            this.btnStrings.Click += new System.EventHandler(this.btnStrings_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(203, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Strings";
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(444, 219);
+            this.ClientSize = new System.Drawing.Size(644, 219);
             this.Controls.Add(this.cbLast);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.label5);
@@ -260,5 +306,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnNormal;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnNumbers;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnStrings;
+        private System.Windows.Forms.Label label9;
     }
 }

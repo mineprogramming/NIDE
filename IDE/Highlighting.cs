@@ -11,55 +11,44 @@ namespace NIDE
         public static Color GlobalColor = Color.Brown;
         public static Color MemberColor = Color.LightSkyBlue;
 
+        public static Color? NumbersColor = null;
+        public static Color? StringsColor = null;
+
         static Style NamespaceStyle = new TextStyle(new SolidBrush(NamespaceColor), null, FontStyle.Bold);
         static Style HookStyle = new TextStyle(new SolidBrush(HookColor), null, FontStyle.Bold);
         static Style GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
         static Style MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
         static Style ErrorStyle = new TextStyle(new SolidBrush(Color.Red), null, FontStyle.Regular);
-
-        static Style OldNamespace;
-        static Style OldHook;
-        static Style OldGlobal;
-        static Style OldMember;
-
+        
         public static void RefreshStyles()
         {
-            OldNamespace = NamespaceStyle;
-            OldHook = HookStyle;
-            OldGlobal = GlobalStyle;
-            OldMember = MemberStyle;
+            Range range = ProgramData.MainForm.fctbMain.Range;
+            range.ClearStyle(NamespaceStyle);
+            range.ClearStyle(HookStyle);
+            range.ClearStyle(GlobalStyle);
+            range.ClearStyle(MemberStyle);
+
             NamespaceStyle = new TextStyle(new SolidBrush(NamespaceColor), null, FontStyle.Bold);
             HookStyle = new TextStyle(new SolidBrush(HookColor), null, FontStyle.Bold);
             GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
+
+            if(NumbersColor != null)
+                ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor.Value), null, FontStyle.Regular);
+            if(StringsColor != null)
+                ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor.Value), null, FontStyle.Regular);
+
+            ProgramData.MainForm.fctbMain.ClearStylesBuffer();
+            ResetStyles(range, range);
         }
 
-        public static void ResetStyles(Range range, Range visible)
+        public static void ResetStyles(Range range, Range all)
         {
-            if (OldNamespace != null)
-            {
-                range.ClearStyle(OldNamespace);
-                OldNamespace = null;
-            }
-            if(OldHook != null)
-            {
-                range.ClearStyle(OldHook);
-                OldHook = null;
-            }
-            if (OldGlobal != null)
-            {
-                range.ClearStyle(OldGlobal);
-                OldGlobal = null;
-            }
-            if (OldMember != null)
-            {
-                range.ClearStyle(OldMember);
-                OldMember = null;
-            }
-
             range.ClearStyle(NamespaceStyle);
             range.ClearStyle(MemberStyle);
-            visible.ClearStyle(ErrorStyle);
+            range.ClearStyle(HookStyle);
+            range.ClearStyle(GlobalStyle);
+            all.ClearStyle(ErrorStyle);
 
             range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
             range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
@@ -71,14 +60,12 @@ namespace NIDE
             }
             else
             {
-                range.ClearStyle(HookStyle);
-                range.ClearStyle(GlobalStyle);
-
                 range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ModPe.namespaces) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(HookStyle, @"(\W|^)(" + string.Join("|", ModPe.hooks) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPe.global) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPe.members) + @")(\W|$)", RegexOptions.Multiline);
             }
+            ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
         }
 
         public static void HighlightError(Range range)
