@@ -49,7 +49,6 @@
             this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitter = new System.Windows.Forms.Splitter();
             this.panel = new System.Windows.Forms.Panel();
-            this.Ads = new System.Windows.Forms.WebBrowser();
             this.tvFolders = new System.Windows.Forms.TreeView();
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +58,8 @@
             this.tsmiRename = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripGeneral = new System.Windows.Forms.ToolStrip();
+            this.Ads = new System.Windows.Forms.WebBrowser();
+            this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
             this.tsbSave = new System.Windows.Forms.ToolStripButton();
@@ -68,7 +68,7 @@
             this.tsbCut = new System.Windows.Forms.ToolStripButton();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.tsbPaste = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripProject = new System.Windows.Forms.ToolStrip();
             this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
             this.tsbBuild = new System.Windows.Forms.ToolStripButton();
             this.tsbPush = new System.Windows.Forms.ToolStripButton();
@@ -113,6 +113,9 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -131,9 +134,10 @@
             this.StatusStrip.SuspendLayout();
             this.panel.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
-            this.ToolStripGeneral.SuspendLayout();
-            this.toolStrip.SuspendLayout();
+            this.toolStripGeneral.SuspendLayout();
+            this.toolStripProject.SuspendLayout();
             this.MenuStrip.SuspendLayout();
+            this.toolStripEdit.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -151,7 +155,9 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.ToolStripGeneral);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
             // 
             // mainSplit
             // 
@@ -183,8 +189,8 @@
             this.fctbMain.AutoIndentChars = false;
             resources.ApplyResources(this.fctbMain, "fctbMain");
             this.fctbMain.BackBrush = null;
-            this.fctbMain.CharHeight = 14;
-            this.fctbMain.CharWidth = 8;
+            this.fctbMain.CharHeight = 18;
+            this.fctbMain.CharWidth = 10;
             this.fctbMain.ContextMenuStrip = this.cmsMain;
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
@@ -311,17 +317,6 @@
             resources.ApplyResources(this.panel, "panel");
             this.panel.Name = "panel";
             // 
-            // Ads
-            // 
-            this.Ads.AllowWebBrowserDrop = false;
-            resources.ApplyResources(this.Ads, "Ads");
-            this.Ads.IsWebBrowserContextMenuEnabled = false;
-            this.Ads.Name = "Ads";
-            this.Ads.ScrollBarsEnabled = false;
-            this.Ads.Url = new System.Uri("http://api.mineprogramming.org/nide/ads/index.php", System.UriKind.Absolute);
-            this.Ads.WebBrowserShortcutsEnabled = false;
-            this.Ads.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Ads_Navigating);
-            // 
             // tvFolders
             // 
             this.tvFolders.BackColor = System.Drawing.SystemColors.MenuBar;
@@ -389,11 +384,22 @@
             resources.ApplyResources(this.tsmiOpenInExplorer, "tsmiOpenInExplorer");
             this.tsmiOpenInExplorer.Click += new System.EventHandler(this.tsmiOpenInExplorer_Click);
             // 
-            // ToolStripGeneral
+            // Ads
             // 
-            resources.ApplyResources(this.ToolStripGeneral, "ToolStripGeneral");
-            this.ToolStripGeneral.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.ToolStripGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Ads.AllowWebBrowserDrop = false;
+            resources.ApplyResources(this.Ads, "Ads");
+            this.Ads.IsWebBrowserContextMenuEnabled = false;
+            this.Ads.Name = "Ads";
+            this.Ads.ScrollBarsEnabled = false;
+            this.Ads.Url = new System.Uri("http://api.mineprogramming.org/nide/ads/index.php", System.UriKind.Absolute);
+            this.Ads.WebBrowserShortcutsEnabled = false;
+            this.Ads.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Ads_Navigating);
+            // 
+            // toolStripGeneral
+            // 
+            resources.ApplyResources(this.toolStripGeneral, "toolStripGeneral");
+            this.toolStripGeneral.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbCreate,
             this.tsbOpen,
             this.tsbSave,
@@ -402,7 +408,7 @@
             this.tsbCut,
             this.tsbCopy,
             this.tsbPaste});
-            this.ToolStripGeneral.Name = "ToolStripGeneral";
+            this.toolStripGeneral.Name = "toolStripGeneral";
             // 
             // tsbCreate
             // 
@@ -458,17 +464,18 @@
             this.tsbPaste.Name = "tsbPaste";
             this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
             // 
-            // toolStrip
+            // toolStripProject
             // 
-            resources.ApplyResources(this.toolStrip, "toolStrip");
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            resources.ApplyResources(this.toolStripProject, "toolStripProject");
+            this.toolStripProject.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbBuildPush,
             this.tsbBuild,
             this.tsbPush,
             this.tsbRun,
             this.tsbUpdate,
             this.tsbShowMain});
-            this.toolStrip.Name = "toolStrip";
+            this.toolStripProject.Name = "toolStripProject";
             // 
             // tsbBuildPush
             // 
@@ -764,11 +771,33 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // toolStripEdit
+            // 
+            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
+            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbUndo,
+            this.tsbRedo});
+            this.toolStripEdit.Name = "toolStripEdit";
+            // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.container);
             this.Controls.Add(this.MenuStrip);
             this.MainMenuStrip = this.MenuStrip;
@@ -799,12 +828,14 @@
             this.StatusStrip.PerformLayout();
             this.panel.ResumeLayout(false);
             this.cmsTreeView.ResumeLayout(false);
-            this.ToolStripGeneral.ResumeLayout(false);
-            this.ToolStripGeneral.PerformLayout();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
+            this.toolStripGeneral.ResumeLayout(false);
+            this.toolStripGeneral.PerformLayout();
+            this.toolStripProject.ResumeLayout(false);
+            this.toolStripProject.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            this.toolStripEdit.ResumeLayout(false);
+            this.toolStripEdit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -852,7 +883,7 @@
         private System.Windows.Forms.ToolStripStatusLabel tsslFile;
         private System.Windows.Forms.Splitter splitter;
         private System.Windows.Forms.TreeView tvFolders;
-        private System.Windows.Forms.ToolStrip ToolStripGeneral;
+        private System.Windows.Forms.ToolStrip toolStripGeneral;
         private System.Windows.Forms.ToolStripButton tsbCreate;
         private System.Windows.Forms.ToolStripButton tsbOpen;
         private System.Windows.Forms.ToolStripButton tsbSave;
@@ -867,7 +898,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRunJs;
         private System.Windows.Forms.TextBox errors;
         private System.Windows.Forms.SplitContainer mainSplit;
-        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStrip toolStripProject;
         private System.Windows.Forms.ToolStripButton tsbRun;
         private System.Windows.Forms.ToolStripButton tsbBuild;
         private System.Windows.Forms.ToolStripMenuItem tsmiPush;
@@ -894,6 +925,9 @@
         private System.Windows.Forms.GroupBox gbLogger;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.WebBrowser Ads;
+        private System.Windows.Forms.ToolStrip toolStripEdit;
+        private System.Windows.Forms.ToolStripButton tsbUndo;
+        private System.Windows.Forms.ToolStripButton tsbRedo;
     }
 }
 

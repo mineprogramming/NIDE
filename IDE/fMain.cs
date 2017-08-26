@@ -503,7 +503,7 @@ namespace NIDE
         }
         private void _error(int line, string message)
         {
-            errors.AppendText("Line " + line + ": " + message);
+            errors.AppendText("Line " + line + ": " + message + "\n");
         }
         public void HighlightError(int line)
         {
@@ -751,10 +751,7 @@ namespace NIDE
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Cannot connect to the service!");
-            }
+            catch (Exception e){}
         }
         
         private void SendStats()
@@ -766,10 +763,7 @@ namespace NIDE
                 client.Dispose();
                 
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Cannot connect to the service!");
-            }
+            catch (Exception e){}
         }
 
         private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
@@ -785,7 +779,8 @@ namespace NIDE
         private void Ads_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             e.Cancel = true;
-            Process.Start(e.Url.ToString());
+            if(e.Url.ToString().StartsWith("http"))
+                Process.Start(e.Url.ToString());
         }
     }
 }

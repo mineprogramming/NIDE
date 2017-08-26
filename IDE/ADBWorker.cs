@@ -20,8 +20,7 @@ namespace NIDE
                 List<Device> devices = (List<Device>)adb.Devices;
                 if (devices.Count < 1)
                 {
-                    ProgramData.Log("ADB", "Connect your device and retry!");
-                    throw new Exception();
+                    throw new Exception("Connect your device and retry!");
                 }
                 var device = devices[0];
                 using (SyncService sync = device.SyncService)
@@ -30,7 +29,7 @@ namespace NIDE
                     PushRecursive(sync, device, directory);
                     sync.Close();
                     ProgramData.MainForm.ProgressBarStatus.Visible = false;
-                    ProgramData.Log("ADB", "Successfully pushed file to remote device");
+                    ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
                 }
                 adb.Stop();
             }
@@ -39,7 +38,6 @@ namespace NIDE
                 if (adb != null)
                     adb.Stop();
                 ProgramData.MainForm.ProgressBarStatus.Visible = false;
-                ProgramData.Log("ADB", "Successfully pushed file to remote device");
             }
         }
 
