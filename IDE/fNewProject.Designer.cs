@@ -87,6 +87,7 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(251, 20);
             this.tbName.TabIndex = 4;
+            this.tbName.TextChanged += new System.EventHandler(this.tbName_TextChanged);
             // 
             // btnCreate
             // 

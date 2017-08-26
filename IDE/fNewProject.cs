@@ -62,7 +62,7 @@ namespace NIDE
         {
             if (dlgFolder.ShowDialog() == DialogResult.OK)
             {
-                tbPath.Text = dlgFolder.SelectedPath;
+                tbPath.Text = dlgFolder.SelectedPath + "\\" + tbName.Text;
             }
         }
 
@@ -71,6 +71,15 @@ namespace NIDE
             if(dlgOpen.ShowDialog() == DialogResult.OK)
             {
                 tbSource.Text = dlgOpen.FileName;
+            }
+        }
+
+        private void tbName_TextChanged(object sender, EventArgs e)
+        {
+            int ind = tbPath.Text.LastIndexOf("\\");
+            if (ind >= 0)
+            {
+                tbPath.Text = tbPath.Text.Substring(0, tbPath.Text.LastIndexOf("\\") + 1) + tbName.Text;
             }
         }
     }

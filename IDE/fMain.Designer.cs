@@ -68,6 +68,9 @@
             this.tsbCut = new System.Windows.Forms.ToolStripButton();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.tsbPaste = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
             this.toolStripProject = new System.Windows.Forms.ToolStrip();
             this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
             this.tsbBuild = new System.Windows.Forms.ToolStripButton();
@@ -113,9 +116,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
-            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
-            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -135,9 +135,9 @@
             this.panel.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
             this.toolStripGeneral.SuspendLayout();
+            this.toolStripEdit.SuspendLayout();
             this.toolStripProject.SuspendLayout();
             this.MenuStrip.SuspendLayout();
-            this.toolStripEdit.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -155,9 +155,9 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
             // 
             // mainSplit
             // 
@@ -189,8 +189,8 @@
             this.fctbMain.AutoIndentChars = false;
             resources.ApplyResources(this.fctbMain, "fctbMain");
             this.fctbMain.BackBrush = null;
-            this.fctbMain.CharHeight = 18;
-            this.fctbMain.CharWidth = 10;
+            this.fctbMain.CharHeight = 14;
+            this.fctbMain.CharWidth = 8;
             this.fctbMain.ContextMenuStrip = this.cmsMain;
             this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
@@ -463,6 +463,29 @@
             resources.ApplyResources(this.tsbPaste, "tsbPaste");
             this.tsbPaste.Name = "tsbPaste";
             this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
+            // 
+            // toolStripEdit
+            // 
+            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
+            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbUndo,
+            this.tsbRedo});
+            this.toolStripEdit.Name = "toolStripEdit";
+            // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
             // 
             // toolStripProject
             // 
@@ -771,29 +794,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // toolStripEdit
-            // 
-            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
-            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbUndo,
-            this.tsbRedo});
-            this.toolStripEdit.Name = "toolStripEdit";
-            // 
-            // tsbUndo
-            // 
-            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbUndo, "tsbUndo");
-            this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-            // 
-            // tsbRedo
-            // 
-            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRedo, "tsbRedo");
-            this.tsbRedo.Name = "tsbRedo";
-            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -830,12 +830,12 @@
             this.cmsTreeView.ResumeLayout(false);
             this.toolStripGeneral.ResumeLayout(false);
             this.toolStripGeneral.PerformLayout();
+            this.toolStripEdit.ResumeLayout(false);
+            this.toolStripEdit.PerformLayout();
             this.toolStripProject.ResumeLayout(false);
             this.toolStripProject.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
-            this.toolStripEdit.ResumeLayout(false);
-            this.toolStripEdit.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

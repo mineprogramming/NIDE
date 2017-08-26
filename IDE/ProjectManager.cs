@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using Yahoo.Yui.Compressor;
 using System.IO.Compression;
-using System.Text;
 
 namespace NIDE
 {
