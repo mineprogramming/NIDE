@@ -355,7 +355,6 @@ namespace NIDE
         private void CreateCoreEngineFileSystem()
         {
             foreach (string item in new string[]{
-                "\\mod.info",
                 "\\gui\\",
                 "\\dev\\",
                 "\\dev\\.includes",
