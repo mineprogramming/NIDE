@@ -383,7 +383,7 @@ namespace NIDE
                     InitOther();
                 saved = true;
                 tsslFile.Text = Path.GetFileName(FileName);
-                Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
+                Highlighting.RefreshStyles();
             }
             catch (Exception e)
             {

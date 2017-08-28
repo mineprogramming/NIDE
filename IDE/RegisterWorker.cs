@@ -24,13 +24,6 @@ namespace NIDE
                 key.SetValue("ADBPath", ADBWorker.Path);
                 key.SetValue("LoadLast", ProgramData.LoadLast);
 
-                key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain.ForeColor.ToArgb().ToString());
-                key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
-                key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
-                key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
-                key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
-                key.SetValue("BackStyle", ProgramData.MainForm.fctbMain.BackColor.ToArgb().ToString());
-
                 if (ProgramData.ProjectManager != null && !ProgramData.Restart)
                 {
                     key.SetValue("Last", ProgramData.ProjectManager.ProjectFilePath);
@@ -42,6 +35,21 @@ namespace NIDE
                 key.SetValue("Saves", ProgramData.Recent.Count);
                 for (int i = 0; i < ProgramData.Recent.Count(); i++)
                     key.SetValue("Save" + i, ProgramData.Recent[i]);
+
+                key = key.CreateSubKey("colors");
+                key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain.ForeColor.ToArgb().ToString());
+                key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
+                key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
+                key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
+                key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
+                key.SetValue("BackStyle", ProgramData.MainForm.fctbMain.BackColor.ToArgb().ToString());
+                if(Highlighting.NumbersColor != null)
+                    key.SetValue("NumberStyle", Highlighting.NumbersColor.Value.ToArgb().ToString());
+                if (Highlighting.StringsColor != null)
+                    key.SetValue("StringStyle", Highlighting.StringsColor.Value.ToArgb().ToString());
+                if (Highlighting.KeywordsColor != null)
+                    key.SetValue("KeywordStyle", Highlighting.KeywordsColor.Value.ToArgb().ToString());
+
             }
             catch (Exception e)
             {
@@ -80,12 +88,22 @@ namespace NIDE
                     ProgramData.Recent.Add(Convert.ToString(key.GetValue("Save" + i)));
                 ProgramData.Last = key.GetValue("Last").ToString();
 
+                if (!key.GetSubKeyNames().Contains("colors"))
+                    return;
+
+                key = key.OpenSubKey("colors");
                 ProgramData.MainForm.fctbMain.ForeColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NormalStyle")));
                 Highlighting.NamespaceColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
                 Highlighting.GlobalColor = Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
                 Highlighting.HookColor = Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
                 Highlighting.MemberColor = Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
                 ProgramData.MainForm.fctbMain.BackColor = Color.FromArgb(Convert.ToInt32(key.GetValue("BackStyle")));
+                if(key.GetValueNames().Contains("NumberStyle"))
+                    Highlighting.NumbersColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NumberStyle")));
+                if (key.GetValueNames().Contains("StringStyle"))
+                    Highlighting.StringsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("StringStyle")));
+                if (key.GetValueNames().Contains("KeywordStyle"))
+                    Highlighting.KeywordsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("KeywordStyle")));
 
                 Highlighting.RefreshStyles();
             }
