@@ -1,0 +1,7 @@
+﻿nide-api:2
+library-version:1.0
+requires-library:nide/Util
+keyword:GaussRandom
+keyword:Int
+keyword:Double
+keyword:ForCoords
