@@ -5,7 +5,7 @@ namespace NIDE
 {
     static class ProgramData
     {
-        public const int PROGRAM_VERSION = 4;
+        public const int PROGRAM_VERSION = 5;
 
         public static Encoding Encoding { get { return new UTF8Encoding(false); } }
 
