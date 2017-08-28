@@ -17,6 +17,7 @@ namespace NIDE
 
             btnNumbers.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle.GetRTF().ForeColor;
             btnStrings.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle.GetRTF().ForeColor;
+            btnKeywords.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle.GetRTF().ForeColor;
 
             tbPath.Text = ADBWorker.Path;
             cbLast.Checked = ProgramData.LoadLast;
@@ -24,20 +25,16 @@ namespace NIDE
 
         private void btnNormal_Click(object sender, EventArgs e)
         {
-            dlgColor.Color = ProgramData.MainForm.fctbMain.ForeColor;
-            if (dlgColor.ShowDialog() == DialogResult.OK)
+            if (ShowColorDialog(sender))
             {
-                btnNormal.ForeColor = dlgColor.Color;
                 ProgramData.MainForm.fctbMain.ForeColor = dlgColor.Color;
             }
         }
 
         private void btnNamespaces_Click(object sender, EventArgs e)
         {
-            dlgColor.Color = Highlighting.NamespaceColor;
-            if(dlgColor.ShowDialog() == DialogResult.OK)
+            if (ShowColorDialog(sender))
             {
-                btnNamespaces.ForeColor = dlgColor.Color;
                 Highlighting.NamespaceColor = dlgColor.Color;
                 Highlighting.RefreshStyles();
             }
@@ -45,10 +42,8 @@ namespace NIDE
 
         private void btnHooks_Click(object sender, EventArgs e)
         {
-            dlgColor.Color = Highlighting.HookColor;
-            if (dlgColor.ShowDialog() == DialogResult.OK)
+            if (ShowColorDialog(sender))
             {
-                btnHooks.ForeColor = dlgColor.Color;
                 Highlighting.HookColor = dlgColor.Color;
                 Highlighting.RefreshStyles();
             }
@@ -56,10 +51,8 @@ namespace NIDE
 
         private void btnGlobal_Click(object sender, EventArgs e)
         {
-            dlgColor.Color = Highlighting.GlobalColor;
-            if (dlgColor.ShowDialog() == DialogResult.OK)
+            if (ShowColorDialog(sender))
             {
-                btnGlobal.ForeColor = dlgColor.Color;
                 Highlighting.GlobalColor = dlgColor.Color;
                 Highlighting.RefreshStyles();
             }
@@ -67,10 +60,8 @@ namespace NIDE
 
         private void btnMembers_Click(object sender, EventArgs e)
         {
-            dlgColor.Color = Highlighting.MemberColor;
-            if (dlgColor.ShowDialog() == DialogResult.OK)
+            if (ShowColorDialog(sender))
             {
-                btnMembers.ForeColor = dlgColor.Color;
                 Highlighting.MemberColor = dlgColor.Color;
                 Highlighting.RefreshStyles();
             }
@@ -102,6 +93,15 @@ namespace NIDE
             }
         }
 
+        private void btnKeywords_Click(object sender, EventArgs e)
+        {
+            if (ShowColorDialog(sender))
+            {
+                Highlighting.KeywordsColor = dlgColor.Color;
+                Highlighting.RefreshStyles();
+            }
+        }
+
         private bool ShowColorDialog(object sender)
         {
             dlgColor.Color = ((Button)sender).ForeColor;
@@ -121,5 +121,6 @@ namespace NIDE
             ProgramData.LoadLast = cbLast.Checked;
             Close();
         }
+
     }
 }

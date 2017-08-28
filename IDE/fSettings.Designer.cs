@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnStrings = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.btnNumbers = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnBack = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnNormal = new System.Windows.Forms.Button();
@@ -46,15 +50,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
             this.cbLast = new System.Windows.Forms.CheckBox();
-            this.btnNumbers = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btnStrings = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
+            this.btnKeywords = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnKeywords);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnStrings);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.btnNumbers);
@@ -77,6 +81,44 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Colors";
+            // 
+            // btnStrings
+            // 
+            this.btnStrings.Location = new System.Drawing.Point(248, 48);
+            this.btnStrings.Name = "btnStrings";
+            this.btnStrings.Size = new System.Drawing.Size(75, 23);
+            this.btnStrings.TabIndex = 15;
+            this.btnStrings.Text = "Change";
+            this.btnStrings.UseVisualStyleBackColor = true;
+            this.btnStrings.Click += new System.EventHandler(this.btnStrings_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(203, 53);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "Strings";
+            // 
+            // btnNumbers
+            // 
+            this.btnNumbers.Location = new System.Drawing.Point(248, 19);
+            this.btnNumbers.Name = "btnNumbers";
+            this.btnNumbers.Size = new System.Drawing.Size(75, 23);
+            this.btnNumbers.TabIndex = 13;
+            this.btnNumbers.Text = "Change";
+            this.btnNumbers.UseVisualStyleBackColor = true;
+            this.btnNumbers.Click += new System.EventHandler(this.btnNumbers_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(193, 24);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "Numbers";
             // 
             // btnBack
             // 
@@ -228,43 +270,24 @@
             this.cbLast.Text = "Load last project";
             this.cbLast.UseVisualStyleBackColor = true;
             // 
-            // btnNumbers
+            // btnKeywords
             // 
-            this.btnNumbers.Location = new System.Drawing.Point(248, 19);
-            this.btnNumbers.Name = "btnNumbers";
-            this.btnNumbers.Size = new System.Drawing.Size(75, 23);
-            this.btnNumbers.TabIndex = 13;
-            this.btnNumbers.Text = "Change";
-            this.btnNumbers.UseVisualStyleBackColor = true;
-            this.btnNumbers.Click += new System.EventHandler(this.btnNumbers_Click);
+            this.btnKeywords.Location = new System.Drawing.Point(248, 77);
+            this.btnKeywords.Name = "btnKeywords";
+            this.btnKeywords.Size = new System.Drawing.Size(75, 23);
+            this.btnKeywords.TabIndex = 17;
+            this.btnKeywords.Text = "Change";
+            this.btnKeywords.UseVisualStyleBackColor = true;
+            this.btnKeywords.Click += new System.EventHandler(this.btnKeywords_Click);
             // 
-            // label8
+            // label10
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(193, 24);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "Numbers";
-            // 
-            // btnStrings
-            // 
-            this.btnStrings.Location = new System.Drawing.Point(248, 48);
-            this.btnStrings.Name = "btnStrings";
-            this.btnStrings.Size = new System.Drawing.Size(75, 23);
-            this.btnStrings.TabIndex = 15;
-            this.btnStrings.Text = "Change";
-            this.btnStrings.UseVisualStyleBackColor = true;
-            this.btnStrings.Click += new System.EventHandler(this.btnStrings_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(203, 53);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 13);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Strings";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(189, 82);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Keywords";
             // 
             // fSettings
             // 
@@ -310,5 +333,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnStrings;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnKeywords;
+        private System.Windows.Forms.Label label10;
     }
 }

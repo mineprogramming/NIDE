@@ -13,6 +13,7 @@ namespace NIDE
 
         public static Color? NumbersColor = null;
         public static Color? StringsColor = null;
+        public static Color? KeywordsColor = null;
 
         static Style NamespaceStyle = new TextStyle(new SolidBrush(NamespaceColor), null, FontStyle.Bold);
         static Style HookStyle = new TextStyle(new SolidBrush(HookColor), null, FontStyle.Bold);
@@ -37,6 +38,8 @@ namespace NIDE
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor.Value), null, FontStyle.Regular);
             if(StringsColor != null)
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor.Value), null, FontStyle.Regular);
+            if(KeywordsColor != null)
+                ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor.Value), null, FontStyle.Regular);
 
             ProgramData.MainForm.fctbMain.ClearStylesBuffer();
             ResetStyles(range, range);
