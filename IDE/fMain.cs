@@ -782,5 +782,10 @@ namespace NIDE
             if(e.Url.ToString().StartsWith("http"))
                 Process.Start(e.Url.ToString());
         }
+
+        private void tsmiRenderer_Click(object sender, EventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("bin\\RendererTool.jar"));
+        }
     }
 }

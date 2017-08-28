@@ -9,7 +9,7 @@ namespace NIDE
 {
     class ProjectManager
     {
-        public const int API_LEVEL = 2;
+        public const int API_LEVEL = 3;
 
         private const string SOURCE_CODE_PATH = "\\source\\";
         private const string LIB_PATH = "\\source\\libs\\";

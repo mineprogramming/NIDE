@@ -59,9 +59,6 @@
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.Ads = new System.Windows.Forms.WebBrowser();
-            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
-            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
-            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
             this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -78,12 +75,19 @@
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
             this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
+            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
+            this.tsbRenderer = new System.Windows.Forms.ToolStripButton();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiRenderer = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
@@ -116,7 +120,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -135,9 +138,9 @@
             this.StatusStrip.SuspendLayout();
             this.panel.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
-            this.toolStripEdit.SuspendLayout();
             this.toolStripGeneral.SuspendLayout();
             this.toolStripProject.SuspendLayout();
+            this.toolStripEdit.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,9 +159,9 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
             // 
             // mainSplit
             // 
@@ -396,30 +399,6 @@
             this.Ads.WebBrowserShortcutsEnabled = false;
             this.Ads.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Ads_Navigating);
             // 
-            // toolStripEdit
-            // 
-            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
-            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbUndo,
-            this.tsbRedo,
-            this.tsbSettings});
-            this.toolStripEdit.Name = "toolStripEdit";
-            // 
-            // tsbUndo
-            // 
-            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbUndo, "tsbUndo");
-            this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-            // 
-            // tsbRedo
-            // 
-            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRedo, "tsbRedo");
-            this.tsbRedo.Name = "tsbRedo";
-            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-            // 
             // toolStripGeneral
             // 
             resources.ApplyResources(this.toolStripGeneral, "toolStripGeneral");
@@ -544,6 +523,45 @@
             this.tsbShowMain.Name = "tsbShowMain";
             this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
             // 
+            // toolStripEdit
+            // 
+            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
+            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbUndo,
+            this.tsbRedo,
+            this.tsbSettings,
+            this.tsbRenderer});
+            this.toolStripEdit.Name = "toolStripEdit";
+            // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+            // 
+            // tsbSettings
+            // 
+            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbSettings, "tsbSettings");
+            this.tsbSettings.Name = "tsbSettings";
+            this.tsbSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
+            // 
+            // tsbRenderer
+            // 
+            this.tsbRenderer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRenderer, "tsbRenderer");
+            this.tsbRenderer.Name = "tsbRenderer";
+            this.tsbRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
+            // 
             // MenuStrip
             // 
             this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -564,7 +582,9 @@
             this.tsmiNewProject,
             this.tsmiOpenProject,
             this.tsmiSave,
-            this.tsmiCloseProject});
+            this.tsmiCloseProject,
+            this.tss4,
+            this.tsmiRenderer});
             this.tsmiFile.Name = "tsmiFile";
             resources.ApplyResources(this.tsmiFile, "tsmiFile");
             // 
@@ -591,6 +611,17 @@
             this.tsmiCloseProject.Name = "tsmiCloseProject";
             resources.ApplyResources(this.tsmiCloseProject, "tsmiCloseProject");
             this.tsmiCloseProject.Click += new System.EventHandler(this.tsmiCloseProject_Click);
+            // 
+            // tss4
+            // 
+            this.tss4.Name = "tss4";
+            resources.ApplyResources(this.tss4, "tss4");
+            // 
+            // tsmiRenderer
+            // 
+            this.tsmiRenderer.Name = "tsmiRenderer";
+            resources.ApplyResources(this.tsmiRenderer, "tsmiRenderer");
+            this.tsmiRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
             // 
             // tsmiEdit
             // 
@@ -796,13 +827,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // tsbSettings
-            // 
-            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbSettings, "tsbSettings");
-            this.tsbSettings.Name = "tsbSettings";
-            this.tsbSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -837,12 +861,12 @@
             this.StatusStrip.PerformLayout();
             this.panel.ResumeLayout(false);
             this.cmsTreeView.ResumeLayout(false);
-            this.toolStripEdit.ResumeLayout(false);
-            this.toolStripEdit.PerformLayout();
             this.toolStripGeneral.ResumeLayout(false);
             this.toolStripGeneral.PerformLayout();
             this.toolStripProject.ResumeLayout(false);
             this.toolStripProject.PerformLayout();
+            this.toolStripEdit.ResumeLayout(false);
+            this.toolStripEdit.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -938,6 +962,9 @@
         private System.Windows.Forms.ToolStripButton tsbUndo;
         private System.Windows.Forms.ToolStripButton tsbRedo;
         private System.Windows.Forms.ToolStripButton tsbSettings;
+        private System.Windows.Forms.ToolStripButton tsbRenderer;
+        private System.Windows.Forms.ToolStripSeparator tss4;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRenderer;
     }
 }
 

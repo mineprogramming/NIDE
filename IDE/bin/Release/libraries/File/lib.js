@@ -1,128 +1,157 @@
-var FileAPI = {
-	File:java.io.File,
-	FileReader:java.io.FileReader,
-	BufferedReader:java.io.BufferedReader,
-	InputStreamReader :java.io.InputStreamReader,
-	FIS : java.io.FileInputStream,
-	FOS:java.io.FileOutputStream,
-	String:java.lang.String,
-	StringBuilder:java.lang.StringBuilder,
+var FileReader = java.io.FileReader;
+var BufferedReader = java.io.BufferedReader;
+var InputStreamReader = java.io.InputStreamReader;
+var FIS = java.io.FileInputStream;
+var FOS = java.io.FileOutputStream;
+var String = java.lang.String;
+var StringBuilder = java.lang.StringBuilder;
+
+var _f = java.io.File;
+
+var File = function(dir,name){
+	var file;
+	if(typeof(name)!='string'){
+		file = new _f(dir);
+	}else{
+		file = new _f(dir, name);	
+	}
 	
+	this.isDirectory = function(){
+		return file.isDirectory();
+	}
+	this.isFile = function(){
+		return file.isFile();
+	}
+	this.getAbsolutePath = function(){
+		return file.getAbsolutePath();
+	}
 	
-	//Выбрать файл Name по пути dir
-	select:function(dir,Name){
-		return (new this.File(dir,Name));	
-	},
-	//Создать папку newDirName по пути dir
-	createNewDir:function(dir, newDirName){
-		return (new this.File(dir, newDirName).mkdir());
-	},
-	//Существует ли файл file
-	exists:function(file){
+	if(this.isDirectory){
+		this.path = this.getAbsolutePath();
+	}else if(this.isFile){
+		var a = this.getAbsolutePath().split("/");
+		a.length = a.length-1;
+		this.path = a.join("/");
+	}
+	
+	this.create = function(){
+		return file.createNewFile();
+	}
+	this.createDirectory = function(){
+		return file.mkdirs();
+	}
+	this.delete = function(){
+		return file.delete();
+	}
+	this.exists = function(){
 		return file.exists();
-	},
-	//Создать файл name по пути path
-	create:function(path, name){
-		new this.File(path, name).createNewFile();
-		return this.File;
-	},
-	//Удалит файл/папку по пути path
-	delete:function(path){
-		try {
-            var filed = new java.io.File(path);
-            if (filed.isDirectory()) {
-                var directoryFiles = filed.listFiles();
-                for (var i in directoryFiles) {
-                    FileAPI.delete(directoryFiles[i].getAbsolutePath());
-                }
-                filed.delete();
-            }
-            if (filed.isFile()) {
-                filed.delete();
-            }
-        } catch (e) {
-           print("FileAPI.Delete:"+e);
-        }
-		
-	},
-	
-	//Прочитать файл selectedFile
-	read: function(selectedFile) {
-        var readed = (new FileAPI.BufferedReader(new FileAPI.FileReader(selectedFile)));
-        var data = new FileAPI.StringBuilder();
-        var string;
+	}
+	this.getName = function(){
+		return file.getName();
+	}
+	this.getPath = function(){
+		return file.getPath();
+	}
+	this.list = function(){
+		return file.list();
+	}
+	this.listFiles = function(a,b){
+			var list = this.list();
+			if(!a)a = File.ALL;
+			if(!b)b=-1;
+			var files = [];
+			for(var i = 0; i < list.length; i++){
+				var _ff = new File(this.path+"/"+list[i]);
+				switch(a){
+					
+					case File.ALL:
+					 if(b==-1)
+					 	 files.push(_ff);
+					 	else
+				 	 if( _ff.getName().endsWith(b))
+					  files.push(_ff);
+					break;
+					case File.DIR:
+					 if(_ff.isDirectory())
+					  if(b==-1)
+					 	  files.push(_ff);
+					 	 else
+					 	 if( _ff.getName().endsWith(b))
+					 	 files.push(_ff);
+					 
+					break;
+					case File.FILE:
+					 if(_ff.isFile())
+					 	 if(b==-1)
+					 	  files.push(_ff);
+					 	 else
+					 	 if( _ff.getName().endsWith(b))
+					 	 files.push(_ff);
+					 
+					break;
+				}
+				
+			}
+			return files;
+	}
+	this.readLines=function(){
+		return this.read().split("\n")
+	}
+	this.read = function(){
+		var readed = (new BufferedReader(new FileReader(file)));
+		var data = new StringBuilder();
+		//var data;
+		var string;
         while ((string = readed.readLine()) != null) {
-            data.append(string);
-            data.append('\n');
+			data.append(string);
+			data.append('\n');
         }
         return data.toString();
-    },
-    //Прочитать строку line в файле selectedFile
-	readLine: function(selectedFile, line) {
-        var readT = new FileAPI.read(selectedFile);
-        var lineArray = readT.split('\n');
-        return lineArray[line - 1];
-    },
-	
-	//Записать text в файле selectedFile
-	write: function(selectedFile, text) {
-        FileAPI.rewrite(selectedFile, (new FileAPI.read(selectedFile)) + text);
-    },
-	rewrite: function(selectedFile, text) {
-        var writeFOS = new FileAPI.FOS(selectedFile);
-        writeFOS.write(new FileAPI.String(text).getBytes());
-    },
-    
-	//Получить список файлов которые заканчиваются на lookFor по пути path 
-	readFileList: function(path, lookFor) {
-        var file = FileAPI.File(path);
-        var Files = file.listFiles();
-        var fileList = [];
-        if (Files == null) return false;
+        //return data;
+	}
+	this.readLine = function(line){
+		var read = this.read().split("\n");
+		return read[line-1];
+	}
+	this.readLineText = function(text,sp){
+		if(typeof(sp)!='string') sp=":";
 		
-        for (var a in Files) {
-			
-            var fileName2 = Files[a].getName();
-			if(Files[a].isFile()){
-				if (lookFor != null) {
-                    if (typeof(lookFor) == "string") {
-                        if (!fileName2.endsWith(lookFor)) {
-                            continue;
-                        }else{
-                        	fileList.push(fileName2);
-                        }
-                    } else
-                    if (lookFor instanceof Array) {
-                        var index = fileName2.lastIndexOf(".");
-                        if (index == -1) continue;
-                        for (var b in lookFor) {
-                            if (lookFor[b] == fileName2.substring(index)) {
-                                fileList.push(fileName2);
-                            }
-                        }
-                        continue;
-                    }
-                }
-			}
-        }
-        fileList = fileList.sort();
-        return fileList;
-    },
-    //Получить список папок по пути path
-	readFolderList: function(path) {
-        var file = FileAPI.File(path);
-        var Files = file.listFiles();
-        var folderList = [];
-        if (Files == null) return false;
-		
-        for (var a in Files) {
-            var fileName2 = Files[a].getName();
-            if (Files[a].isDirectory()) {
-                folderList.push(fileName2);
+		var readerRLT = new BufferedReader(new InputStreamReader(new FIS(file)));
+        var readRLT;
+		var textRLT;
+        while ((readRLT = readerRLT.readLine()) != null) {
+            if (readRLT.split(sp)[0] == text) {
+                textRLT = readRLT.split(sp)[1];
+				return textRLT;
+                break;
             }
         }
-        folderList = folderList.sort();
-        return folderList;
-    }
+        readerRLT.close();
+		return false;
+	}
+	
+	this.rewrite = function(text){
+		var writeFOS = new FOS(file);
+        writeFOS.write(new String(text).getBytes());
+	}
+	this.write = function(text){
+		this.rewrite(this.read()+text);
+	}
 	
 };
+
+File.FILE = "file";
+File.DIR = "dir";
+File.ALL = "all";
+File.readAssets = function(file){
+	var readerRLT = new BufferedReader(new InputStreamReader(ModPE.openInputStreamFromTexturePack(file)));
+		var readRLT;
+		var text="";
+		while ((readRLT = readerRLT.readLine()) != null){
+			text = text+readRLT+"\n";
+		}
+		return text;
+};
+File.Path = {};
+File.Path.sdcard = android.os.Environment.getExternalStorageDirectory() + "/";
+File.Path.minecraft = File.Path.sdcard + "games/com.mojang/minecraftpe/";
