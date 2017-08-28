@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NIDE
@@ -35,6 +30,9 @@ namespace NIDE
             if (tbPath.Text == "" || tbName.Text == "" || (import && tbSource.Text == ""))
             {
                 MessageBox.Show("All fields are required!");
+            }
+            else if (!IsValidPath(tbName.Text)){
+                MessageBox.Show("This is an invalid project name!");
             }
             else
             {
@@ -81,6 +79,16 @@ namespace NIDE
             {
                 tbPath.Text = tbPath.Text.Substring(0, tbPath.Text.LastIndexOf("\\") + 1) + tbName.Text;
             }
+        }
+
+        private bool IsValidPath(string path)
+        {
+            foreach(char ch in Path.GetInvalidFileNameChars())
+            {
+                if (path.Contains(ch))
+                    return false;
+            }
+            return true;
         }
     }
 }
