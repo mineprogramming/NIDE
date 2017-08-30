@@ -15,9 +15,12 @@ namespace NIDE
             btnMembers.ForeColor = Highlighting.MemberColor;
             btnBack.ForeColor = ProgramData.MainForm.fctbMain.BackColor;
 
-            btnNumbers.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle.GetRTF().ForeColor;
-            btnStrings.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle.GetRTF().ForeColor;
-            btnKeywords.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle.GetRTF().ForeColor;
+            try
+            {
+                btnNumbers.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle.GetRTF().ForeColor;
+                btnStrings.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle.GetRTF().ForeColor;
+                btnKeywords.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle.GetRTF().ForeColor;
+            } catch { }
 
             tbPath.Text = ADBWorker.Path;
             cbLast.Checked = ProgramData.LoadLast;
