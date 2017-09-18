@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using NIDE.ProjectTypes;
 
 namespace NIDE
 {
@@ -28,8 +29,8 @@ namespace NIDE
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
             try
             {
-                ModPe.LoadModPeData("modpescript_dump.txt");
-                CoreEngine.LoadCoreEngineData("core.txt");
+                ModPE.LoadData("modpescript_dump.txt");
+                CoreEngine.LoadData("core.txt");
             }
             catch (Exception ex)
             {
@@ -49,10 +50,6 @@ namespace NIDE
                     if (Path.GetExtension(args[0]).ToLower() == ".nproj")
                     {
                         OpenProject(args[0]);
-                    }
-                    else if (Constants.TextExtensions.Contains(Path.GetExtension(args[0]).ToLower()))
-                    {
-                        InitFileOnly(args[0]);
                     }
                     else MessageBox.Show(args[0], "Unsupported file type!");
                 }
@@ -95,7 +92,7 @@ namespace NIDE
                             OpenProjectDlg(true);
                             break;
                         case "import":
-                            ImportModpkg(true);
+                            //ImportModpkg(true);
                             break;
                     }
                 }
@@ -109,7 +106,7 @@ namespace NIDE
 
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (fctbMain.Language == Language.JS && ProgramData.ProjectManager != null)
+            if (fctbMain.Language == Language.JS && ProgramData.Project != null)
             {
                 if (ProgramData.file.EndsWith(".js"))
                 {
@@ -150,7 +147,7 @@ namespace NIDE
         //Inserts
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
-            if (!ProgramData.ProjectManager.LibraryInstalled("ItemsEngine"))
+            if (!ProgramData.Project.LibraryInstalled("ItemsEngine"))
             {
                 var result = MessageBox.Show("You need to have ItemsEngine library to be installed!\nDo you want to install it now?",
                     "Confirmation", MessageBoxButtons.YesNo);
@@ -158,19 +155,20 @@ namespace NIDE
                     return;
                 else
                 {
-                    ProgramData.ProjectManager.IncludeLibrary("ItemsEngine");
+                    ProgramData.Project.IncludeLibrary("ItemsEngine");
                 }
             }
             fJsonItem form = new fJsonItem();
             if (form.ShowDialog() != DialogResult.Cancel)
             {
                 fctbMain.AppendText("\nItemsEngine.SetItemFromJson(\"" + fJsonItem.name + ".json\");");
+                UpdateProject();
             }
         }
 
         private void tsmiNewCraft_Click(object sender, EventArgs e)
         {
-            var form = new fCraft(ProgramData.FileOnly ? ProjectType.MODPE : ProgramData.ProjectManager.projectType);
+            var form = new fCraft(ProgramData.Project.CraftPattern);
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
@@ -188,7 +186,7 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.ProjectManager.AddScript(form.name);
+                    ProgramData.Project.AddScript(form.name);
                     UpdateProject();
                 }
                 catch (Exception ex)
@@ -205,7 +203,7 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.ProjectManager.AddTexture(form.name, form.type);
+                    ProgramData.Project.AddTexture(form.name, form.type);
                     UpdateProject();
                 }
                 catch (Exception ex)
@@ -223,7 +221,7 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.ProjectManager.AddLibrary(form.name);
+                    ProgramData.Project.AddLibrary(form.name);
                     UpdateProject();
                 }
                 catch (Exception ex)
@@ -241,9 +239,8 @@ namespace NIDE
             if (!CanChangeFile()) return;
             try
             {
-                ProgramData.FileOnly = false;
-                ProgramData.ProjectManager = new ProjectManager(FileName);
-                OpenScript(ProgramData.ProjectManager.MainScriptPath);
+                ProgramData.Project = Project.New(FileName);
+                OpenScript(ProgramData.Project.MainScriptPath);
                 InitProject();
                 saved = true;
             }
@@ -254,108 +251,53 @@ namespace NIDE
             }
         }
 
-        private void ImportModpkg(bool closeIfNotChecked = false)
-        {
-            var form = new fNewProject(true);
-            if (form.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    ProgramData.ProjectManager = new ProjectManager(form.source, form.path, form.name);
-                    OpenScript(ProgramData.ProjectManager.MainScriptPath);
-                    InitProject();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "An error occured while creating a new project");
-                }
-            }
-            else if (closeIfNotChecked)
-            {
-                Close();
-            }
-        }
+        //private void ImportModpkg(bool closeIfNotChecked = false)
+        //{
+        //    var form = new fNewProject(true);
+        //    if (form.ShowDialog() == DialogResult.OK)
+        //    {
+        //        try
+        //        {
+        //            ProgramData.Project = new ProjectManager(form.source, form.path, form.name);
+        //            OpenScript(ProgramData.ProjectManager.MainScriptPath);
+        //            InitProject();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message, "An error occured while creating a new project");
+        //        }
+        //    }
+        //    else if (closeIfNotChecked)
+        //    {
+        //        Close();
+        //    }
+        //}
 
         private void InitProject()
         {
-            tsmiInserts.Enabled = true;
-            tsmiNewItem.Enabled = true;
-            tsmiNewScript.Enabled = true;
-            tsmiNewTexture.Enabled = true;
-            tsmiProject.Enabled = true;
-            tsmiNewLibrary.Enabled = true;
-            tsmiManageLibraries.Enabled = true;
-            tsmiBuild.Enabled = true;
-            tsmiPush.Enabled = true;
-            tsmiBuildAndPush.Enabled = true;
-            tsbBuild.Enabled = true;
-            tsbBuildPush.Enabled = true;
-            tsbPush.Enabled = true;
-            tsbUpdate.Enabled = true;
-            tsbShowMain.Enabled = false;
-            cmsTreeView.Enabled = true;
             UpdateProject();
-            switch (ProgramData.ProjectManager.projectType)
+            tsbShowMain.Enabled = ProgramData.Project.ShowMainEnabled;
+            if(ProgramData.Project.Type == ProjectType.COREENGINE)
             {
-                case ProjectType.MODPE:
-                    tsbShowMain.Enabled = true;
-                    break;
-                case ProjectType.COREENGINE:
-                    tsmiNewItem.Enabled = false;
-                    tsmiNewLibrary.Enabled = false;
-                    tsmiManageLibraries.Enabled = false;
-                    break;
-                case ProjectType.BEHAVIOUR_PACK:
-                    tsmiInserts.Enabled = false;
-                    tsmiNewLibrary.Enabled = false;
-                    tsmiManageLibraries.Enabled = false;
-                    tsmiPush.Enabled = false;
-                    tsmiBuildAndPush.Enabled = false;
-                    tsbBuildPush.Enabled = false;
-                    tsbPush.Enabled = false;
-                    break;
-                case ProjectType.TEXTURE_PACK:
-                    tsmiInserts.Enabled = false;
-                    tsmiNewLibrary.Enabled = false;
-                    tsmiManageLibraries.Enabled = false;
-                    tsmiPush.Enabled = false;
-                    tsmiBuildAndPush.Enabled = false;
-                    tsbBuildPush.Enabled = false;
-                    tsbPush.Enabled = false;
-                    break;
+                tsmiNewItem.Enabled = false;
+                tsmiNewLibrary.Enabled = false;
+                tsmiManageLibraries.Enabled = false;
             }
-            Text = ProgramData.ProjectManager.ProjectName + " - NIDE 2017v" + ProgramData.PROGRAM_VERSION;
-        }
-
-        private void InitFileOnly(string filename)
-        {
-            ProgramData.FileOnly = true;
-            OpenScript(filename);
-            tsmiNewItem.Enabled = false;
-            tsmiNewScript.Enabled = false;
-            tsmiNewTexture.Enabled = false;
-            tsmiProject.Enabled = false;
-            tsmiBuild.Enabled = false;
-            tsmiPush.Enabled = false;
-            tsmiBuildAndPush.Enabled = false;
-            tsbBuild.Enabled = false;
-            tsbPush.Enabled = false;
-            tsbBuildPush.Enabled = false;
-            tsbUpdate.Enabled = false;
-            tsbShowMain.Enabled = false;
-            tvFolders.ContextMenuStrip = null;
-            Text = ProgramData.file + " - NIDE 2017v" + ProgramData.PROGRAM_VERSION;
+            else
+            {
+                tsmiNewItem.Enabled = true;
+                tsmiNewLibrary.Enabled = true;
+                tsmiManageLibraries.Enabled = true;
+            }
+            Text = ProgramData.Project.Name + " - NIDE 2017v" + ProgramData.PROGRAM_VERSION;
         }
 
         private void UpdateProject()
         {
             tvFolders.Nodes.Clear();
-            tvFolders.Nodes.Add(ProgramData.ProjectManager.ProjectName);
-            if (ProgramData.ProjectManager.projectType == ProjectType.MODPE)
-            {
-                tvFolders.Nodes[0].Nodes.Add(Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath));
-            }
-            Util.FillDirectoryNodes(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.ProjectManager.SourceCodePath));
+            tvFolders.Nodes.Add(ProgramData.Project.Name);
+            ProgramData.Project.Post_tree_reload(tvFolders.Nodes[0]);
+            Util.FillDirectoryNodes(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.Project.SourceCodePath));
             tvFolders.Nodes[0].Expand();
         }
 
@@ -363,7 +305,7 @@ namespace NIDE
         {
             if (CanChangeFile())
             {
-                OpenScript(ProgramData.ProjectManager.BuildPath + "main.js");
+                OpenScript((ProgramData.Project as ModPE).BuildPath + "main.js");
                 fctbMain.ReadOnly = true;
             }
         }
@@ -411,8 +353,17 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.ProjectManager = new ProjectManager(form.path, form.type, form.name);
-                    OpenScript(ProgramData.ProjectManager.MainScriptPath);
+                    switch (form.type)
+                    {
+                        case ProjectType.MODPE:
+                            ProgramData.Project = new ModPE(form.path, form.name);
+                            break;
+                        case ProjectType.COREENGINE:
+                            ProgramData.Project = new CoreEngine(form.path, form.name);
+                            break;
+                    }
+
+                    OpenScript(ProgramData.Project.MainScriptPath);
                     InitProject();
                 }
                 catch (Exception ex)
@@ -515,7 +466,7 @@ namespace NIDE
         private void tsmiUpdate_Click(object sender, EventArgs e)
         {
             UpdateProject();
-            ProgramData.ProjectManager.UpdateNlib();
+            ProgramData.Project.UpdateNlib();
         }
 
         private void tsmiManageLibraries_Click(object sender, EventArgs e)
@@ -527,20 +478,12 @@ namespace NIDE
         {
             fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
             saved = true;
-            ProgramData.ProjectManager.Build();
+            ProgramData.Project.Build();
         }
 
         private void tsmiPush_Click(object sender, EventArgs e)
         {
-            switch (ProgramData.ProjectManager.projectType)
-            {
-                case ProjectType.MODPE:
-                    ADBWorker.Push(new DirectoryInfo(ProgramData.ProjectManager.BuildPath));
-                    break;
-                case ProjectType.COREENGINE:
-                    ADBWorker.Push(new DirectoryInfo(ProgramData.ProjectManager.path));
-                    break;
-            }
+            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
         }
 
         private void tsbBuildPush_Click(object sender, EventArgs e)
@@ -551,21 +494,8 @@ namespace NIDE
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
         {
-            if(ProgramData.FileOnly)
-                new JsRunner(fctbMain.Text);
-            else switch (ProgramData.ProjectManager.projectType)
-                {
-                    case ProjectType.MODPE:
-                    case ProjectType.COREENGINE:
-                        new JsRunner(fctbMain.Text);
-                        break;
-                    case ProjectType.TEXTURE_PACK:
-                    case ProjectType.BEHAVIOUR_PACK:
-                        ProgramData.ProjectManager.Build();
-                        string mcpack = ProgramData.ProjectManager.path + "\\" + ProgramData.ProjectManager.ProjectName + ".mcpack";
-                        Process.Start(mcpack);
-                        break;
-                }
+
+            new JsRunner(fctbMain.Text);
         }
 
 
@@ -583,7 +513,7 @@ namespace NIDE
             }
             else if (extension == ".json")
             {
-                if (ProgramData.ProjectManager.projectType == ProjectType.MODPE)
+                if (ProgramData.Project.Type == ProjectType.MODPE)
                     try
                     {
                         new fJsonItem(path).Show();
@@ -684,18 +614,18 @@ namespace NIDE
 
         private void tsmiOpenInExplorer_Click(object sender, EventArgs e)
         {
-            Process.Start(ProgramData.ProjectManager.path);
+            Process.Start(ProgramData.Project.Path);
         }
 
         private string GetTreeViewPath(TreeNode node)
         {
-            if (node.Text == Path.GetFileName(ProgramData.ProjectManager.ProjectFilePath))
-                return ProgramData.ProjectManager.ProjectFilePath;
+            if (node.Text == Path.GetFileName(ProgramData.Project.Nproj))
+                return ProgramData.Project.Nproj;
             else
             {
                 string path_relative = node.FullPath;
                 path_relative = path_relative.Substring(path_relative.IndexOf('\\') + 1);
-                return ProgramData.ProjectManager.SourceCodePath + "\\" + path_relative;
+                return ProgramData.Project.SourceCodePath + "\\" + path_relative;
             }
         }
 
@@ -751,9 +681,9 @@ namespace NIDE
                     }
                 }
             }
-            catch (Exception e){}
+            catch (Exception e) { }
         }
-        
+
         private void SendStats()
         {
             try
@@ -761,9 +691,9 @@ namespace NIDE
                 WebClient client = new WebClient();
                 client.DownloadString("http://api.mineprogramming.org/nide/counters/open.php");
                 client.Dispose();
-                
+
             }
-            catch (Exception e){}
+            catch (Exception e) { }
         }
 
         private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
@@ -779,7 +709,7 @@ namespace NIDE
         private void Ads_Navigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             e.Cancel = true;
-            if(e.Url.ToString().StartsWith("http"))
+            if (e.Url.ToString().StartsWith("http"))
                 Process.Start(e.Url.ToString());
         }
 

@@ -176,7 +176,7 @@ namespace NIDE
             name = tbFilename.Text;
             try
             {
-                filename = ProgramData.ProjectManager.OtherResourcesPath + name + ".json";
+                filename = ProgramData.Project.OtherResourcesPath + name + ".json";
                 File.WriteAllText(filename, json);
             }
             catch (Exception e)

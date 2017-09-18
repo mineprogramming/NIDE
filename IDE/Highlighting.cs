@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.ProjectTypes;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
@@ -56,17 +57,17 @@ namespace NIDE
             range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
             range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
 
-            if (ProgramData.ProjectManager?.projectType == ProjectType.COREENGINE)
+            if (ProgramData.Project?.Type == ProjectType.COREENGINE)
             {
                 range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", CoreEngine.Items) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", CoreEngine.members) + @")(\W|$)", RegexOptions.Multiline);
             }
             else
             {
-                range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ModPe.namespaces) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(HookStyle, @"(\W|^)(" + string.Join("|", ModPe.hooks) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPe.global) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPe.members) + @")(\W|$)", RegexOptions.Multiline);
+                range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ModPE.namespaces) + @")(\W|$)", RegexOptions.Multiline);
+                range.SetStyle(HookStyle, @"(\W|^)(" + string.Join("|", ModPE.hooks) + @")(\W|$)", RegexOptions.Multiline);
+                range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPE.global) + @")(\W|$)", RegexOptions.Multiline);
+                range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
             }
             ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
         }

@@ -4,6 +4,7 @@ using System.Text.RegularExpressions;
 using EcmaScript.NET;
 using System.Threading;
 using System;
+using NIDE.ProjectTypes;
 
 namespace NIDE
 {
@@ -53,7 +54,7 @@ namespace NIDE
                             string function_line = line.Split('(')[0].Split()[1];
                             foreach (var param in params_line.Split(','))
                                 variables.Add(param.Trim());
-                            if (!ModPe.hooks.Contains(function_line))
+                            if (!ModPE.hooks.Contains(function_line))
                                 variables.Add(function_line);
                         }
                         catch { }

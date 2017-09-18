@@ -8,7 +8,7 @@ namespace NIDE
 {
     static class ADBWorker
     {
-        public static string Path { get; set; }
+        public static bool RunProgram { get; set; }
 
         public static void Push(DirectoryInfo directory)
         {
@@ -44,7 +44,7 @@ namespace NIDE
         private static void PushRecursive(SyncService sync, Device device, DirectoryInfo directory, string subdir = "")
         {
             List<string> files = directory.GetFiles().Select(x => x.FullName).ToList();
-            sync.Push(files, FileEntry.FindOrCreate(device, Path + subdir), new FileSyncProgressMonitor());
+            sync.Push(files, FileEntry.FindOrCreate(device, ProgramData.Project.ADBPushPath + subdir), new FileSyncProgressMonitor());
             foreach (var dir in directory.GetDirectories())
                 PushRecursive(sync, device, dir, subdir + dir.Name + "/");
             

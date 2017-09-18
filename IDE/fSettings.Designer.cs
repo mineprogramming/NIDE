@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnKeywords = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnStrings = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnNumbers = new System.Windows.Forms.Button();
@@ -50,8 +52,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnApply = new System.Windows.Forms.Button();
             this.cbLast = new System.Windows.Forms.CheckBox();
-            this.btnKeywords = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
+            this.cbRunProgram = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +82,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Colors";
+            // 
+            // btnKeywords
+            // 
+            this.btnKeywords.Location = new System.Drawing.Point(248, 77);
+            this.btnKeywords.Name = "btnKeywords";
+            this.btnKeywords.Size = new System.Drawing.Size(75, 23);
+            this.btnKeywords.TabIndex = 17;
+            this.btnKeywords.Text = "Change";
+            this.btnKeywords.UseVisualStyleBackColor = true;
+            this.btnKeywords.Click += new System.EventHandler(this.btnKeywords_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(189, 82);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 13);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Keywords";
             // 
             // btnStrings
             // 
@@ -236,7 +256,7 @@
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(383, 71);
+            this.tbPath.Location = new System.Drawing.Point(383, 87);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(246, 20);
             this.tbPath.TabIndex = 1;
@@ -244,7 +264,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(380, 55);
+            this.label5.Location = new System.Drawing.Point(380, 70);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 13);
             this.label5.TabIndex = 2;
@@ -270,30 +290,22 @@
             this.cbLast.Text = "Load last project";
             this.cbLast.UseVisualStyleBackColor = true;
             // 
-            // btnKeywords
+            // cbRunProgram
             // 
-            this.btnKeywords.Location = new System.Drawing.Point(248, 77);
-            this.btnKeywords.Name = "btnKeywords";
-            this.btnKeywords.Size = new System.Drawing.Size(75, 23);
-            this.btnKeywords.TabIndex = 17;
-            this.btnKeywords.Text = "Change";
-            this.btnKeywords.UseVisualStyleBackColor = true;
-            this.btnKeywords.Click += new System.EventHandler(this.btnKeywords_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(189, 82);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 13);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Keywords";
+            this.cbRunProgram.AutoSize = true;
+            this.cbRunProgram.Location = new System.Drawing.Point(383, 119);
+            this.cbRunProgram.Name = "cbRunProgram";
+            this.cbRunProgram.Size = new System.Drawing.Size(182, 17);
+            this.cbRunProgram.TabIndex = 5;
+            this.cbRunProgram.Text = "Run InnerCore or BlockLauncher";
+            this.cbRunProgram.UseVisualStyleBackColor = true;
             // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 219);
+            this.Controls.Add(this.cbRunProgram);
             this.Controls.Add(this.cbLast);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.label5);
@@ -335,5 +347,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnKeywords;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.CheckBox cbRunProgram;
     }
 }

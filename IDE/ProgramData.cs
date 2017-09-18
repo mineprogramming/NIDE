@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using NIDE.ProjectTypes;
+using System.Collections.Generic;
 using System.Text;
 
 namespace NIDE
 {
     static class ProgramData
     {
-        public const int PROGRAM_VERSION = 5;
+        public const int PROGRAM_VERSION = 6;
+        public const int API_LEVEL = 3;
 
         public static Encoding Encoding { get { return new UTF8Encoding(false); } }
 
@@ -31,13 +33,9 @@ namespace NIDE
 
         public static List<string> Recent = new List<string>();
 
-        private static ProjectManager projectManager = null;
-
-        public static ProjectManager ProjectManager { get { return projectManager; } set { projectManager = value; } }
+        public static Project Project { get; set; }
 
         public static string file;
-
-        public static bool FileOnly = false;
 
         public static fMain MainForm { get; set; }
 

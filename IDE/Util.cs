@@ -50,10 +50,6 @@ namespace NIDE
                     return "MODPE";
                 case ProjectType.COREENGINE:
                     return "COREENGINE";
-                case ProjectType.BEHAVIOUR_PACK:
-                    return "BEHAVIOUR_PACK";
-                case ProjectType.TEXTURE_PACK:
-                    return "TEXTURE_PACK";
                 default:
                     return null;
             }
@@ -67,10 +63,6 @@ namespace NIDE
                     return ProjectType.MODPE;
                 case "COREENGINE":
                     return ProjectType.COREENGINE;
-                case "BEHAVIOUR_PACK":
-                    return ProjectType.BEHAVIOUR_PACK;
-                case "TEXTURE_PACK":
-                    return ProjectType.TEXTURE_PACK;
                 default:
                     throw new ArgumentException("Unknown project type " + type);
             }

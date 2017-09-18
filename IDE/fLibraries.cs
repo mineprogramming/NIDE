@@ -14,7 +14,7 @@ namespace NIDE
                 var name = Path.GetFileName(dir);
                 if (!File.Exists(dir + "\\guidisable"))
                 {
-                    if (ProgramData.ProjectManager.LibraryInstalled(name))
+                    if (ProgramData.Project.LibraryInstalled(name))
                     {
 
                         clbLibraries.Items.Add(name, true);
@@ -34,11 +34,11 @@ namespace NIDE
                 var item = clbLibraries.Items[i];
                 if (clbLibraries.GetItemChecked(i))
                 {
-                    ProgramData.ProjectManager.IncludeLibrary(item.ToString());
+                    ProgramData.Project.IncludeLibrary(item.ToString());
                 }
                 else
                 {
-                    ProgramData.ProjectManager.ExcludeLibrary(item.ToString());
+                    ProgramData.Project.ExcludeLibrary(item.ToString());
                 }
             }
             Close();

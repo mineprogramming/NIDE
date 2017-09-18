@@ -9,11 +9,11 @@ namespace NIDE
     {
         private CheckBox checkedNow;
         public static string recipie;
-        private ProjectType projectType;
+        private string pattern;
 
-        public fCraft(ProjectType projectType)
+        public fCraft(string pattern)
         {
-            this.projectType = projectType;
+            this.pattern = pattern;
             InitializeComponent();
             checkedNow = checkBox10;
             DialogResult = DialogResult.Cancel;
@@ -51,18 +51,18 @@ namespace NIDE
 
         private void find_texture()
         {
-            if (Directory.Exists(ProgramData.ProjectManager.OtherResourcesPath))
+            if (Directory.Exists(ProgramData.Project.OtherResourcesPath))
             {
-                foreach (var file in Directory.GetFiles(ProgramData.ProjectManager.OtherResourcesPath))
+                foreach (var file in Directory.GetFiles(ProgramData.Project.OtherResourcesPath))
                 {
                     if (Path.GetExtension(file).ToLower() == ".json")
                     {
                         Creatable item = File.ReadAllText(file).ToObject<Creatable>();
                         if (item.id == (int)nudId.Value)
                         {
-                            string path = ProgramData.ProjectManager.ItemsOpaquePath + item.texture.name + "_" + item.texture.meta + ".png";
+                            string path = ProgramData.Project.ItemsOpaquePath + item.texture.name + "_" + item.texture.meta + ".png";
                             if (!File.Exists(path))
-                                path = ProgramData.ProjectManager.TerrainAtlasPath + item.texture.name + "_" + item.texture.meta + ".png";
+                                path = ProgramData.Project.TerrainAtlasPath + item.texture.name + "_" + item.texture.meta + ".png";
                             if (!File.Exists(path))
                             {
                                 MessageBox.Show("Cannot find texture for id: " + nudId.Value);
@@ -101,9 +101,7 @@ namespace NIDE
                     return;
                 }
                 string[] splitted = checkBox10.Tag.ToString().Split('_');
-                recipie = projectType == ProjectType.MODPE?
-                    "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});":
-                    "Recipes.addShaped({{id: {0}, count: {1}, data: {2}}}, {3}, {4});";
+                recipie = pattern;
                 string object1 = "";
                 string object2 = "";
                 Item[] items;

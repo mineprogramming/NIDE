@@ -92,7 +92,8 @@
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="CoreEngine.cs" />
+    <Compile Include="Languages\JavaScript.cs" />
+    <Compile Include="ProjectTypes\CoreEngine.cs" />
     <Compile Include="fCraft.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,10 +150,11 @@
     </Compile>
     <Compile Include="JsRunner.cs" />
     <Compile Include="Library.cs" />
-    <Compile Include="ModPe.cs" />
+    <Compile Include="ProjectTypes\ModPE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramData.cs" />
     <Compile Include="ProjectManager.cs" />
+    <Compile Include="ProjectTypes\Project.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Highlighting.cs" />
     <Compile Include="Enums.cs" />
@@ -213,7 +215,6 @@
     <Content Include="Resources\screen.png" />
     <None Include="bin\Release\icons\background.png" />
     <Content Include="icon.ico" />
-    <None Include="Resources\background.bmp" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

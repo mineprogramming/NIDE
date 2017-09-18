@@ -41,7 +41,7 @@ namespace NIDE
                 switch (keyValue[0])
                 {
                     case "nide-api":
-                        if (Convert.ToInt32(keyValue[1]) > ProjectManager.API_LEVEL)
+                        if (Convert.ToInt32(keyValue[1]) > ProgramData.API_LEVEL)
                             throw new Exception("Api level is not supported");
                         break;
                     case "library-version":

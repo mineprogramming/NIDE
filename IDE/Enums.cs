@@ -9,9 +9,7 @@
     public enum ProjectType
     {
         MODPE,
-        COREENGINE,
-        BEHAVIOUR_PACK,
-        TEXTURE_PACK
+        COREENGINE
     }
 
     public enum DialogType

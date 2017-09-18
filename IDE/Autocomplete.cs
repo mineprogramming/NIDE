@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.ProjectTypes;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -87,46 +88,24 @@ namespace NIDE
             List<AutocompleteItem> items = new List<AutocompleteItem>();
             foreach (var item in Autocomplete.UserItems.Keys)
                 items.Add(new AutocompleteItem(item));
-            if (ProgramData.ProjectManager != null && ProgramData.ProjectManager.projectType == ProjectType.COREENGINE)
+            if (parts.Length < 2)
             {
-                if (parts.Length < 2)
-                {
-                    items.AddRange(CoreEngine.GetDefaultList());
-                    foreach (var item in CodeAnalysisEngine.Variables)
-                        items.Add(new AutocompleteItem(item));
-                    foreach (var item in items)
-                        yield return item;
-                }
-                else
-                {
-                    var className = parts[parts.Length - 2];
-                    foreach (var methodName in CoreEngine.GetListByClassName(className))
-                        yield return methodName;
-                    if (Autocomplete.UserItems.ContainsKey(className))
-                        foreach (var methodName in Autocomplete.UserItems[className])
-                            yield return new MethodAutocompleteItem(methodName);
-                }
+                items.AddRange(ProgramData.Project.GetDefaultList());
+                foreach (var item in CodeAnalysisEngine.Variables)
+                    items.Add(new AutocompleteItem(item));
+                foreach (var item in items)
+                    yield return item;
             }
             else
             {
-                if (parts.Length < 2)
-                {
-                    items.AddRange(ModPe.GetDefaultList());
-                    foreach (var item in CodeAnalysisEngine.Variables)
-                        items.Add(new AutocompleteItem(item));
-                    foreach (var item in items)
-                        yield return item;
-                }
-                else
-                {
-                    var className = parts[parts.Length - 2];
-                    foreach (var methodName in ModPe.GetListByClassName(className))
-                        yield return methodName;
-                    if (Autocomplete.UserItems.ContainsKey(className))
-                        foreach (var methodName in Autocomplete.UserItems[className])
-                            yield return new MethodAutocompleteItem(methodName);
-                }
+                var className = parts[parts.Length - 2];
+                foreach (var methodName in ProgramData.Project.GetListByClassName(className))
+                    yield return methodName;
+                if (Autocomplete.UserItems.ContainsKey(className))
+                    foreach (var methodName in Autocomplete.UserItems[className])
+                        yield return new MethodAutocompleteItem(methodName);
             }
+
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()

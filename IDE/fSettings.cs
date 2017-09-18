@@ -22,8 +22,9 @@ namespace NIDE
                 btnKeywords.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle.GetRTF().ForeColor;
             } catch { }
 
-            tbPath.Text = ADBWorker.Path;
+            tbPath.Text = ProgramData.Project.ADBPushPath;
             cbLast.Checked = ProgramData.LoadLast;
+            cbRunProgram.Checked = ADBWorker.RunProgram;
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -120,7 +121,7 @@ namespace NIDE
         {
             if (!tbPath.Text.EndsWith("/"))
                 tbPath.Text += "/";
-            ADBWorker.Path = tbPath.Text;
+            ProgramData.Project.ADBPushPath = tbPath.Text;
             ProgramData.LoadLast = cbLast.Checked;
             Close();
         }
