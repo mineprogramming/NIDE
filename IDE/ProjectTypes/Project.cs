@@ -23,6 +23,7 @@ namespace NIDE.ProjectTypes
         public abstract string CraftPattern { get; }
         public abstract bool ShowMainEnabled { get; }
         public abstract string ADBPushPath { get; set; }
+        public abstract string ProgramPackage { get; }
 
         public abstract string LibraryPath { get; }
         public abstract string ItemsOpaquePath { get; }

@@ -33,6 +33,7 @@ namespace NIDE.ProjectTypes
         public override string CraftPattern => "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});";
         public override bool ShowMainEnabled => true;
         public override string ADBPushPath { get { return ADBPath; } set { ADBPath = value; } }
+        public override string ProgramPackage => "net.zhuoweizhang.mcpelauncher.pro";
 
         public override string LibraryPath => Path + "\\source\\libs\\";
         public override string ItemsOpaquePath => Path + "\\source\\res\\images\\items-opaque\\";

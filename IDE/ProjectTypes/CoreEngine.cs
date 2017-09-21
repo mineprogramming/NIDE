@@ -119,6 +119,7 @@ namespace NIDE.ProjectTypes
         public override string CraftPattern => "Recipes.addShaped({{id: {0}, count: {1}, data: {2}}}, {3}, {4});";
         public override bool ShowMainEnabled => false;
         public override string ADBPushPath { get { return ADBPath; } set { ADBPath = value; } }
+        public override string ProgramPackage => "com.zhekasmirnov.innercore";
 
         public override string LibraryPath => Path + "\\lib\\";
         public override string ItemsOpaquePath => Path + "\\assets\\items-opaque\\";

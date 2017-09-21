@@ -31,6 +31,13 @@ namespace NIDE
                     ProgramData.MainForm.ProgressBarStatus.Visible = false;
                     ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
                 }
+                if (RunProgram)
+                {
+                    ConsoleOutputReceiver receiver = new ConsoleOutputReceiver();
+                    device.ExecuteShellCommand("am force-stop " + ProgramData.Project.ProgramPackage, receiver);
+                    device.ExecuteShellCommand("monkey -p " + ProgramData.Project.ProgramPackage + " 1", receiver);
+                    ProgramData.Log("ADB", "Restarted package " + ProgramData.Project.ProgramPackage);
+                }
                 adb.Stop();
             }
             catch(Exception e){

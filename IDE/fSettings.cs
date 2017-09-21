@@ -123,6 +123,7 @@ namespace NIDE
                 tbPath.Text += "/";
             ProgramData.Project.ADBPushPath = tbPath.Text;
             ProgramData.LoadLast = cbLast.Checked;
+            ADBWorker.RunProgram = cbRunProgram.Checked;
             Close();
         }
 

@@ -289,7 +289,7 @@ namespace NIDE
                 tsmiNewLibrary.Enabled = true;
                 tsmiManageLibraries.Enabled = true;
             }
-            Text = ProgramData.Project.Name + " - NIDE 2017v" + ProgramData.PROGRAM_VERSION;
+            Text = ProgramData.Project.Name + " - NIDE 2018 build " + ProgramData.PROGRAM_VERSION;
         }
 
         private void UpdateProject()
@@ -677,7 +677,8 @@ namespace NIDE
                 {
                     if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Process.Start("https://www.mineprogramming.org/nide/");
+                        Process.Start("update.vbs");
+                        Close();
                     }
                 }
             }
@@ -715,7 +716,7 @@ namespace NIDE
 
         private void tsmiRenderer_Click(object sender, EventArgs e)
         {
-            Process.Start(new ProcessStartInfo("bin\\RendererTool.jar"));
+            Process.Start(new ProcessStartInfo("bin\\RendererTool.exe"));
         }
     }
 }

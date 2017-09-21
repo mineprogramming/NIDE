@@ -64,7 +64,7 @@
             // tsmiRemove
             // 
             this.tsmiRemove.Name = "tsmiRemove";
-            this.tsmiRemove.Size = new System.Drawing.Size(152, 22);
+            this.tsmiRemove.Size = new System.Drawing.Size(117, 22);
             this.tsmiRemove.Text = "Remove";
             this.tsmiRemove.Click += new System.EventHandler(this.tsmiRemove_Click);
             // 
@@ -109,6 +109,7 @@
             // 
             // btnImport
             // 
+            this.btnImport.Enabled = false;
             this.btnImport.Location = new System.Drawing.Point(12, 70);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(241, 23);
