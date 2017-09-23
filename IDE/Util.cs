@@ -50,6 +50,8 @@ namespace NIDE
                     return "MODPE";
                 case ProjectType.COREENGINE:
                     return "COREENGINE";
+                case ProjectType.INNERCORE:
+                    return "INNERCORE";
                 default:
                     return null;
             }
@@ -63,6 +65,8 @@ namespace NIDE
                     return ProjectType.MODPE;
                 case "COREENGINE":
                     return ProjectType.COREENGINE;
+                case "INNERCORE":
+                    return ProjectType.INNERCORE;
                 default:
                     throw new ArgumentException("Unknown project type " + type);
             }

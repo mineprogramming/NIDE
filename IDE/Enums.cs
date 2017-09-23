@@ -9,7 +9,8 @@
     public enum ProjectType
     {
         MODPE,
-        COREENGINE
+        COREENGINE,
+        INNERCORE
     }
 
     public enum DialogType

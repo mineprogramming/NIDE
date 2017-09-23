@@ -277,7 +277,7 @@ namespace NIDE
         {
             UpdateProject();
             tsbShowMain.Enabled = ProgramData.Project.ShowMainEnabled;
-            if(ProgramData.Project.Type == ProjectType.COREENGINE)
+            if(ProgramData.Project.Type == ProjectType.COREENGINE || ProgramData.Project.Type == ProjectType.INNERCORE)
             {
                 tsmiNewItem.Enabled = false;
                 tsmiNewLibrary.Enabled = false;
@@ -360,6 +360,9 @@ namespace NIDE
                             break;
                         case ProjectType.COREENGINE:
                             ProgramData.Project = new CoreEngine(form.path, form.name);
+                            break;
+                        case ProjectType.INNERCORE:
+                            ProgramData.Project = new InnerCore(form.path, form.name);
                             break;
                     }
 
@@ -478,7 +481,8 @@ namespace NIDE
         {
             fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
             saved = true;
-            ProgramData.Project.Build();
+            if(ProgramData.Project.Type != ProjectType.INNERCORE)
+                ProgramData.Project.Build();
         }
 
         private void tsmiPush_Click(object sender, EventArgs e)
@@ -677,12 +681,18 @@ namespace NIDE
                 {
                     if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Process.Start("update.vbs");
+                        Process process = new Process();
+                        process.StartInfo.FileName = "CMD.exe";
+                        process.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+                        process.StartInfo.Arguments = "/C \"cd /d \"" + Directory.GetCurrentDirectory() + "\" && cscript //D //Nologo update.vbs\"";
+                        process.StartInfo.UseShellExecute = true;
+                        process.StartInfo.Verb = "runas";
+                        process.Start();
                         Close();
                     }
                 }
             }
-            catch (Exception e) { }
+            catch (Exception e) { MessageBox.Show(e.Message, "Unable to download update!"); }
         }
 
         private void SendStats()

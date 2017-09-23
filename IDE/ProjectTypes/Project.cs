@@ -24,6 +24,7 @@ namespace NIDE.ProjectTypes
         public abstract bool ShowMainEnabled { get; }
         public abstract string ADBPushPath { get; set; }
         public abstract string ProgramPackage { get; }
+        public abstract string DefaultNproj { get; }
 
         public abstract string LibraryPath { get; }
         public abstract string ItemsOpaquePath { get; }
@@ -66,6 +67,8 @@ namespace NIDE.ProjectTypes
                                 return new ModPE(projectFile);
                             case ProjectType.COREENGINE:
                                 return new CoreEngine(projectFile);
+                            case ProjectType.INNERCORE:
+                                return new InnerCore(projectFile);
                         }
                         break;
                 }
@@ -73,7 +76,11 @@ namespace NIDE.ProjectTypes
             throw new Exception("Project type is not defined in .nproj");
         }
 
-        protected Project() { }
+        protected Project(string projectFile) {
+            Nproj = projectFile;
+            Path = Directory.GetParent(projectFile).FullName;
+            UpdateNlib();
+        }
 
         protected Project(string path, string projectName)
         {
@@ -83,12 +90,15 @@ namespace NIDE.ProjectTypes
             Compress = false;
             Nproj = path + "\\" + projectName + ".nproj";
             CreateFileSystem();
+            string nproj = string.Format(DefaultNproj, ProgramData.API_LEVEL, projectName);
+            File.WriteAllText(Nproj, nproj, ProgramData.Encoding);
         }
 
         public void CreateFileSystem()
         {
             foreach(var item in Filesystem)
             {
+                Directory.CreateDirectory(Path);
                 if (item.EndsWith("\\"))
                     Directory.CreateDirectory(Path + item);
                 else File.CreateText(Path + item).Close();

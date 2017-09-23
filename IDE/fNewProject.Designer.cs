@@ -42,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbSource = new System.Windows.Forms.TextBox();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+            this.rbInnerCore = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // tbPath
@@ -110,19 +111,17 @@
             // rbModPE
             // 
             this.rbModPE.AutoSize = true;
-            this.rbModPE.Checked = true;
-            this.rbModPE.Location = new System.Drawing.Point(15, 12);
+            this.rbModPE.Location = new System.Drawing.Point(15, 36);
             this.rbModPE.Name = "rbModPE";
             this.rbModPE.Size = new System.Drawing.Size(60, 17);
             this.rbModPE.TabIndex = 8;
-            this.rbModPE.TabStop = true;
             this.rbModPE.Text = "ModPE";
             this.rbModPE.UseVisualStyleBackColor = true;
             // 
             // rbCoreEngine
             // 
             this.rbCoreEngine.AutoSize = true;
-            this.rbCoreEngine.Location = new System.Drawing.Point(15, 35);
+            this.rbCoreEngine.Location = new System.Drawing.Point(101, 12);
             this.rbCoreEngine.Name = "rbCoreEngine";
             this.rbCoreEngine.Size = new System.Drawing.Size(80, 17);
             this.rbCoreEngine.TabIndex = 9;
@@ -155,11 +154,23 @@
             this.tbSource.Size = new System.Drawing.Size(233, 20);
             this.tbSource.TabIndex = 10;
             // 
+            // rbInnerCore
+            // 
+            this.rbInnerCore.AutoSize = true;
+            this.rbInnerCore.Checked = true;
+            this.rbInnerCore.Location = new System.Drawing.Point(15, 12);
+            this.rbInnerCore.Name = "rbInnerCore";
+            this.rbInnerCore.Size = new System.Drawing.Size(71, 17);
+            this.rbInnerCore.TabIndex = 13;
+            this.rbInnerCore.Text = "InnerCore";
+            this.rbInnerCore.UseVisualStyleBackColor = true;
+            // 
             // fNewProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(350, 167);
+            this.Controls.Add(this.rbInnerCore);
             this.Controls.Add(this.btnSource);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbSource);
@@ -197,5 +208,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbSource;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
+        private System.Windows.Forms.RadioButton rbInnerCore;
     }
 }

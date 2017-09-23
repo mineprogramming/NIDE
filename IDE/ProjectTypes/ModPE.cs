@@ -34,6 +34,8 @@ namespace NIDE.ProjectTypes
         public override bool ShowMainEnabled => true;
         public override string ADBPushPath { get { return ADBPath; } set { ADBPath = value; } }
         public override string ProgramPackage => "net.zhuoweizhang.mcpelauncher.pro";
+        public override string DefaultNproj =>
+            "nide-api:{0}\nproject-name:{1}\nproject-version:1.0.0\nproject-type:MODPE\nsettings-compress:false";
 
         public override string LibraryPath => Path + "\\source\\libs\\";
         public override string ItemsOpaquePath => Path + "\\source\\res\\images\\items-opaque\\";
@@ -61,7 +63,7 @@ namespace NIDE.ProjectTypes
         public string BuildPath => Path + "\\build\\";
         private string OutPath => Path + "\\out\\";
         private string ResPath => Path + "\\source\\res\\images\\";
-        
+
         public static void LoadData(string path)
         {
             foreach (var key in JavaScript.Modules.Keys)
@@ -113,20 +115,9 @@ namespace NIDE.ProjectTypes
             }
         }
 
-        public ModPE(string projectFile)
-        {
-            Nproj = projectFile;
-            Path = Directory.GetParent(projectFile).FullName;
-            UpdateNlib();
-        }
+        public ModPE(string projectFile) : base(projectFile) { }
 
-        public ModPE(string path, string projectName) : base(path, projectName)
-        {
-            string nproj = string.Format(
-                "nide-api:{0}\nproject-name:{1}\nproject-version:1.0.0\nproject-type:MODPE\nsettings-compress:false",
-                ProgramData.API_LEVEL, projectName);
-            File.WriteAllText(Nproj, nproj, ProgramData.Encoding);
-        }
+        public ModPE(string path, string projectName) : base(path, projectName) { }
 
         public override List<AutocompleteItem> GetDefaultList()
         {
