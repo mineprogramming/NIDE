@@ -22,7 +22,7 @@ namespace NIDE
             {"LoadLast", "True" },
             {"RunProgram", "True" },
             {"ADBPath.ModPE", "/storage/emulated/0/!Nide/" },
-            {"ADBPath.CoreEngine", "/storage/emulated/0/com/games.mojang/mods/" },
+            {"ADBPath.CoreEngine", "/storage/emulated/0/games/com.mojang/mods/" },
             {"saves", "0" },
             {"Last", "" }
         };
