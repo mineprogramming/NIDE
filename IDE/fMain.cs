@@ -525,7 +525,8 @@ namespace NIDE
                     catch { OpenScript(path); }
                 else OpenScript(path);
             }
-            else if (Constants.TextExtensions.Contains(extension))
+            else if (Constants.TextExtensions.Contains(extension) || 
+                MessageBox.Show("Do you want toopen is as a text file?", "Unknown file format!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 OpenScript(path);
             }

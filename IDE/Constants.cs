@@ -10,7 +10,7 @@ namespace NIDE
     {
         public static string[] TextExtensions =
         {
-            ".js", ".nproj", ".nlib", ".includes", ".info"
+            ".js", ".nproj", ".nlib", ".includes", ".info", ".config"
         };
     }
 }
