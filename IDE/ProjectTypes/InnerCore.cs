@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.IO;
 
 namespace NIDE.ProjectTypes
 {
@@ -25,6 +26,43 @@ namespace NIDE.ProjectTypes
 
         public override ProjectType Type => ProjectType.INNERCORE;
 
-        public override void Build(){ }
+        public override void Build() { }
+
+        public override void Post_init()
+        {
+            File.WriteAllText(SourceCodePath + "\\build.config", @"{
+  ""resources"":[
+    {
+      ""path"":""assets/"",
+      ""resourceType"":""resource""
+    },
+    {
+      ""path"":""gui/"",
+      ""resourceType"":""gui""
+    }
+  ],
+  ""defaultConfig"":{
+    ""buildType"":""develop"",
+    ""api"":""CoreEngine"",
+    ""libraryDir"":""lib/""
+  },
+  ""buildDirs"":[
+    {
+      ""targetSource"":""main.js"",
+      ""dir"":""dev/""
+    }
+  ],
+  ""compile"":[
+    {
+      ""path"":""main.js"",
+      ""sourceType"":""mod""
+    },
+    {
+      ""path"":""launcher.js"",
+      ""sourceType"":""launcher""
+    }
+  ]
+}", ProgramData.Encoding);
+        }
     }
 }

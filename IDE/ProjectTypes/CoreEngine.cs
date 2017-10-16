@@ -33,5 +33,10 @@ namespace NIDE.ProjectTypes
                 zip.Save(Path + "\\resources.zip");
             }
         }
+
+        public override void Post_init()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

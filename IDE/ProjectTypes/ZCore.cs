@@ -117,8 +117,6 @@ namespace NIDE.ProjectTypes
         public override string PushPath => Path;
         public string ResPath => Path + "\\assets\\";
 
-        public override void Post_init() { }
-
         public override void Post_add_script(string name)
         {
             File.AppendAllText(MainScriptPath, "\n" + name, ProgramData.Encoding);
