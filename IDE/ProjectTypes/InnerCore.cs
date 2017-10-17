@@ -21,7 +21,8 @@ namespace NIDE.ProjectTypes
                 "\\dev\\.includes",
                 "\\assets\\",
                 "\\assets\\items-opaque\\",
-                "\\assets\\terrain-atlas\\"
+                "\\assets\\terrain-atlas\\",
+                "\\launcher.js"
             };
 
         public override ProjectType Type => ProjectType.INNERCORE;
@@ -63,6 +64,7 @@ namespace NIDE.ProjectTypes
     }
   ]
 }", ProgramData.Encoding);
+            File.WriteAllText(SourceCodePath + "\\launcher.js", "Launch();", ProgramData.Encoding);
         }
     }
 }
