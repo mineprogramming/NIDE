@@ -26,7 +26,7 @@ namespace NIDE
                 using (SyncService sync = device.SyncService)
                 {
                     ProgramData.Log("ADB", "Starting copying files.......");
-                    PushRecursive(sync, device, directory);
+                    PushRecursive(sync, device, directory, ProgramData.Project.Name + "/");
                     sync.Close();
                     ProgramData.MainForm.ProgressBarStatus.Visible = false;
                     ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
@@ -48,7 +48,7 @@ namespace NIDE
             }
         }
 
-        private static void PushRecursive(SyncService sync, Device device, DirectoryInfo directory, string subdir = "")
+        private static void PushRecursive(SyncService sync, Device device, DirectoryInfo directory, string subdir)
         {
             List<string> files = directory.GetFiles().Select(x => x.FullName).ToList();
             sync.Push(files, FileEntry.FindOrCreate(device, ProgramData.Project.ADBPushPath + subdir), new FileSyncProgressMonitor());
