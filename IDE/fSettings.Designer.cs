@@ -248,11 +248,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 53);
+            this.label1.Location = new System.Drawing.Point(3, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(72, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Namespaces";
+            this.label1.Text = "Namespaces \r\nand brackets";
             // 
             // tbPath
             // 

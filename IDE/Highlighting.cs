@@ -21,7 +21,7 @@ namespace NIDE
         static Style GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
         static Style MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
         static Style ErrorStyle = new TextStyle(new SolidBrush(Color.Red), null, FontStyle.Regular);
-        
+
         public static void RefreshStyles()
         {
             Range range = ProgramData.MainForm.fctbMain.Range;
@@ -35,7 +35,7 @@ namespace NIDE
             GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
 
-            if(NumbersColor != null)
+            if (NumbersColor != null)
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor.Value), null, FontStyle.Regular);
             if(StringsColor != null)
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor.Value), null, FontStyle.Regular);
@@ -53,6 +53,8 @@ namespace NIDE
             range.ClearStyle(HookStyle);
             range.ClearStyle(GlobalStyle);
             all.ClearStyle(ErrorStyle);
+
+            range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
 
             if (Autocomplete.UserItems.Keys.Count > 0)
             {
