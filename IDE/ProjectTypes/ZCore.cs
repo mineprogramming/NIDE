@@ -102,12 +102,12 @@ namespace NIDE.ProjectTypes
         public override List<AutocompleteItem> GetDefaultList()
         {
             List<AutocompleteItem> items = new List<AutocompleteItem>();
-            foreach (var key in Patterns.Keys)
-                items.Add(new AutocompleteItem(key, 4, Patterns[key]));
             foreach (var item in JavaScript.Items)
                 items.Add(new AutocompleteItem(item, 0));
             foreach (var item in Items)
                 items.Add(new AutocompleteItem(item, 5));
+            foreach (var key in Patterns.Keys)
+                items.Add(new AutocompleteItem(key, 4, Patterns[key]));
             return items;
         }
 
