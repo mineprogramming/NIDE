@@ -54,6 +54,7 @@ namespace NIDE
             range.ClearStyle(GlobalStyle);
             all.ClearStyle(ErrorStyle);
 
+            ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
             range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
 
             if (Autocomplete.UserItems.Keys.Count > 0)
@@ -74,8 +75,7 @@ namespace NIDE
                 range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPE.global) + @")(\W|$)", RegexOptions.Multiline);
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
             }
-            ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
-        }
+         }
 
         public static void HighlightError(Range range)
         {
