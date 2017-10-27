@@ -72,7 +72,7 @@ namespace NIDE.ProjectTypes
             string text = File.ReadAllText(pattern);
             string[] patterns = text.Split(';');
             for(int i = 1; i < patterns.Length; i += 2)
-                Patterns.Add(patterns[i - 1].Trim(' ', '\n'), patterns[i].Trim(' ', '\n'));
+                Patterns.Add(patterns[i - 1].Trim(' ', '\n', '\r') + ";", patterns[i].Trim(' ', '\n', '\r'));
         }
 
         public ZCore(string projectFile) : base(projectFile) { }

@@ -2,3 +2,42 @@ Callback.addCallback("", function(){
     
 });addCallback;
 
+TileEntity.registerPrototype(BlockID.apiary, {
+    defaultValues: {
+        
+    },
+    
+    tick: function () {
+        
+    },
+    
+    getGuiScreen: function () {
+        return apiaryGUI
+    }
+});registerPrototype;
+
+UI.StandartWindow({
+    standart: {
+        header: {
+            text: {
+                text: "Apiary"
+            }
+        },
+
+        inventory: {
+            standart: true
+        },
+
+        background: {
+            standart: true
+        }
+    },
+
+    drawing: [
+
+    ],
+
+    elements: {
+
+    }
+});StandartWindow;
