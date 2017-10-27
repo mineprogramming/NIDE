@@ -30,7 +30,7 @@ namespace NIDE
             try
             {
                 ModPE.LoadData("modpescript_dump.txt");
-                CoreEngine.LoadData("core.txt");
+                ZCore.LoadData("core.txt", "patterns.txt");
             }
             catch (Exception ex)
             {

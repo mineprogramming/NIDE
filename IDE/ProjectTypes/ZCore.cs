@@ -12,6 +12,7 @@ namespace NIDE.ProjectTypes
     {
         public static List<string> Items;
         public static Dictionary<string, List<string>> Members;
+        public static Dictionary<string, string> Patterns;
 
         private static void BuildListRecursive(string[] rest, string key)
         {
@@ -41,7 +42,7 @@ namespace NIDE.ProjectTypes
 
         public static string ADBPath;
 
-        public static void LoadData(string path)
+        public static void LoadData(string path, string pattern)
         {
             Items = new List<string>();
             Members = new Dictionary<string, List<string>>();
@@ -67,6 +68,11 @@ namespace NIDE.ProjectTypes
                     BuildListRecursive(newString, splitted[0]);
                 }
             }
+            Patterns = new Dictionary<string, string>();
+            string text = File.ReadAllText(pattern);
+            string[] patterns = text.Split(';');
+            for(int i = 1; i < patterns.Length; i += 2)
+                Patterns.Add(patterns[i - 1].Trim(' ', '\n'), patterns[i].Trim(' ', '\n'));
         }
 
         public ZCore(string projectFile) : base(projectFile) { }
@@ -96,11 +102,12 @@ namespace NIDE.ProjectTypes
         public override List<AutocompleteItem> GetDefaultList()
         {
             List<AutocompleteItem> items = new List<AutocompleteItem>();
+            foreach (var key in Patterns.Keys)
+                items.Add(new AutocompleteItem(key, 4, Patterns[key]));
             foreach (var item in JavaScript.Items)
                 items.Add(new AutocompleteItem(item, 0));
             foreach (var item in Items)
                 items.Add(new AutocompleteItem(item, 5));
-            items.Add(new AutocompleteItem("Callback.addCallback(\"\", function() {\n    \n});", 5, "addCallback"));
             return items;
         }
 
