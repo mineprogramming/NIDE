@@ -100,6 +100,7 @@ namespace NIDE.ProjectTypes
                 items.Add(new AutocompleteItem(item, 0));
             foreach (var item in Items)
                 items.Add(new AutocompleteItem(item, 5));
+            items.Add(new AutocompleteItem("Callback.addCallback(\"\", function() {\n    \n});", 5, "addCallback"));
             return items;
         }
 
