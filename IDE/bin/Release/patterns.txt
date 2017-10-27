@@ -40,4 +40,76 @@ UI.StandartWindow({
     elements: {
 
     }
-});StandartWindow;
+});UI.StandartWindow;
+
+Item.registerUseFunction("", function (coords, item, block) {
+
+});registerUseFunction;
+
+Item.registerDispenseFunction(id, function(coords, item) {
+
+});registerDispenseFunction;
+
+BlockRenderer.addRenderCallback(id, function(api, coords, block, _bool) { 
+
+});addRenderCallback;
+
+Item.registerIconOverrideFunction(id, function(item) {
+    return {name: "", meta: 0}
+});registerIconOverrideFunction;
+
+Item.registerNoTargetUseFunction(id, function(item) {
+
+});registerNoTargetUseFunction;
+
+GameObject("", {
+    init: function(){
+
+    },
+
+    loaded: function(){
+        
+    },
+
+    update: function(){
+        
+    }
+});GameObject;
+
+Saver.addSavesScope("",
+    function read(scope) {
+
+    },
+
+    function save() {
+        return scope
+    }
+);Saver.addSavesScope;
+
+Item.registerUsingCompleteFunction(id, function(item) {
+    
+});registerUsingCompleteFunction;
+
+Item.registerUsingReleasedFunction(id, function(item) {
+    
+});registerUsingReleasedFunction
+
+Block.setPrototype("", {
+    type: Block.TYPE_BASE,
+    
+    getVariations: function () {
+        return [{name: "", texture: [["", 0]], inCreative: true}]
+    },
+    
+    getDrop: function () {
+        return []
+    },
+    
+    getMaterial: function (a) {
+        return "stone"
+    },
+    
+    getDestroyLevel: function (a) {
+        return 1
+    }
+});setPrototype
