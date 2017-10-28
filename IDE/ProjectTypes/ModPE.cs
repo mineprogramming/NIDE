@@ -236,5 +236,7 @@ namespace NIDE.ProjectTypes
         {
             node.Nodes.Add(System.IO.Path.GetFileName(ProgramData.Project.Nproj));
         }
+
+        public override void OnAutocomplete(AutocompleteItem item, FastColoredTextBox textBox) { }
     }
 }

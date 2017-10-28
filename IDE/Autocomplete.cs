@@ -48,6 +48,12 @@ namespace NIDE
             menu.MinFragmentLength = 1;
             dynamic = new DynamicCollection(menu, textBox);
             menu.Items.SetAutocompleteItems(dynamic);
+            menu.Selected += Menu_Selected;
+        }
+
+        private static void Menu_Selected(object sender, SelectedEventArgs e)
+        {
+            ProgramData.Project.OnAutocomplete(e.Item, e.Tb);
         }
 
         private static ImageList LoadImages()

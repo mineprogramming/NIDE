@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System;
 using NIDE.Languages;
 using System.Windows.Forms;
 
@@ -145,6 +144,20 @@ namespace NIDE.ProjectTypes
         public override void ExcludeLibrary(string name)
         {
             //TODO: implement
+        }
+
+        public override void OnAutocomplete(AutocompleteItem item, FastColoredTextBox textBox)
+        {
+            for(int i = 0; i < textBox.Lines.Count; i++)
+            {
+                int ind = textBox.Lines[i].IndexOf("~c~");
+                if (ind != -1)
+                {
+                    textBox.Text = textBox.Text.Replace("~c~", "");
+                    textBox.Selection.Start = new Place(ind, i);
+                    return;
+                }
+            }
         }
     }
 }

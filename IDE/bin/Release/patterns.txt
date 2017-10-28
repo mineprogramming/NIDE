@@ -1,8 +1,8 @@
-Callback.addCallback("", function(){
+Callback.addCallback("~c~", function(){
     
 });addCallback;
 
-TileEntity.registerPrototype(BlockID.apiary, {
+TileEntity.registerPrototype(BlockID.~c~, {
     defaultValues: {
         
     },
@@ -12,7 +12,7 @@ TileEntity.registerPrototype(BlockID.apiary, {
     },
     
     getGuiScreen: function () {
-        return apiaryGUI
+        return 
     }
 });registerPrototype;
 
@@ -20,67 +20,67 @@ UI.StandartWindow({
     standart: {
         header: {
             text: {
-                text: "Apiary"
+                text: "~c~"
             }
         },
-
+        
         inventory: {
             standart: true
         },
-
+        
         background: {
             standart: true
         }
     },
-
+    
     drawing: [
-
+        
     ],
-
+    
     elements: {
-
+        
     }
 });UI.StandartWindow;
 
-Item.registerUseFunction("", function (coords, item, block) {
-
+Item.registerUseFunction("~c~", function (coords, item, block) {
+    
 });registerUseFunction;
 
 Item.registerDispenseFunction(id, function(coords, item) {
-
+    
 });registerDispenseFunction;
 
 BlockRenderer.addRenderCallback(id, function(api, coords, block, _bool) { 
-
+    
 });addRenderCallback;
 
 Item.registerIconOverrideFunction(id, function(item) {
-    return {name: "", meta: 0}
+    return {name: "~c~", meta: 0}
 });registerIconOverrideFunction;
 
 Item.registerNoTargetUseFunction(id, function(item) {
-
+    
 });registerNoTargetUseFunction;
 
-GameObject("", {
+GameObject("~c~", {
     init: function(){
-
+        
     },
-
+    
     loaded: function(){
         
     },
-
+    
     update: function(){
         
     }
 });GameObject;
 
-Saver.addSavesScope("",
+Saver.addSavesScope("~c~",
     function read(scope) {
-
+        
     },
-
+    
     function save() {
         return scope
     }
@@ -94,7 +94,7 @@ Item.registerUsingReleasedFunction(id, function(item) {
     
 });registerUsingReleasedFunction
 
-Block.setPrototype("", {
+Block.setPrototype("~c~", {
     type: Block.TYPE_BASE,
     
     getVariations: function () {
