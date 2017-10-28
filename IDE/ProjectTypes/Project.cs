@@ -173,6 +173,11 @@ namespace NIDE.ProjectTypes
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
             string ScriptPath = ScriptsPath + name;
+            int ind = ScriptPath.LastIndexOf('\\');
+            if (ind != -1)
+            {
+                Directory.CreateDirectory(ScriptPath.Substring(0, ind));
+            }
             File.CreateText(ScriptPath).Close();
             Post_add_script(name);
         }

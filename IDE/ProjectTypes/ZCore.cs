@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using NIDE.Languages;
 using System.Windows.Forms;
+using System;
 
 namespace NIDE.ProjectTypes
 {
@@ -126,7 +127,11 @@ namespace NIDE.ProjectTypes
 
         public override void Post_add_script(string name)
         {
-            File.AppendAllText(MainScriptPath, "\n" + name, ProgramData.Encoding);
+            List<string> files = new List<string>();
+            files.AddRange(File.ReadAllLines(MainScriptPath, ProgramData.Encoding));
+            files.Add(name);
+            files.Sort();
+            File.WriteAllLines(MainScriptPath, files);
         }
 
         public override void Post_tree_reload(TreeNode node) { }
