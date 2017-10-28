@@ -86,13 +86,13 @@ Saver.addSavesScope("~c~",
     }
 );Saver.addSavesScope;
 
-Item.registerUsingCompleteFunction(id, function(item) {
+Item.registerUsingCompleteFunction("~c~", function(item) {
     
 });Item.registerUsingCompleteFunction;
 
-Item.registerUsingReleasedFunction(id, function(item) {
+Item.registerUsingReleasedFunction("~c~", function(item) {
     
-});Item.registerUsingReleasedFunction
+});Item.registerUsingReleasedFunction;
 
 Block.setPrototype("~c~", {
     type: Block.TYPE_BASE,
@@ -112,4 +112,14 @@ Block.setPrototype("~c~", {
     getDestroyLevel: function (a) {
         return 1
     }
-});Block.setPrototype
+});Block.setPrototype;
+
+Saver.registerObjectSaver("~c~", {
+    save: function(obj){
+        return obj
+    },
+
+    read: function(obj){
+        return obj
+    }
+});Saver.registerObjectSaver;
