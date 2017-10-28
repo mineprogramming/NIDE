@@ -1,6 +1,6 @@
 Callback.addCallback("~c~", function(){
     
-});addCallback;
+});Callback.addCallback;
 
 TileEntity.registerPrototype(BlockID.~c~, {
     defaultValues: {
@@ -14,7 +14,7 @@ TileEntity.registerPrototype(BlockID.~c~, {
     getGuiScreen: function () {
         return 
     }
-});registerPrototype;
+});TileEntity.registerPrototype;
 
 UI.StandartWindow({
     standart: {
@@ -44,23 +44,23 @@ UI.StandartWindow({
 
 Item.registerUseFunction("~c~", function (coords, item, block) {
     
-});registerUseFunction;
+});Item.registerUseFunction;
 
 Item.registerDispenseFunction(id, function(coords, item) {
     
-});registerDispenseFunction;
+});Item.registerDispenseFunction;
 
 BlockRenderer.addRenderCallback(id, function(api, coords, block, _bool) { 
     
-});addRenderCallback;
+});BlockRenderer.addRenderCallback;
 
 Item.registerIconOverrideFunction(id, function(item) {
     return {name: "~c~", meta: 0}
-});registerIconOverrideFunction;
+});Item.registerIconOverrideFunction;
 
 Item.registerNoTargetUseFunction(id, function(item) {
     
-});registerNoTargetUseFunction;
+});Item.registerNoTargetUseFunction;
 
 GameObject("~c~", {
     init: function(){
@@ -88,11 +88,11 @@ Saver.addSavesScope("~c~",
 
 Item.registerUsingCompleteFunction(id, function(item) {
     
-});registerUsingCompleteFunction;
+});Item.registerUsingCompleteFunction;
 
 Item.registerUsingReleasedFunction(id, function(item) {
     
-});registerUsingReleasedFunction
+});Item.registerUsingReleasedFunction
 
 Block.setPrototype("~c~", {
     type: Block.TYPE_BASE,
@@ -112,4 +112,4 @@ Block.setPrototype("~c~", {
     getDestroyLevel: function (a) {
         return 1
     }
-});setPrototype
+});Block.setPrototype
