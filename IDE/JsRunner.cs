@@ -14,6 +14,7 @@ namespace NIDE
                 Log print = log;
                 context.SetParameter("print", print);
                 context.SetParameter("clientMessage", print);
+                context.SetParameter("alert", print);
                 try
                 {
                     context.Run(code);
