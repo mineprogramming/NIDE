@@ -34,9 +34,6 @@ namespace NIDE.ProjectTypes
             }
         }
 
-        public override void Post_init()
-        {
-            throw new NotImplementedException();
-        }
+        public override void Post_init(){ }
     }
 }
