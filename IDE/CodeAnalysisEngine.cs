@@ -12,6 +12,7 @@ namespace NIDE
     {
         static FastColoredTextBox fctb;
         public static List<string> Variables = new List<string>();
+        
         static Parser parser;
         static ErrorReporterEx reporter;
 

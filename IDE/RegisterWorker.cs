@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using NIDE.ProjectTypes;
+using NIDE.adb;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using NIDE.ProjectTypes;
+using NIDE.adb;
 
 namespace NIDE
 {
@@ -123,6 +124,11 @@ namespace NIDE
         {
             if (!CanChangeFile()) e.Cancel = true;
             RegisterWorker.Save(this);
+        }
+        
+        private void fMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ADBWorker.Kill();
         }
 
 
@@ -729,5 +735,16 @@ namespace NIDE
         {
             Process.Start(new ProcessStartInfo("bin\\RendererTool.exe"));
         }
+
+        private void btnStartLog_Click(object sender, EventArgs e)
+        {
+            ADBWorker.StartLog();
+        }
+
+        private void btnStopLog_Click(object sender, EventArgs e)
+        {
+            ADBWorker.Kill();
+        }
+        
     }
 }

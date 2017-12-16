@@ -88,7 +88,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ADBWorker.cs" />
+    <Compile Include="adb\ADBWorker.cs" />
+    <Compile Include="adb\FileSyncProgressMonitor.cs" />
+    <Compile Include="adb\OutputLogReceiver.cs" />
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="Constants.cs" />

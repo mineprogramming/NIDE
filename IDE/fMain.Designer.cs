@@ -43,6 +43,8 @@
             this.gbErrors = new System.Windows.Forms.GroupBox();
             this.errors = new System.Windows.Forms.TextBox();
             this.gbLogger = new System.Windows.Forms.GroupBox();
+            this.btnStopLog = new System.Windows.Forms.Button();
+            this.btnStartLog = new System.Windows.Forms.Button();
             this.logger = new System.Windows.Forms.TextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
@@ -159,8 +161,8 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
             // 
             // mainSplit
@@ -278,10 +280,26 @@
             // 
             // gbLogger
             // 
+            this.gbLogger.Controls.Add(this.btnStopLog);
+            this.gbLogger.Controls.Add(this.btnStartLog);
             this.gbLogger.Controls.Add(this.logger);
             resources.ApplyResources(this.gbLogger, "gbLogger");
             this.gbLogger.Name = "gbLogger";
             this.gbLogger.TabStop = false;
+            // 
+            // btnStopLog
+            // 
+            resources.ApplyResources(this.btnStopLog, "btnStopLog");
+            this.btnStopLog.Name = "btnStopLog";
+            this.btnStopLog.UseVisualStyleBackColor = true;
+            this.btnStopLog.Click += new System.EventHandler(this.btnStopLog_Click);
+            // 
+            // btnStartLog
+            // 
+            resources.ApplyResources(this.btnStartLog, "btnStartLog");
+            this.btnStartLog.Name = "btnStartLog";
+            this.btnStartLog.UseVisualStyleBackColor = true;
+            this.btnStartLog.Click += new System.EventHandler(this.btnStartLog_Click);
             // 
             // logger
             // 
@@ -836,6 +854,7 @@
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "fMain";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fMain_FormClosed);
             this.Shown += new System.EventHandler(this.fMain_Shown);
             this.container.ContentPanel.ResumeLayout(false);
             this.container.ContentPanel.PerformLayout();
@@ -965,6 +984,8 @@
         private System.Windows.Forms.ToolStripButton tsbRenderer;
         private System.Windows.Forms.ToolStripSeparator tss4;
         private System.Windows.Forms.ToolStripMenuItem tsmiRenderer;
+        private System.Windows.Forms.Button btnStopLog;
+        private System.Windows.Forms.Button btnStartLog;
     }
 }
 
