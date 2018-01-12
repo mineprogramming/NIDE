@@ -1,5 +1,4 @@
 ﻿using Managed.Adb;
-using Managed.Adb.Logs;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -53,8 +52,14 @@ namespace NIDE.adb
 
         public static void StartLog()
         {
-            var device = InitializeADB();
-            InitLogging(device);
+            try
+            {
+                var device = InitializeADB();
+                InitLogging(device);
+            } catch(Exception e)
+            {
+                ProgramData.Log("ADB", e.Message);
+            }
         }
 
         private static void InitLogging(Device device)
@@ -63,7 +68,7 @@ namespace NIDE.adb
                 try
                 {
                     OutputLogReceiver creciever = new OutputLogReceiver();
-                    device.ExecuteRootShellCommand("logcat", creciever);
+                    device.ExecuteShellCommand("logcat", creciever);
                 }
                 catch (Exception e) {
                     ProgramData.Log("ADB", "Error: " + e.Message);

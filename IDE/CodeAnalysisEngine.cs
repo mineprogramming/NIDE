@@ -12,7 +12,9 @@ namespace NIDE
     {
         static FastColoredTextBox fctb;
         public static List<string> Variables = new List<string>();
-        
+        public static Dictionary<string, List<string>> Objects = new Dictionary<string, List<string>>();
+        static Thread updateThread;
+
         static Parser parser;
         static ErrorReporterEx reporter;
 
@@ -25,8 +27,12 @@ namespace NIDE
 
         public static void Update()
         {
-            Thread thread = new Thread(_Update);
-            thread.Start();
+            if (updateThread == null || !updateThread.IsAlive)
+            {
+                updateThread = new Thread(_Update);
+                updateThread.IsBackground = true;
+                updateThread.Start();
+            }
         }
 
         private static void _Update()
@@ -34,6 +40,7 @@ namespace NIDE
             try
             {
                 List<string> variables = new List<string>();
+                Dictionary<string, List<string>> objects = new Dictionary<string, List<string>>();
                 Regex regex = new Regex(@"\b(var)\s+(?<range>[\w_]+?)\b");
                 foreach (Match match in regex.Matches(fctb.Text))
                 {
@@ -62,6 +69,16 @@ namespace NIDE
                     }
                 }
                 Variables = variables;
+                regex = new Regex(@"([\w_]+)\.([\w_]+)");
+                foreach (Match match in regex.Matches(fctb.Text))
+                {
+                    string[] splitted = match.Value.Split('.');
+                    if (!objects.ContainsKey(splitted[0]))
+                        objects.Add(splitted[0], new List<string>());
+                    if (!objects[splitted[0]].Contains(splitted[1]))
+                        objects[splitted[0]].Add(splitted[1]);
+                }
+                Objects = objects;
                 try
                 {
                     parser.Parse(fctb.Text, "", 0);

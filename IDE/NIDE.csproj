@@ -94,6 +94,7 @@
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="DynamicCollection.cs" />
     <Compile Include="Languages\JavaScript.cs" />
     <Compile Include="ProjectTypes\CoreEngine.cs" />
     <Compile Include="fCraft.cs">
