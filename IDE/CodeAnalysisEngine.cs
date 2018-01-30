@@ -18,6 +18,8 @@ namespace NIDE
         static Parser parser;
         static ErrorReporterEx reporter;
 
+        static bool shouldUpdate = false;
+
         public static void Initialize(FastColoredTextBox fctb)
         {
             CodeAnalysisEngine.fctb = fctb;
@@ -33,6 +35,7 @@ namespace NIDE
                 updateThread.IsBackground = true;
                 updateThread.Start();
             }
+            else shouldUpdate = true;
         }
 
         private static void _Update()
@@ -88,6 +91,11 @@ namespace NIDE
                 catch (Exception e) { }
             }
             catch { }
+            if (shouldUpdate)
+            {
+                shouldUpdate = false;
+                _Update();
+            }
         }
     }
 
