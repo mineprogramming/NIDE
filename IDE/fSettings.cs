@@ -8,7 +8,7 @@ namespace NIDE
     {
         private Highlighter highlighter;
 
-        public fSettings(Highlighter highlighting)
+        public fSettings(Highlighter highlighter)
         {
             InitializeComponent();
             btnNormal.ForeColor = ProgramData.MainForm.fctbMain.ForeColor;
@@ -28,7 +28,8 @@ namespace NIDE
             tbPath.Text = ProgramData.Project.ADBPushPath;
             cbLast.Checked = ProgramData.LoadLast;
             cbRunProgram.Checked = ADBWorker.RunProgram;
-            this.highlighter = highlighting;
+            cbHighlighting.Checked = (Highlighter.ErrorStrategy == ErrorHighlightStrategy.LINE_NUMBER);
+            this.highlighter = highlighter;
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -110,6 +111,12 @@ namespace NIDE
             }
         }
 
+        private void cbHighlighting_CheckedChanged(object sender, EventArgs e)
+        {
+            Highlighter.ErrorStrategy = cbHighlighting.Checked ?
+             ErrorHighlightStrategy.LINE_NUMBER : ErrorHighlightStrategy.UNDERLINE;
+        }
+
         private bool ShowColorDialog(object sender)
         {
             dlgColor.Color = ((Button)sender).ForeColor;
@@ -131,5 +138,6 @@ namespace NIDE
             Close();
         }
 
+        
     }
 }

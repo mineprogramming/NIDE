@@ -20,8 +20,6 @@ namespace NIDE
 
         static bool shouldUpdate = false;
 
-        private static Range range;
-
         public static void Initialize(FastColoredTextBox fctb)
         {
             CodeAnalysisEngine.fctb = fctb;
@@ -29,9 +27,8 @@ namespace NIDE
             parser = new Parser(new CompilerEnvirons(), reporter);
         }
 
-        public static void Update(Range range)
+        public static void Update()
         {
-            CodeAnalysisEngine.range = range;
             if (updateThread == null || !updateThread.IsAlive)
             {
                 updateThread = new Thread(_Update);
@@ -92,7 +89,6 @@ namespace NIDE
                     parser.Parse(fctb.Text, "", 0);
                 }
                 catch (Exception e) { }
-                ProgramData.MainForm.UpdateHighlighting(range);
             }
             catch { }
             if (shouldUpdate)

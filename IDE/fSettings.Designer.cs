@@ -53,6 +53,7 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.cbLast = new System.Windows.Forms.CheckBox();
             this.cbRunProgram = new System.Windows.Forms.CheckBox();
+            this.cbHighlighting = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -256,7 +257,7 @@
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(383, 87);
+            this.tbPath.Location = new System.Drawing.Point(383, 116);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(246, 20);
             this.tbPath.TabIndex = 1;
@@ -264,7 +265,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(380, 70);
+            this.label5.Location = new System.Drawing.Point(380, 99);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(103, 13);
             this.label5.TabIndex = 2;
@@ -283,7 +284,7 @@
             // cbLast
             // 
             this.cbLast.AutoSize = true;
-            this.cbLast.Location = new System.Drawing.Point(383, 35);
+            this.cbLast.Location = new System.Drawing.Point(383, 66);
             this.cbLast.Name = "cbLast";
             this.cbLast.Size = new System.Drawing.Size(104, 17);
             this.cbLast.TabIndex = 4;
@@ -293,18 +294,30 @@
             // cbRunProgram
             // 
             this.cbRunProgram.AutoSize = true;
-            this.cbRunProgram.Location = new System.Drawing.Point(383, 119);
+            this.cbRunProgram.Location = new System.Drawing.Point(383, 151);
             this.cbRunProgram.Name = "cbRunProgram";
             this.cbRunProgram.Size = new System.Drawing.Size(182, 17);
             this.cbRunProgram.TabIndex = 5;
             this.cbRunProgram.Text = "Run InnerCore or BlockLauncher";
             this.cbRunProgram.UseVisualStyleBackColor = true;
             // 
+            // cbHighlighting
+            // 
+            this.cbHighlighting.AutoSize = true;
+            this.cbHighlighting.Location = new System.Drawing.Point(383, 37);
+            this.cbHighlighting.Name = "cbHighlighting";
+            this.cbHighlighting.Size = new System.Drawing.Size(135, 17);
+            this.cbHighlighting.TabIndex = 6;
+            this.cbHighlighting.Text = "Simlify error highlighting";
+            this.cbHighlighting.UseVisualStyleBackColor = true;
+            this.cbHighlighting.CheckedChanged += new System.EventHandler(this.cbHighlighting_CheckedChanged);
+            // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 219);
+            this.Controls.Add(this.cbHighlighting);
             this.Controls.Add(this.cbRunProgram);
             this.Controls.Add(this.cbLast);
             this.Controls.Add(this.btnApply);
@@ -348,5 +361,6 @@
         private System.Windows.Forms.Button btnKeywords;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox cbRunProgram;
+        private System.Windows.Forms.CheckBox cbHighlighting;
     }
 }

@@ -19,7 +19,7 @@ namespace NIDE
         private string[] args;
         private string OldPath = "";
 
-        private Highlighter highlighting;
+        private Highlighter highlighter;
 
 
         //Main form
@@ -31,7 +31,7 @@ namespace NIDE
             ProgramData.MainForm = this;
             CodeAnalysisEngine.Initialize(fctbMain);
             RegistryWorker.Load(this);
-            highlighting = new Highlighter(fctbMain);
+            highlighter = new Highlighter(fctbMain);
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
             try
@@ -117,8 +117,8 @@ namespace NIDE
             {
                 if (ProgramData.file.EndsWith(".js"))
                 {
-                    highlighting.ResetStyles(e.ChangedRange);
-                    CodeAnalysisEngine.Update(fctbMain.Range);
+                    CodeAnalysisEngine.Update();
+                    ProgramData.MainForm.UpdateHighlighting(e.ChangedRange);
                 }
             }
             saved = false;
@@ -187,8 +187,8 @@ namespace NIDE
 
         private void tsmiSettings_Click(object sender, EventArgs e)
         {
-            new fSettings(highlighting).ShowDialog();
-            highlighting.ResetStyles(fctbMain.Range);
+            new fSettings(highlighter).ShowDialog();
+            highlighter.ResetStyles(fctbMain.Range);
         }
 
         private void tsmiNewScript_Click(object sender, EventArgs e)
@@ -337,7 +337,7 @@ namespace NIDE
                     InitOther();
                 saved = true;
                 tsslFile.Text = Path.GetFileName(FileName);
-                highlighting.RefreshStyles();
+                highlighter.RefreshStyles();
             }
             catch (Exception e)
             {
@@ -448,6 +448,7 @@ namespace NIDE
 
         //Log and errors
         private List<int> errorLines = new List<int>();
+
         public delegate void AddMessageDelegate(string source, string message);
         public delegate void ErrorDelegate(int source, string message);
         public delegate void ClearLogDelegate();
@@ -466,7 +467,7 @@ namespace NIDE
         }
         public void UpdateHighlighting(Range range)
         {
-            Invoke(new UpdateHighlightingDelegate(highlighting.ResetStyles), range);
+            Invoke(new UpdateHighlightingDelegate(highlighter.ResetStyles), range);
         }
         private void _log(string source, string message)
         {
@@ -491,8 +492,7 @@ namespace NIDE
         {
             if (errorLines.Contains(e.LineIndex))
             {
-                Brush brush = new HatchBrush(HatchStyle.Wave, Color.Red, Color.Transparent);
-                e.Graphics.FillRectangle(brush, fctbMain.LeftIndent, e.LineRect.Top + e.LineRect.Height, e.LineRect.Width, e.LineRect.Height / 5);
+                highlighter.HighlightError(e);
             }
         }
 

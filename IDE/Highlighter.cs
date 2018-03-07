@@ -1,24 +1,27 @@
 ﻿using FastColoredTextBoxNS;
 using NIDE.ProjectTypes;
+using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text.RegularExpressions;
 
 namespace NIDE
 {
     public class Highlighter
     {
-        public static Color NamespaceColor = Color.Green;
-        public static Color HookColor = Color.Gray;
-        public static Color GlobalColor = Color.Brown;
-        public static Color MemberColor = Color.LightSkyBlue;
+        public static Color NamespaceColor { get; set; } = Color.Green;
+        public static Color HookColor { get; set; } = Color.Gray;
+        public static Color GlobalColor { get; set; } = Color.Brown;
+        public static Color MemberColor { get; set; } = Color.LightSkyBlue;
 
-        public static Color? NumbersColor = null;
-        public static Color? StringsColor = null;
-        public static Color? KeywordsColor = null;
+        public static Color? NumbersColor { get; set; } = null;
+        public static Color? StringsColor { get; set; } = null;
+        public static Color? KeywordsColor { get; set; } = null;
 
-        static TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
+        public static ErrorHighlightStrategy ErrorStrategy { get; set; } = ErrorHighlightStrategy.UNDERLINE;
 
 
+        private TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
         private FastColoredTextBox fctbMain;
 
         public Highlighter(FastColoredTextBox fctbMain)
@@ -58,32 +61,53 @@ namespace NIDE
 
         public void ResetStyles(Range range)
         {
-            range.ClearStyle(NamespaceStyle);
-            range.ClearStyle(MemberStyle);
-            range.ClearStyle(HookStyle);
-            range.ClearStyle(GlobalStyle);
-
-            ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
-            range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
-
-            if (Autocomplete.UserItems.Keys.Count > 0)
+            try
             {
-                range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
-            }
+                range.ClearStyle(NamespaceStyle);
+                range.ClearStyle(MemberStyle);
+                range.ClearStyle(HookStyle);
+                range.ClearStyle(GlobalStyle);
 
-            if (ProgramData.Project?.Type == ProjectType.COREENGINE || ProgramData.Project?.Type == ProjectType.INNERCORE)
-            {
-                range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ZCore.Items) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ZCore.members) + @")(\W|$)", RegexOptions.Multiline);
+                ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
+                range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
+
+                if (Autocomplete.UserItems.Keys.Count > 0)
+                {
+                    range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", Autocomplete.UserItems.Keys) + @")(\W|$)", RegexOptions.Multiline);
+                    range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", Autocomplete.members) + @")(\W|$)", RegexOptions.Multiline);
+                }
+
+                if (ProgramData.Project?.Type == ProjectType.COREENGINE || ProgramData.Project?.Type == ProjectType.INNERCORE)
+                {
+                    range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ZCore.Items) + @")(\W|$)", RegexOptions.Multiline);
+                    range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ZCore.members) + @")(\W|$)", RegexOptions.Multiline);
+                }
+                else
+                {
+                    range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ModPE.namespaces) + @")(\W|$)", RegexOptions.Multiline);
+                    range.SetStyle(HookStyle, @"(\W|^)(" + string.Join("|", ModPE.hooks) + @")(\W|$)", RegexOptions.Multiline);
+                    range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPE.global) + @")(\W|$)", RegexOptions.Multiline);
+                    range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
+                }
             }
-            else
-            {
-                range.SetStyle(NamespaceStyle, @"(\W|^)(" + string.Join("|", ModPE.namespaces) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(HookStyle, @"(\W|^)(" + string.Join("|", ModPE.hooks) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPE.global) + @")(\W|$)", RegexOptions.Multiline);
-                range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
-            }
+            catch (Exception e) { }
          }
+
+        public void HighlightError(PaintLineEventArgs e)
+        {
+            Brush brush;
+            switch (ErrorStrategy)
+            {
+                case ErrorHighlightStrategy.UNDERLINE:
+                    brush = new HatchBrush(HatchStyle.Wave, Color.Red, Color.Transparent);
+                    e.Graphics.FillRectangle(brush, fctbMain.LeftIndent, e.LineRect.Top + e.LineRect.Height, e.LineRect.Width, e.LineRect.Height / 5);
+                    break;
+                case ErrorHighlightStrategy.LINE_NUMBER:
+                    e.Graphics.FillRectangle(Brushes.MistyRose, 0, e.LineRect.Top, fctbMain.LeftIndent - 10, e.LineRect.Height);
+                    break;
+            }
+            
+            
+        }
     }
 }

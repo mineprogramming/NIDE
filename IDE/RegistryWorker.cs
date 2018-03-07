@@ -25,7 +25,8 @@ namespace NIDE
             {"ADBPath.ModPE", "/storage/emulated/0/!Nide/" },
             {"ADBPath.CoreEngine", "/storage/emulated/0/games/com.mojang/mods/" },
             {"saves", "0" },
-            {"Last", "" }
+            {"Last", "" },
+            {"ErrorHighlighting", "False"}
         };
 
         public static void Save(fMain sender, bool Last = true)
@@ -71,7 +72,7 @@ namespace NIDE
                     key.SetValue("StringStyle", Highlighter.StringsColor.Value.ToArgb().ToString());
                 if (Highlighter.KeywordsColor != null)
                     key.SetValue("KeywordStyle", Highlighter.KeywordsColor.Value.ToArgb().ToString());
-
+                key.SetValue("ErrorHighlighting", Highlighter.ErrorStrategy == ErrorHighlightStrategy.LINE_NUMBER);
             }
             catch (Exception e)
             {
@@ -142,7 +143,8 @@ namespace NIDE
                     Highlighter.StringsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("StringStyle")));
                 if (key.GetValueNames().Contains("KeywordStyle"))
                     Highlighter.KeywordsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("KeywordStyle")));
-
+                Highlighter.ErrorStrategy = Convert.ToBoolean(key.GetValue("ErrorHighlighting")) ? 
+                    ErrorHighlightStrategy.LINE_NUMBER : ErrorHighlightStrategy.UNDERLINE;
             }
             catch (Exception e)
             {

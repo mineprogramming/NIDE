@@ -19,4 +19,10 @@
         TEXTURE,
         LIBRARY
     }
+
+    public enum ErrorHighlightStrategy
+    {
+        UNDERLINE,
+        LINE_NUMBER
+    }
 }
