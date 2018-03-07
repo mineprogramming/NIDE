@@ -8,8 +8,6 @@ using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 
 namespace NIDE
 {
@@ -119,11 +117,24 @@ namespace NIDE
                 {
                     CodeAnalysisEngine.Update();
                     ProgramData.MainForm.UpdateHighlighting(e.ChangedRange);
+                    string s = e.ChangedRange.Text;
+                    if (s.Contains("{\r\n}") || s.Contains("(\r\n)") || s.Contains("[\r\n]"))
+                    {
+                        SendKeys.Send("~{UP}{TAB}");
+                    }
                 }
             }
             saved = false;
             if (!tsslFile.Text.EndsWith("*"))
                 tsslFile.Text = tsslFile.Text + "*";
+        }
+
+        private void fctbMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                ProgramData.Project.OnEnter(fctbMain);
+            }
         }
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -317,7 +328,14 @@ namespace NIDE
         {
             if (CanChangeFile())
             {
-                OpenScript((ProgramData.Project as ModPE).BuildPath + "main.js");
+                if(ProgramData.Project is ModPE)
+                {
+                    OpenScript((ProgramData.Project as ModPE).BuildPath + "main.js");
+                }
+                else if(ProgramData.Project is InnerCore)
+                {
+                    OpenScript(ProgramData.Project.Path + "\\main.js");
+                }
                 fctbMain.ReadOnly = true;
             }
         }
@@ -455,7 +473,11 @@ namespace NIDE
         public delegate void UpdateHighlightingDelegate(Range range);
         public void Log(string source, string message)
         {
-            Invoke(new AddMessageDelegate(_log), new object[] { source, message });
+            try
+            {
+                Invoke(new AddMessageDelegate(_log), new object[] { source, message });
+            } catch (Exception e) { }
+            
         }
         public void Error(int line, string message)
         {
@@ -514,8 +536,15 @@ namespace NIDE
         {
             fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
             saved = true;
-            if(ProgramData.Project.Type != ProjectType.INNERCORE)
+            try
+            {
                 ProgramData.Project.Build();
+                Log("Build", "Project successfully built");
+            } catch(Exception ex)
+            {
+                Log("Build", "Unable to build project: " + ex.Message);
+            }
+            
         }
 
         private void tsmiPush_Click(object sender, EventArgs e)

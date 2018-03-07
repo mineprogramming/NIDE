@@ -238,5 +238,10 @@ namespace NIDE.ProjectTypes
         }
 
         public override void OnAutocomplete(AutocompleteItem item, FastColoredTextBox textBox) { }
+
+        public override bool OnEnter(FastColoredTextBox textBox)
+        {
+            return false;
+        }
     }
 }

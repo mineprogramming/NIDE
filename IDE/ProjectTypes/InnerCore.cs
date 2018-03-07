@@ -1,5 +1,5 @@
 ﻿
-using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace NIDE.ProjectTypes
@@ -27,7 +27,29 @@ namespace NIDE.ProjectTypes
 
         public override ProjectType Type => ProjectType.INNERCORE;
 
-        public override void Build() { }
+        public override bool ShowMainEnabled => true;
+
+        public override void Build() {
+            string outf = Path + "\\main.js";
+            string[] lines = File.ReadAllLines(MainScriptPath);
+            List<string> files = new List<string>();
+            foreach(string line in lines)
+            {
+                string l = line.Trim();
+                if (l != "" && !l.StartsWith("//") && !l.StartsWith("#") && File.Exists(ScriptsPath + l))
+                    files.Add(l);
+            }
+            File.WriteAllText(outf, @"/*
+NIDE BUILD INFO:
+  dir: dev
+  target: main.js
+  files: " + files.Count + "\n*/", ProgramData.Encoding);
+            foreach(string file in files)
+            {
+                File.AppendAllText(outf, "\n\n\n\n// file: " + file + "\n\n");
+                File.AppendAllText(outf, File.ReadAllText(ScriptsPath + file));
+            }
+        }
 
         public override void Post_init()
         {

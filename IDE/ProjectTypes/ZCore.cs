@@ -14,6 +14,9 @@ namespace NIDE.ProjectTypes
         public static Dictionary<string, List<string>> Members;
         public static Dictionary<string, string> Patterns;
 
+        private int lastLine = 0;
+        private bool pattern = false;
+
         private static void BuildListRecursive(string[] rest, string key)
         {
             if (!Members.ContainsKey(key))
@@ -112,7 +115,6 @@ namespace NIDE.ProjectTypes
         }
 
         public override string CraftPattern => "Recipes.addShaped({{id: {0}, count: {1}, data: {2}}}, {3}, {4});";
-        public override bool ShowMainEnabled => false;
         public override string ADBPushPath { get { return ADBPath; } set { ADBPath = value; } }
 
         public override string LibraryPath => Path + "\\lib\\";
@@ -153,16 +155,30 @@ namespace NIDE.ProjectTypes
 
         public override void OnAutocomplete(AutocompleteItem item, FastColoredTextBox textBox)
         {
-            for(int i = 0; i < textBox.Lines.Count; i++)
+            pattern = true;
+            lastLine = 0;
+            OnEnter(textBox);
+        }
+
+        public override bool OnEnter(FastColoredTextBox textBox)
+        {
+            if (pattern)
             {
-                int ind = textBox.Lines[i].IndexOf("~c~");
-                if (ind != -1)
+                for (int i = lastLine; i < textBox.Lines.Count; i++)
                 {
-                    textBox.Text = textBox.Text.Replace("~c~", "");
-                    textBox.Selection.Start = new Place(ind, i);
-                    return;
+                    int ind = textBox.Lines[i].IndexOf("~c~");
+                    if (ind != -1)
+                    {
+                        lastLine = i;
+                        textBox.Selection.Start = new Place(ind, i);
+                        textBox.Selection.End = new Place(ind + 3, i);
+                        SendKeys.Send("{BS}");
+                        return true;
+                    }
                 }
             }
+            pattern = false;
+            return false;
         }
     }
 }

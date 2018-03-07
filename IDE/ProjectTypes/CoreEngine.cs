@@ -24,6 +24,8 @@ namespace NIDE.ProjectTypes
 
         public override ProjectType Type => ProjectType.COREENGINE;
 
+        public override bool ShowMainEnabled => false;
+
         public override void Build()
         {
             using (var zip = new Ionic.Zip.ZipFile())

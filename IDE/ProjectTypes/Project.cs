@@ -45,6 +45,7 @@ namespace NIDE.ProjectTypes
         public abstract void IncludeLibrary(string name);
         public abstract void ExcludeLibrary(string name);
         public abstract void OnAutocomplete(AutocompleteItem item, FastColoredTextBox textBox);
+        public abstract bool OnEnter(FastColoredTextBox textBox);
 
         public abstract List<AutocompleteItem> GetDefaultList();
         public abstract List<AutocompleteItem> GetListByClassName(string className);

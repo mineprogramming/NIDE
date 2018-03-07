@@ -162,8 +162,8 @@
             // container.TopToolStripPanel
             // 
             this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
             // 
             // mainSplit
             // 
@@ -211,6 +211,7 @@
             this.fctbMain.Zoom = 100;
             this.fctbMain.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fctbMain_TextChanged);
             this.fctbMain.PaintLine += new System.EventHandler<FastColoredTextBoxNS.PaintLineEventArgs>(this.fctbMain_PaintLine);
+            this.fctbMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fctbMain_KeyDown);
             // 
             // cmsMain
             // 
@@ -433,6 +434,7 @@
             this.tsbCopy,
             this.tsbPaste});
             this.toolStripGeneral.Name = "toolStripGeneral";
+            this.toolStripGeneral.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
             // tsbCreate
             // 
@@ -498,6 +500,7 @@
             this.tsbSettings,
             this.tsbRenderer});
             this.toolStripEdit.Name = "toolStripEdit";
+            this.toolStripEdit.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
             // tsbUndo
             // 
@@ -539,6 +542,7 @@
             this.tsbUpdate,
             this.tsbShowMain});
             this.toolStripProject.Name = "toolStripProject";
+            this.toolStripProject.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
             // tsbBuildPush
             // 

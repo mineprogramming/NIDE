@@ -33,6 +33,7 @@ namespace NIDE
         public void RefreshStyles()
         {
             Range range = ProgramData.MainForm.fctbMain.Range;
+
             range.ClearStyle(NamespaceStyle);
             range.ClearStyle(HookStyle);
             range.ClearStyle(GlobalStyle);

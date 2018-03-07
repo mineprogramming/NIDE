@@ -42,6 +42,17 @@ namespace NIDE
         {
             try
             {
+                try
+                {
+                    reporter.Clear();
+                    ProgramData.MainForm?.ClearErrors();
+                    string text = fctb.Text;
+                    Regex reg = new Regex(@"\b(const|let)\b");
+                    text = reg.Replace(text, " var ");
+                    parser.Parse(text, "", 0);
+                }
+                catch (Exception e) { }
+
                 List<string> variables = new List<string>();
                 Dictionary<string, List<string>> objects = new Dictionary<string, List<string>>();
                 Regex regex = new Regex(@"\b(var)\s+(?<range>[\w_]+?)\b");
@@ -82,13 +93,6 @@ namespace NIDE
                         objects[splitted[0]].Add(splitted[1]);
                 }
                 Objects = objects;
-                try
-                {
-                    reporter.Clear();
-                    ProgramData.MainForm?.ClearErrors();
-                    parser.Parse(fctb.Text, "", 0);
-                }
-                catch (Exception e) { }
             }
             catch { }
             if (shouldUpdate)
