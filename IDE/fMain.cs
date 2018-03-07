@@ -7,6 +7,9 @@ using System.Linq;
 using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace NIDE
 {
@@ -15,6 +18,8 @@ namespace NIDE
         private bool saved = true;
         private string[] args;
         private string OldPath = "";
+
+        private Highlighter highlighting;
 
 
         //Main form
@@ -25,7 +30,8 @@ namespace NIDE
             InitializeComponent();
             ProgramData.MainForm = this;
             CodeAnalysisEngine.Initialize(fctbMain);
-            RegisterWorker.Load(this);
+            RegistryWorker.Load(this);
+            highlighting = new Highlighter(fctbMain);
             Autocomplete.SetAutoompleteMenu(fctbMain);
             fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
             try
@@ -111,8 +117,8 @@ namespace NIDE
             {
                 if (ProgramData.file.EndsWith(".js"))
                 {
-                    Highlighting.ResetStyles(e.ChangedRange, fctbMain.Range);
-                    CodeAnalysisEngine.Update();
+                    highlighting.ResetStyles(e.ChangedRange);
+                    CodeAnalysisEngine.Update(fctbMain.Range);
                 }
             }
             saved = false;
@@ -123,7 +129,7 @@ namespace NIDE
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!CanChangeFile()) e.Cancel = true;
-            RegisterWorker.Save(this);
+            RegistryWorker.Save(this);
         }
         
         private void fMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -181,8 +187,8 @@ namespace NIDE
 
         private void tsmiSettings_Click(object sender, EventArgs e)
         {
-            new fSettings().ShowDialog();
-            Highlighting.ResetStyles(fctbMain.Range, fctbMain.Range);
+            new fSettings(highlighting).ShowDialog();
+            highlighting.ResetStyles(fctbMain.Range);
         }
 
         private void tsmiNewScript_Click(object sender, EventArgs e)
@@ -331,7 +337,7 @@ namespace NIDE
                     InitOther();
                 saved = true;
                 tsslFile.Text = Path.GetFileName(FileName);
-                Highlighting.RefreshStyles();
+                highlighting.RefreshStyles();
             }
             catch (Exception e)
             {
@@ -441,9 +447,11 @@ namespace NIDE
 
 
         //Log and errors
+        private List<int> errorLines = new List<int>();
         public delegate void AddMessageDelegate(string source, string message);
         public delegate void ErrorDelegate(int source, string message);
         public delegate void ClearLogDelegate();
+        public delegate void UpdateHighlightingDelegate(Range range);
         public void Log(string source, string message)
         {
             Invoke(new AddMessageDelegate(_log), new object[] { source, message });
@@ -454,7 +462,11 @@ namespace NIDE
         }
         public void ClearErrors()
         {
-            Invoke(new ClearLogDelegate(errors.Clear));
+            Invoke(new ClearLogDelegate(_clear));
+        }
+        public void UpdateHighlighting(Range range)
+        {
+            Invoke(new UpdateHighlightingDelegate(highlighting.ResetStyles), range);
         }
         private void _log(string source, string message)
         {
@@ -465,10 +477,25 @@ namespace NIDE
         {
             errors.AppendText("Line " + line + ": " + message + "\n");
         }
+        private void _clear()
+        {
+            errors.Clear();
+            errorLines.Clear();
+        }
         public void HighlightError(int line)
         {
-            Highlighting.HighlightError(new Range(fctbMain, line));
+            errorLines.Add(line);
         }
+
+        private void fctbMain_PaintLine(object sender, PaintLineEventArgs e)
+        {
+            if (errorLines.Contains(e.LineIndex))
+            {
+                Brush brush = new HatchBrush(HatchStyle.Wave, Color.Red, Color.Transparent);
+                e.Graphics.FillRectangle(brush, fctbMain.LeftIndent, e.LineRect.Top + e.LineRect.Height, e.LineRect.Width, e.LineRect.Height / 5);
+            }
+        }
+
 
 
         //Project managing

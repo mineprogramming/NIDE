@@ -6,14 +6,16 @@ namespace NIDE
 {
     public partial class fSettings : Form
     {
-        public fSettings()
+        private Highlighter highlighter;
+
+        public fSettings(Highlighter highlighting)
         {
             InitializeComponent();
             btnNormal.ForeColor = ProgramData.MainForm.fctbMain.ForeColor;
-            btnNamespaces.ForeColor = Highlighting.NamespaceColor;
-            btnHooks.ForeColor = Highlighting.HookColor;
-            btnGlobal.ForeColor = Highlighting.GlobalColor;
-            btnMembers.ForeColor = Highlighting.MemberColor;
+            btnNamespaces.ForeColor = Highlighter.NamespaceColor;
+            btnHooks.ForeColor = Highlighter.HookColor;
+            btnGlobal.ForeColor = Highlighter.GlobalColor;
+            btnMembers.ForeColor = Highlighter.MemberColor;
             btnBack.ForeColor = ProgramData.MainForm.fctbMain.BackColor;
 
             try
@@ -26,6 +28,7 @@ namespace NIDE
             tbPath.Text = ProgramData.Project.ADBPushPath;
             cbLast.Checked = ProgramData.LoadLast;
             cbRunProgram.Checked = ADBWorker.RunProgram;
+            this.highlighter = highlighting;
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -40,8 +43,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.NamespaceColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.NamespaceColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -49,8 +52,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.HookColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.HookColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -58,8 +61,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.GlobalColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.GlobalColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -67,8 +70,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.MemberColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.MemberColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -84,8 +87,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.NumbersColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.NumbersColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -93,8 +96,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.StringsColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.StringsColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -102,8 +105,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                Highlighting.KeywordsColor = dlgColor.Color;
-                Highlighting.RefreshStyles();
+                Highlighter.KeywordsColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 

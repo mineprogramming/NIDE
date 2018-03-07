@@ -161,9 +161,9 @@
             // 
             // container.TopToolStripPanel
             // 
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
             // 
             // mainSplit
             // 
@@ -210,6 +210,7 @@
             this.fctbMain.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fctbMain.ServiceColors")));
             this.fctbMain.Zoom = 100;
             this.fctbMain.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fctbMain_TextChanged);
+            this.fctbMain.PaintLine += new System.EventHandler<FastColoredTextBoxNS.PaintLineEventArgs>(this.fctbMain_PaintLine);
             // 
             // cmsMain
             // 

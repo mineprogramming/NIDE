@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace NIDE
 {
-    static class RegisterWorker
+    static class RegistryWorker
     {
 
         static Dictionary<string, string> defaults = new Dictionary<string, string>()
@@ -60,17 +60,17 @@ namespace NIDE
 
                 key = key.CreateSubKey("colors");
                 key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain.ForeColor.ToArgb().ToString());
-                key.SetValue("NamespaceStyle", Highlighting.NamespaceColor.ToArgb().ToString());
-                key.SetValue("GlobalStyle", Highlighting.GlobalColor.ToArgb().ToString());
-                key.SetValue("HookStyle", Highlighting.HookColor.ToArgb().ToString());
-                key.SetValue("MemberStyle", Highlighting.MemberColor.ToArgb().ToString());
+                key.SetValue("NamespaceStyle", Highlighter.NamespaceColor.ToArgb().ToString());
+                key.SetValue("GlobalStyle", Highlighter.GlobalColor.ToArgb().ToString());
+                key.SetValue("HookStyle", Highlighter.HookColor.ToArgb().ToString());
+                key.SetValue("MemberStyle", Highlighter.MemberColor.ToArgb().ToString());
                 key.SetValue("BackStyle", ProgramData.MainForm.fctbMain.BackColor.ToArgb().ToString());
-                if (Highlighting.NumbersColor != null)
-                    key.SetValue("NumberStyle", Highlighting.NumbersColor.Value.ToArgb().ToString());
-                if (Highlighting.StringsColor != null)
-                    key.SetValue("StringStyle", Highlighting.StringsColor.Value.ToArgb().ToString());
-                if (Highlighting.KeywordsColor != null)
-                    key.SetValue("KeywordStyle", Highlighting.KeywordsColor.Value.ToArgb().ToString());
+                if (Highlighter.NumbersColor != null)
+                    key.SetValue("NumberStyle", Highlighter.NumbersColor.Value.ToArgb().ToString());
+                if (Highlighter.StringsColor != null)
+                    key.SetValue("StringStyle", Highlighter.StringsColor.Value.ToArgb().ToString());
+                if (Highlighter.KeywordsColor != null)
+                    key.SetValue("KeywordStyle", Highlighter.KeywordsColor.Value.ToArgb().ToString());
 
             }
             catch (Exception e)
@@ -116,7 +116,7 @@ namespace NIDE
                 sender.Height = Convert.ToInt32(key.GetValue("height"));
                 sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
                 sender.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
-                CoreEngine.ADBPath = key.GetValue("ADBPath.CoreEngine").ToString();
+                ZCore.ADBPath = key.GetValue("ADBPath.CoreEngine").ToString();
                 ModPE.ADBPath = key.GetValue("ADBPath.ModPE").ToString();
                 ADBWorker.RunProgram = Convert.ToBoolean(key.GetValue("RunProgram"));
                 ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
@@ -131,18 +131,17 @@ namespace NIDE
 
                 key = key.OpenSubKey("colors");
                 ProgramData.MainForm.fctbMain.ForeColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NormalStyle")));
-                Highlighting.NamespaceColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
-                Highlighting.GlobalColor = Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
-                Highlighting.HookColor = Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
-                Highlighting.MemberColor = Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
+                Highlighter.NamespaceColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
+                Highlighter.GlobalColor = Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
+                Highlighter.HookColor = Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
+                Highlighter.MemberColor = Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
                 ProgramData.MainForm.fctbMain.BackColor = Color.FromArgb(Convert.ToInt32(key.GetValue("BackStyle")));
                 if (key.GetValueNames().Contains("NumberStyle"))
-                    Highlighting.NumbersColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NumberStyle")));
+                    Highlighter.NumbersColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NumberStyle")));
                 if (key.GetValueNames().Contains("StringStyle"))
-                    Highlighting.StringsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("StringStyle")));
+                    Highlighter.StringsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("StringStyle")));
                 if (key.GetValueNames().Contains("KeywordStyle"))
-                    Highlighting.KeywordsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("KeywordStyle")));
-                Highlighting.RefreshStyles();
+                    Highlighter.KeywordsColor = Color.FromArgb(Convert.ToInt32(key.GetValue("KeywordStyle")));
 
             }
             catch (Exception e)

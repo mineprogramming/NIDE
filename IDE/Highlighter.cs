@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace NIDE
 {
-    static class Highlighting
+    public class Highlighter
     {
         public static Color NamespaceColor = Color.Green;
         public static Color HookColor = Color.Gray;
@@ -16,13 +16,18 @@ namespace NIDE
         public static Color? StringsColor = null;
         public static Color? KeywordsColor = null;
 
-        static Style NamespaceStyle = new TextStyle(new SolidBrush(NamespaceColor), null, FontStyle.Bold);
-        static Style HookStyle = new TextStyle(new SolidBrush(HookColor), null, FontStyle.Bold);
-        static Style GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
-        static Style MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
-        static Style ErrorStyle = new TextStyle(new SolidBrush(Color.Red), null, FontStyle.Regular);
+        static TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
 
-        public static void RefreshStyles()
+
+        private FastColoredTextBox fctbMain;
+
+        public Highlighter(FastColoredTextBox fctbMain)
+        {
+            this.fctbMain = fctbMain;
+            RefreshStyles();
+        }
+
+        public void RefreshStyles()
         {
             Range range = ProgramData.MainForm.fctbMain.Range;
             range.ClearStyle(NamespaceStyle);
@@ -35,6 +40,11 @@ namespace NIDE
             GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
 
+            fctbMain.AddStyle(NamespaceStyle);
+            fctbMain.AddStyle(HookStyle);
+            fctbMain.AddStyle(GlobalStyle);
+            fctbMain.AddStyle(MemberStyle);
+
             if (NumbersColor != null)
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor.Value), null, FontStyle.Regular);
             if(StringsColor != null)
@@ -43,16 +53,15 @@ namespace NIDE
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor.Value), null, FontStyle.Regular);
 
             ProgramData.MainForm.fctbMain.ClearStylesBuffer();
-            ResetStyles(range, range);
+            ResetStyles(range);
         }
 
-        public static void ResetStyles(Range range, Range all)
+        public void ResetStyles(Range range)
         {
             range.ClearStyle(NamespaceStyle);
             range.ClearStyle(MemberStyle);
             range.ClearStyle(HookStyle);
             range.ClearStyle(GlobalStyle);
-            all.ClearStyle(ErrorStyle);
 
             ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
             range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
@@ -76,10 +85,5 @@ namespace NIDE
                 range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
             }
          }
-
-        public static void HighlightError(Range range)
-        {
-            range.SetStyle(ErrorStyle);
-        }
     }
 }
