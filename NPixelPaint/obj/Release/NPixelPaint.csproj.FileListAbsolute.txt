@@ -5,5 +5,6 @@ F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csprojResolveA
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.fPaint.resources
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.Properties.Resources.resources
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.GenerateResource.Cache
+F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.CoreCompileInputs.cache
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.exe
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.pdb

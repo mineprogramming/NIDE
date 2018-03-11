@@ -48,7 +48,6 @@
             this.logger = new System.Windows.Forms.TextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
-            this.tsslFile = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitter = new System.Windows.Forms.Splitter();
             this.panel = new System.Windows.Forms.Panel();
             this.tvFolders = new System.Windows.Forms.TreeView();
@@ -122,6 +121,8 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -144,6 +145,8 @@
             this.toolStripEdit.SuspendLayout();
             this.toolStripProject.SuspendLayout();
             this.MenuStrip.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -172,7 +175,7 @@
             // 
             // mainSplit.Panel1
             // 
-            this.mainSplit.Panel1.Controls.Add(this.fctbMain);
+            this.mainSplit.Panel1.Controls.Add(this.tabControl);
             // 
             // mainSplit.Panel2
             // 
@@ -314,8 +317,7 @@
             // 
             this.StatusStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ProgressBarStatus,
-            this.tsslFile});
+            this.ProgressBarStatus});
             resources.ApplyResources(this.StatusStrip, "StatusStrip");
             this.StatusStrip.Name = "StatusStrip";
             // 
@@ -323,11 +325,6 @@
             // 
             this.ProgressBarStatus.Name = "ProgressBarStatus";
             resources.ApplyResources(this.ProgressBarStatus, "ProgressBarStatus");
-            // 
-            // tsslFile
-            // 
-            this.tsslFile.Name = "tsslFile";
-            resources.ApplyResources(this.tsslFile, "tsslFile");
             // 
             // splitter
             // 
@@ -851,6 +848,20 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.tabPage1);
+            resources.ApplyResources(this.tabControl, "tabControl");
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.fctbMain);
+            resources.ApplyResources(this.tabPage1, "tabPage1");
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -894,6 +905,8 @@
             this.toolStripProject.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            this.tabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -938,7 +951,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiBuild;
         private System.Windows.Forms.ToolStripContainer container;
         private System.Windows.Forms.StatusStrip StatusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel tsslFile;
         private System.Windows.Forms.Splitter splitter;
         private System.Windows.Forms.TreeView tvFolders;
         private System.Windows.Forms.ToolStrip toolStripGeneral;
@@ -992,6 +1004,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRenderer;
         private System.Windows.Forms.Button btnStopLog;
         private System.Windows.Forms.Button btnStartLog;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPage1;
     }
 }
 

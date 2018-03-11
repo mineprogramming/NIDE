@@ -49,13 +49,15 @@ namespace NIDE
                     string text = fctb.Text;
                     Regex reg = new Regex(@"\b(const|let)\b");
                     text = reg.Replace(text, " var ");
+                    reg = new Regex(@"(class|super|extends|implements|abstract|final|static|public|private)");
+                    text = reg.Replace(text, "kek");
                     parser.Parse(text, "", 0);
                 }
                 catch (Exception e) { }
 
                 List<string> variables = new List<string>();
                 Dictionary<string, List<string>> objects = new Dictionary<string, List<string>>();
-                Regex regex = new Regex(@"\b(var)\s+(?<range>[\w_]+?)\b");
+                Regex regex = new Regex(@"\b(var|const|let)\s+(?<range>[\w_]+?)\b");
                 foreach (Match match in regex.Matches(fctb.Text))
                 {
                     if (match.Value.Split(' ').Length > 1)

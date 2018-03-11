@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\ih01\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_NIDE.300808800.00" t="ExcludeRecursive" />
+    <e p="F:\OneDrive\VisualStudio\NIDE" t="IncludeFlat">
+      <e p="IDE" t="IncludeRecursive">
+        <e p="adb" t="Include">
+          <e p="ADBWorker.cs" t="Include" />
+          <e p="FileSyncProgressMonitor.cs" t="Include" />
+          <e p="OutputLogReceiver.cs" t="Include" />
+        </e>
+        <e p="App.config" t="Include" />
+        <e p="Autocomplete.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive">
+          <e p="Debug\bin" t="ExcludeRecursive" />
+          <e p="Release" t="Include">
+            <e p="icons" t="Include">
+              <e p="background.png" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="CodeAnalysisEngine.cs" t="Include" />
+        <e p="Constants.cs" t="Include" />
+        <e p="DynamicCollection.cs" t="Include" />
+        <e p="Enums.cs" t="Include" />
+        <e p="fCraft.cs" t="Include" />
+        <e p="fCraft.Designer.cs" t="Include" />
+        <e p="fCraft.resx" t="Include" />
+        <e p="fDialog.cs" t="Include" />
+        <e p="fDialog.Designer.cs" t="Include" />
+        <e p="fDialog.resx" t="Include" />
+        <e p="fJsonItem.cs" t="Include" />
+        <e p="fJsonItem.Designer.cs" t="Include" />
+        <e p="fJsonItem.resx" t="Include" />
+        <e p="fLibraries.cs" t="Include" />
+        <e p="fLibraries.Designer.cs" t="Include" />
+        <e p="fLibraries.resx" t="Include" />
+        <e p="fMain.cs" t="Include" />
+        <e p="fMain.Designer.cs" t="Include" />
+        <e p="fMain.resx" t="Include" />
+        <e p="fNewProject.cs" t="Include" />
+        <e p="fNewProject.Designer.cs" t="Include" />
+        <e p="fNewProject.resx" t="Include" />
+        <e p="fSettings.cs" t="Include" />
+        <e p="fSettings.Designer.cs" t="Include" />
+        <e p="fSettings.resx" t="Include" />
+        <e p="fSplashScreen.cs" t="Include" />
+        <e p="fSplashScreen.Designer.cs" t="Include" />
+        <e p="fSplashScreen.resx" t="Include" />
+        <e p="fStartWindow.cs" t="Include" />
+        <e p="fStartWindow.Designer.cs" t="Include" />
+        <e p="fStartWindow.resx" t="Include" />
+        <e p="Highlighter.cs" t="Include" />
+        <e p="icon.ico" t="Include" />
+        <e p="JsRunner.cs" t="Include" />
+        <e p="Languages" t="Include">
+          <e p="JavaScript.cs" t="Include" />
+        </e>
+        <e p="Library.cs" t="Include" />
+        <e p="NIDE.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="ProgramData.cs" t="Include" />
+        <e p="ProjectManager.cs" t="Include" />
+        <e p="ProjectTypes" t="Include">
+          <e p="CoreEngine.cs" t="Include" />
+          <e p="InnerCore.cs" t="Include" />
+          <e p="ModPE.cs" t="Include" />
+          <e p="Project.cs" t="Include" />
+          <e p="ZCore.cs" t="Include" />
+        </e>
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="RegistryWorker.cs" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="screen.png" t="Include" />
+        </e>
+        <e p="Util.cs" t="Include" />
+      </e>
+      <e p="NIDE.sln" t="IncludeFlat" />
+      <e p="NPixelPaint" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="fPaint.cs" t="Include" />
+        <e p="fPaint.Designer.cs" t="Include" />
+        <e p="fPaint.resx" t="Include" />
+        <e p="NPixelPaint.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="PanelEx.cs" t="Include" />
+        <e p="PanelEx.Designer.cs" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="background.bmp" t="Include" />
+        </e>
+      </e>
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

@@ -117,16 +117,25 @@ namespace NIDE
                 {
                     CodeAnalysisEngine.Update();
                     ProgramData.MainForm.UpdateHighlighting(e.ChangedRange);
-                    string s = e.ChangedRange.Text;
-                    if (s.Contains("{\r\n}") || s.Contains("(\r\n)") || s.Contains("[\r\n]"))
-                    {
-                        SendKeys.Send("~{UP}{TAB}");
-                    }
+
+                    //Place pos = fctbMain.Selection.Start;
+                    //string line = fctbMain.GetLine(pos.iLine).Text.Trim();
+                    //string prevLine = fctbMain.GetLine(pos.iLine - 1 >= 0 ? pos.iLine - 1 : 0).Text.Trim();
+                    //char prev = prevLine == ""? ' ': prevLine.Last();
+
+                    //if ((line == "}" && prev == '{')
+                    //    || (line == "]" && prev == '[')
+                    //    || (line == ")" && prev == '{'))
+                    //{
+                    //    fctbMain.InsertText("\n" + new string(' ', fctbMain.TextSource[fctbMain.Selection.Start.iLine].StartSpacesCount));
+                    //    fctbMain.Selection.Start = new Place(fctbMain.Selection.Start.iChar, fctbMain.Selection.Start.iLine - 1);
+                    //    fctbMain.InsertText("    ");
+                    //}
                 }
             }
             saved = false;
-            if (!tsslFile.Text.EndsWith("*"))
-                tsslFile.Text = tsslFile.Text + "*";
+            if (!tabControl.SelectedTab.Text.EndsWith("*"))
+                tabControl.SelectedTab.Text = tabControl.SelectedTab.Text + "*";
         }
 
         private void fctbMain_KeyDown(object sender, KeyEventArgs e)
@@ -354,7 +363,7 @@ namespace NIDE
                 else
                     InitOther();
                 saved = true;
-                tsslFile.Text = Path.GetFileName(FileName);
+                tabControl.SelectedTab.Text = Path.GetFileName(FileName);
                 highlighter.RefreshStyles();
             }
             catch (Exception e)
@@ -437,7 +446,7 @@ namespace NIDE
         {
             File.WriteAllLines(ProgramData.file, fctbMain.Lines, ProgramData.Encoding);
             saved = true;
-            tsslFile.Text = tsslFile.Text.Replace("*", "");
+            tabControl.SelectedTab.Text = tabControl.SelectedTab.Text.Replace("*", "");
         }
 
         private void tsmiCloseProject_Click(object sender, EventArgs e)

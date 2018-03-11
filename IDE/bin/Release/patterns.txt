@@ -1,18 +1,18 @@
-Callback.addCallback("~c~", function(){
-    
+Callback.addCallback("~c~", function(~c~){
+    ~c~
 });Callback.addCallback;
 
 TileEntity.registerPrototype(BlockID.~c~, {
     defaultValues: {
-        
+        ~c~
     },
     
     tick: function () {
-        
+        ~c~
     },
     
     getGuiScreen: function () {
-        return 
+        return ~c~
     }
 });TileEntity.registerPrototype;
 
@@ -25,33 +25,33 @@ UI.StandartWindow({
         },
         
         inventory: {
-            standart: true
+            standart: true~c~
         },
         
         background: {
-            standart: true
+            standart: true~c~
         }
     },
     
     drawing: [
-        
+        ~c~
     ],
     
     elements: {
-        
+        ~c~
     }
 });UI.StandartWindow;
 
 Item.registerUseFunction("~c~", function (coords, item, block) {
-    
+    ~c~
 });Item.registerUseFunction;
 
 Item.registerDispenseFunction(id, function(coords, item) {
-    
+    ~c~
 });Item.registerDispenseFunction;
 
 BlockRenderer.addRenderCallback(id, function(api, coords, block, _bool) { 
-    
+    ~c~
 });BlockRenderer.addRenderCallback;
 
 Item.registerIconOverrideFunction(id, function(item) {
@@ -59,26 +59,26 @@ Item.registerIconOverrideFunction(id, function(item) {
 });Item.registerIconOverrideFunction;
 
 Item.registerNoTargetUseFunction(id, function(item) {
-    
+    ~c~
 });Item.registerNoTargetUseFunction;
 
 GameObject("~c~", {
     init: function(){
-        
+        ~c~
     },
     
     loaded: function(){
-        
+        ~c~
     },
     
     update: function(){
-        
+        ~c~
     }
 });GameObject;
 
 Saver.addSavesScope("~c~",
     function read(scope) {
-        
+        ~c~
     },
     
     function save() {
@@ -87,22 +87,22 @@ Saver.addSavesScope("~c~",
 );Saver.addSavesScope;
 
 Item.registerUsingCompleteFunction("~c~", function(item) {
-    
+    ~c~
 });Item.registerUsingCompleteFunction;
 
 Item.registerUsingReleasedFunction("~c~", function(item) {
-    
+    ~c~
 });Item.registerUsingReleasedFunction;
 
 Block.setPrototype("~c~", {
     type: Block.TYPE_BASE,
     
     getVariations: function () {
-        return [{name: "", texture: [["", 0]], inCreative: true}]
+        return [{name: "~c~", texture: [["~c~", 0]], inCreative: true}]
     },
     
     getDrop: function () {
-        return []
+        return [~c~]
     },
     
     getMaterial: function (a) {
@@ -123,3 +123,80 @@ Saver.registerObjectSaver("~c~", {
         return obj
     }
 });Saver.registerObjectSaver;
+
+Block.createBlock("~c~", [
+{name: "~c~", texture: [["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~]], inCreative: ~c~}
+], "opaque");Block.createBlock;
+
+Block.createBlockWithRotation("~c~", [
+{name: "~c~", texture: [["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~], ["~c~", ~c~]], inCreative: ~c~}
+], "opaque");Block.createBlockWithRotation;
+
+Callback.addCallback("GenerateNetherChunk", function(x, z){
+    ~c~
+});Callback.GenerateNetherChunk;
+
+Callback.addCallback("GenerateEndChunk", function(x, z){
+    ~c~
+});Callback.GenerateEndChunk;
+
+Callback.addCallback("GenerateChunkUnderground", function(x, z){
+    ~c~
+});Callback.GenerateChunkUnderground;
+
+Callback.addCallback("GenerateChunk", function(x, z){
+    ~c~
+});Callback.GenerateChunk;
+
+Callback.addCallback("tick", function(){
+    ~c~
+});Callback.tick;
+
+Callback.addCallback("LevelSelected", function(){
+    ~c~
+});Callback.LevelSelected;
+
+Callback.addCallback("LevelLoaded", function(){
+    ~c~
+});Callback.LevelLoaded;
+
+Callback.addCallback("DestroyBlock", function(coords, block, player){
+    ~c~
+});Callback.DestroyBlock;
+
+Callback.addCallback("Explosion", function(coords, params){
+    ~c~
+});Callback.Explosion;
+
+Callback.addCallback("ClientChat", function(str){
+    ~c~
+});Callback.ClientChat;
+
+Callback.addCallback("NativeCommand", function(str){
+    ~c~
+});Callback.NativeCommand;
+
+
+Callback.addCallback("ItemUse", function(coords, item, block){
+    ~c~
+});ItemUse;
+
+
+Callback.addCallback("PlayerAttack", function(player, entity){
+    ~c~
+});PlayerAttack;
+
+
+Callback.addCallback("EntityDeath", function(entity){
+    ~c~
+});EntityDeath;
+
+
+Callback.addCallback("EntityHurt", function(attacker, victim, damage){
+    ~c~
+});EntityHurt;
+
+
+Callback.addCallback("PostLoaded", function(){
+    ~c~
+});PostLoaded;
