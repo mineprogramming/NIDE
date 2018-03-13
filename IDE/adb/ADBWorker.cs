@@ -13,12 +13,14 @@ namespace NIDE.adb
         private static OutputLogReceiver creciever = null;
 
         public static bool RunProgram { get; set; }
-        
+
         public static void Push(DirectoryInfo directory)
         {
-            try
+            Task task = new Task(() =>
             {
-                Task task = new Task(() => {
+                try
+                {
+
                     StopLog();
                     var device = GetFirstDevice();
                     using (SyncService sync = device.SyncService)
@@ -37,20 +39,27 @@ namespace NIDE.adb
                         InitLogging(device);
                     }
                     ProgramData.MainForm.StopProgress();
-                });
-                task.Start();
-            }
-            catch(Exception e){
-                ProgramData.Log("ADB", e.Message);
-                if (adb != null)
-                    adb.Stop();
-                ProgramData.MainForm.ProgressBarStatus.Visible = false;
-            }
+                }
+                catch (Exception e)
+                {
+                    ProgramData.Log("ADB", e.Message);
+                    if (adb != null)
+                        adb.Stop();
+                    ProgramData.MainForm.ProgressBarStatus.Visible = false;
+                }
+            });
+            task.Start();
         }
 
         public static void Kill()
         {
-            AdbHelper.Instance.KillAdb(AndroidDebugBridge.SocketAddress);
+            try
+            {
+                AdbHelper.Instance.KillAdb(AndroidDebugBridge.SocketAddress);
+            } catch(Exception e)
+            {
+                adb = null;
+            }
         }
 
         public static void StartLog()
@@ -59,6 +68,7 @@ namespace NIDE.adb
             {
                 try
                 {
+                    StopLog();
                     var device = GetFirstDevice();
                     InitLogging(device);
                 }
@@ -78,14 +88,16 @@ namespace NIDE.adb
 
         private static void InitLogging(Device device)
         {
-            Task task = new Task(() => {
+            Task task = new Task(() =>
+            {
                 try
                 {
                     creciever = new OutputLogReceiver();
                     ProgramData.Log("ADB", "Logging initialized");
                     device.ExecuteShellCommand("logcat", creciever);
                 }
-                catch (Exception e) {
+                catch (Exception e)
+                {
                     ProgramData.Log("ADB", "Error: " + e.Message);
                 }
             });
@@ -114,9 +126,9 @@ namespace NIDE.adb
             sync.Push(files, FileEntry.FindOrCreate(device, ProgramData.Project.ADBPushPath + subdir), new FileSyncProgressMonitor());
             foreach (var dir in directory.GetDirectories())
                 PushRecursive(sync, device, dir, subdir + dir.Name + "/");
-            
+
         }
 
-        
+
     }
 }
