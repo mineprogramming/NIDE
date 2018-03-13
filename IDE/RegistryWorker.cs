@@ -29,18 +29,18 @@ namespace NIDE
             {"ErrorHighlighting", "False"}
         };
 
-        public static void Save(fMain sender, bool Last = true)
+        public static void Save(bool Last = true)
         {
             try
             {
                 RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
                 key = key.CreateSubKey("NIDE");
                 key = key.CreateSubKey("settings");
-                key.SetValue("maximized", sender.WindowState == FormWindowState.Maximized);
-                key.SetValue("width", sender.Width.ToString());
-                key.SetValue("height", sender.Height.ToString());
-                key.SetValue("dvWidth", sender.TextViewWidth.ToString());
-                key.SetValue("dvHeight", sender.TextViewHeight.ToString());
+                key.SetValue("maximized", ProgramData.MainForm.WindowState == FormWindowState.Maximized);
+                key.SetValue("width", ProgramData.MainForm.Width.ToString());
+                key.SetValue("height", ProgramData.MainForm.Height.ToString());
+                key.SetValue("dvWidth", ProgramData.MainForm.TextViewWidth.ToString());
+                key.SetValue("dvHeight", ProgramData.MainForm.TextViewHeight.ToString());
                 key.SetValue("ADBPath.ModPE", ModPE.ADBPath);
                 key.SetValue("ADBPath.CoreEngine", CoreEngine.ADBPath);
                 key.SetValue("LoadLast", ProgramData.LoadLast);
@@ -80,7 +80,7 @@ namespace NIDE
             }
         }
 
-        public static void Load(fMain sender)
+        public static void Load()
         {
             try
             {
@@ -113,15 +113,15 @@ namespace NIDE
                 }
 
                 key = key.OpenSubKey("settings");
-                sender.Width = Convert.ToInt32(key.GetValue("width"));
-                sender.Height = Convert.ToInt32(key.GetValue("height"));
-                sender.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
-                sender.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
+                ProgramData.MainForm.Width = Convert.ToInt32(key.GetValue("width"));
+                ProgramData.MainForm.Height = Convert.ToInt32(key.GetValue("height"));
+                ProgramData.MainForm.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
+                ProgramData.MainForm.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
                 ZCore.ADBPath = key.GetValue("ADBPath.CoreEngine").ToString();
                 ModPE.ADBPath = key.GetValue("ADBPath.ModPE").ToString();
                 ADBWorker.RunProgram = Convert.ToBoolean(key.GetValue("RunProgram"));
                 ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
-                sender.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
+                ProgramData.MainForm.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 int count = Convert.ToInt32(key.GetValue("saves"));
                 for (int i = 0; i < count; i++)
                     ProgramData.Recent.Add(Convert.ToString(key.GetValue("Save" + i)));
@@ -131,12 +131,12 @@ namespace NIDE
                     return;
 
                 key = key.OpenSubKey("colors");
-                ProgramData.MainForm.fctbMain.ForeColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NormalStyle")));
+                //ProgramData.MainForm.fctbMain.ForeColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NormalStyle")));
                 Highlighter.NamespaceColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NamespaceStyle")));
                 Highlighter.GlobalColor = Color.FromArgb(Convert.ToInt32(key.GetValue("GlobalStyle")));
                 Highlighter.HookColor = Color.FromArgb(Convert.ToInt32(key.GetValue("HookStyle")));
                 Highlighter.MemberColor = Color.FromArgb(Convert.ToInt32(key.GetValue("MemberStyle")));
-                ProgramData.MainForm.fctbMain.BackColor = Color.FromArgb(Convert.ToInt32(key.GetValue("BackStyle")));
+                //ProgramData.MainForm.fctbMain.BackColor = Color.FromArgb(Convert.ToInt32(key.GetValue("BackStyle")));
                 if (key.GetValueNames().Contains("NumberStyle"))
                     Highlighter.NumbersColor = Color.FromArgb(Convert.ToInt32(key.GetValue("NumberStyle")));
                 if (key.GetValueNames().Contains("StringStyle"))

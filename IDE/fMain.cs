@@ -8,16 +8,19 @@ using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
 using System.Collections.Generic;
+using NIDE.components;
 
 namespace NIDE
 {
     public partial class fMain : Form
     {
-        private bool saved = true;
         private string[] args;
         private string OldPath = "";
 
         private Highlighter highlighter;
+
+        public FastColoredTextBox fctbMain { get { return currentTab.Editor; } }
+        private EditorTab currentTab;
 
 
         //Main form
@@ -27,11 +30,10 @@ namespace NIDE
             this.args = args;
             InitializeComponent();
             ProgramData.MainForm = this;
-            CodeAnalysisEngine.Initialize(fctbMain);
-            RegistryWorker.Load(this);
-            highlighter = new Highlighter(fctbMain);
-            Autocomplete.SetAutoompleteMenu(fctbMain);
-            fctbMain.HighlightingRangeType = HighlightingRangeType.VisibleRange;
+            CodeAnalysisEngine.Initialize();
+            RegistryWorker.Load();
+            highlighter = new Highlighter();
+            
             try
             {
                 ModPE.LoadData("modpescript_dump.txt");
@@ -113,7 +115,7 @@ namespace NIDE
         {
             if (fctbMain.Language == Language.JS && ProgramData.Project != null)
             {
-                if (ProgramData.file.EndsWith(".js"))
+                if (currentTab.File.EndsWith(".js"))
                 {
                     CodeAnalysisEngine.Update();
                     ProgramData.MainForm.UpdateHighlighting(e.ChangedRange);
@@ -133,9 +135,6 @@ namespace NIDE
                     //}
                 }
             }
-            saved = false;
-            if (!tabControl.SelectedTab.Text.EndsWith("*"))
-                tabControl.SelectedTab.Text = tabControl.SelectedTab.Text + "*";
         }
 
         private void fctbMain_KeyDown(object sender, KeyEventArgs e)
@@ -148,13 +147,17 @@ namespace NIDE
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!CanChangeFile()) e.Cancel = true;
-            RegistryWorker.Save(this);
+            foreach(EditorTab tab in tabControl.TabPages)
+            {
+                if (!tab.CanClose()) e.Cancel = true;
+            }
+            RegistryWorker.Save();
         }
         
         private void fMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             ADBWorker.Kill();
+            Environment.Exit(0);
         }
 
 
@@ -274,7 +277,6 @@ namespace NIDE
                 ProgramData.Project = Project.New(FileName);
                 OpenScript(ProgramData.Project.MainScriptPath);
                 InitProject();
-                saved = true;
             }
             catch (Exception ex)
             {
@@ -354,16 +356,14 @@ namespace NIDE
         {
             try
             {
-                ProgramData.file = FileName;
-                fctbMain.OpenFile(FileName, ProgramData.Encoding);
+                currentTab = tabControl.Load(FileName);
                 fctbMain.ReadOnly = false;
+                Autocomplete.SetAutoompleteMenu(fctbMain);
                 string extension = Path.GetExtension(FileName).ToLower();
                 if (extension == ".js")
                     InitJS();
                 else
                     InitOther();
-                saved = true;
-                tabControl.SelectedTab.Text = Path.GetFileName(FileName);
                 highlighter.RefreshStyles();
             }
             catch (Exception e)
@@ -444,9 +444,8 @@ namespace NIDE
 
         private void tsmiSave_Click(object sender, EventArgs e)
         {
-            File.WriteAllLines(ProgramData.file, fctbMain.Lines, ProgramData.Encoding);
-            saved = true;
-            tabControl.SelectedTab.Text = tabControl.SelectedTab.Text.Replace("*", "");
+            currentTab.Save();
+            tabControl.Refresh();
         }
 
         private void tsmiCloseProject_Click(object sender, EventArgs e)
@@ -458,18 +457,7 @@ namespace NIDE
 
         private bool CanChangeFile()
         {
-            if (fctbMain.ReadOnly || saved || fctbMain.Text == "") return true;
-            var result = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
-            if (result == DialogResult.Yes)
-            {
-                fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
-                return true;
-            }
-            else if (result == DialogResult.Cancel)
-            {
-                return false;
-            }
-            else return true;
+            return tabControl.TabCount == 0 || currentTab.CanClose();
         }
 
 
@@ -519,6 +507,33 @@ namespace NIDE
             errorLines.Add(line);
         }
 
+        
+        public void StartProgress(int total)
+        {
+            Action action = () => {
+                ProgressBarStatus.Visible = true;
+                ProgressBarStatus.Maximum = total;
+            };
+            Invoke(action);
+        }
+        public void Progress(int progress)
+        {
+            Action action = () => {
+                ProgressBarStatus.Value = progress;
+            };
+            Invoke(action);
+        }
+        public void StopProgress()
+        {
+            Action action = () => {
+                ProgressBarStatus.Visible = false;
+                ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
+                foreach (var btn in items)
+                    btn.Enabled = true;
+            };
+            Invoke(action);
+        }
+
         private void fctbMain_PaintLine(object sender, PaintLineEventArgs e)
         {
             if (errorLines.Contains(e.LineIndex))
@@ -543,8 +558,10 @@ namespace NIDE
 
         private void tsmiBuild_Click(object sender, EventArgs e)
         {
-            fctbMain.SaveToFile(ProgramData.file, ProgramData.Encoding);
-            saved = true;
+            foreach(EditorTab tab in tabControl.TabPages)
+            {
+                tab.Save();
+            }
             try
             {
                 ProgramData.Project.Build();
@@ -558,6 +575,9 @@ namespace NIDE
 
         private void tsmiPush_Click(object sender, EventArgs e)
         {
+            ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
+            foreach (var btn in items)
+                btn.Enabled = false;
             ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
         }
 
@@ -808,8 +828,25 @@ namespace NIDE
 
         private void btnStopLog_Click(object sender, EventArgs e)
         {
-            ADBWorker.Kill();
+            ADBWorker.StopLog();
         }
-        
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            currentTab = (EditorTab)tabControl.SelectedTab;
+            fctbMain.TextChanged += fctbMain_TextChanged;
+            fctbMain.KeyDown += fctbMain_KeyDown;
+            fctbMain.PaintLine += fctbMain_PaintLine;
+            Autocomplete.SetAutoompleteMenu(fctbMain);
+            CodeAnalysisEngine.Update();
+        }
+
+        private void tsmiSaveAll_Click(object sender, EventArgs e)
+        {
+            foreach (EditorTab tab in tabControl.TabPages)
+            {
+                tab.Save();
+            }
+        }
     }
 }

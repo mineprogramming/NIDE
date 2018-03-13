@@ -35,8 +35,6 @@ namespace NIDE
 
         public static Project Project { get; set; }
 
-        public static string file;
-
         public static fMain MainForm { get; set; }
 
         public static bool LoadLast = true;

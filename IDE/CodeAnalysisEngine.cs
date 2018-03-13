@@ -10,7 +10,6 @@ namespace NIDE
 {
     static class CodeAnalysisEngine
     {
-        static FastColoredTextBox fctb;
         public static List<string> Variables = new List<string>();
         public static Dictionary<string, List<string>> Objects = new Dictionary<string, List<string>>();
         static Thread updateThread;
@@ -20,9 +19,8 @@ namespace NIDE
 
         static bool shouldUpdate = false;
 
-        public static void Initialize(FastColoredTextBox fctb)
+        public static void Initialize()
         {
-            CodeAnalysisEngine.fctb = fctb;
             reporter = new ErrorReporterEx();
             parser = new Parser(new CompilerEnvirons(), reporter);
         }
@@ -46,7 +44,7 @@ namespace NIDE
                 {
                     reporter.Clear();
                     ProgramData.MainForm?.ClearErrors();
-                    string text = fctb.Text;
+                    string text = ProgramData.MainForm.fctbMain.Text;
                     Regex reg = new Regex(@"\b(const|let)\b");
                     text = reg.Replace(text, " var ");
                     reg = new Regex(@"(class|super|extends|implements|abstract|final|static|public|private)");
@@ -58,7 +56,7 @@ namespace NIDE
                 List<string> variables = new List<string>();
                 Dictionary<string, List<string>> objects = new Dictionary<string, List<string>>();
                 Regex regex = new Regex(@"\b(var|const|let)\s+(?<range>[\w_]+?)\b");
-                foreach (Match match in regex.Matches(fctb.Text))
+                foreach (Match match in regex.Matches(ProgramData.MainForm.fctbMain.Text))
                 {
                     if (match.Value.Split(' ').Length > 1)
                     {
@@ -68,7 +66,7 @@ namespace NIDE
                     }
                 }
                 regex = new Regex(@"\bfunction\b");
-                foreach (var line in fctb.Lines)
+                foreach (var line in ProgramData.MainForm.fctbMain.Lines)
                 {
                     if (regex.IsMatch(line) && line.IndexOf('(') != -1 && line.IndexOf(')') != -1)
                     {
@@ -86,7 +84,7 @@ namespace NIDE
                 }
                 Variables = variables;
                 regex = new Regex(@"([\w_]+)\.([\w_]+)");
-                foreach (Match match in regex.Matches(fctb.Text))
+                foreach (Match match in regex.Matches(ProgramData.MainForm.fctbMain.Text))
                 {
                     string[] splitted = match.Value.Split('.');
                     if (!objects.ContainsKey(splitted[0]))

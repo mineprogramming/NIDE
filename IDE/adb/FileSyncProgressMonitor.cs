@@ -8,13 +8,12 @@ namespace NIDE.adb
 
         public void Advance(long work)
         {
-            ProgramData.MainForm.ProgressBarStatus.Value = (int)work;
+            ProgramData.MainForm.Progress((int)work);
         }
 
         public void Start(long totalWork)
         {
-            ProgramData.MainForm.ProgressBarStatus.Visible = true;
-            ProgramData.MainForm.ProgressBarStatus.Maximum = (int)totalWork;
+            ProgramData.MainForm.StartProgress((int)totalWork);
         }
 
         public void StartSubTask(string source, string destination)

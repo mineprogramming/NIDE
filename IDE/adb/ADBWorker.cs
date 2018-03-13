@@ -10,31 +10,35 @@ namespace NIDE.adb
     static class ADBWorker
     {
         private static AndroidDebugBridge adb = null;
+        private static OutputLogReceiver creciever = null;
 
         public static bool RunProgram { get; set; }
         
         public static void Push(DirectoryInfo directory)
         {
-           
             try
             {
-                var device = InitializeADB();
-                using (SyncService sync = device.SyncService)
-                {
-                    ProgramData.Log("ADB", "Starting copying files.......");
-                    PushRecursive(sync, device, directory, ProgramData.Project.Name + "/");
-                    sync.Close();
-                    ProgramData.MainForm.ProgressBarStatus.Visible = false;
-                    ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
-                }
-                if (RunProgram)
-                {
-                    ConsoleOutputReceiver receiver = new ConsoleOutputReceiver();
-                    device.ExecuteShellCommand("am force-stop " + ProgramData.Project.ProgramPackage, receiver);
-                    device.ExecuteShellCommand("monkey -p " + ProgramData.Project.ProgramPackage + " 1", receiver);
-                    ProgramData.Log("ADB", "Restarted package " + ProgramData.Project.ProgramPackage);
-                    InitLogging(device);
-                }
+                Task task = new Task(() => {
+                    StopLog();
+                    var device = GetFirstDevice();
+                    using (SyncService sync = device.SyncService)
+                    {
+                        ProgramData.Log("ADB", "Starting copying files.......");
+                        PushRecursive(sync, device, directory, ProgramData.Project.Name + "/");
+                        sync.Close();
+                        ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
+                    }
+                    if (RunProgram)
+                    {
+                        ConsoleOutputReceiver receiver = new ConsoleOutputReceiver();
+                        device.ExecuteShellCommand("am force-stop " + ProgramData.Project.ProgramPackage, receiver);
+                        device.ExecuteShellCommand("monkey -p " + ProgramData.Project.ProgramPackage + " 1", receiver);
+                        ProgramData.Log("ADB", "Restarted package " + ProgramData.Project.ProgramPackage);
+                        InitLogging(device);
+                    }
+                    ProgramData.MainForm.StopProgress();
+                });
+                task.Start();
             }
             catch(Exception e){
                 ProgramData.Log("ADB", e.Message);
@@ -46,20 +50,30 @@ namespace NIDE.adb
 
         public static void Kill()
         {
-            if (adb != null)
-                adb.Stop();
+            AdbHelper.Instance.KillAdb(AndroidDebugBridge.SocketAddress);
         }
 
         public static void StartLog()
         {
-            try
+            Task task = new Task(() =>
             {
-                var device = InitializeADB();
-                InitLogging(device);
-            } catch(Exception e)
-            {
-                ProgramData.Log("ADB", e.Message);
-            }
+                try
+                {
+                    var device = GetFirstDevice();
+                    InitLogging(device);
+                }
+                catch (Exception e)
+                {
+                    ProgramData.Log("ADB", e.Message);
+                }
+            });
+            task.Start();
+        }
+
+        public static void StopLog()
+        {
+            if (creciever != null)
+                creciever.IsCancelled = true;
         }
 
         private static void InitLogging(Device device)
@@ -67,7 +81,8 @@ namespace NIDE.adb
             Task task = new Task(() => {
                 try
                 {
-                    OutputLogReceiver creciever = new OutputLogReceiver();
+                    creciever = new OutputLogReceiver();
+                    ProgramData.Log("ADB", "Logging initialized");
                     device.ExecuteShellCommand("logcat", creciever);
                 }
                 catch (Exception e) {
@@ -77,11 +92,14 @@ namespace NIDE.adb
             task.Start();
         }
 
-        private static Device InitializeADB()
+        private static Device GetFirstDevice()
         {
-            Kill();
-            ProgramData.Log("ADB", "Initializing ADB.......");
-            adb = AndroidDebugBridge.CreateBridge(Directory.GetCurrentDirectory() + "\\ADB\\adb.exe", true);
+            if (adb == null || !adb.IsConnected)
+            {
+                ProgramData.Log("ADB", "Initializing ADB.......");
+                adb = AndroidDebugBridge.CreateBridge(Directory.GetCurrentDirectory() + "\\ADB\\adb.exe", true);
+                adb.Start();
+            }
             List<Device> devices = (List<Device>)adb.Devices;
             if (devices.Count < 1)
             {
@@ -98,5 +116,7 @@ namespace NIDE.adb
                 PushRecursive(sync, device, dir, subdir + dir.Name + "/");
             
         }
+
+        
     }
 }

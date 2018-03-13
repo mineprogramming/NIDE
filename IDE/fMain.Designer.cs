@@ -32,13 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
             this.container = new System.Windows.Forms.ToolStripContainer();
             this.mainSplit = new System.Windows.Forms.SplitContainer();
-            this.fctbMain = new FastColoredTextBoxNS.FastColoredTextBox();
-            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ctsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiFind = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl = new NIDE.components.FileTabControl();
             this.splitContainerLogs = new System.Windows.Forms.SplitContainer();
             this.gbErrors = new System.Windows.Forms.GroupBox();
             this.errors = new System.Windows.Forms.TextBox();
@@ -60,6 +54,18 @@
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
             this.Ads = new System.Windows.Forms.WebBrowser();
+            this.toolStripProject = new System.Windows.Forms.ToolStrip();
+            this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
+            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
+            this.tsbPush = new System.Windows.Forms.ToolStripButton();
+            this.tsbRun = new System.Windows.Forms.ToolStripButton();
+            this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
+            this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
+            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
+            this.tsbRenderer = new System.Windows.Forms.ToolStripButton();
             this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -69,23 +75,18 @@
             this.tsbCut = new System.Windows.Forms.ToolStripButton();
             this.tsbCopy = new System.Windows.Forms.ToolStripButton();
             this.tsbPaste = new System.Windows.Forms.ToolStripButton();
-            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
-            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
-            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
-            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
-            this.tsbRenderer = new System.Windows.Forms.ToolStripButton();
-            this.toolStripProject = new System.Windows.Forms.ToolStrip();
-            this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
-            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
-            this.tsbPush = new System.Windows.Forms.ToolStripButton();
-            this.tsbRun = new System.Windows.Forms.ToolStripButton();
-            this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
-            this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
+            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctsmiFind = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiSaveAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tss4 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiRenderer = new System.Windows.Forms.ToolStripMenuItem();
@@ -121,8 +122,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -130,8 +129,6 @@
             this.mainSplit.Panel1.SuspendLayout();
             this.mainSplit.Panel2.SuspendLayout();
             this.mainSplit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).BeginInit();
-            this.cmsMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLogs)).BeginInit();
             this.splitContainerLogs.Panel1.SuspendLayout();
             this.splitContainerLogs.Panel2.SuspendLayout();
@@ -141,12 +138,11 @@
             this.StatusStrip.SuspendLayout();
             this.panel.SuspendLayout();
             this.cmsTreeView.SuspendLayout();
-            this.toolStripGeneral.SuspendLayout();
-            this.toolStripEdit.SuspendLayout();
             this.toolStripProject.SuspendLayout();
+            this.toolStripEdit.SuspendLayout();
+            this.toolStripGeneral.SuspendLayout();
+            this.cmsMain.SuspendLayout();
             this.MenuStrip.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // container
@@ -181,82 +177,14 @@
             // 
             this.mainSplit.Panel2.Controls.Add(this.splitContainerLogs);
             // 
-            // fctbMain
+            // tabControl
             // 
-            this.fctbMain.AutoCompleteBrackets = true;
-            this.fctbMain.AutoCompleteBracketsList = new char[] {
-        '(',
-        ')',
-        '{',
-        '}',
-        '[',
-        ']',
-        '\"',
-        '\"',
-        '\'',
-        '\''};
-            this.fctbMain.AutoIndentChars = false;
-            this.fctbMain.AutoIndentExistingLines = false;
-            resources.ApplyResources(this.fctbMain, "fctbMain");
-            this.fctbMain.BackBrush = null;
-            this.fctbMain.CharHeight = 14;
-            this.fctbMain.CharWidth = 8;
-            this.fctbMain.ContextMenuStrip = this.cmsMain;
-            this.fctbMain.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.fctbMain.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            this.fctbMain.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.VisibleRange;
-            this.fctbMain.IsReplaceMode = false;
-            this.fctbMain.LineNumberColor = System.Drawing.Color.RoyalBlue;
-            this.fctbMain.Name = "fctbMain";
-            this.fctbMain.Paddings = new System.Windows.Forms.Padding(0);
-            this.fctbMain.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.fctbMain.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("fctbMain.ServiceColors")));
-            this.fctbMain.Zoom = 100;
-            this.fctbMain.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fctbMain_TextChanged);
-            this.fctbMain.PaintLine += new System.EventHandler<FastColoredTextBoxNS.PaintLineEventArgs>(this.fctbMain_PaintLine);
-            this.fctbMain.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fctbMain_KeyDown);
-            // 
-            // cmsMain
-            // 
-            this.cmsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ctsmiUndo,
-            this.ctsmiRedo,
-            this.ctsmiFind,
-            this.ctsmiReplace,
-            this.ctsmiAutoIndent});
-            this.cmsMain.Name = "cmsMain";
-            resources.ApplyResources(this.cmsMain, "cmsMain");
-            // 
-            // ctsmiUndo
-            // 
-            this.ctsmiUndo.Name = "ctsmiUndo";
-            resources.ApplyResources(this.ctsmiUndo, "ctsmiUndo");
-            this.ctsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-            // 
-            // ctsmiRedo
-            // 
-            this.ctsmiRedo.Name = "ctsmiRedo";
-            resources.ApplyResources(this.ctsmiRedo, "ctsmiRedo");
-            this.ctsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-            // 
-            // ctsmiFind
-            // 
-            this.ctsmiFind.Name = "ctsmiFind";
-            resources.ApplyResources(this.ctsmiFind, "ctsmiFind");
-            this.ctsmiFind.Click += new System.EventHandler(this.tsmiFind_Click);
-            // 
-            // ctsmiReplace
-            // 
-            this.ctsmiReplace.Name = "ctsmiReplace";
-            resources.ApplyResources(this.ctsmiReplace, "ctsmiReplace");
-            this.ctsmiReplace.Click += new System.EventHandler(this.tsmiReplace_Click);
-            // 
-            // ctsmiAutoIndent
-            // 
-            this.ctsmiAutoIndent.Name = "ctsmiAutoIndent";
-            resources.ApplyResources(this.ctsmiAutoIndent, "ctsmiAutoIndent");
-            this.ctsmiAutoIndent.Click += new System.EventHandler(this.ctsmiAutoIndent_Click);
+            resources.ApplyResources(this.tabControl, "tabControl");
+            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // splitContainerLogs
             // 
@@ -417,6 +345,102 @@
             this.Ads.WebBrowserShortcutsEnabled = false;
             this.Ads.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.Ads_Navigating);
             // 
+            // toolStripProject
+            // 
+            resources.ApplyResources(this.toolStripProject, "toolStripProject");
+            this.toolStripProject.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbBuildPush,
+            this.tsbBuild,
+            this.tsbPush,
+            this.tsbRun,
+            this.tsbUpdate,
+            this.tsbShowMain});
+            this.toolStripProject.Name = "toolStripProject";
+            this.toolStripProject.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            // 
+            // tsbBuildPush
+            // 
+            this.tsbBuildPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbBuildPush, "tsbBuildPush");
+            this.tsbBuildPush.Name = "tsbBuildPush";
+            this.tsbBuildPush.Click += new System.EventHandler(this.tsbBuildPush_Click);
+            // 
+            // tsbBuild
+            // 
+            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbBuild, "tsbBuild");
+            this.tsbBuild.Name = "tsbBuild";
+            this.tsbBuild.Click += new System.EventHandler(this.tsmiBuild_Click);
+            // 
+            // tsbPush
+            // 
+            this.tsbPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbPush, "tsbPush");
+            this.tsbPush.Name = "tsbPush";
+            this.tsbPush.Click += new System.EventHandler(this.tsmiPush_Click);
+            // 
+            // tsbRun
+            // 
+            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRun, "tsbRun");
+            this.tsbRun.Name = "tsbRun";
+            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
+            // 
+            // tsbUpdate
+            // 
+            this.tsbUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUpdate, "tsbUpdate");
+            this.tsbUpdate.Name = "tsbUpdate";
+            this.tsbUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
+            // 
+            // tsbShowMain
+            // 
+            this.tsbShowMain.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbShowMain, "tsbShowMain");
+            this.tsbShowMain.Name = "tsbShowMain";
+            this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
+            // 
+            // toolStripEdit
+            // 
+            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
+            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbUndo,
+            this.tsbRedo,
+            this.tsbSettings,
+            this.tsbRenderer});
+            this.toolStripEdit.Name = "toolStripEdit";
+            this.toolStripEdit.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+            // 
+            // tsbSettings
+            // 
+            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbSettings, "tsbSettings");
+            this.tsbSettings.Name = "tsbSettings";
+            this.tsbSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
+            // 
+            // tsbRenderer
+            // 
+            this.tsbRenderer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRenderer, "tsbRenderer");
+            this.tsbRenderer.Name = "tsbRenderer";
+            this.tsbRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
+            // 
             // toolStripGeneral
             // 
             resources.ApplyResources(this.toolStripGeneral, "toolStripGeneral");
@@ -487,101 +511,47 @@
             this.tsbPaste.Name = "tsbPaste";
             this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
             // 
-            // toolStripEdit
+            // cmsMain
             // 
-            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
-            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbUndo,
-            this.tsbRedo,
-            this.tsbSettings,
-            this.tsbRenderer});
-            this.toolStripEdit.Name = "toolStripEdit";
-            this.toolStripEdit.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.cmsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctsmiUndo,
+            this.ctsmiRedo,
+            this.ctsmiFind,
+            this.ctsmiReplace,
+            this.ctsmiAutoIndent});
+            this.cmsMain.Name = "cmsMain";
+            resources.ApplyResources(this.cmsMain, "cmsMain");
             // 
-            // tsbUndo
+            // ctsmiUndo
             // 
-            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbUndo, "tsbUndo");
-            this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+            this.ctsmiUndo.Name = "ctsmiUndo";
+            resources.ApplyResources(this.ctsmiUndo, "ctsmiUndo");
+            this.ctsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
             // 
-            // tsbRedo
+            // ctsmiRedo
             // 
-            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRedo, "tsbRedo");
-            this.tsbRedo.Name = "tsbRedo";
-            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+            this.ctsmiRedo.Name = "ctsmiRedo";
+            resources.ApplyResources(this.ctsmiRedo, "ctsmiRedo");
+            this.ctsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
             // 
-            // tsbSettings
+            // ctsmiFind
             // 
-            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbSettings, "tsbSettings");
-            this.tsbSettings.Name = "tsbSettings";
-            this.tsbSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
+            this.ctsmiFind.Name = "ctsmiFind";
+            resources.ApplyResources(this.ctsmiFind, "ctsmiFind");
+            this.ctsmiFind.Click += new System.EventHandler(this.tsmiFind_Click);
             // 
-            // tsbRenderer
+            // ctsmiReplace
             // 
-            this.tsbRenderer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRenderer, "tsbRenderer");
-            this.tsbRenderer.Name = "tsbRenderer";
-            this.tsbRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
+            this.ctsmiReplace.Name = "ctsmiReplace";
+            resources.ApplyResources(this.ctsmiReplace, "ctsmiReplace");
+            this.ctsmiReplace.Click += new System.EventHandler(this.tsmiReplace_Click);
             // 
-            // toolStripProject
+            // ctsmiAutoIndent
             // 
-            resources.ApplyResources(this.toolStripProject, "toolStripProject");
-            this.toolStripProject.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbBuildPush,
-            this.tsbBuild,
-            this.tsbPush,
-            this.tsbRun,
-            this.tsbUpdate,
-            this.tsbShowMain});
-            this.toolStripProject.Name = "toolStripProject";
-            this.toolStripProject.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            // 
-            // tsbBuildPush
-            // 
-            this.tsbBuildPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbBuildPush, "tsbBuildPush");
-            this.tsbBuildPush.Name = "tsbBuildPush";
-            this.tsbBuildPush.Click += new System.EventHandler(this.tsbBuildPush_Click);
-            // 
-            // tsbBuild
-            // 
-            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbBuild, "tsbBuild");
-            this.tsbBuild.Name = "tsbBuild";
-            this.tsbBuild.Click += new System.EventHandler(this.tsmiBuild_Click);
-            // 
-            // tsbPush
-            // 
-            this.tsbPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbPush, "tsbPush");
-            this.tsbPush.Name = "tsbPush";
-            this.tsbPush.Click += new System.EventHandler(this.tsmiPush_Click);
-            // 
-            // tsbRun
-            // 
-            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRun, "tsbRun");
-            this.tsbRun.Name = "tsbRun";
-            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
-            // 
-            // tsbUpdate
-            // 
-            this.tsbUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbUpdate, "tsbUpdate");
-            this.tsbUpdate.Name = "tsbUpdate";
-            this.tsbUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
-            // 
-            // tsbShowMain
-            // 
-            this.tsbShowMain.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbShowMain, "tsbShowMain");
-            this.tsbShowMain.Name = "tsbShowMain";
-            this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
+            this.ctsmiAutoIndent.Name = "ctsmiAutoIndent";
+            resources.ApplyResources(this.ctsmiAutoIndent, "ctsmiAutoIndent");
+            this.ctsmiAutoIndent.Click += new System.EventHandler(this.ctsmiAutoIndent_Click);
             // 
             // MenuStrip
             // 
@@ -603,6 +573,7 @@
             this.tsmiNewProject,
             this.tsmiOpenProject,
             this.tsmiSave,
+            this.tsmiSaveAll,
             this.tsmiCloseProject,
             this.tss4,
             this.tsmiRenderer});
@@ -626,6 +597,12 @@
             this.tsmiSave.Name = "tsmiSave";
             resources.ApplyResources(this.tsmiSave, "tsmiSave");
             this.tsmiSave.Click += new System.EventHandler(this.tsmiSave_Click);
+            // 
+            // tsmiSaveAll
+            // 
+            this.tsmiSaveAll.Name = "tsmiSaveAll";
+            resources.ApplyResources(this.tsmiSaveAll, "tsmiSaveAll");
+            this.tsmiSaveAll.Click += new System.EventHandler(this.tsmiSaveAll_Click);
             // 
             // tsmiCloseProject
             // 
@@ -848,20 +825,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // tabControl
-            // 
-            this.tabControl.Controls.Add(this.tabPage1);
-            resources.ApplyResources(this.tabControl, "tabControl");
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.fctbMain);
-            resources.ApplyResources(this.tabPage1, "tabPage1");
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -883,8 +846,6 @@
             this.mainSplit.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mainSplit)).EndInit();
             this.mainSplit.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fctbMain)).EndInit();
-            this.cmsMain.ResumeLayout(false);
             this.splitContainerLogs.Panel1.ResumeLayout(false);
             this.splitContainerLogs.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerLogs)).EndInit();
@@ -897,16 +858,15 @@
             this.StatusStrip.PerformLayout();
             this.panel.ResumeLayout(false);
             this.cmsTreeView.ResumeLayout(false);
-            this.toolStripGeneral.ResumeLayout(false);
-            this.toolStripGeneral.PerformLayout();
-            this.toolStripEdit.ResumeLayout(false);
-            this.toolStripEdit.PerformLayout();
             this.toolStripProject.ResumeLayout(false);
             this.toolStripProject.PerformLayout();
+            this.toolStripEdit.ResumeLayout(false);
+            this.toolStripEdit.PerformLayout();
+            this.toolStripGeneral.ResumeLayout(false);
+            this.toolStripGeneral.PerformLayout();
+            this.cmsMain.ResumeLayout(false);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
-            this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -974,7 +934,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiPush;
         private System.Windows.Forms.ToolStripButton tsbPush;
         public System.Windows.Forms.ToolStripProgressBar ProgressBarStatus;
-        public FastColoredTextBoxNS.FastColoredTextBox fctbMain;
         private System.Windows.Forms.ToolStripMenuItem tsmiProject;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewLibrary;
         private System.Windows.Forms.ToolStripMenuItem tsmiManageLibraries;
@@ -1004,8 +963,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRenderer;
         private System.Windows.Forms.Button btnStopLog;
         private System.Windows.Forms.Button btnStartLog;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSaveAll;
+        private NIDE.components.FileTabControl tabControl;
     }
 }
 

@@ -22,13 +22,7 @@ namespace NIDE
 
 
         private TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
-        private FastColoredTextBox fctbMain;
-
-        public Highlighter(FastColoredTextBox fctbMain)
-        {
-            this.fctbMain = fctbMain;
-            RefreshStyles();
-        }
+        
 
         public void RefreshStyles()
         {
@@ -44,10 +38,10 @@ namespace NIDE
             GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
 
-            fctbMain.AddStyle(NamespaceStyle);
-            fctbMain.AddStyle(HookStyle);
-            fctbMain.AddStyle(GlobalStyle);
-            fctbMain.AddStyle(MemberStyle);
+            ProgramData.MainForm.fctbMain.AddStyle(NamespaceStyle);
+            ProgramData.MainForm.fctbMain.AddStyle(HookStyle);
+            ProgramData.MainForm.fctbMain.AddStyle(GlobalStyle);
+            ProgramData.MainForm.fctbMain.AddStyle(MemberStyle);
 
             if (NumbersColor != null)
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor.Value), null, FontStyle.Regular);
@@ -101,10 +95,10 @@ namespace NIDE
             {
                 case ErrorHighlightStrategy.UNDERLINE:
                     brush = new HatchBrush(HatchStyle.Wave, Color.Red, Color.Transparent);
-                    e.Graphics.FillRectangle(brush, fctbMain.LeftIndent, e.LineRect.Top + e.LineRect.Height, e.LineRect.Width, e.LineRect.Height / 5);
+                    e.Graphics.FillRectangle(brush, ProgramData.MainForm.fctbMain.LeftIndent, e.LineRect.Top + e.LineRect.Height, e.LineRect.Width, e.LineRect.Height / 5);
                     break;
                 case ErrorHighlightStrategy.LINE_NUMBER:
-                    e.Graphics.FillRectangle(Brushes.MistyRose, 0, e.LineRect.Top, fctbMain.LeftIndent - 10, e.LineRect.Height);
+                    e.Graphics.FillRectangle(Brushes.MistyRose, 0, e.LineRect.Top, ProgramData.MainForm.fctbMain.LeftIndent - 10, e.LineRect.Height);
                     break;
             }
             

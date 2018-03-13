@@ -93,6 +93,18 @@
     <Compile Include="adb\OutputLogReceiver.cs" />
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
+    <Compile Include="components\EditorTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="components\EditorTab.Designer.cs">
+      <DependentUpon>EditorTab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="components\FileTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="components\FileTabControl.Designer.cs">
+      <DependentUpon>FileTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="DynamicCollection.cs" />
     <Compile Include="Languages\JavaScript.cs" />
@@ -165,6 +177,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="RegistryWorker.cs" />
     <Compile Include="Util.cs" />
+    <EmbeddedResource Include="components\EditorTab.resx">
+      <DependentUpon>EditorTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fCraft.resx">
       <DependentUpon>fCraft.cs</DependentUpon>
     </EmbeddedResource>
