@@ -985,21 +985,21 @@
   <data name="tsbBuildPush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="tsbBuildPush.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1014,15 +1014,15 @@
   <data name="tsbBuild.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHmSURBVDhPY8AGioqKfIrzi/c1Vja+XLtq7YfHjx5fffr0
-        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pk/eeLEf2dPndpXWlrKC1VKHFi7Zu3nXz9/
-        /p84YcK/8+fO/4+JidkSGhrKDJXGD8rLy+Xu3Lnz5PHjxx/r6zs/pKenv587d97/DRs2fmtsbMyAKsMN
-        1q9ev+vsiRNv582bV2lvb88CsjkyMup+cXHpv4kTJzZBlWEH7e3tmc+ePPkPtGkKVAgMgGEgFR4e3g/l
-        YgfHZ3EX/Xh1483eHTsu1dfXc0CFiQMLaxkyfp9Q//9yC8/XzlKDSKgwcWBiIYPFhx18397vFvt/ehbD
-        88IQBiGoFGHQU8Qg8mQD593vRxT/313B8L80kiEfKkUcWNfCsPHvae3/zzdx/J+Qx3AaKkwcmFHKkPJp
-        v8z/d7uE/++fwvAzP4TBEipFGMypZpB/sZX93ddDcv+vL2H4D9TcB5UiDP7/Z2C8vZxh159Tmv+fbmD9
-        v7yB4WS9PQMLVJowmJnGwH/lkMKf19sF/u+YzPAtypXBDigsjoTFgFgUiIWBmA+IOYGYFYiZgBgC1rUL
-        +2/vYTif7sfQA+Q6AbE5EGsCsQwQCwIxSBNCAxwwMAAAHrzJ1G50SewAAAAASUVORK5CYII=
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHlSURBVDhPY8AGioqKfIrzi/c1Vja+XLtq7YfHjx5fffr0
+        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pk/acKEf2dPndpXWlrKC1VKHFi7Zu3nXz9/
+        /p/Q3//v/Lnz/2NiYraEhoYyQ6Xxg/Lycrk7d+48efz48cf6+s4P6enp7+fOnfd/w4aN3xobGzOgynCD
+        9avX7zp74sTbefPmVdrb27OAbI6MjLpfXFz6b+LEiU1QZdhBe3t75rMnT/4DbZoCFQIDYBhIhYeH90O5
+        2MHxWdxFP17deLN3x45L9fX1HFBh4sDCWoaM3yfU/7/cwvO1s9QgEipMHJhYyGDxYQfft/e7xf6fnsXw
+        vDCEQQgqRRj0FDGIPNnAeff7EcX/d1cw/C+NZMiHShEH1rUwbPx7Wvv/800c/yfkMZyGChMHZpQypHza
+        L/P/3S7h//unMPzMD2GwhEoRBnOqGeRfbGV/9/WQ3P/rSxj+AzX3QaUIg///GRhvL2fY9eeU5v+nG1j/
+        L29gOFlvz8AClSYMZqYx8F85pPDn9XaB/zsmM3yLcmWwAwqLI2ExIBYFYmEg5gNiTiBmBWImIIaAde3C
+        /tt7GM6n+zH0ALlOQGwOxJpALAPEgkAM0oTQAAcMDAAJucnOUVEfgQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="tsbBuild.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1093,9 +1093,9 @@
         hBMqhRPATV616j9z9MRtfAaJraIMoaFsUGHCoB4YkIm7Xyi5bXiUZDPncKhx2kxWqBTDxG23+Arm7lZK
         QxKDg/r6/0yx6+6qeSx7kGu88NEejTl3Hqv1HCjymbmJq3jRc+7KTa81ilffKU+cujtOK7Qe00UghcYT
         Tnepd1z8qNB67b9C/eVvanWnN5k0Xu5w6bwzJ3rmg5NJM85tjmhaZgjVggaACUSmbFuETP7JB/J5Z/8r
-        ZJ36r5jV/U8588wfreRz35wrjx8Mq1rhbm9vzwLVgQlUcifyyWXsaZNNPv5JNnrNJamwFdtlQtauVApc
-        Uq4X2K2DNf7RgXzaUg25pA3LZEP7E0Tt4yWkTLOFGYyNMQMNJwDaIhVZaykWlKkEFcEDGBgAh2jg/9X3
-        De4AAAAASUVORK5CYII=
+        ZJ36r5jV9U8588wfreRz35wrjx8Mq1rhbm9vzwLVgQlUcifyyWXsaZNNPv5JNnrNJamwFdtlQtauVApc
+        Uq4X2K2DNf7RgXzaUg25pA3LZEP7E0Tt4yWkTLOFGYyNMQMNJwDaIhVZaykWlKkEFcEDGBgAhoPg/utL
+        4uUAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbUpdate.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1646,66 +1646,6 @@
   <data name="&gt;&gt;tsmiOpenInExplorer.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsbBuildPush.Name" xml:space="preserve">
-    <value>tsbBuildPush</value>
-  </data>
-  <data name="&gt;&gt;tsbBuildPush.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbBuild.Name" xml:space="preserve">
-    <value>tsbBuild</value>
-  </data>
-  <data name="&gt;&gt;tsbBuild.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbPush.Name" xml:space="preserve">
-    <value>tsbPush</value>
-  </data>
-  <data name="&gt;&gt;tsbPush.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbRun.Name" xml:space="preserve">
-    <value>tsbRun</value>
-  </data>
-  <data name="&gt;&gt;tsbRun.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbUpdate.Name" xml:space="preserve">
-    <value>tsbUpdate</value>
-  </data>
-  <data name="&gt;&gt;tsbUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbShowMain.Name" xml:space="preserve">
-    <value>tsbShowMain</value>
-  </data>
-  <data name="&gt;&gt;tsbShowMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbUndo.Name" xml:space="preserve">
-    <value>tsbUndo</value>
-  </data>
-  <data name="&gt;&gt;tsbUndo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbRedo.Name" xml:space="preserve">
-    <value>tsbRedo</value>
-  </data>
-  <data name="&gt;&gt;tsbRedo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbSettings.Name" xml:space="preserve">
-    <value>tsbSettings</value>
-  </data>
-  <data name="&gt;&gt;tsbSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbRenderer.Name" xml:space="preserve">
-    <value>tsbRenderer</value>
-  </data>
-  <data name="&gt;&gt;tsbRenderer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;tsbCreate.Name" xml:space="preserve">
     <value>tsbCreate</value>
   </data>
@@ -1752,6 +1692,66 @@
     <value>tsbPaste</value>
   </data>
   <data name="&gt;&gt;tsbPaste.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbUndo.Name" xml:space="preserve">
+    <value>tsbUndo</value>
+  </data>
+  <data name="&gt;&gt;tsbUndo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbRedo.Name" xml:space="preserve">
+    <value>tsbRedo</value>
+  </data>
+  <data name="&gt;&gt;tsbRedo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbSettings.Name" xml:space="preserve">
+    <value>tsbSettings</value>
+  </data>
+  <data name="&gt;&gt;tsbSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbRenderer.Name" xml:space="preserve">
+    <value>tsbRenderer</value>
+  </data>
+  <data name="&gt;&gt;tsbRenderer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbBuildPush.Name" xml:space="preserve">
+    <value>tsbBuildPush</value>
+  </data>
+  <data name="&gt;&gt;tsbBuildPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbBuild.Name" xml:space="preserve">
+    <value>tsbBuild</value>
+  </data>
+  <data name="&gt;&gt;tsbBuild.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPush.Name" xml:space="preserve">
+    <value>tsbPush</value>
+  </data>
+  <data name="&gt;&gt;tsbPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbRun.Name" xml:space="preserve">
+    <value>tsbRun</value>
+  </data>
+  <data name="&gt;&gt;tsbRun.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbUpdate.Name" xml:space="preserve">
+    <value>tsbUpdate</value>
+  </data>
+  <data name="&gt;&gt;tsbUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbShowMain.Name" xml:space="preserve">
+    <value>tsbShowMain</value>
+  </data>
+  <data name="&gt;&gt;tsbShowMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ctsmiUndo.Name" xml:space="preserve">

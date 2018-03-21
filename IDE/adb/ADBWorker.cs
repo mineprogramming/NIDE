@@ -45,7 +45,7 @@ namespace NIDE.adb
                     ProgramData.Log("ADB", e.Message);
                     if (adb != null)
                         adb.Stop();
-                    ProgramData.MainForm.ProgressBarStatus.Visible = false;
+                    ProgramData.MainForm.StopProgress();
                 }
             });
             task.Start();

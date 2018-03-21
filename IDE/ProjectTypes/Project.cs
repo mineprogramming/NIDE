@@ -173,7 +173,8 @@ namespace NIDE.ProjectTypes
         public void AddScript(string name)
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
-            string ScriptPath = ScriptsPath + name;
+            string backslashed = name.Replace('/', '\\');
+            string ScriptPath = ScriptsPath + backslashed;
             int ind = ScriptPath.LastIndexOf('\\');
             if (ind != -1)
             {

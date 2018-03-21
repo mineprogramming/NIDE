@@ -11,7 +11,9 @@ namespace NIDE.components
         private bool saved;
 
         public FastColoredTextBox Editor { get { return fctb; } }
-        public bool Saved { get
+        public bool Saved
+        {
+            get
             {
                 return fctb.ReadOnly || saved || fctb.Text == "";
             }
@@ -36,6 +38,13 @@ namespace NIDE.components
             }
         }
 
+        public void Reload()
+        {
+            fctb.OpenFile(file, ProgramData.Encoding);
+            saved = true;
+            Text = Path.GetFileName(file);
+        }
+
         public void Save()
         {
             fctb.SaveToFile(file, ProgramData.Encoding);
@@ -48,7 +57,7 @@ namespace NIDE.components
             if (saved)
                 return true;
 
-            var result = MessageBox.Show("Do you want to save changes in " + Path.GetFileName(file) + "?", 
+            var result = MessageBox.Show("Do you want to save changes in " + Path.GetFileName(file) + "?",
                 "Confirmation", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {

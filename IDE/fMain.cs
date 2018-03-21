@@ -33,7 +33,7 @@ namespace NIDE
             CodeAnalysisEngine.Initialize();
             RegistryWorker.Load();
             highlighter = new Highlighter();
-            
+
             try
             {
                 ModPE.LoadData("modpescript_dump.txt");
@@ -139,7 +139,7 @@ namespace NIDE
 
         private void fctbMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 ProgramData.Project.OnEnter(fctbMain);
             }
@@ -147,13 +147,13 @@ namespace NIDE
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach(EditorTab tab in tabControl.TabPages)
+            foreach (EditorTab tab in tabControl.TabPages)
             {
                 if (!tab.CanClose()) e.Cancel = true;
             }
             RegistryWorker.Save();
         }
-        
+
         private void fMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             ADBWorker.Kill();
@@ -275,7 +275,7 @@ namespace NIDE
             try
             {
                 ProgramData.Project = Project.New(FileName);
-                OpenScript(ProgramData.Project.MainScriptPath);
+                OpenScript(ProgramData.Project.MainScriptPath, true);
                 InitProject();
             }
             catch (Exception ex)
@@ -311,7 +311,7 @@ namespace NIDE
         {
             UpdateProject();
             tsbShowMain.Enabled = ProgramData.Project.ShowMainEnabled;
-            if(ProgramData.Project.Type == ProjectType.COREENGINE || ProgramData.Project.Type == ProjectType.INNERCORE)
+            if (ProgramData.Project.Type == ProjectType.COREENGINE || ProgramData.Project.Type == ProjectType.INNERCORE)
             {
                 tsmiNewItem.Enabled = false;
                 tsmiNewLibrary.Enabled = false;
@@ -339,11 +339,11 @@ namespace NIDE
         {
             if (CanChangeFile())
             {
-                if(ProgramData.Project is ModPE)
+                if (ProgramData.Project is ModPE)
                 {
                     OpenScript((ProgramData.Project as ModPE).BuildPath + "main.js");
                 }
-                else if(ProgramData.Project is InnerCore)
+                else if (ProgramData.Project is InnerCore)
                 {
                     OpenScript(ProgramData.Project.Path + "\\main.js");
                 }
@@ -352,11 +352,14 @@ namespace NIDE
         }
 
 
-        private void OpenScript(string FileName)
+        private void OpenScript(string FileName, bool blank = false)
         {
             try
             {
-                currentTab = tabControl.Load(FileName);
+                if (blank)
+                    currentTab = tabControl.LoadBlank(FileName);
+                else
+                    currentTab = tabControl.Load(FileName);
                 fctbMain.ReadOnly = false;
                 Autocomplete.SetAutoompleteMenu(fctbMain);
                 string extension = Path.GetExtension(FileName).ToLower();
@@ -473,8 +476,9 @@ namespace NIDE
             try
             {
                 Invoke(new AddMessageDelegate(_log), new object[] { source, message });
-            } catch (Exception e) { }
-            
+            }
+            catch (Exception e) { }
+
         }
         public void Error(int line, string message)
         {
@@ -507,10 +511,11 @@ namespace NIDE
             errorLines.Add(line);
         }
 
-        
+
         public void StartProgress(int total)
         {
-            Action action = () => {
+            Action action = () =>
+            {
                 ProgressBarStatus.Visible = true;
                 ProgressBarStatus.Maximum = total;
             };
@@ -518,14 +523,16 @@ namespace NIDE
         }
         public void Progress(int progress)
         {
-            Action action = () => {
+            Action action = () =>
+            {
                 ProgressBarStatus.Value = progress;
             };
             Invoke(action);
         }
         public void StopProgress()
         {
-            Action action = () => {
+            Action action = () =>
+            {
                 ProgressBarStatus.Visible = false;
                 ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
                 foreach (var btn in items)
@@ -558,7 +565,7 @@ namespace NIDE
 
         private void tsmiBuild_Click(object sender, EventArgs e)
         {
-            foreach(EditorTab tab in tabControl.TabPages)
+            foreach (EditorTab tab in tabControl.TabPages)
             {
                 tab.Save();
             }
@@ -566,11 +573,12 @@ namespace NIDE
             {
                 ProgramData.Project.Build();
                 Log("Build", "Project successfully built");
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log("Build", "Unable to build project: " + ex.Message);
             }
-            
+
         }
 
         private void tsmiPush_Click(object sender, EventArgs e)
@@ -616,7 +624,7 @@ namespace NIDE
                     catch { OpenScript(path); }
                 else OpenScript(path);
             }
-            else if (Constants.TextExtensions.Contains(extension) || 
+            else if (Constants.TextExtensions.Contains(extension) ||
                 MessageBox.Show("Do you want toopen is as a text file?", "Unknown file format!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 OpenScript(path);

@@ -9,8 +9,8 @@ namespace NIDE.components
         {
             InitializeComponent();
             SizeMode = TabSizeMode.Fixed;
-            DrawMode = TabDrawMode.OwnerDrawFixed;
             ItemSize = new Size(120, 16);
+            DrawMode = TabDrawMode.OwnerDrawFixed;
             DrawItem += FileTabControl_DrawItem;
             MouseDown += FileTabControl_MouseDown;
         }
@@ -34,7 +34,7 @@ namespace NIDE.components
                 Rectangle closeButton = new Rectangle(r.Right - 15, r.Top + 4, 15, 9);
                 if (closeButton.Contains(e.Location))
                 {
-                    if(((EditorTab)TabPages[i]).CanClose())
+                    if (((EditorTab)TabPages[i]).CanClose())
                     {
                         TabPages.RemoveAt(i);
                     }
@@ -49,12 +49,26 @@ namespace NIDE.components
                 if (tab.File == file)
                 {
                     SelectedTab = tab;
+                    tab.Reload();
+                    Refresh();
                     return tab;
                 }
             }
             EditorTab newTab = new EditorTab(file);
             TabPages.Add(newTab);
             SelectedTab = newTab;
+            return newTab;
+        }
+
+        public EditorTab LoadBlank(string file)
+        {
+            EditorTab newTab = new EditorTab(file);
+            TabPages.Add(newTab);
+            foreach(TabPage page in TabPages)
+            {
+                if (page != newTab)
+                    TabPages.Remove(page);
+            }
             return newTab;
         }
     }
