@@ -604,8 +604,13 @@ namespace NIDE
                     catch { OpenScript(path); }
                 else OpenScript(path);
             }
+            else if (extension == ".info")
+            {
+                FModInfo fModInfo = new FModInfo(path);
+                fModInfo.Show();
+            }
             else if (Constants.TextExtensions.Contains(extension) ||
-                MessageBox.Show("Do you want toopen is as a text file?", "Unknown file format!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                MessageBox.Show("Do you want to open is as a text file?", "Unknown file format!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 OpenScript(path);
             }
