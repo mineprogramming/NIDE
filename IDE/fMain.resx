@@ -985,21 +985,21 @@
   <data name="tsbBuildPush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        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
 </value>
   </data>
   <data name="tsbBuildPush.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1011,28 +1011,23 @@
   <data name="tsbBuildPush.Text" xml:space="preserve">
     <value>Build and Push</value>
   </data>
-  <data name="tsbBuild.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHlSURBVDhPY8AGioqKfIrzi/c1Vja+XLtq7YfHjx5fffr0
-        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pk/acKEf2dPndpXWlrKC1VKHFi7Zu3nXz9/
-        /p/Q3//v/Lnz/2NiYraEhoYyQ6Xxg/Lycrk7d+48efz48cf6+s4P6enp7+fOnfd/w4aN3xobGzOgynCD
-        9avX7zp74sTbefPmVdrb27OAbI6MjLpfXFz6b+LEiU1QZdhBe3t75rMnT/4DbZoCFQIDYBhIhYeH90O5
-        2MHxWdxFP17deLN3x45L9fX1HFBh4sDCWoaM3yfU/7/cwvO1s9QgEipMHJhYyGDxYQfft/e7xf6fnsXw
-        vDCEQQgqRRj0FDGIPNnAeff7EcX/d1cw/C+NZMiHShEH1rUwbPx7Wvv/800c/yfkMZyGChMHZpQypHza
-        L/P/3S7h//unMPzMD2GwhEoRBnOqGeRfbGV/9/WQ3P/rSxj+AzX3QaUIg///GRhvL2fY9eeU5v+nG1j/
-        L29gOFlvz8AClSYMZqYx8F85pPDn9XaB/zsmM3yLcmWwAwqLI2ExIBYFYmEg5gNiTiBmBWImIIaAde3C
-        /tt7GM6n+zH0ALlOQGwOxJpALAPEgkAM0oTQAAcMDAAJucnOUVEfgQAAAABJRU5ErkJggg==
-</value>
+  <data name="tsbPushEverything.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
   </data>
-  <data name="tsbBuild.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
+  <data name="tsbPushEverything.Text" xml:space="preserve">
+    <value>Push everything</value>
   </data>
-  <data name="tsbBuild.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+  <data name="tsbPushCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
   </data>
-  <data name="tsbBuild.Text" xml:space="preserve">
-    <value>Build</value>
+  <data name="tsbPushCode.Text" xml:space="preserve">
+    <value>Push code</value>
+  </data>
+  <data name="tsbPushFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>159, 22</value>
+  </data>
+  <data name="tsbPushFiles.Text" xml:space="preserve">
+    <value>Push chosen</value>
   </data>
   <data name="tsbPush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1052,10 +1047,33 @@
     <value>Magenta</value>
   </data>
   <data name="tsbPush.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 24</value>
+    <value>128, 24</value>
   </data>
   <data name="tsbPush.Text" xml:space="preserve">
-    <value>Push</value>
+    <value>Push everything</value>
+  </data>
+  <data name="tsbBuild.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHlSURBVDhPY8AGioqKfIrzi/c1Vja+XLtq7YfHjx5fffr0
+        6fznz5+bQZXgByEhIccT4hO25ebm7mhpbnk9a9as/3///Pnf3Nj47+ypU/tKS0t5oUqJA2vXrP386+fP
+        /40NDf/Onzv/PyYmZktoaCgzVBo/KC8vl7tz586Tx48ff6yv7/yQnp7+fu7cef83bNj4rbGxMQOqDDdY
+        v3r9rrMnTrydN29epb29PQvI5sjIqPvFxaX/Jk6c2ARVhh20t7dnPnvy5D/QpilQITAAhoFUeHh4P5SL
+        HRyfxV3049WNN3t37LhUX1/PARUmDiysZcj4fUL9/8stPF87Sw0iocLEgYmFDBYfdvB9e79b7P/pWQzP
+        C0MYhKBShEFPEYPIkw2cd78fUfx/dwXD/9JIhnyoFHFgXQvDxr+ntf8/38Txf0Iew2moMHFgRilDyqf9
+        Mv/f7RL+v38Kw8/8EAZLqBRhMKeaQf7FVvZ3Xw/J/b++hOE/UHMfVIow+P+fgfH2coZdf05p/n+6gfX/
+        8gaGk/X2DCxQacJgZhoD/5VDCn9ebxf4v2Myw7coVwY7oLA4EhYDYlEgFgZiPiDmBGJWIGYCYghY1y7s
+        v72H4Xy6H0MPkOsExOZArAnEMkAsCMQgTQgNcMDAAADObsl0lZ7S0QAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="tsbBuild.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="tsbBuild.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="tsbBuild.Text" xml:space="preserve">
+    <value>Build</value>
   </data>
   <data name="tsbRun.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1093,9 +1111,9 @@
         hBMqhRPATV616j9z9MRtfAaJraIMoaFsUGHCoB4YkIm7Xyi5bXiUZDPncKhx2kxWqBTDxG23+Arm7lZK
         QxKDg/r6/0yx6+6qeSx7kGu88NEejTl3Hqv1HCjymbmJq3jRc+7KTa81ilffKU+cujtOK7Qe00UghcYT
         Tnepd1z8qNB67b9C/eVvanWnN5k0Xu5w6bwzJ3rmg5NJM85tjmhaZgjVggaACUSmbFuETP7JB/J5Z/8r
-        ZJ36r5jV9U8588wfreRz35wrjx8Mq1rhbm9vzwLVgQlUcifyyWXsaZNNPv5JNnrNJamwFdtlQtauVApc
-        Uq4X2K2DNf7RgXzaUg25pA3LZEP7E0Tt4yWkTLOFGYyNMQMNJwDaIhVZaykWlKkEFcEDGBgAhoPg/utL
-        4uUAAAAASUVORK5CYII=
+        ZJ36r5hV/08588wfreRz35wrjx8Mq1rhbm9vzwLVgQlUcifyyWXsaZNNPv5JNnrNJamwFdtlQtauVApc
+        Uq4X2K2DNf7RgXzaUg25pA3LZEP7E0Tt4yWkTLOFGYyNMQMNJwDaIhVZaykWlKkEFcEDGBgAfKzg8400
+        Fb4AAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tsbUpdate.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
@@ -1131,7 +1149,7 @@
     <value>297, 0</value>
   </data>
   <data name="toolStripProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 27</value>
+    <value>291, 27</value>
   </data>
   <data name="toolStripProject.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1394,11 +1412,23 @@
   <data name="tsmiBuild.Text" xml:space="preserve">
     <value>Build</value>
   </data>
-  <data name="tsmiRunJs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 22</value>
+  <data name="TsmiPushEverything.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
   </data>
-  <data name="tsmiRunJs.Text" xml:space="preserve">
-    <value>Run</value>
+  <data name="TsmiPushEverything.Text" xml:space="preserve">
+    <value>Push everything</value>
+  </data>
+  <data name="TsmiPushCode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="TsmiPushCode.Text" xml:space="preserve">
+    <value>Push code</value>
+  </data>
+  <data name="TsmiChooseFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 22</value>
+  </data>
+  <data name="TsmiChooseFiles.Text" xml:space="preserve">
+    <value>Choose files to push</value>
   </data>
   <data name="tsmiPush.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 22</value>
@@ -1411,6 +1441,12 @@
   </data>
   <data name="tsmiBuildAndPush.Text" xml:space="preserve">
     <value>Build and Push</value>
+  </data>
+  <data name="tsmiRunJs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="tsmiRunJs.Text" xml:space="preserve">
+    <value>Run</value>
   </data>
   <data name="tsmiRun.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 20</value>
@@ -1724,16 +1760,34 @@
   <data name="&gt;&gt;tsbBuildPush.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsbBuild.Name" xml:space="preserve">
-    <value>tsbBuild</value>
-  </data>
-  <data name="&gt;&gt;tsbBuild.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;tsbPush.Name" xml:space="preserve">
     <value>tsbPush</value>
   </data>
   <data name="&gt;&gt;tsbPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSplitButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPushEverything.Name" xml:space="preserve">
+    <value>tsbPushEverything</value>
+  </data>
+  <data name="&gt;&gt;tsbPushEverything.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPushCode.Name" xml:space="preserve">
+    <value>tsbPushCode</value>
+  </data>
+  <data name="&gt;&gt;tsbPushCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPushFiles.Name" xml:space="preserve">
+    <value>tsbPushFiles</value>
+  </data>
+  <data name="&gt;&gt;tsbPushFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbBuild.Name" xml:space="preserve">
+    <value>tsbBuild</value>
+  </data>
+  <data name="&gt;&gt;tsbBuild.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsbRun.Name" xml:space="preserve">
@@ -1952,22 +2006,40 @@
   <data name="&gt;&gt;tsmiBuild.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tsmiRunJs.Name" xml:space="preserve">
-    <value>tsmiRunJs</value>
-  </data>
-  <data name="&gt;&gt;tsmiRunJs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;tsmiPush.Name" xml:space="preserve">
     <value>tsmiPush</value>
   </data>
   <data name="&gt;&gt;tsmiPush.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;TsmiPushEverything.Name" xml:space="preserve">
+    <value>TsmiPushEverything</value>
+  </data>
+  <data name="&gt;&gt;TsmiPushEverything.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TsmiPushCode.Name" xml:space="preserve">
+    <value>TsmiPushCode</value>
+  </data>
+  <data name="&gt;&gt;TsmiPushCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TsmiChooseFiles.Name" xml:space="preserve">
+    <value>TsmiChooseFiles</value>
+  </data>
+  <data name="&gt;&gt;TsmiChooseFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tsmiBuildAndPush.Name" xml:space="preserve">
     <value>tsmiBuildAndPush</value>
   </data>
   <data name="&gt;&gt;tsmiBuildAndPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiRunJs.Name" xml:space="preserve">
+    <value>tsmiRunJs</value>
+  </data>
+  <data name="&gt;&gt;tsmiRunJs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiOptions.Name" xml:space="preserve">

@@ -89,8 +89,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adb\ADBWorker.cs" />
+    <Compile Include="adb\FChooseFiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adb\FChooseFiles.Designer.cs">
+      <DependentUpon>FChooseFiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="adb\FileSyncProgressMonitor.cs" />
     <Compile Include="adb\OutputLogReceiver.cs" />
+    <Compile Include="adb\Util.cs" />
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="components\EditorTab.cs">
@@ -177,6 +184,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="RegistryWorker.cs" />
     <Compile Include="Util.cs" />
+    <EmbeddedResource Include="adb\FChooseFiles.resx">
+      <DependentUpon>FChooseFiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="components\EditorTab.resx">
       <DependentUpon>EditorTab.cs</DependentUpon>
     </EmbeddedResource>

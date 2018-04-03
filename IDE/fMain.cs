@@ -494,7 +494,7 @@ namespace NIDE
         }
         private void _log(string source, string message)
         {
-            string format = "[{0}]: {1} \n";
+            string format = "[{0}]: {1} \r\n";
             logger.AppendText(string.Format(format, source, message));
         }
         private void _error(int line, string message)
@@ -534,9 +534,7 @@ namespace NIDE
             Action action = () =>
             {
                 ProgressBarStatus.Visible = false;
-                ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
-                foreach (var btn in items)
-                    btn.Enabled = true;
+                PushButtonsEnabled = true;
             };
             Invoke(action);
         }
@@ -581,18 +579,10 @@ namespace NIDE
 
         }
 
-        private void tsmiPush_Click(object sender, EventArgs e)
-        {
-            ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
-            foreach (var btn in items)
-                btn.Enabled = false;
-            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
-        }
-
-        private void tsbBuildPush_Click(object sender, EventArgs e)
+        private void TsbBuildPush_Click(object sender, EventArgs e)
         {
             tsmiBuild_Click(sender, e);
-            tsmiPush_Click(sender, e);
+            TsbPushEverything_Click(sender, e);
         }
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
@@ -856,5 +846,73 @@ namespace NIDE
                 tab.Save();
             }
         }
+
+
+        #region ADB buttons
+
+        private bool PushButtonsEnabled
+        {
+            get
+            {
+                return tsbPush.Enabled;
+            }
+            set
+            {
+                ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
+                foreach (var btn in items)
+                    btn.Enabled = value;
+            }
+        }
+
+        private void TogglePushButton(object sender)
+        {
+            if (tsbPush != sender)
+            {
+                tsbPush.Tag = sender;
+                tsbPush.Text = (sender as ToolStripMenuItem).Text;
+            }
+        }
+
+        private void TsbPush_ButtonClick(object sender, EventArgs e)
+        {
+            (tsbPush.Tag as ToolStripMenuItem).PerformClick();
+        }
+
+        private void TsbPushEverything_Click(object sender, EventArgs e)
+        {
+            PushButtonsEnabled = false;
+            TogglePushButton(sender);
+            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
+        }
+
+        private void TsbPushCode_Click(object sender, EventArgs e)
+        {
+            PushButtonsEnabled = false;
+            TogglePushButton(sender);
+            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.CodePath), "dev/");
+        }
+
+        private void PushChosen(bool forceWindow = false)
+        {
+            FChooseFiles form = new FChooseFiles();
+            if (form.ShowDialog(forceWindow) == DialogResult.OK)
+            {
+                PushButtonsEnabled = false;
+                TogglePushButton(tsbPushFiles);
+                ADBWorker.Push(form.Files, ProgramData.Project.PushPath);
+            }
+        }
+
+        private void TsbPushFiles_Click(object sender, EventArgs e)
+        {
+            PushChosen();
+        }
+
+        private void TsmiChooseFiles_Click(object sender, EventArgs e)
+        {
+            PushChosen(true);
+        }        
+
+        #endregion
     }
 }

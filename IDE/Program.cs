@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,6 +12,10 @@ namespace NIDE
     static class Program
     {
         public static fSplashScreen splashForm = null;
+
+        [DllImport("coredll.dll")]
+        static extern bool SetForegroundWindow(IntPtr hWnd);
+
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -31,6 +36,7 @@ namespace NIDE
             fMain mainForm = new fMain(args);
             mainForm.Load += new EventHandler(fMain_Load);
             Application.Run(mainForm);
+            SetForegroundWindow(mainForm.Handle);
         }
 
         private static void fMain_Load(object sender, EventArgs e)

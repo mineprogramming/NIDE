@@ -64,6 +64,8 @@ namespace NIDE.ProjectTypes
         private string OutPath => Path + "\\out\\";
         private string ResPath => Path + "\\source\\res\\images\\";
 
+        public override string CodePath => BuildPath + "main.js";
+
         public static void LoadData(string path)
         {
             foreach (var key in JavaScript.Modules.Keys)

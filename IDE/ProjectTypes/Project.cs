@@ -30,6 +30,7 @@ namespace NIDE.ProjectTypes
         public abstract string ItemsOpaquePath { get; }
         public abstract string TerrainAtlasPath { get; }
         public abstract string ScriptsPath { get; }
+        public abstract string CodePath { get; }
         public abstract string OtherResourcesPath { get; }
         public abstract string MainScriptPath { get; }
         public abstract string SourceCodePath { get; }

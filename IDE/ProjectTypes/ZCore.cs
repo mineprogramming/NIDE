@@ -121,6 +121,7 @@ namespace NIDE.ProjectTypes
         public override string ItemsOpaquePath => Path + "\\assets\\items-opaque\\";
         public override string TerrainAtlasPath => Path + "\\assets\\terrain-atlas\\";
         public override string ScriptsPath => Path + "\\dev\\";
+        public override string CodePath => ScriptsPath;
         public override string OtherResourcesPath => Path + "\\assets\\other\\";
         public override string MainScriptPath => Path + "\\dev\\.includes";
         public override string SourceCodePath => Path;

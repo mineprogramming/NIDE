@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace NIDE.adb
@@ -14,19 +13,18 @@ namespace NIDE.adb
 
         public static bool RunProgram { get; set; }
 
-        public static void Push(DirectoryInfo directory)
+        public static void Push(List<string> files, string basedir, string subdir = "")
         {
             Task task = new Task(() =>
             {
                 try
                 {
-
                     StopLog();
                     var device = GetFirstDevice();
                     using (SyncService sync = device.SyncService)
                     {
                         ProgramData.Log("ADB", "Starting copying files.......");
-                        PushRecursive(sync, device, directory, ProgramData.Project.Name + "/");
+                        PushFiles(files, basedir, ProgramData.Project.Name + "/" + subdir, sync);
                         sync.Close();
                         ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
                     }
@@ -49,6 +47,12 @@ namespace NIDE.adb
                 }
             });
             task.Start();
+        }
+
+        public static void Push(DirectoryInfo directory, string subdir = "")
+        {
+            var files = Util.GetFileList(directory);
+            Push(files, directory.FullName, subdir);
         }
 
         public static void Kill()
@@ -120,15 +124,16 @@ namespace NIDE.adb
             return devices[0];
         }
 
-        private static void PushRecursive(SyncService sync, Device device, DirectoryInfo directory, string subdir)
+        private static void PushFiles(List<string> files, string localBasedir, string remoteBasedir, SyncService sync)
         {
-            List<string> files = directory.GetFiles().Select(x => x.FullName).ToList();
-            sync.Push(files, FileEntry.FindOrCreate(device, ProgramData.Project.ADBPushPath + subdir), new FileSyncProgressMonitor());
-            foreach (var dir in directory.GetDirectories())
-                PushRecursive(sync, device, dir, subdir + dir.Name + "/");
-
+            var monitor = new FileSyncProgressMonitor(files.Count);
+            foreach (string file in files)
+            {
+                string relative = file.Substring(localBasedir.Length).TrimStart('\\').Replace('\\', '/');
+                ProgramData.Log("ADB", "Pushing: " + relative);
+                string remotePath = ProgramData.Project.ADBPushPath + remoteBasedir + relative;
+                sync.PushFile(file, remotePath, monitor);
+            }
         }
-
-
     }
 }
