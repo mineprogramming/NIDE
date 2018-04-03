@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.CLBFiles = new System.Windows.Forms.CheckedListBox();
+            this.ClbFiles = new System.Windows.Forms.CheckedListBox();
             this.BtnPush = new System.Windows.Forms.Button();
             this.CBDontAsk = new System.Windows.Forms.CheckBox();
             this.BtnCancel = new System.Windows.Forms.Button();
@@ -36,13 +36,13 @@
             // 
             // CLBFiles
             // 
-            this.CLBFiles.CheckOnClick = true;
-            this.CLBFiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.CLBFiles.FormattingEnabled = true;
-            this.CLBFiles.Location = new System.Drawing.Point(0, 0);
-            this.CLBFiles.Name = "CLBFiles";
-            this.CLBFiles.Size = new System.Drawing.Size(488, 289);
-            this.CLBFiles.TabIndex = 0;
+            this.ClbFiles.CheckOnClick = true;
+            this.ClbFiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ClbFiles.FormattingEnabled = true;
+            this.ClbFiles.Location = new System.Drawing.Point(0, 0);
+            this.ClbFiles.Name = "CLBFiles";
+            this.ClbFiles.Size = new System.Drawing.Size(488, 289);
+            this.ClbFiles.TabIndex = 0;
             // 
             // BtnPush
             // 
@@ -82,7 +82,7 @@
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.CBDontAsk);
             this.Controls.Add(this.BtnPush);
-            this.Controls.Add(this.CLBFiles);
+            this.Controls.Add(this.ClbFiles);
             this.Name = "FChooseFiles";
             this.Text = "Choose files to push";
             this.ResumeLayout(false);
@@ -92,7 +92,7 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox CLBFiles;
+        private System.Windows.Forms.CheckedListBox ClbFiles;
         private System.Windows.Forms.Button BtnPush;
         private System.Windows.Forms.CheckBox CBDontAsk;
         private System.Windows.Forms.Button BtnCancel;

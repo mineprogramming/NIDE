@@ -25,10 +25,12 @@ namespace NIDE.adb
         public FChooseFiles()
         {
             InitializeComponent();
-            var files = Util.GetFileList(new DirectoryInfo(basedir)).Relative(basedir);
-            foreach (string file in files)
+            var pathes = Util.GetFileList(new DirectoryInfo(basedir));
+            var files = pathes.Relative(basedir);
+            for (int i = 0; i < files.Count; i++)
             {
-                CLBFiles.Items.Add(file);
+                bool check = Files.Contains(pathes[i]);
+                ClbFiles.Items.Add(files[i], check);
             }
         }
 
@@ -45,7 +47,7 @@ namespace NIDE.adb
         private void BtnPush_Click(object sender, EventArgs e)
         {
             Files.Clear();
-            foreach(string file in CLBFiles.CheckedItems)
+            foreach(string file in ClbFiles.CheckedItems)
             {
                 Files.Add(Path.Combine(basedir, file));
             }
