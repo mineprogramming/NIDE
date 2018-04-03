@@ -69,11 +69,6 @@ namespace NIDE
             }
         }
 
-        private static string ObjectToJson(object obj)
-        {
-            return new JavaScriptSerializer().Serialize(obj);
-        }
-
         private bool SaveJson()
         {
             string json = "";
@@ -98,7 +93,7 @@ namespace NIDE
                         texture = new Texture(item_icon.Text, (int)item_index.Value),
                         maxStack = (int)item_stack.Value
                     };
-                    json = ObjectToJson(item);
+                    json = item.ToJson();
                     break;
                 case "Block":
                     if (block_name.Text == "" || block_texture.Text == "")
@@ -118,7 +113,7 @@ namespace NIDE
                         destroyTime = block_destroy.Value,
                         explosionResistance = block_explosion.Value
                     };
-                    json = ObjectToJson(block);
+                    json = block.ToJson();
                     break;
                 case "Food":
                     if (food_name.Text == "" || food_icon.Text == "")
@@ -135,7 +130,7 @@ namespace NIDE
                         maxStack = (int)food_stack.Value,
                         restore = (int)food_restore.Value
                     };
-                    json = ObjectToJson(food);
+                    json = food.ToJson();
                     break;
                 case "Armor":
                     if (armor_name.Text == "" || armor_icon.Text == "" || armor_texture.Text == "")
@@ -154,7 +149,7 @@ namespace NIDE
                         maxDamage = (int)armor_max.Value,
                         armorTexture = armor_texture.Text
                     };
-                    json = ObjectToJson(armor);
+                    json = armor.ToJson();
                     break;
                 case "Throwable":
                     if (throwable_name.Text == "" || throwable_icon.Text == "")
@@ -170,7 +165,7 @@ namespace NIDE
                         texture = new Texture(throwable_icon.Text, (int)throwable_index.Value),
                         maxStack = (int)throwable_stack.Value
                     };
-                    json = ObjectToJson(throwable);
+                    json = throwable.ToJson();
                     break;
             }
             name = tbFilename.Text;

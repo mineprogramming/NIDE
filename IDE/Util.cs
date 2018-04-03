@@ -14,6 +14,11 @@ namespace NIDE
             return new JavaScriptSerializer().Deserialize<type>(JSON);
         }
 
+        public static string ToJson(this object obj)
+        {
+            return new JavaScriptSerializer().Serialize(obj);
+        }
+
         public static void FillDirectoryNodes(TreeNode node, DirectoryInfo dir)
         {
             try
