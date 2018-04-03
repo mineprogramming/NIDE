@@ -467,44 +467,37 @@ namespace NIDE
         //Log and errors
         private List<int> errorLines = new List<int>();
 
-        public delegate void AddMessageDelegate(string source, string message);
-        public delegate void ErrorDelegate(int source, string message);
-        public delegate void ClearLogDelegate();
-        public delegate void UpdateHighlightingDelegate(Range range);
         public void Log(string source, string message)
         {
             try
             {
-                Invoke(new AddMessageDelegate(_log), new object[] { source, message });
+                Invoke(new Action(() => {
+                    string format = "[{0}]: {1} \r\n";
+                    logger.AppendText(string.Format(format, source, message));
+                }));
             }
             catch (Exception e) { }
 
         }
         public void Error(int line, string message)
         {
-            Invoke(new ErrorDelegate(_error), new object[] { line, message });
+            Invoke(new Action(() =>
+            {
+                errors.AppendText("Line " + line + ": " + message + "\n");
+            }));
         }
         public void ClearErrors()
         {
-            Invoke(new ClearLogDelegate(_clear));
+            Invoke( new Action(() => {
+                errors.Clear();
+                errorLines.Clear();
+            }));
         }
         public void UpdateHighlighting(Range range)
         {
-            Invoke(new UpdateHighlightingDelegate(highlighter.ResetStyles), range);
-        }
-        private void _log(string source, string message)
-        {
-            string format = "[{0}]: {1} \r\n";
-            logger.AppendText(string.Format(format, source, message));
-        }
-        private void _error(int line, string message)
-        {
-            errors.AppendText("Line " + line + ": " + message + "\n");
-        }
-        private void _clear()
-        {
-            errors.Clear();
-            errorLines.Clear();
+            Invoke(new Action(() => {
+                highlighter.ResetStyles(range);
+            }));
         }
         public void HighlightError(int line)
         {
@@ -514,29 +507,26 @@ namespace NIDE
 
         public void StartProgress(int total)
         {
-            Action action = () =>
+            Invoke(new Action(() =>
             {
                 ProgressBarStatus.Visible = true;
                 ProgressBarStatus.Maximum = total;
-            };
-            Invoke(action);
+            }));
         }
         public void Progress(int progress)
         {
-            Action action = () =>
+            Invoke(new Action(() =>
             {
                 ProgressBarStatus.Value = progress;
-            };
-            Invoke(action);
+            }));
         }
         public void StopProgress()
         {
-            Action action = () =>
+            Invoke(new Action(() =>
             {
                 ProgressBarStatus.Visible = false;
                 PushButtonsEnabled = true;
-            };
-            Invoke(action);
+            }));
         }
 
         private void fctbMain_PaintLine(object sender, PaintLineEventArgs e)
