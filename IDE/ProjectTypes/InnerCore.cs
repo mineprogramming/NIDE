@@ -87,6 +87,9 @@ NIDE BUILD INFO:
   ]
 }", ProgramData.Encoding);
             File.WriteAllText(SourceCodePath + "\\launcher.js", "Launch();", ProgramData.Encoding);
+
+            FModInfo fModInfo = new FModInfo(SourceCodePath + "\\mod.info", Name);
+            fModInfo.Show();
         }
     }
 }

@@ -25,10 +25,12 @@ namespace NIDE.ProjectTypes
             {
                 string json = File.ReadAllText(filename);
                 info = json.ToObject<ModInfo>();
+                if (info == null)
+                    throw new Exception();
             }
             catch (Exception e)
             {
-                info = new ModInfo(name, author, "", "");
+                info = new ModInfo(name, author, "1.0", "");
             }
             TbName.Text = info.name;
             TbAuthor.Text = info.author;

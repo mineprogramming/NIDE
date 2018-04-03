@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using NIDE.Languages;
 using System.Windows.Forms;
-using System;
 
 namespace NIDE.ProjectTypes
 {
