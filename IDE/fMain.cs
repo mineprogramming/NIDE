@@ -582,7 +582,7 @@ namespace NIDE
         private void TsbBuildPush_Click(object sender, EventArgs e)
         {
             tsmiBuild_Click(sender, e);
-            TsbPushEverything_Click(sender, e);
+            TsbPush_ButtonClick(sender, e);
         }
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
