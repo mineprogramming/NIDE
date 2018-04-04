@@ -73,13 +73,13 @@ namespace NIDE.ProjectTypes
             Patterns = new Dictionary<string, string>();
             string text = File.ReadAllText(pattern);
             string[] patterns = text.Split(';');
-            for(int i = 1; i < patterns.Length; i += 2)
+            for (int i = 1; i < patterns.Length; i += 2)
                 Patterns.Add(patterns[i - 1].Trim(' ', '\n', '\r') + ";", patterns[i].Trim(' ', '\n', '\r'));
         }
 
         public ZCore(string projectFile) : base(projectFile) { }
 
-        public ZCore(string path, string projectName): base(path, projectName){ }
+        public ZCore(string path, string projectName) : base(path, projectName) { }
 
         public override List<AutocompleteItem> GetListByClassName(string className)
         {
@@ -131,9 +131,26 @@ namespace NIDE.ProjectTypes
         {
             List<string> files = new List<string>();
             files.AddRange(File.ReadAllLines(MainScriptPath, ProgramData.Encoding));
-            files.Add(name);
-            files.Sort();
+
+            string newpath = GetPath(name);
+            
+            for(int i = 1; i < files.Count; i++)
+            {
+                string path = GetPath(files[i]);
+                if(GetPath(files[i - 1]) == newpath && GetPath(files[i]) != newpath)
+                {
+                    files.Insert(i, name);
+                    break;
+                }
+            }
+            if (!files.Contains(name)) files.Add(name);
+
             File.WriteAllLines(MainScriptPath, files);
+        }
+
+        private string GetPath(string name)
+        {
+            return name.Contains('/') ? name.Substring(0, name.IndexOf('/')) : "/";
         }
 
         public override void Post_tree_reload(TreeNode node) { }
