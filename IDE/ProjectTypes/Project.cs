@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.ProjectTypes.ZCore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -35,6 +36,7 @@ namespace NIDE.ProjectTypes
         public abstract string MainScriptPath { get; }
         public abstract string SourceCodePath { get; }
         public abstract string PushPath { get; }
+        public abstract string BuiltScriptPath { get; }
 
         public abstract string[] Filesystem { get; }
         

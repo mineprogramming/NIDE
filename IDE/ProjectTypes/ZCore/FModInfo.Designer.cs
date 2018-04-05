@@ -1,4 +1,4 @@
-﻿namespace NIDE.ProjectTypes
+﻿namespace NIDE.ProjectTypes.ZCore
 {
     partial class FModInfo
     {

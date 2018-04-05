@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.Editors;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -10,7 +11,9 @@ namespace NIDE.components
         private string file;
         private bool saved;
 
-        public FastColoredTextBox Editor { get { return fctb; } }
+        public FastColoredTextBox TextBox { get { return fctb; } }
+        public CodeEditor Editor { get; private set; }
+
         public bool Saved
         {
             get
@@ -20,12 +23,13 @@ namespace NIDE.components
         }
         public string File { get { return file; } }
 
-        public EditorTab(string file)
+        public EditorTab(string file, CodeEditor editor)
         {
             InitializeComponent();
             DoubleBuffered = true;
             Controls.Add(fctb);
             this.file = file;
+            Editor = editor;
             try
             {
                 fctb.OpenFile(file, ProgramData.Encoding);

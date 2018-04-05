@@ -45,6 +45,7 @@ namespace NIDE.ProjectTypes
         public override string MainScriptPath => Path + "\\source\\scripts\\main.js";
         public override string SourceCodePath => Path + "\\source\\";
         public override string PushPath => BuildPath;
+        public override string BuiltScriptPath => BuildPath + "main.js";
 
         public override string[] Filesystem => new string[] {
                 "\\source\\",

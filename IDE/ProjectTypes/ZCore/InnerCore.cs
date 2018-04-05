@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace NIDE.ProjectTypes
+namespace NIDE.ProjectTypes.ZCore
 {
     class InnerCore : ZCore
     {

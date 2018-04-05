@@ -1,5 +1,6 @@
 ﻿using FastColoredTextBoxNS;
 using NIDE.ProjectTypes;
+using NIDE.ProjectTypes.ZCore;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;

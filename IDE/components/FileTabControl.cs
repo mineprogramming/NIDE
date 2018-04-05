@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using NIDE.Editors;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace NIDE.components
@@ -42,7 +43,7 @@ namespace NIDE.components
             }
         }
 
-        public EditorTab Load(string file)
+        public EditorTab Load(string file, CodeEditor editor)
         {
             foreach (EditorTab tab in TabPages)
             {
@@ -54,15 +55,15 @@ namespace NIDE.components
                     return tab;
                 }
             }
-            EditorTab newTab = new EditorTab(file);
+            EditorTab newTab = new EditorTab(file, editor);
             TabPages.Add(newTab);
             SelectedTab = newTab;
             return newTab;
         }
 
-        public EditorTab LoadBlank(string file)
+        public EditorTab LoadBlank(string file, CodeEditor editor)
         {
-            EditorTab newTab = new EditorTab(file);
+            EditorTab newTab = new EditorTab(file, editor);
             TabPages.Add(newTab);
             foreach(TabPage page in TabPages)
             {

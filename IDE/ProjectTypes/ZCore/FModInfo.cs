@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using NIDE;
 using System.IO;
 
-namespace NIDE.ProjectTypes
+namespace NIDE.ProjectTypes.ZCore
 {
     public partial class FModInfo : Form
     {

@@ -9,6 +9,8 @@ using NIDE.ProjectTypes;
 using NIDE.adb;
 using System.Collections.Generic;
 using NIDE.components;
+using NIDE.ProjectTypes.ZCore;
+using NIDE.Editors;
 
 namespace NIDE
 {
@@ -19,7 +21,8 @@ namespace NIDE
 
         private Highlighter highlighter;
 
-        public FastColoredTextBox fctbMain { get { return currentTab.Editor; } }
+        public FastColoredTextBox fctbMain { get { return currentTab.TextBox; } }
+        public CodeEditor CurrentEditor { get { return currentTab.Editor; } }
         private EditorTab currentTab;
 
 
@@ -113,28 +116,7 @@ namespace NIDE
 
         private void fctbMain_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (fctbMain.Language == Language.JS && ProgramData.Project != null)
-            {
-                if (currentTab.File.EndsWith(".js"))
-                {
-                    CodeAnalysisEngine.Update();
-                    ProgramData.MainForm.UpdateHighlighting(e.ChangedRange);
-
-                    //Place pos = fctbMain.Selection.Start;
-                    //string line = fctbMain.GetLine(pos.iLine).Text.Trim();
-                    //string prevLine = fctbMain.GetLine(pos.iLine - 1 >= 0 ? pos.iLine - 1 : 0).Text.Trim();
-                    //char prev = prevLine == ""? ' ': prevLine.Last();
-
-                    //if ((line == "}" && prev == '{')
-                    //    || (line == "]" && prev == '[')
-                    //    || (line == ")" && prev == '{'))
-                    //{
-                    //    fctbMain.InsertText("\n" + new string(' ', fctbMain.TextSource[fctbMain.Selection.Start.iLine].StartSpacesCount));
-                    //    fctbMain.Selection.Start = new Place(fctbMain.Selection.Start.iChar, fctbMain.Selection.Start.iLine - 1);
-                    //    fctbMain.InsertText("    ");
-                    //}
-                }
-            }
+            CurrentEditor.Update(e.ChangedRange);
         }
 
         private void fctbMain_KeyDown(object sender, KeyEventArgs e)
@@ -275,7 +257,7 @@ namespace NIDE
             try
             {
                 ProgramData.Project = Project.New(FileName);
-                OpenScript(ProgramData.Project.MainScriptPath, true);
+                EditorsManager.GetEditor(ProgramData.Project.MainScriptPath).Edit();
                 InitProject();
             }
             catch (Exception ex)
@@ -339,52 +321,29 @@ namespace NIDE
         {
             if (CanChangeFile())
             {
-                if (ProgramData.Project is ModPE)
-                {
-                    OpenScript((ProgramData.Project as ModPE).BuildPath + "main.js");
-                }
-                else if (ProgramData.Project is InnerCore)
-                {
-                    OpenScript(ProgramData.Project.Path + "\\main.js");
-                }
-                fctbMain.ReadOnly = true;
+                Editor editor = EditorsManager.GetEditor(ProgramData.Project.BuiltScriptPath);
+                editor.Edit();
+                fctbMain.ReadOnly = true;                
             }
         }
 
 
-        private void OpenScript(string FileName, bool blank = false)
+        public EditorTab OpenScript(string FileName, CodeEditor editor, bool blank = false)
         {
             try
             {
                 if (blank)
-                    currentTab = tabControl.LoadBlank(FileName);
+                    currentTab = tabControl.LoadBlank(FileName, editor);
                 else
-                    currentTab = tabControl.Load(FileName);
-                fctbMain.ReadOnly = false;
-                Autocomplete.SetAutoompleteMenu(fctbMain);
-                string extension = Path.GetExtension(FileName).ToLower();
-                if (extension == ".js")
-                    InitJS();
-                else
-                    InitOther();
+                    currentTab = tabControl.Load(FileName, editor);
                 highlighter.RefreshStyles();
+                return currentTab;
             }
             catch (Exception e)
             {
                 Log("FileSystem", "Unable to open script! " + e.Message);
+                return null;
             }
-        }
-
-        private void InitJS()
-        {
-            fctbMain.Language = Language.JS;
-            Autocomplete.Enabled = true;
-        }
-
-        private void InitOther()
-        {
-            fctbMain.Language = Language.Custom;
-            Autocomplete.Enabled = false;
         }
 
 
@@ -407,8 +366,8 @@ namespace NIDE
                             ProgramData.Project = new InnerCore(form.path, form.name);
                             break;
                     }
-
-                    OpenScript(ProgramData.Project.MainScriptPath);
+                    Editor editor = EditorsManager.GetEditor(ProgramData.Project.MainScriptPath);
+                    editor.Edit();
                     InitProject();
                 }
                 catch (Exception ex)
@@ -601,18 +560,19 @@ namespace NIDE
                     {
                         new fJsonItem(path).Show();
                     }
-                    catch { OpenScript(path); }
-                else OpenScript(path);
+                    catch { EditorsManager.GetEditor(path).Edit(); }
+                else EditorsManager.GetEditor(path).Edit();
             }
             else if (extension == ".info")
             {
-                FModInfo fModInfo = new FModInfo(path);
-                fModInfo.Show();
+                Editor editor = EditorsManager.GetEditor(path);
+                editor.Edit();
             }
             else if (Constants.TextExtensions.Contains(extension) ||
                 MessageBox.Show("Do you want to open is as a text file?", "Unknown file format!", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                OpenScript(path);
+                Editor editor = EditorsManager.GetEditor(path);
+                editor.Edit();
             }
         }
 

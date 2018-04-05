@@ -5,7 +5,7 @@ using System.Linq;
 using NIDE.Languages;
 using System.Windows.Forms;
 
-namespace NIDE.ProjectTypes
+namespace NIDE.ProjectTypes.ZCore
 {
     abstract class ZCore : Project
     {
@@ -126,6 +126,7 @@ namespace NIDE.ProjectTypes
         public override string SourceCodePath => Path;
         public override string PushPath => Path;
         public string ResPath => Path + "\\assets\\";
+        public override string BuiltScriptPath => Path + "\\main.js";
 
         public override void Post_add_script(string name)
         {

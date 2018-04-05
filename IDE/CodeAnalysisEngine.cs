@@ -36,6 +36,12 @@ namespace NIDE
             else shouldUpdate = true;
         }
 
+        public static void Stop()
+        {
+            if (updateThread != null)
+                updateThread.Abort();
+        }
+
         private static void _Update()
         {
             try
