@@ -13,7 +13,8 @@ namespace NIDE.Editors
             new Dictionary<Type, IReadOnlyCollection<string>>()
             {
                 { typeof(ModInfoEditor), new string[] { ".info" } },
-                { typeof(JSCodeEditor), new string[] {".js"} }
+                { typeof(JSCodeEditor), new string[] {".js"} },
+                { typeof(IncludesEditor), new string[]{".includes"} }
             };
 
         public static void RegisterEditor(Type editor, string[] extentions)

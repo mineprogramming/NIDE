@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NIDE;
 using System.IO;
+using NIDE.UI;
 
 namespace NIDE.ProjectTypes.ZCore
 {
-    public partial class FModInfo : Form
+    public partial class FModInfo : DialogForm
     {
         private ModInfo info;
         private string filename;
@@ -38,7 +39,7 @@ namespace NIDE.ProjectTypes.ZCore
             TbDescription.Text = info.description;
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        protected override void OnOk()
         {
             info.name = TbName.Text;
             info.author = TbAuthor.Text;
@@ -46,11 +47,6 @@ namespace NIDE.ProjectTypes.ZCore
             info.description = TbDescription.Text;
             string json = info.ToJson();
             File.WriteAllText(filename, json);
-            Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
             Close();
         }
 

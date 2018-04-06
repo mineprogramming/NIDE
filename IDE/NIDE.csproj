@@ -113,6 +113,13 @@
       <DependentUpon>FileTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
+    <Compile Include="ProjectTypes\ZCore\IncludesEditor.cs" />
+    <Compile Include="UI\DialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DialogForm.Designer.cs">
+      <DependentUpon>DialogForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DynamicCollection.cs" />
     <Compile Include="Editors\CodeEditor.cs" />
     <Compile Include="Editors\DefaultCodeEditor.cs" />
@@ -128,11 +135,11 @@
     <Compile Include="fCraft.Designer.cs">
       <DependentUpon>fCraft.cs</DependentUpon>
     </Compile>
-    <Compile Include="fDialog.cs">
+    <Compile Include="UI\NewDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fDialog.Designer.cs">
-      <DependentUpon>fDialog.cs</DependentUpon>
+    <Compile Include="UI\NewDialog.Designer.cs">
+      <DependentUpon>NewDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="fJsonItem.cs">
       <SubType>Form</SubType>
@@ -202,11 +209,14 @@
     <EmbeddedResource Include="components\EditorTab.resx">
       <DependentUpon>EditorTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\DialogForm.resx">
+      <DependentUpon>DialogForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fCraft.resx">
       <DependentUpon>fCraft.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fDialog.resx">
-      <DependentUpon>fDialog.cs</DependentUpon>
+    <EmbeddedResource Include="UI\NewDialog.resx">
+      <DependentUpon>NewDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fJsonItem.resx">
       <DependentUpon>fJsonItem.cs</DependentUpon>

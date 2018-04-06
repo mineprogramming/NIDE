@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using NIDE.components;
 using NIDE.ProjectTypes.ZCore;
 using NIDE.Editors;
+using NIDE.UI;
 
 namespace NIDE
 {
@@ -26,7 +27,7 @@ namespace NIDE
         private EditorTab currentTab;
 
 
-        //Main form
+        #region Main form
         public fMain(string[] args)
         {
             Directory.SetCurrentDirectory(Application.StartupPath);
@@ -142,13 +143,13 @@ namespace NIDE
             Environment.Exit(0);
         }
 
-
         //Connections
         public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
         public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
+        #endregion
+        
 
-
-        //Textworking
+        #region Edit
         private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
         private void tsmiRedo_Click(object sender, EventArgs e) { fctbMain.Redo(); }
         private void tsmiFind_Click(object sender, EventArgs e) { fctbMain.ShowFindDialog(); }
@@ -159,9 +160,10 @@ namespace NIDE
         private void tsbCut_Click(object sender, EventArgs e) { fctbMain.Cut(); }
         private void tsbCopy_Click(object sender, EventArgs e) { fctbMain.Copy(); }
         private void tsbPaste_Click(object sender, EventArgs e) { fctbMain.Paste(); }
+        #endregion
 
 
-        //Inserts
+        #region Insert
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
             if (!ProgramData.Project.LibraryInstalled("ItemsEngine"))
@@ -189,16 +191,10 @@ namespace NIDE
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
-
-        private void tsmiSettings_Click(object sender, EventArgs e)
-        {
-            new fSettings(highlighter).ShowDialog();
-            highlighter.ResetStyles(fctbMain.Range);
-        }
-
+        
         private void tsmiNewScript_Click(object sender, EventArgs e)
         {
-            fDialog form = new fDialog(DialogType.SCRIPT);
+            NewDialog form = new NewDialog(DialogType.SCRIPT);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -215,7 +211,7 @@ namespace NIDE
 
         private void tsmiNewTexture_Click(object sender, EventArgs e)
         {
-            var form = new fDialog(DialogType.TEXTURE);
+            var form = new NewDialog(DialogType.TEXTURE);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -233,7 +229,7 @@ namespace NIDE
 
         private void tsmiLibrary_Click(object sender, EventArgs e)
         {
-            var form = new fDialog(DialogType.LIBRARY);
+            var form = new NewDialog(DialogType.LIBRARY);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -248,16 +244,19 @@ namespace NIDE
 
             }
         }
+        #endregion
 
 
-        //Project and files system
+        #region Project
         private void OpenProject(string FileName)
         {
             if (!CanChangeFile()) return;
             try
             {
                 ProgramData.Project = Project.New(FileName);
-                EditorsManager.GetEditor(ProgramData.Project.MainScriptPath).Edit();
+                CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(ProgramData.Project.MainScriptPath);
+                editor.EditBlank = true;
+                editor.Edit();
                 InitProject();
             }
             catch (Exception ex)
@@ -266,28 +265,6 @@ namespace NIDE
                 throw new Exception();
             }
         }
-
-        //private void ImportModpkg(bool closeIfNotChecked = false)
-        //{
-        //    var form = new fNewProject(true);
-        //    if (form.ShowDialog() == DialogResult.OK)
-        //    {
-        //        try
-        //        {
-        //            ProgramData.Project = new ProjectManager(form.source, form.path, form.name);
-        //            OpenScript(ProgramData.ProjectManager.MainScriptPath);
-        //            InitProject();
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            MessageBox.Show(ex.Message, "An error occured while creating a new project");
-        //        }
-        //    }
-        //    else if (closeIfNotChecked)
-        //    {
-        //        Close();
-        //    }
-        //}
 
         private void InitProject()
         {
@@ -316,37 +293,10 @@ namespace NIDE
             Util.FillDirectoryNodes(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.Project.SourceCodePath));
             tvFolders.Nodes[0].Expand();
         }
-
-        private void tsbShowMain_Click(object sender, EventArgs e)
-        {
-            if (CanChangeFile())
-            {
-                Editor editor = EditorsManager.GetEditor(ProgramData.Project.BuiltScriptPath);
-                editor.Edit();
-                fctbMain.ReadOnly = true;                
-            }
-        }
+        #endregion
 
 
-        public EditorTab OpenScript(string FileName, CodeEditor editor, bool blank = false)
-        {
-            try
-            {
-                if (blank)
-                    currentTab = tabControl.LoadBlank(FileName, editor);
-                else
-                    currentTab = tabControl.Load(FileName, editor);
-                highlighter.RefreshStyles();
-                return currentTab;
-            }
-            catch (Exception e)
-            {
-                Log("FileSystem", "Unable to open script! " + e.Message);
-                return null;
-            }
-        }
-
-
+        #region Project UI
         private void NewProjectDlg(bool closeIfNotChecked = false)
         {
             var form = new fNewProject();
@@ -404,24 +354,65 @@ namespace NIDE
             OpenProjectDlg();
         }
 
-        private void tsmiSave_Click(object sender, EventArgs e)
-        {
-            currentTab.Save();
-            tabControl.Refresh();
-        }
-
         private void tsmiCloseProject_Click(object sender, EventArgs e)
         {
             if (!CanChangeFile()) return;
             ProgramData.Restart = true;
             Application.Restart();
         }
+        #endregion
+
+
+        #region Files
+        private void tsbShowMain_Click(object sender, EventArgs e)
+        {
+            if (CanChangeFile())
+            {
+                Editor editor = EditorsManager.GetEditor(ProgramData.Project.BuiltScriptPath);
+                editor.Edit();
+                fctbMain.ReadOnly = true;
+            }
+        }
+
+        public EditorTab OpenScript(string FileName, CodeEditor editor, bool blank = false)
+        {
+            try
+            {
+                if (blank)
+                    currentTab = tabControl.LoadBlank(FileName, editor);
+                else
+                    currentTab = tabControl.Load(FileName, editor);
+                highlighter.RefreshStyles();
+                return currentTab;
+            }
+            catch (Exception e)
+            {
+                Log("FileSystem", "Unable to open script! " + e.Message);
+                return null;
+            }
+        }
 
         private bool CanChangeFile()
         {
             return tabControl.TabCount == 0 || currentTab.CanClose();
         }
+        #endregion
 
+
+        #region Files UI
+        private void tsmiSave_Click(object sender, EventArgs e)
+        {
+            currentTab.Save();
+            tabControl.Refresh();
+        }
+        #endregion
+
+
+        private void tsmiSettings_Click(object sender, EventArgs e)
+        {
+            new fSettings(highlighter).ShowDialog();
+            highlighter.ResetStyles(fctbMain.Range);
+        }
 
         //Log and errors
         private List<int> errorLines = new List<int>();

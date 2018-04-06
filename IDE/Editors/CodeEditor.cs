@@ -9,6 +9,7 @@ namespace NIDE.Editors
         
         public EditorTab EditorTab { get; private set; }
         public FastColoredTextBox TextBox { get { return EditorTab.TextBox; } }
+        public bool EditBlank { get; set; } = false;
 
         public CodeEditor(string file) : base(file)
         {
@@ -17,7 +18,7 @@ namespace NIDE.Editors
 
         public override bool Edit()
         {
-            EditorTab = ProgramData.MainForm.OpenScript(file, this);
+            EditorTab = ProgramData.MainForm.OpenScript(file, this, EditBlank);
             TextBox.ReadOnly = false;
             if(EditorTab == null)
                 return false;

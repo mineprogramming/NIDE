@@ -1,13 +1,13 @@
 ﻿using System.Windows.Forms;
 
-namespace NIDE
+namespace NIDE.UI
 {
-    public partial class fDialog : Form
+    public partial class NewDialog : DialogForm
     {
         public ImageType type;
         public string name;
 
-        public fDialog(DialogType dialog)
+        public NewDialog(DialogType dialog)
         {
             InitializeComponent();
             switch (dialog)
@@ -18,6 +18,7 @@ namespace NIDE
                     Text = "New script";
                     break;
                 case DialogType.TEXTURE:
+                    Height = 150;
                     rbItemsOpaque.Visible = true;
                     rbTerrainAtlas.Visible = true;
                     Text = "New texture";

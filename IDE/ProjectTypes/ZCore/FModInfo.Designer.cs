@@ -37,8 +37,6 @@
             this.TbAuthor = new System.Windows.Forms.TextBox();
             this.TbVersion = new System.Windows.Forms.TextBox();
             this.TbDescription = new System.Windows.Forms.TextBox();
-            this.btnOk = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -107,33 +105,11 @@
             this.TbDescription.Size = new System.Drawing.Size(228, 90);
             this.TbDescription.TabIndex = 7;
             // 
-            // btnOk
-            // 
-            this.btnOk.Location = new System.Drawing.Point(275, 184);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 8;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(194, 184);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 9;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
             // FModInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 219);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnOk);
             this.Controls.Add(this.TbDescription);
             this.Controls.Add(this.TbVersion);
             this.Controls.Add(this.TbAuthor);
@@ -146,6 +122,14 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FModInfo";
             this.Text = "mod.info";
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.TbName, 0);
+            this.Controls.SetChildIndex(this.TbAuthor, 0);
+            this.Controls.SetChildIndex(this.TbVersion, 0);
+            this.Controls.SetChildIndex(this.TbDescription, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,7 +145,5 @@
         private System.Windows.Forms.TextBox TbAuthor;
         private System.Windows.Forms.TextBox TbVersion;
         private System.Windows.Forms.TextBox TbDescription;
-        private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Button btnCancel;
     }
 }
