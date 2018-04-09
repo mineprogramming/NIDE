@@ -383,6 +383,9 @@ namespace NIDE
                 else
                     currentTab = tabControl.Load(FileName, editor);
                 highlighter.RefreshStyles();
+                fctbMain.TextChanged += fctbMain_TextChanged;
+                fctbMain.KeyDown += fctbMain_KeyDown;
+                fctbMain.PaintLine += fctbMain_PaintLine;
                 return currentTab;
             }
             catch (Exception e)
@@ -778,9 +781,6 @@ namespace NIDE
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentTab = (EditorTab)tabControl.SelectedTab;
-            fctbMain.TextChanged += fctbMain_TextChanged;
-            fctbMain.KeyDown += fctbMain_KeyDown;
-            fctbMain.PaintLine += fctbMain_PaintLine;
             Autocomplete.SetAutoompleteMenu(fctbMain);
             CodeAnalysisEngine.Update();
         }
