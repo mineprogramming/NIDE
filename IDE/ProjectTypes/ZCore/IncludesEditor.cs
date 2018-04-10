@@ -23,6 +23,11 @@ namespace NIDE.ProjectTypes.ZCore
             return true;
         }
 
+        public override void Focus()
+        {
+            Autocomplete.Enabled = false;
+        }
+
         public IEnumerator<AutocompleteItem> GetEnumerator()
         {
             List<AutocompleteItem> items = new List<AutocompleteItem>();

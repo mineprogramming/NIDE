@@ -97,7 +97,6 @@
     </Compile>
     <Compile Include="adb\FileSyncProgressMonitor.cs" />
     <Compile Include="adb\OutputLogReceiver.cs" />
-    <Compile Include="adb\Util.cs" />
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
     <Compile Include="components\EditorTab.cs">

@@ -6,7 +6,8 @@ namespace NIDE.Editors
     public abstract class CodeEditor : Editor
     {
         public abstract void Update(Range range);
-        
+        public abstract void Focus();
+
         public EditorTab EditorTab { get; private set; }
         public FastColoredTextBox TextBox { get { return EditorTab.TextBox; } }
         public bool EditBlank { get; set; } = false;

@@ -783,6 +783,7 @@ namespace NIDE
             currentTab = (EditorTab)tabControl.SelectedTab;
             Autocomplete.SetAutoompleteMenu(fctbMain);
             CodeAnalysisEngine.Update();
+            try { CurrentEditor.Focus(); } catch { };
         }
 
         private void tsmiSaveAll_Click(object sender, EventArgs e)

@@ -15,11 +15,16 @@ namespace NIDE.Editors
                 return false;
 
             TextBox.Language = Language.JS;
-            Autocomplete.SetAutoompleteMenu(TextBox);
-            Autocomplete.Enabled = true;
-
+            //Focus();
             Update(TextBox.Range);
             return true;
+        }
+
+        public override void Focus()
+        {
+            Autocomplete.SetAutoompleteMenu(TextBox);
+            Autocomplete.Enabled = true;
+            Update(TextBox.Range);
         }
 
         public override void Update(Range range)

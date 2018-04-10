@@ -17,12 +17,15 @@ namespace NIDE.Editors
             TextBox.Language = Language.Custom;
             Autocomplete.SetAutoompleteMenu(TextBox);
             Autocomplete.Enabled = false;
-
-
             CodeAnalysisEngine.Stop();
             ProgramData.MainForm.ClearErrors();
 
             return true;
+        }
+
+        public override void Focus()
+        {
+            Autocomplete.Enabled = false;
         }
 
         public override void Update(Range range) { }
