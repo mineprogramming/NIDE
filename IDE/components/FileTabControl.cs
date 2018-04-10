@@ -72,5 +72,14 @@ namespace NIDE.components
             }
             return newTab;
         }
+
+        public void ReloadTabs()
+        {
+            foreach (EditorTab tab in TabPages)
+            {
+                tab.Reload();
+            }
+            Refresh();
+        }
     }
 }

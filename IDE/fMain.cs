@@ -429,7 +429,7 @@ namespace NIDE
                     logger.AppendText(string.Format(format, source, message));
                 }));
             }
-            catch (Exception e) { }
+            catch { }
 
         }
         public void Error(int line, string message)
@@ -497,6 +497,7 @@ namespace NIDE
         {
             UpdateProject();
             ProgramData.Project.UpdateNlib();
+            tabControl.ReloadTabs();
         }
 
         private void tsmiManageLibraries_Click(object sender, EventArgs e)
@@ -743,7 +744,7 @@ namespace NIDE
                 client.Dispose();
 
             }
-            catch (Exception e) { }
+            catch{ }
         }
 
         private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
@@ -783,7 +784,7 @@ namespace NIDE
             currentTab = (EditorTab)tabControl.SelectedTab;
             Autocomplete.SetAutoompleteMenu(fctbMain);
             CodeAnalysisEngine.Update();
-            try { CurrentEditor.Focus(); } catch { };
+            try { CurrentEditor.Focus(); } catch { }; //TODO: КОСТЫЛЬ!!!
         }
 
         private void tsmiSaveAll_Click(object sender, EventArgs e)

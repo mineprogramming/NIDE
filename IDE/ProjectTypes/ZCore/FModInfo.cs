@@ -29,7 +29,7 @@ namespace NIDE.ProjectTypes.ZCore
                 if (info == null)
                     throw new Exception();
             }
-            catch (Exception e)
+            catch
             {
                 info = new ModInfo(name, author, "1.0", "");
             }

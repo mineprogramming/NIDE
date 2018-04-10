@@ -60,7 +60,7 @@ namespace NIDE.adb
             try
             {
                 AdbHelper.Instance.KillAdb(AndroidDebugBridge.SocketAddress);
-            } catch(Exception e)
+            } catch
             {
                 adb = null;
             }

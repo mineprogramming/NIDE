@@ -86,7 +86,7 @@ namespace NIDE
                     range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
                 }
             }
-            catch (Exception e) { }
+            catch { }
          }
 
         public void HighlightError(PaintLineEventArgs e)

@@ -57,7 +57,7 @@ namespace NIDE
                     text = reg.Replace(text, "kek");
                     parser.Parse(text, "", 0);
                 }
-                catch (Exception e) { }
+                catch { }
 
                 List<string> variables = new List<string>();
                 Dictionary<string, List<string>> objects = new Dictionary<string, List<string>>();

@@ -44,9 +44,12 @@ namespace NIDE.components
 
         public void Reload()
         {
-            fctb.OpenFile(file, ProgramData.Encoding);
-            saved = true;
-            Text = Path.GetFileName(file);
+            if (CanClose())
+            {
+                fctb.OpenFile(file, ProgramData.Encoding);
+                saved = true;
+                Text = Path.GetFileName(file);
+            }
         }
 
         public void Save()
