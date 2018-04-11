@@ -44,15 +44,7 @@
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.splitter = new System.Windows.Forms.Splitter();
             this.panel = new System.Windows.Forms.Panel();
-            this.tvFolders = new System.Windows.Forms.TreeView();
-            this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tsmiNewTexture2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewScript2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiNewDirectory = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiRename = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectTree = new NIDE.components.ProjectTree();
             this.Ads = new System.Windows.Forms.WebBrowser();
             this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
@@ -143,7 +135,6 @@
             this.gbLogger.SuspendLayout();
             this.StatusStrip.SuspendLayout();
             this.panel.SuspendLayout();
-            this.cmsTreeView.SuspendLayout();
             this.toolStripGeneral.SuspendLayout();
             this.toolStripEdit.SuspendLayout();
             this.toolStripProject.SuspendLayout();
@@ -268,77 +259,17 @@
             // 
             // panel
             // 
-            this.panel.Controls.Add(this.tvFolders);
+            this.panel.Controls.Add(this.projectTree);
             this.panel.Controls.Add(this.Ads);
             resources.ApplyResources(this.panel, "panel");
             this.panel.Name = "panel";
             // 
-            // tvFolders
+            // projectTree
             // 
-            this.tvFolders.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.tvFolders.ContextMenuStrip = this.cmsTreeView;
-            this.tvFolders.Cursor = System.Windows.Forms.Cursors.Default;
-            resources.ApplyResources(this.tvFolders, "tvFolders");
-            this.tvFolders.Name = "tvFolders";
-            this.tvFolders.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.tvFolders_AfterLabelEdit);
-            this.tvFolders.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseClick);
-            this.tvFolders.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvFolders_NodeMouseDoubleClick);
-            // 
-            // cmsTreeView
-            // 
-            this.cmsTreeView.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsTreeView.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmiNewTexture2,
-            this.tsmiNewScript2,
-            this.tsmiNewFile,
-            this.tsmiNewDirectory,
-            this.tsmiRename,
-            this.tsmiDelete,
-            this.tsmiOpenInExplorer});
-            this.cmsTreeView.Name = "contextMenuStrip1";
-            resources.ApplyResources(this.cmsTreeView, "cmsTreeView");
-            // 
-            // tsmiNewTexture2
-            // 
-            this.tsmiNewTexture2.Name = "tsmiNewTexture2";
-            resources.ApplyResources(this.tsmiNewTexture2, "tsmiNewTexture2");
-            this.tsmiNewTexture2.Click += new System.EventHandler(this.tsmiNewTexture_Click);
-            // 
-            // tsmiNewScript2
-            // 
-            this.tsmiNewScript2.Name = "tsmiNewScript2";
-            resources.ApplyResources(this.tsmiNewScript2, "tsmiNewScript2");
-            this.tsmiNewScript2.Click += new System.EventHandler(this.tsmiNewScript_Click);
-            // 
-            // tsmiNewFile
-            // 
-            this.tsmiNewFile.Name = "tsmiNewFile";
-            resources.ApplyResources(this.tsmiNewFile, "tsmiNewFile");
-            this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
-            // 
-            // tsmiNewDirectory
-            // 
-            this.tsmiNewDirectory.Name = "tsmiNewDirectory";
-            resources.ApplyResources(this.tsmiNewDirectory, "tsmiNewDirectory");
-            this.tsmiNewDirectory.Click += new System.EventHandler(this.tsmiNewDirectory_Click);
-            // 
-            // tsmiRename
-            // 
-            this.tsmiRename.Name = "tsmiRename";
-            resources.ApplyResources(this.tsmiRename, "tsmiRename");
-            this.tsmiRename.Click += new System.EventHandler(this.tsmiRename_Click);
-            // 
-            // tsmiDelete
-            // 
-            this.tsmiDelete.Name = "tsmiDelete";
-            resources.ApplyResources(this.tsmiDelete, "tsmiDelete");
-            this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
-            // 
-            // tsmiOpenInExplorer
-            // 
-            this.tsmiOpenInExplorer.Name = "tsmiOpenInExplorer";
-            resources.ApplyResources(this.tsmiOpenInExplorer, "tsmiOpenInExplorer");
-            this.tsmiOpenInExplorer.Click += new System.EventHandler(this.tsmiOpenInExplorer_Click);
+            this.projectTree.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.projectTree.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.projectTree, "projectTree");
+            this.projectTree.Name = "projectTree";
             // 
             // Ads
             // 
@@ -906,7 +837,6 @@
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.panel.ResumeLayout(false);
-            this.cmsTreeView.ResumeLayout(false);
             this.toolStripGeneral.ResumeLayout(false);
             this.toolStripGeneral.PerformLayout();
             this.toolStripEdit.ResumeLayout(false);
@@ -939,10 +869,7 @@
         private System.Windows.Forms.ToolStripMenuItem ctsmiFind;
         private System.Windows.Forms.ToolStripMenuItem ctsmiReplace;
         private System.Windows.Forms.ToolStripMenuItem ctsmiAutoIndent;
-        private System.Windows.Forms.ContextMenuStrip cmsTreeView;
-        private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
         private System.Windows.Forms.ToolStripMenuItem tsmiRun;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewScript2;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;
         private System.Windows.Forms.ToolStripSeparator tss2;
         private System.Windows.Forms.ToolStripSeparator tss3;
@@ -951,7 +878,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiCoreEngineDocs;
         private System.Windows.Forms.ToolStripMenuItem tsmiInserts;
         private System.Windows.Forms.ToolStripMenuItem tsmiNewItem;
-        private System.Windows.Forms.ToolStripMenuItem tsmiOpenInExplorer;
         private System.Windows.Forms.ToolStripMenuItem tsmiCraftRecipie;
         private System.Windows.Forms.ToolStripMenuItem tsmiOptions;
         private System.Windows.Forms.ToolStripMenuItem tsmiSettings;
@@ -961,7 +887,7 @@
         private System.Windows.Forms.ToolStripContainer container;
         private System.Windows.Forms.StatusStrip StatusStrip;
         private System.Windows.Forms.Splitter splitter;
-        private System.Windows.Forms.TreeView tvFolders;
+        private NIDE.components.ProjectTree projectTree;
         private System.Windows.Forms.ToolStrip toolStripGeneral;
         private System.Windows.Forms.ToolStripButton tsbCreate;
         private System.Windows.Forms.ToolStripButton tsbOpen;
@@ -987,12 +913,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiManageLibraries;
         private System.Windows.Forms.ToolStripButton tsbBuildPush;
         private System.Windows.Forms.ToolStripMenuItem tsmiBuildAndPush;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewTexture2;
         private System.Windows.Forms.ToolStripButton tsbUpdate;
         private System.Windows.Forms.ToolStripMenuItem tsmiUpdate;
-        private System.Windows.Forms.ToolStripMenuItem tsmiRename;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewFile;
-        private System.Windows.Forms.ToolStripMenuItem tsmiNewDirectory;
         private System.Windows.Forms.ToolStripMenuItem tsmiLinks;
         private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
         private System.Windows.Forms.ToolStripButton tsbShowMain;

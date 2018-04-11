@@ -43,7 +43,7 @@ namespace NIDE
                 key.SetValue("dvWidth", ProgramData.MainForm.TextViewWidth.ToString());
                 key.SetValue("dvHeight", ProgramData.MainForm.TextViewHeight.ToString());
                 key.SetValue("ADBPath.ModPE", ModPE.ADBPath);
-                key.SetValue("ADBPath.CoreEngine", CoreEngine.ADBPath);
+                key.SetValue("ADBPath.CoreEngine", ZCore.ADBPath);
                 key.SetValue("LoadLast", ProgramData.LoadLast);
                 key.SetValue("RunProgram", ADBWorker.RunProgram);
 
@@ -61,7 +61,7 @@ namespace NIDE
                     key.SetValue("Save" + i, ProgramData.Recent[i]);
 
                 key = key.CreateSubKey("colors");
-                key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain.ForeColor.ToArgb().ToString());
+                key.SetValue("NormalStyle", ProgramData.MainForm.fctbMain?.ForeColor.ToArgb().ToString());
                 key.SetValue("NamespaceStyle", Highlighter.NamespaceColor.ToArgb().ToString());
                 key.SetValue("GlobalStyle", Highlighter.GlobalColor.ToArgb().ToString());
                 key.SetValue("HookStyle", Highlighter.HookColor.ToArgb().ToString());

@@ -111,6 +111,12 @@
     <Compile Include="components\FileTabControl.Designer.cs">
       <DependentUpon>FileTabControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\ProjectTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="components\ProjectTree.Designer.cs">
+      <DependentUpon>ProjectTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="ProjectTypes\ZCore\IncludesEditor.cs" />
     <Compile Include="UI\DialogForm.cs">
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="components\EditorTab.resx">
       <DependentUpon>EditorTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\ProjectTree.resx">
+      <DependentUpon>ProjectTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DialogForm.resx">
       <DependentUpon>DialogForm.cs</DependentUpon>

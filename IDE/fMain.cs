@@ -18,7 +18,6 @@ namespace NIDE
     public partial class fMain : Form
     {
         private string[] args;
-        private string OldPath = "";
 
         private Highlighter highlighter;
 
@@ -144,7 +143,7 @@ namespace NIDE
         }
 
         //Connections
-        public int TextViewWidth { get { return tvFolders.Width; } set { tvFolders.Width = value; } }
+        public int TextViewWidth { get { return projectTree.Width; } set { projectTree.Width = value; } }
         public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
         #endregion
         
@@ -192,6 +191,7 @@ namespace NIDE
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
         
+        public void NewScript() => tsmiNewScript.PerformClick();
         private void tsmiNewScript_Click(object sender, EventArgs e)
         {
             NewDialog form = new NewDialog(DialogType.SCRIPT);
@@ -209,6 +209,7 @@ namespace NIDE
             }
         }
 
+        public void NewTexture() => tsmiNewTexture.PerformClick();
         private void tsmiNewTexture_Click(object sender, EventArgs e)
         {
             var form = new NewDialog(DialogType.TEXTURE);
@@ -287,11 +288,11 @@ namespace NIDE
 
         private void UpdateProject()
         {
-            tvFolders.Nodes.Clear();
-            tvFolders.Nodes.Add(ProgramData.Project.Name);
-            ProgramData.Project.Post_tree_reload(tvFolders.Nodes[0]);
-            Util.FillDirectoryNodes(tvFolders.Nodes[0], new DirectoryInfo(ProgramData.Project.SourceCodePath));
-            tvFolders.Nodes[0].Expand();
+            projectTree.Nodes.Clear();
+            projectTree.Nodes.Add(ProgramData.Project.Name);
+            ProgramData.Project.Post_tree_reload(projectTree.Nodes[0]);
+            Util.FillDirectoryNodes(projectTree.Nodes[0], new DirectoryInfo(ProgramData.Project.SourceCodePath));
+            projectTree.Nodes[0].Expand();
         }
         #endregion
 
@@ -533,175 +534,7 @@ namespace NIDE
         {
 
             new JsRunner(fctbMain.Text);
-        }
-
-
-        //Tree view
-        private void tvFolders_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            string path = GetTreeViewPath(e.Node);
-            if (Directory.Exists(path))
-                return;
-            if (!CanChangeFile()) return;
-            string extension = Path.GetExtension(path).ToLower();
-            if (extension == ".png")
-            {
-                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
-            }
-            else if (extension == ".json")
-            {
-                if (ProgramData.Project.Type == ProjectType.MODPE)
-                    try
-                    {
-                        new fJsonItem(path).Show();
-                    }
-                    catch { EditorsManager.GetEditor(path).Edit(); }
-                else EditorsManager.GetEditor(path).Edit();
-            }
-            else if (extension == ".info")
-            {
-                Editor editor = EditorsManager.GetEditor(path);
-                editor.Edit();
-            }
-            else if (Constants.TextExtensions.Contains(extension) ||
-                MessageBox.Show("Do you want to open is as a text file?", "Unknown file format!", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                Editor editor = EditorsManager.GetEditor(path);
-                editor.Edit();
-            }
-        }
-
-        private void tsmiNewFile_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string dir = GetTreeViewPath(tvFolders.SelectedNode);
-                if (!Directory.Exists(dir))
-                    return;
-                string fileName = "file.js";
-                int i = 1;
-                while (File.Exists(Path.Combine(dir, fileName)))
-                {
-                    fileName = "file" + i + ".js";
-                    i++;
-                }
-                File.Create(Path.Combine(dir, fileName)).Close();
-                TreeNode node = new TreeNode(fileName);
-                tvFolders.SelectedNode.Nodes.Add(node);
-                tvFolders.SelectedNode.Expand();
-                OldPath = GetTreeViewPath(node);
-                tvFolders.LabelEdit = true;
-                node.BeginEdit();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void tsmiNewDirectory_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string dir = GetTreeViewPath(tvFolders.SelectedNode);
-                if (!Directory.Exists(dir))
-                    return;
-                string folderName = "folder";
-                int i = 1;
-                while (Directory.Exists(Path.Combine(dir, folderName)))
-                {
-                    folderName = "folder" + i;
-                    i++;
-                }
-                Directory.CreateDirectory(Path.Combine(dir, folderName));
-                TreeNode node = new TreeNode(folderName);
-                tvFolders.SelectedNode.Nodes.Add(node);
-                tvFolders.SelectedNode.Expand();
-                OldPath = GetTreeViewPath(node);
-                tvFolders.LabelEdit = true;
-                node.BeginEdit();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void tsmiRename_Click(object sender, EventArgs e)
-        {
-            var node = tvFolders.SelectedNode;
-            OldPath = GetTreeViewPath(node);
-            tvFolders.LabelEdit = true;
-            node.BeginEdit();
-        }
-
-        private void tsmiDelete_Click(object sender, EventArgs e)
-        {
-            if (tvFolders.SelectedNode.Text != "main.js"
-                && Path.GetExtension(tvFolders.SelectedNode.Text).ToLower() != ".nproj")
-            {
-                try
-                {
-                    string path = GetTreeViewPath(tvFolders.SelectedNode);
-                    if (File.Exists(path))
-                        File.Delete(path);
-                    else if (Directory.Exists(path))
-                        Directory.Delete(path, true);
-                    tvFolders.SelectedNode.Remove();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Cannot delete this file");
-                }
-            }
-        }
-
-        private void tsmiOpenInExplorer_Click(object sender, EventArgs e)
-        {
-            Process.Start(ProgramData.Project.Path);
-        }
-
-        private string GetTreeViewPath(TreeNode node)
-        {
-            if (node.Text == Path.GetFileName(ProgramData.Project.Nproj))
-                return ProgramData.Project.Nproj;
-            else
-            {
-                string path_relative = node.FullPath;
-                path_relative = path_relative.Substring(path_relative.IndexOf('\\') + 1);
-                return ProgramData.Project.SourceCodePath + "\\" + path_relative;
-            }
-        }
-
-        private void tvFolders_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            tvFolders.SelectedNode = e.Node;
-        }
-
-        private void tvFolders_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
-        {
-            BeginInvoke(new Action(() => afterAfterEdit(e.Node)));
-        }
-
-        private void afterAfterEdit(TreeNode node)
-        {
-            tvFolders.LabelEdit = false;
-            string path = GetTreeViewPath(node);
-            if (node.Parent != null && !OldPath.EndsWith(".nproj", StringComparison.OrdinalIgnoreCase) && path != OldPath)
-            {
-                try
-                {
-                    if (File.Exists(OldPath))
-                        File.Move(OldPath, path);
-                    if (Directory.Exists(OldPath))
-                        Directory.Move(OldPath, path);
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show(e.Message);
-                }
-            }
-        }
+        }       
 
 
         //Other
