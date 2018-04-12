@@ -57,7 +57,7 @@ namespace NIDE
             {
                 try
                 {
-                    if (Path.GetExtension(args[0]).ToLower() == ".nproj")
+                    if (System.IO.Path.GetExtension(args[0]).ToLower() == ".nproj")
                     {
                         OpenProject(args[0]);
                     }
@@ -199,8 +199,8 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.Project.AddScript(form.name);
-                    UpdateProject();
+                    string path = ProgramData.Project.AddScript(form.name);
+                    projectTree.UpdatePath(path);
                 }
                 catch (Exception ex)
                 {
@@ -217,8 +217,8 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.Project.AddTexture(form.name, form.type);
-                    UpdateProject();
+                    string path = ProgramData.Project.AddTexture(form.name, form.type);
+                    projectTree.UpdatePath(path);
                 }
                 catch (Exception ex)
                 {

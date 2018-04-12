@@ -81,7 +81,7 @@ namespace NIDE
 
         private bool IsValidPath(string path)
         {
-            foreach(char ch in Path.GetInvalidFileNameChars())
+            foreach(char ch in System.IO.Path.GetInvalidFileNameChars())
             {
                 if (path.Contains(ch))
                     return false;

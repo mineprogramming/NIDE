@@ -49,7 +49,7 @@ namespace NIDE.adb
             Files.Clear();
             foreach(string file in ClbFiles.CheckedItems)
             {
-                Files.Add(Path.Combine(basedir, file));
+                Files.Add(System.IO.Path.Combine(basedir, file));
             }
             ask = !CBDontAsk.Checked;
             DialogResult = DialogResult.OK;

@@ -158,10 +158,15 @@ namespace NIDE.ProjectTypes
             return false;
         }
 
-        public void AddTexture(string name, ImageType type)
+        public string AddTexture(string name, ImageType type)
         {
             name = name.ToLower().EndsWith(".png") ? name : name + ".png";
             string TexturePath = (type == ImageType.ITEMS_OPAQUE ? ItemsOpaquePath : TerrainAtlasPath) + name;
+            int ind = TexturePath.LastIndexOf('\\');
+            if (ind != -1)
+            {
+                Directory.CreateDirectory(TexturePath.Substring(0, ind));
+            }
             Bitmap png = new Bitmap(16, 16);
             for (int i = 0; i < 16; i++)
             {
@@ -171,9 +176,10 @@ namespace NIDE.ProjectTypes
                 }
             }
             png.Save(TexturePath);
+            return TexturePath;
         }
 
-        public void AddScript(string name)
+        public string AddScript(string name)
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
             string backslashed = name.Replace('/', '\\');
@@ -185,6 +191,7 @@ namespace NIDE.ProjectTypes
             }
             File.CreateText(ScriptPath).Close();
             Post_add_script(name);
+            return ScriptPath;
         }
     }
 }

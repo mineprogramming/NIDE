@@ -24,7 +24,7 @@ namespace NIDE.Editors
 
         public static Editor GetEditor(string path)
         {
-            string extension = Path.GetExtension(path);
+            string extension = System.IO.Path.GetExtension(path);
             foreach (var type in editors)
             {
                 if (type.Value.Contains(extension))

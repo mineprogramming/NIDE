@@ -34,7 +34,7 @@ namespace NIDE.components
             {
                 fctb.OpenFile(file, ProgramData.Encoding);
                 saved = true;
-                Text = Path.GetFileName(file);
+                base.Text = System.IO.Path.GetFileName(file);
             }
             catch (Exception e)
             {
@@ -48,7 +48,7 @@ namespace NIDE.components
             {
                 fctb.OpenFile(file, ProgramData.Encoding);
                 saved = true;
-                Text = Path.GetFileName(file);
+                base.Text = System.IO.Path.GetFileName(file);
             }
         }
 
@@ -64,7 +64,7 @@ namespace NIDE.components
             if (saved)
                 return true;
 
-            var result = MessageBox.Show("Do you want to save changes in " + Path.GetFileName(file) + "?",
+            var result = MessageBox.Show("Do you want to save changes in " + System.IO.Path.GetFileName(file) + "?",
                 "Confirmation", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {

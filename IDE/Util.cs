@@ -95,5 +95,10 @@ namespace NIDE
                 relative.Add(file.Substring(basedir.Length).TrimStart('\\'));
             return relative;
         }
+
+        public static Path ToPath(this IEnumerable<string> parts)
+        {
+            return new Path(parts);
+        }
     }
 }

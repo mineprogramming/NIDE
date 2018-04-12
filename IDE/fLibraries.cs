@@ -11,7 +11,7 @@ namespace NIDE
             InitializeComponent();
             foreach (var dir in Directory.GetDirectories(Directory.GetCurrentDirectory() + "\\libraries\\"))
             {
-                var name = Path.GetFileName(dir);
+                var name = System.IO.Path.GetFileName(dir);
                 if (!File.Exists(dir + "\\guidisable"))
                 {
                     if (ProgramData.Project.LibraryInstalled(name))

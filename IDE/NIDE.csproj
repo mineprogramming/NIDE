@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="ProjectTypes\ZCore\IncludesEditor.cs" />
+    <Compile Include="Path.cs" />
     <Compile Include="UI\DialogForm.cs">
       <SubType>Form</SubType>
     </Compile>

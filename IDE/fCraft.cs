@@ -55,7 +55,7 @@ namespace NIDE
             {
                 foreach (var file in Directory.GetFiles(ProgramData.Project.OtherResourcesPath))
                 {
-                    if (Path.GetExtension(file).ToLower() == ".json")
+                    if (System.IO.Path.GetExtension(file).ToLower() == ".json")
                     {
                         Creatable item = File.ReadAllText(file).ToObject<Creatable>();
                         if (item.id == (int)nudId.Value)

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static NIDE.Path;
 
 namespace NIDE.components
 {
@@ -17,6 +18,31 @@ namespace NIDE.components
             NodeMouseDoubleClick += ProjectTree_NodeMouseDoubleClick;
             AfterLabelEdit += ProjectTree_AfterLabelEdit;
             NodeMouseClick += ProjectTree_NodeMouseClick;
+        }
+
+        public void UpdatePath(Path path)
+        {
+            path = path - ProgramData.Project.Path;
+            string[] elements = path.Explode();
+            TreeNode current = Nodes[0];
+            foreach(string element in elements)
+            {
+                TreeNode[] res = current.Nodes
+                    .Cast<TreeNode>()
+                    .Where(x => x.Text == element)
+                    .ToArray();
+                if (res.Length > 0)
+                {
+                    current = res[0];
+                }
+                else
+                {
+                    TreeNode node = new TreeNode(element);
+                    current.Nodes.Add(node);
+                    current = node;
+                }
+            }
+            SelectedNode = current;
         }
 
         private void ProjectTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -56,10 +82,10 @@ namespace NIDE.components
             if (Directory.Exists(path))
                 return;
 
-            string extension = Path.GetExtension(path).ToLower();
+            string extension = System.IO.Path.GetExtension(path).ToLower();
             if (extension == ".png")
             {
-                Process.Start(Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
+                Process.Start(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
             }
             else if (extension == ".json")
             {
@@ -90,12 +116,12 @@ namespace NIDE.components
                     return;
                 string fileName = "file.js";
                 int i = 1;
-                while (File.Exists(Path.Combine(dir, fileName)))
+                while (File.Exists(System.IO.Path.Combine(dir, fileName)))
                 {
                     fileName = "file" + i + ".js";
                     i++;
                 }
-                File.Create(Path.Combine(dir, fileName)).Close();
+                File.Create(System.IO.Path.Combine(dir, fileName)).Close();
                 TreeNode node = new TreeNode(fileName);
                 SelectedNode.Nodes.Add(node);
                 SelectedNode.Expand();
@@ -119,12 +145,12 @@ namespace NIDE.components
                     return;
                 string folderName = "folder";
                 int i = 1;
-                while (Directory.Exists(Path.Combine(dir, folderName)))
+                while (Directory.Exists(System.IO.Path.Combine(dir, folderName)))
                 {
                     folderName = "folder" + i;
                     i++;
                 }
-                Directory.CreateDirectory(Path.Combine(dir, folderName));
+                Directory.CreateDirectory(System.IO.Path.Combine(dir, folderName));
                 TreeNode node = new TreeNode(folderName);
                 SelectedNode.Nodes.Add(node);
                 SelectedNode.Expand();
@@ -149,7 +175,7 @@ namespace NIDE.components
         private void tsmiDelete_Click(object sender, EventArgs e)
         {
             if (SelectedNode.Text != "main.js"
-                && Path.GetExtension(SelectedNode.Text).ToLower() != ".nproj")
+                && new Path(SelectedNode.Text).GetExtension() != ".nproj")
             {
                 try
                 {
@@ -186,9 +212,8 @@ namespace NIDE.components
         {
             if (node == Nodes[0])
                 return ProgramData.Project.Path;
-            string path_relative = node.FullPath;
-            path_relative = path_relative.Substring(path_relative.IndexOf('\\') + 1);
-            return ProgramData.Project.Path + "\\" + path_relative;
+            Path path_relative = ((Path)node.FullPath).Explode().Skip(1).ToPath();
+            return (string)(ProgramData.Project.Path + path_relative);
         }
 
         private void SelectDirectory()
