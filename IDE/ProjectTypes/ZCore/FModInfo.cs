@@ -43,6 +43,7 @@ namespace NIDE.ProjectTypes.ZCore
         {
             info.name = TbName.Text;
             info.author = TbAuthor.Text;
+            RegistryWorker.User = TbAuthor.Text;
             info.version = TbVersion.Text;
             info.description = TbDescription.Text;
             string json = info.ToJson();
@@ -62,7 +63,9 @@ namespace NIDE.ProjectTypes.ZCore
             public ModInfo(string name, string author, string version, string description)
             {
                 this.name = name;
-                this.author = author;
+                if (author == "")
+                    this.author = RegistryWorker.User;
+                else this.author = author;
                 this.version = version;
                 this.description = description;
             }            

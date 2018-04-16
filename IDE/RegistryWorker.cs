@@ -14,6 +14,7 @@ namespace NIDE
 {
     static class RegistryWorker
     {
+        public static string User { get; set; } = "";
 
         static Dictionary<string, string> defaults = new Dictionary<string, string>()
         {
@@ -28,7 +29,8 @@ namespace NIDE
             {"ADBPath.CoreEngine", "/storage/emulated/0/games/com.mojang/mods/" },
             {"saves", "0" },
             {"Last", "" },
-            {"ErrorHighlighting", "False"}
+            {"ErrorHighlighting", "False"},
+            {"Author", ""}
         };
 
         public static void Save(bool Last = true)
@@ -47,6 +49,7 @@ namespace NIDE
                 key.SetValue("ADBPath.CoreEngine", ZCore.ADBPath);
                 key.SetValue("LoadLast", ProgramData.LoadLast);
                 key.SetValue("RunProgram", ADBWorker.RunProgram);
+                key.SetValue("Author", User);
 
                 if (ProgramData.Project != null && !ProgramData.Restart)
                 {
@@ -134,6 +137,8 @@ namespace NIDE
                 ADBWorker.RunProgram = Convert.ToBoolean(key.GetValue("RunProgram"));
                 ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
                 ProgramData.MainForm.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
+                User = key.GetValue("Author").ToString();
+
                 int count = Convert.ToInt32(key.GetValue("saves"));
                 for (int i = 0; i < count; i++)
                     ProgramData.Recent.Add(Convert.ToString(key.GetValue("Save" + i)));
