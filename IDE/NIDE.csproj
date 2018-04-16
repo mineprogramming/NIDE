@@ -215,6 +215,9 @@
     <EmbeddedResource Include="components\EditorTab.resx">
       <DependentUpon>EditorTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="components\FileTabControl.resx">
+      <DependentUpon>FileTabControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="components\ProjectTree.resx">
       <DependentUpon>ProjectTree.cs</DependentUpon>
     </EmbeddedResource>

@@ -17,6 +17,9 @@ namespace NIDE
 {
     public partial class fMain : Form
     {
+        private const int LEFT_PANEL_MIN_SIZE = 150;
+        private const int BOTTOM_PANEL_MIN_SIZE = 80;
+
         private string[] args;
 
         private Highlighter highlighter;
@@ -692,8 +695,62 @@ namespace NIDE
         private void TsmiChooseFiles_Click(object sender, EventArgs e)
         {
             PushChosen(true);
-        }        
+        }
 
+        #endregion
+
+        #region Panels
+        private void btnHideTree_Click(object sender, EventArgs e)
+        {
+            if(splitter.SplitPosition == 1)
+            {
+                splitter.MinSize = LEFT_PANEL_MIN_SIZE;
+                splitter.SplitPosition = LEFT_PANEL_MIN_SIZE;
+                btnHideTree.Text = "◄";
+            }
+            else
+            {
+                splitter.MinSize = 0;
+                splitter.SplitPosition = 1;
+                btnHideTree.Text = "►";
+            }
+        }
+
+        private void splitter_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if(splitter.SplitPosition > 1 && splitter.SplitPosition < LEFT_PANEL_MIN_SIZE)
+            {
+                splitter.MinSize = LEFT_PANEL_MIN_SIZE;
+                splitter.SplitPosition = LEFT_PANEL_MIN_SIZE;
+                btnHideTree.Text = "◄";
+            }
+        }
+
+        private void btnHideBottomPanel_Click(object sender, EventArgs e)
+        {
+            if (mainSplit.Height - mainSplit.SplitterDistance == 4)
+            {
+                mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
+                mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
+                btnHideBottomPanel.Text = "▼";
+            }
+            else
+            {
+                mainSplit.Panel2MinSize = 0;
+                mainSplit.SplitterDistance = mainSplit.Height - 1;
+                btnHideBottomPanel.Text = "▲";
+            }
+        }
+
+        private void mainSplit_SplitterMoving(object sender, SplitterCancelEventArgs e)
+        {
+            if (mainSplit.SplitterDistance > 1 && mainSplit.SplitterDistance < BOTTOM_PANEL_MIN_SIZE)
+            {
+                mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
+                mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
+                btnHideBottomPanel.Text = "▼";
+            }
+        }
         #endregion
     }
 }

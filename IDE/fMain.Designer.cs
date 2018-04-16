@@ -118,8 +118,10 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnHideTree = new System.Windows.Forms.Button();
             this.tabControl = new NIDE.components.FileTabControl();
             this.projectTree = new NIDE.components.ProjectTree();
+            this.btnHideBottomPanel = new System.Windows.Forms.Button();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -168,11 +170,14 @@
             // 
             // mainSplit.Panel1
             // 
+            this.mainSplit.Panel1.Controls.Add(this.btnHideBottomPanel);
+            this.mainSplit.Panel1.Controls.Add(this.btnHideTree);
             this.mainSplit.Panel1.Controls.Add(this.tabControl);
             // 
             // mainSplit.Panel2
             // 
             this.mainSplit.Panel2.Controls.Add(this.splitContainerLogs);
+            this.mainSplit.SplitterMoving += new System.Windows.Forms.SplitterCancelEventHandler(this.mainSplit_SplitterMoving);
             // 
             // splitContainerLogs
             // 
@@ -247,6 +252,7 @@
             resources.ApplyResources(this.splitter, "splitter");
             this.splitter.Name = "splitter";
             this.splitter.TabStop = false;
+            this.splitter.SplitterMoving += new System.Windows.Forms.SplitterEventHandler(this.splitter_SplitterMoved);
             // 
             // panel
             // 
@@ -789,6 +795,13 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // btnHideTree
+            // 
+            resources.ApplyResources(this.btnHideTree, "btnHideTree");
+            this.btnHideTree.Name = "btnHideTree";
+            this.btnHideTree.UseVisualStyleBackColor = true;
+            this.btnHideTree.Click += new System.EventHandler(this.btnHideTree_Click);
+            // 
             // tabControl
             // 
             resources.ApplyResources(this.tabControl, "tabControl");
@@ -804,6 +817,13 @@
             this.projectTree.Cursor = System.Windows.Forms.Cursors.Default;
             resources.ApplyResources(this.projectTree, "projectTree");
             this.projectTree.Name = "projectTree";
+            // 
+            // btnHideBottomPanel
+            // 
+            resources.ApplyResources(this.btnHideBottomPanel, "btnHideBottomPanel");
+            this.btnHideBottomPanel.Name = "btnHideBottomPanel";
+            this.btnHideBottomPanel.UseVisualStyleBackColor = true;
+            this.btnHideBottomPanel.Click += new System.EventHandler(this.btnHideBottomPanel_Click);
             // 
             // fMain
             // 
@@ -942,6 +962,8 @@
         private System.Windows.Forms.ToolStripMenuItem TsmiPushEverything;
         private System.Windows.Forms.ToolStripMenuItem TsmiPushCode;
         private System.Windows.Forms.ToolStripMenuItem TsmiChooseFiles;
+        private System.Windows.Forms.Button btnHideTree;
+        private System.Windows.Forms.Button btnHideBottomPanel;
     }
 }
 

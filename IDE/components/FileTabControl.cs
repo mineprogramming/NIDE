@@ -22,7 +22,9 @@ namespace NIDE.components
         {
             if (TabCount > 1)
                 e.Graphics.DrawString("x", e.Font, Brushes.Black, e.Bounds.Right - 15, e.Bounds.Top + 2);
-            e.Graphics.DrawString(TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 3);
+            int left = e.Bounds.Left;
+            left += e.Index == 0 ? 16 : 6;
+            e.Graphics.DrawString(TabPages[e.Index].Text, e.Font, Brushes.Black, left, e.Bounds.Top + 3);
             e.DrawFocusRectangle();
         }
 

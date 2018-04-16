@@ -140,6 +140,70 @@
   <data name="mainSplit.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
   </data>
+  <data name="btnHideBottomPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="btnHideBottomPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 5.5pt</value>
+  </data>
+  <data name="btnHideBottomPanel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHideBottomPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>745, 310</value>
+  </data>
+  <data name="btnHideBottomPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnHideBottomPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="btnHideBottomPanel.Text" xml:space="preserve">
+    <value>▼</value>
+  </data>
+  <data name="&gt;&gt;btnHideBottomPanel.Name" xml:space="preserve">
+    <value>btnHideBottomPanel</value>
+  </data>
+  <data name="&gt;&gt;btnHideBottomPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHideBottomPanel.Parent" xml:space="preserve">
+    <value>mainSplit.Panel1</value>
+  </data>
+  <data name="&gt;&gt;btnHideBottomPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnHideTree.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Times New Roman, 5.5pt</value>
+  </data>
+  <data name="btnHideTree.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnHideTree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="btnHideTree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 16</value>
+  </data>
+  <data name="btnHideTree.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="btnHideTree.Text" xml:space="preserve">
+    <value>◄</value>
+  </data>
+  <data name="&gt;&gt;btnHideTree.Name" xml:space="preserve">
+    <value>btnHideTree</value>
+  </data>
+  <data name="&gt;&gt;btnHideTree.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnHideTree.Parent" xml:space="preserve">
+    <value>mainSplit.Panel1</value>
+  </data>
+  <data name="&gt;&gt;btnHideTree.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="tabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -152,7 +216,6 @@
   <data name="tabControl.Size" type="System.Drawing.Size, System.Drawing">
     <value>761, 327</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -166,7 +229,7 @@
     <value>mainSplit.Panel1</value>
   </data>
   <data name="&gt;&gt;tabControl.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;mainSplit.Panel1.Name" xml:space="preserve">
     <value>mainSplit.Panel1</value>
@@ -946,21 +1009,21 @@
   <data name="tsbBuildPush.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        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
+        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
 </value>
   </data>
   <data name="tsbBuildPush.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
