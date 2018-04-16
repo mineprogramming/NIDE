@@ -21,6 +21,7 @@ namespace NIDE
             btnNumbers.ForeColor = Highlighter.NumbersColor;
             btnStrings.ForeColor = Highlighter.StringsColor;
             btnKeywords.ForeColor = Highlighter.KeywordsColor;
+            btnComments.ForeColor = Highlighter.CommentsColor;
 
             tbPath.Text = ProgramData.Project.ADBPushPath;
             cbLast.Checked = ProgramData.LoadLast;
@@ -110,6 +111,15 @@ namespace NIDE
             }
         }
 
+        private void btnComments_Click(object sender, EventArgs e)
+        {
+            if (ShowColorDialog(sender))
+            {
+                Highlighter.CommentsColor = dlgColor.Color;
+                highlighter.RefreshStyles();
+            }
+        }
+
         private void cbHighlighting_CheckedChanged(object sender, EventArgs e)
         {
             Highlighter.ErrorStrategy = cbHighlighting.Checked ?
@@ -136,7 +146,5 @@ namespace NIDE
             ADBWorker.RunProgram = cbRunProgram.Checked;
             Close();
         }
-
-        
     }
 }

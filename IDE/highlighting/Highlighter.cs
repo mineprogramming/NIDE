@@ -17,6 +17,7 @@ namespace NIDE.highlighting
         public static Color NumbersColor { get; set; } = Color.RosyBrown;
         public static Color StringsColor { get; set; } = Color.Blue;
         public static Color KeywordsColor { get; set; } = Color.RoyalBlue;
+        public static Color CommentsColor { get; set; } = Color.Green;
 
         public static Color ForeColor { get; set; } = Color.Black;
         public static Color BackColor { get; set; } = Color.White;
@@ -35,7 +36,8 @@ namespace NIDE.highlighting
             {"MemberStyle", Color.DarkViolet.ToArgb().ToString() },
             {"NumberStyle", Color.Coral.ToArgb().ToString() },
             {"StringStyle", Color.DarkRed.ToArgb().ToString() },
-            {"KeywordStyle", Color.Blue.ToArgb().ToString() }
+            {"KeywordStyle", Color.Blue.ToArgb().ToString() },
+            {"CommentsStyle", Color.Blue.ToArgb().ToString() }
         };
 
         public Highlighter()
@@ -74,6 +76,7 @@ namespace NIDE.highlighting
             fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor), null, FontStyle.Regular);
             fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor), null, FontStyle.Regular);
             fctbMain.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor), null, FontStyle.Regular);
+            fctbMain.SyntaxHighlighter.CommentStyle = new TextStyle(new SolidBrush(CommentsColor), null, FontStyle.Italic);
 
             ProgramData.MainForm.fctbMain.ClearStylesBuffer();
             ResetStyles(range);

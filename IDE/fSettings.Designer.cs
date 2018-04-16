@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnComments = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnKeywords = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btnStrings = new System.Windows.Forms.Button();
@@ -59,6 +61,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnComments);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.btnKeywords);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.btnStrings);
@@ -83,6 +87,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Colors";
+            // 
+            // btnComments
+            // 
+            this.btnComments.Location = new System.Drawing.Point(248, 106);
+            this.btnComments.Name = "btnComments";
+            this.btnComments.Size = new System.Drawing.Size(75, 23);
+            this.btnComments.TabIndex = 19;
+            this.btnComments.Text = "Change";
+            this.btnComments.UseVisualStyleBackColor = true;
+            this.btnComments.Click += new System.EventHandler(this.btnComments_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(186, 111);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 13);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "Comments";
             // 
             // btnKeywords
             // 
@@ -362,5 +385,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox cbRunProgram;
         private System.Windows.Forms.CheckBox cbHighlighting;
+        private System.Windows.Forms.Button btnComments;
+        private System.Windows.Forms.Label label11;
     }
 }
