@@ -122,6 +122,7 @@
             this.ImageList = this.imageList;
             this.LineColor = System.Drawing.Color.Black;
             this.SelectedImageIndex = 0;
+            this.Size = new System.Drawing.Size(200, 97);
             this.cmsTreeView.ResumeLayout(false);
             this.ResumeLayout(false);
 
