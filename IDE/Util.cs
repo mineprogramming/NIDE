@@ -1,4 +1,5 @@
 ﻿using Managed.Adb;
+using NIDE.components;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,9 +27,17 @@ namespace NIDE
             try
             {
                 foreach (var subdir in dir.GetDirectories())
-                    FillDirectoryNodes(node.Nodes.Add(subdir.Name), subdir);
+                {
+                    TreeNode n = node.Nodes.Add(subdir.Name);
+                    ((ProjectTree)n.TreeView).UpdateIcon(n);
+                    FillDirectoryNodes(n, subdir);
+                }
                 foreach (var file in dir.GetFiles())
-                    node.Nodes.Add(file.Name);
+                {
+                    TreeNode n = node.Nodes.Add(file.Name);
+                    ((ProjectTree)n.TreeView).UpdateIcon(n);
+                }
+                    
             }
             catch (Exception e)
             {

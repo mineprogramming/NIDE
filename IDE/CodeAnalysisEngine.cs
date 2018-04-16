@@ -40,6 +40,7 @@ namespace NIDE
         {
             if (updateThread != null)
                 updateThread.Abort();
+            ProgramData.MainForm?.ClearErrors();
         }
 
         private static void _Update()

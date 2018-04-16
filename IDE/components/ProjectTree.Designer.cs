@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectTree));
             this.cmsTreeView = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiNewTexture = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewScript = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +38,7 @@
             this.tsmiRename = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenInExplorer = new System.Windows.Forms.ToolStripMenuItem();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.cmsTreeView.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,10 +105,23 @@
             this.tsmiOpenInExplorer.Text = "Open in explorer";
             this.tsmiOpenInExplorer.Click += new System.EventHandler(this.tsmiOpenInExplorer_Click);
             // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "if_8_2135932.png");
+            this.imageList.Images.SetKeyName(1, "if_js_282802.png");
+            this.imageList.Images.SetKeyName(2, "if_54_111138.png");
+            this.imageList.Images.SetKeyName(3, "NIDE.png");
+            this.imageList.Images.SetKeyName(4, "if_image_216246.png");
+            // 
             // ProjectTree
             // 
             this.ContextMenuStrip = this.cmsTreeView;
+            this.ImageIndex = 0;
+            this.ImageList = this.imageList;
             this.LineColor = System.Drawing.Color.Black;
+            this.SelectedImageIndex = 0;
             this.cmsTreeView.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -122,5 +137,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRename;
         private System.Windows.Forms.ToolStripMenuItem tsmiDelete;
         private System.Windows.Forms.ToolStripMenuItem tsmiOpenInExplorer;
+        private System.Windows.Forms.ImageList imageList;
     }
 }

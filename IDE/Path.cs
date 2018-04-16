@@ -62,6 +62,7 @@ namespace NIDE
             return path;
         }
 
+
         public bool IsFile()
         {
             return File.Exists(path);
@@ -72,13 +73,24 @@ namespace NIDE
             return Directory.Exists(path);
         }
 
-        public void CreateDirectories()
+        public bool Exisis()
+        {
+            return Directory.Exists(path) || File.Exists(path);
+        }
+
+        public void mkdirs()
         {
             int ind = path.LastIndexOf('\\');
             if(ind != -1)
             {
                 Directory.CreateDirectory(path.Substring(0, ind));
             }
+        }
+
+        public void CreateFile()
+        {
+            mkdirs();
+            File.Create(path);
         }
 
         public string GetExtension()
@@ -90,6 +102,10 @@ namespace NIDE
         {
             return path.Trim('\\').Split('\\');
         }
-        
+
+        internal string GetName()
+        {
+            return Explode().Last();
+        }
     }
 }

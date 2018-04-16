@@ -1,14 +1,13 @@
 ﻿using FastColoredTextBoxNS;
 using NIDE.Editors;
+using NIDE.highlighting;
 using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace NIDE.components
 {
     public partial class EditorTab : TabPage
     {
-        private string file;
         private bool saved;
 
         public FastColoredTextBox TextBox { get { return fctb; } }
@@ -18,17 +17,17 @@ namespace NIDE.components
         {
             get
             {
-                return fctb.ReadOnly || saved || fctb.Text == "";
+                return fctb.ReadOnly || saved;
             }
         }
-        public string File { get { return file; } }
+        public string File { get; }
 
         public EditorTab(string file, CodeEditor editor)
         {
             InitializeComponent();
             DoubleBuffered = true;
             Controls.Add(fctb);
-            this.file = file;
+            File = file;
             Editor = editor;
             try
             {
@@ -46,15 +45,15 @@ namespace NIDE.components
         {
             if (CanClose())
             {
-                fctb.OpenFile(file, ProgramData.Encoding);
+                fctb.OpenFile(File, ProgramData.Encoding);
                 saved = true;
-                base.Text = System.IO.Path.GetFileName(file);
+                base.Text = System.IO.Path.GetFileName(File);
             }
         }
 
         public void Save()
         {
-            fctb.SaveToFile(file, ProgramData.Encoding);
+            fctb.SaveToFile(File, ProgramData.Encoding);
             saved = true;
             Text = Text.Replace("*", "");
         }
@@ -64,11 +63,11 @@ namespace NIDE.components
             if (saved)
                 return true;
 
-            var result = MessageBox.Show("Do you want to save changes in " + System.IO.Path.GetFileName(file) + "?",
+            var result = MessageBox.Show("Do you want to save changes in " + System.IO.Path.GetFileName(File) + "?",
                 "Confirmation", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {
-                fctb.SaveToFile(file, ProgramData.Encoding);
+                fctb.SaveToFile(File, ProgramData.Encoding);
                 saved = true;
                 return true;
             }

@@ -20,6 +20,7 @@ namespace NIDE.ProjectTypes.ZCore
             autocomplete.Items.SetAutocompleteItems(this);
             autocomplete.MinFragmentLength = 1;
             TextBox.Language = Language.Custom;
+            CodeAnalysisEngine.Stop();
             return true;
         }
 

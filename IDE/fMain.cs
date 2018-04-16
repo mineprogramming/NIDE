@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
@@ -12,6 +11,7 @@ using NIDE.components;
 using NIDE.ProjectTypes.ZCore;
 using NIDE.Editors;
 using NIDE.UI;
+using NIDE.highlighting;
 
 namespace NIDE
 {
@@ -291,7 +291,7 @@ namespace NIDE
             projectTree.Nodes.Clear();
             projectTree.Nodes.Add(ProgramData.Project.Name);
             ProgramData.Project.Post_tree_reload(projectTree.Nodes[0]);
-            Util.FillDirectoryNodes(projectTree.Nodes[0], new DirectoryInfo(ProgramData.Project.SourceCodePath));
+            Util.FillDirectoryNodes(projectTree.Nodes[0], new DirectoryInfo(ProgramData.Project.Path));
             projectTree.Nodes[0].Expand();
         }
         #endregion

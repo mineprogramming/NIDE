@@ -161,12 +161,11 @@ namespace NIDE.ProjectTypes
         public string AddTexture(string name, ImageType type)
         {
             name = name.ToLower().EndsWith(".png") ? name : name + ".png";
-            string TexturePath = (type == ImageType.ITEMS_OPAQUE ? ItemsOpaquePath : TerrainAtlasPath) + name;
-            int ind = TexturePath.LastIndexOf('\\');
-            if (ind != -1)
-            {
-                Directory.CreateDirectory(TexturePath.Substring(0, ind));
-            }
+            Path TexturePath = (type == ImageType.ITEMS_OPAQUE ? ItemsOpaquePath : TerrainAtlasPath) + name;
+            TexturePath.mkdirs();
+            if(TexturePath.Exisis() && MessageBox.Show("File " + TexturePath.GetName() + " already exists. Do you want to override it?",
+                "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                return "";
             Bitmap png = new Bitmap(16, 16);
             for (int i = 0; i < 16; i++)
             {
@@ -175,23 +174,21 @@ namespace NIDE.ProjectTypes
                     png.SetPixel(i, j, Color.Transparent);
                 }
             }
-            png.Save(TexturePath);
-            return TexturePath;
+            png.Save(TexturePath.ToString());
+            return TexturePath.ToString();
         }
 
         public string AddScript(string name)
         {
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
             string backslashed = name.Replace('/', '\\');
-            string ScriptPath = ScriptsPath + backslashed;
-            int ind = ScriptPath.LastIndexOf('\\');
-            if (ind != -1)
-            {
-                Directory.CreateDirectory(ScriptPath.Substring(0, ind));
-            }
-            File.CreateText(ScriptPath).Close();
+            Path ScriptPath = ScriptsPath + backslashed;
+            if (ScriptPath.Exisis() && MessageBox.Show("File " + ScriptPath.GetName() + " already exists. Do you want to override it?",
+                "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
+                return "";
+            File.CreateText(ScriptPath.ToString()).Close();
             Post_add_script(name);
-            return ScriptPath;
+            return ScriptPath.ToString();
         }
     }
 }

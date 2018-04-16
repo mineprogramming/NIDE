@@ -22,6 +22,7 @@ namespace NIDE.components
 
         public void UpdatePath(Path path)
         {
+            if (path.Equals("")) return;
             path = path - ProgramData.Project.Path;
             string[] elements = path.Explode();
             TreeNode current = Nodes[0];
@@ -40,9 +41,40 @@ namespace NIDE.components
                     TreeNode node = new TreeNode(element);
                     current.Nodes.Add(node);
                     current = node;
+                    UpdateIcon(node);
                 }
             }
             SelectedNode = current;
+        }
+
+        public void UpdateIcon(TreeNode n)
+        {
+            Path path = GetTreeViewPath(n);
+            if (path.IsDirectory())
+            {
+                n.ImageIndex = 0;
+                n.SelectedImageIndex = 0;
+                return;
+            }
+            switch (path.GetExtension())
+            {
+                case ".js":
+                    n.ImageIndex = 1;
+                    n.SelectedImageIndex = 1;
+                    break;
+                case ".nproj":
+                    n.ImageIndex = 3;
+                    n.SelectedImageIndex = 3;
+                    break;
+                case ".png":
+                    n.ImageIndex = 4;
+                    n.SelectedImageIndex = 4;
+                    break;
+                default:
+                    n.ImageIndex = 2;
+                    n.SelectedImageIndex = 2;
+                    break;
+            }
         }
 
         private void ProjectTree_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
@@ -67,10 +99,12 @@ namespace NIDE.components
                         File.Move(OldPath, path);
                     if (Directory.Exists(OldPath))
                         Directory.Move(OldPath, path);
+                    UpdateIcon(node);
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
+                    node.Text = new Path(OldPath).GetName();
                 }
             }
         }
@@ -121,9 +155,11 @@ namespace NIDE.components
                     fileName = "file" + i + ".js";
                     i++;
                 }
+                Path path = (Path)dir + fileName;
                 File.Create(System.IO.Path.Combine(dir, fileName)).Close();
                 TreeNode node = new TreeNode(fileName);
                 SelectedNode.Nodes.Add(node);
+                UpdateIcon(node);
                 SelectedNode.Expand();
                 OldPath = GetTreeViewPath(node);
                 LabelEdit = true;
@@ -153,6 +189,7 @@ namespace NIDE.components
                 Directory.CreateDirectory(System.IO.Path.Combine(dir, folderName));
                 TreeNode node = new TreeNode(folderName);
                 SelectedNode.Nodes.Add(node);
+                UpdateIcon(node);
                 SelectedNode.Expand();
                 OldPath = GetTreeViewPath(node);
                 LabelEdit = true;

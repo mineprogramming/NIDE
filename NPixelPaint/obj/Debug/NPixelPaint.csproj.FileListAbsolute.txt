@@ -8,3 +8,4 @@ F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Debug\NPixelPaint.csproj.CoreCompi
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Debug\NPixelPaint.exe
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Debug\NPixelPaint.pdb
 F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Debug\NPixelPaint.csprojResolveAssemblyReference.cache
+F:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Debug\NPixelPaint.csproj.CopyComplete

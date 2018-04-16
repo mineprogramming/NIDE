@@ -235,10 +235,7 @@ namespace NIDE.ProjectTypes
 
         public override void Post_add_script(string name) { }
 
-        public override void Post_tree_reload(TreeNode node)
-        {
-            node.Nodes.Add(System.IO.Path.GetFileName(ProgramData.Project.Nproj));
-        }
+        public override void Post_tree_reload(TreeNode node) { }
 
         public override void OnAutocomplete(AutocompleteItem item, FastColoredTextBox textBox) { }
 

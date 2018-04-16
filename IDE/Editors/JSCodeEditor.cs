@@ -15,7 +15,7 @@ namespace NIDE.Editors
                 return false;
 
             TextBox.Language = Language.JS;
-            //Focus();
+            Focus();
             Update(TextBox.Range);
             return true;
         }

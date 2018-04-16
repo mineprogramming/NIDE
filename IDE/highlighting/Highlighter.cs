@@ -1,12 +1,12 @@
 ﻿using FastColoredTextBoxNS;
 using NIDE.ProjectTypes;
 using NIDE.ProjectTypes.ZCore;
-using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text.RegularExpressions;
 
-namespace NIDE
+namespace NIDE.highlighting
 {
     public class Highlighter
     {
@@ -14,12 +14,34 @@ namespace NIDE
         public static Color HookColor { get; set; } = Color.Gray;
         public static Color GlobalColor { get; set; } = Color.Brown;
         public static Color MemberColor { get; set; } = Color.LightSkyBlue;
+        public static Color NumbersColor { get; set; } = Color.RosyBrown;
+        public static Color StringsColor { get; set; } = Color.Blue;
+        public static Color KeywordsColor { get; set; } = Color.RoyalBlue;
 
-        public static Color? NumbersColor { get; set; } = null;
-        public static Color? StringsColor { get; set; } = null;
-        public static Color? KeywordsColor { get; set; } = null;
+        public static Color ForeColor { get; set; } = Color.Black;
+        public static Color BackColor { get; set; } = Color.White;
 
         public static ErrorHighlightStrategy ErrorStrategy { get; set; } = ErrorHighlightStrategy.UNDERLINE;
+
+        public static Highlighter Instance { get; private set; }
+
+        public static Dictionary<string, string> DefaultColors { get; } = new Dictionary<string, string>()
+        {
+            {"NormalStyle", Color.Black.ToArgb().ToString() },
+            {"BackStyle", Color.White.ToArgb().ToString() },
+            {"NamespaceStyle", Color.Green.ToArgb().ToString() },
+            {"GlobalStyle", Color.DarkSlateGray.ToArgb().ToString() },
+            {"HookStyle", Color.Gray.ToArgb().ToString() },
+            {"MemberStyle", Color.DarkViolet.ToArgb().ToString() },
+            {"NumberStyle", Color.Coral.ToArgb().ToString() },
+            {"StringStyle", Color.DarkRed.ToArgb().ToString() },
+            {"KeywordStyle", Color.Blue.ToArgb().ToString() }
+        };
+
+        public Highlighter()
+        {
+            Instance = this;
+        }
 
 
         private TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
@@ -39,17 +61,19 @@ namespace NIDE
             GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
 
-            ProgramData.MainForm.fctbMain.AddStyle(NamespaceStyle);
-            ProgramData.MainForm.fctbMain.AddStyle(HookStyle);
-            ProgramData.MainForm.fctbMain.AddStyle(GlobalStyle);
-            ProgramData.MainForm.fctbMain.AddStyle(MemberStyle);
+            var fctbMain = ProgramData.MainForm.fctbMain;
 
-            if (NumbersColor != null)
-                ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor.Value), null, FontStyle.Regular);
-            if(StringsColor != null)
-                ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor.Value), null, FontStyle.Regular);
-            if(KeywordsColor != null)
-                ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor.Value), null, FontStyle.Regular);
+            fctbMain.AddStyle(NamespaceStyle);
+            fctbMain.AddStyle(HookStyle);
+            fctbMain.AddStyle(GlobalStyle);
+            fctbMain.AddStyle(MemberStyle);
+
+            fctbMain.ForeColor = ForeColor;
+            fctbMain.BackColor = BackColor;
+
+            fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor), null, FontStyle.Regular);
+            fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor), null, FontStyle.Regular);
+            fctbMain.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor), null, FontStyle.Regular);
 
             ProgramData.MainForm.fctbMain.ClearStylesBuffer();
             ResetStyles(range);

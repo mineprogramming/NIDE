@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using NIDE.adb;
+using NIDE.highlighting;
 
 namespace NIDE
 {
@@ -11,19 +12,15 @@ namespace NIDE
         public fSettings(Highlighter highlighter)
         {
             InitializeComponent();
-            btnNormal.ForeColor = ProgramData.MainForm.fctbMain.ForeColor;
+            btnNormal.ForeColor = Highlighter.ForeColor;
             btnNamespaces.ForeColor = Highlighter.NamespaceColor;
             btnHooks.ForeColor = Highlighter.HookColor;
             btnGlobal.ForeColor = Highlighter.GlobalColor;
             btnMembers.ForeColor = Highlighter.MemberColor;
-            btnBack.ForeColor = ProgramData.MainForm.fctbMain.BackColor;
-
-            try
-            {
-                btnNumbers.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.NumberStyle.GetRTF().ForeColor;
-                btnStrings.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle.GetRTF().ForeColor;
-                btnKeywords.ForeColor = ProgramData.MainForm.fctbMain.SyntaxHighlighter.KeywordStyle.GetRTF().ForeColor;
-            } catch { }
+            btnBack.ForeColor = Highlighter.BackColor;
+            btnNumbers.ForeColor = Highlighter.NumbersColor;
+            btnStrings.ForeColor = Highlighter.StringsColor;
+            btnKeywords.ForeColor = Highlighter.KeywordsColor;
 
             tbPath.Text = ProgramData.Project.ADBPushPath;
             cbLast.Checked = ProgramData.LoadLast;
@@ -36,7 +33,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                ProgramData.MainForm.fctbMain.ForeColor = dlgColor.Color;
+                Highlighter.ForeColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
@@ -80,7 +78,8 @@ namespace NIDE
         {
             if (ShowColorDialog(sender))
             {
-                ProgramData.MainForm.fctbMain.BackColor = dlgColor.Color;
+                Highlighter.BackColor = dlgColor.Color;
+                highlighter.RefreshStyles();
             }
         }
 
