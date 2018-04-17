@@ -1,10 +1,9 @@
 ﻿using FastColoredTextBoxNS;
 using NIDE.Editors;
-using NIDE.highlighting;
 using System;
 using System.Windows.Forms;
 
-namespace NIDE.components
+namespace NIDE.window
 {
     public partial class EditorTab : TabPage
     {

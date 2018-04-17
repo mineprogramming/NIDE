@@ -99,22 +99,22 @@
     <Compile Include="adb\OutputLogReceiver.cs" />
     <Compile Include="Autocomplete.cs" />
     <Compile Include="CodeAnalysisEngine.cs" />
-    <Compile Include="components\EditorTab.cs">
+    <Compile Include="window\EditorTab.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="components\EditorTab.Designer.cs">
+    <Compile Include="window\EditorTab.Designer.cs">
       <DependentUpon>EditorTab.cs</DependentUpon>
     </Compile>
-    <Compile Include="components\FileTabControl.cs">
+    <Compile Include="window\FileTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="components\FileTabControl.Designer.cs">
+    <Compile Include="window\FileTabControl.Designer.cs">
       <DependentUpon>FileTabControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="components\ProjectTree.cs">
+    <Compile Include="window\ProjectTree.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="components\ProjectTree.Designer.cs">
+    <Compile Include="window\ProjectTree.Designer.cs">
       <DependentUpon>ProjectTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
@@ -209,16 +209,22 @@
     <Compile Include="Enums.cs" />
     <Compile Include="RegistryWorker.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="window\SearchListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="window\SearchListBox.Designer.cs">
+      <DependentUpon>SearchListBox.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="adb\FChooseFiles.resx">
       <DependentUpon>FChooseFiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="components\EditorTab.resx">
+    <EmbeddedResource Include="window\EditorTab.resx">
       <DependentUpon>EditorTab.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="components\FileTabControl.resx">
+    <EmbeddedResource Include="window\FileTabControl.resx">
       <DependentUpon>FileTabControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="components\ProjectTree.resx">
+    <EmbeddedResource Include="window\ProjectTree.resx">
       <DependentUpon>ProjectTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DialogForm.resx">
@@ -264,6 +270,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="window\SearchListBox.resx">
+      <DependentUpon>SearchListBox.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

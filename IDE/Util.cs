@@ -1,5 +1,5 @@
 ﻿using Managed.Adb;
-using NIDE.components;
+using NIDE.window;
 using System;
 using System.Collections.Generic;
 using System.IO;

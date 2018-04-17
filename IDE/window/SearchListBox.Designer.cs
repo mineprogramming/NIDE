@@ -1,8 +1,8 @@
-﻿namespace NIDE.components
+﻿namespace NIDE.window
 {
-    partial class FileTabControl
+    partial class SearchListBox
     {
-        /// <summary> 
+        /// <summary>
         /// Обязательная переменная конструктора.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
@@ -22,13 +22,18 @@
 
         #region Код, автоматически созданный конструктором компонентов
 
-        /// <summary> 
+        /// <summary>
         /// Требуемый метод для поддержки конструктора — не изменяйте 
         /// содержимое этого метода с помощью редактора кода.
         /// </summary>
         private void InitializeComponent()
         {
             this.SuspendLayout();
+            // 
+            // SearchListBox
+            // 
+            this.HorizontalScrollbar = true;
+            this.Size = new System.Drawing.Size(120, 95);
             this.ResumeLayout(false);
 
         }

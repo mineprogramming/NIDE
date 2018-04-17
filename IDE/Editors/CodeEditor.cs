@@ -1,5 +1,5 @@
 ﻿using FastColoredTextBoxNS;
-using NIDE.components;
+using NIDE.window;
 using System.Collections.Generic;
 
 namespace NIDE.Editors
@@ -22,10 +22,20 @@ namespace NIDE.Editors
         public override bool Edit()
         {
             EditorTab = ProgramData.MainForm.OpenScript(file, this, EditBlank);
-            TextBox.ReadOnly = false;
             if(EditorTab == null)
                 return false;
-            else return true;
+            TextBox.ReadOnly = false;
+            return true;
+        }
+
+        public void ToLine(int line)
+        {
+            try
+            {
+                TextBox.Selection.Start = new Place(0, line);
+                TextBox.InsertText("");
+            }
+            catch { }
         }
     }
 }

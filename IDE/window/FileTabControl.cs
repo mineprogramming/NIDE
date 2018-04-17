@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NIDE.components
+namespace NIDE.window
 {
     public partial class FileTabControl : TabControl
     {

@@ -7,11 +7,14 @@ using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
 using System.Collections.Generic;
-using NIDE.components;
+using NIDE.window;
 using NIDE.ProjectTypes.ZCore;
 using NIDE.Editors;
 using NIDE.UI;
 using NIDE.highlighting;
+using System.Threading;
+using System.Linq;
+using static NIDE.window.SearchListBox;
 
 namespace NIDE
 {
@@ -745,5 +748,49 @@ namespace NIDE
             }
         }
         #endregion
+
+        Thread searchThread = null;
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            lbSearchResults.Items.Clear();
+            if (tbSearch.Text == "")
+                return;
+            if (searchThread != null)
+                searchThread.Abort();
+            searchThread = new Thread(() => Search(tbSearch.Text));
+            searchThread.Start();
+        }
+
+        private void Search(string pattern)
+        {
+            string[] files = Directory.GetFiles(ProgramData.Project.CodePath, "*.js");
+            foreach(string file in files)
+            {
+                string[] lines = File.ReadAllLines(file);
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    if (lines[i].Contains(pattern))
+                    {
+                        Invoke(new Action(() =>
+                        {
+                            lbSearchResults.Items.Add(new SearchListItem(file, i, lines[i]));
+                        }));
+                    }
+                }
+            }
+        }
+
+        
+
+        private void lbSearchResults_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lbSearchResults.SelectedItem != null)
+            {
+                SearchListItem item = (SearchListItem)lbSearchResults.SelectedItem;
+                CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(item.File.ToString());
+                editor.Edit();
+                editor.ToLine(item.Line);
+            }
+        }
     }
 }

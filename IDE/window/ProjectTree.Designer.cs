@@ -1,4 +1,4 @@
-﻿namespace NIDE.components
+﻿namespace NIDE.window
 {
     partial class ProjectTree
     {

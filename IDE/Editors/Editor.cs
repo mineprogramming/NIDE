@@ -11,7 +11,6 @@ namespace NIDE.Editors
         public Editor(string file)
         {
             this.file = file;
-            
         }
     }
 }

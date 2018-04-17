@@ -4,9 +4,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using static NIDE.Path;
 
-namespace NIDE.components
+namespace NIDE.window
 {
     public partial class ProjectTree : TreeView
     {
