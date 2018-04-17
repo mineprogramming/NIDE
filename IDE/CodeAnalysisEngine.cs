@@ -5,6 +5,7 @@ using EcmaScript.NET;
 using System.Threading;
 using System;
 using NIDE.ProjectTypes;
+using NIDE.Editors;
 
 namespace NIDE
 {
@@ -25,11 +26,11 @@ namespace NIDE
             parser = new Parser(new CompilerEnvirons(), reporter);
         }
 
-        public static void Update()
+        public static void Update(CodeEditor editor)
         {
             if (updateThread == null || !updateThread.IsAlive)
             {
-                updateThread = new Thread(_Update);
+                updateThread = new Thread(() => _Update(editor));
                 updateThread.IsBackground = true;
                 updateThread.Start();
             }
@@ -43,15 +44,16 @@ namespace NIDE
             ProgramData.MainForm?.ClearErrors();
         }
 
-        private static void _Update()
+        private static void _Update(CodeEditor editor)
         {
             try
             {
                 try
                 {
+                    reporter.SetOut(editor.Errors);
                     reporter.Clear();
                     ProgramData.MainForm?.ClearErrors();
-                    string text = ProgramData.MainForm.fctbMain.Text;
+                    string text = editor.TextBox.Text;
                     Regex reg = new Regex(@"\b(const|let)\b");
                     text = reg.Replace(text, " var ");
                     reg = new Regex(@"(class|super|extends|implements|abstract|final|static|public|private)");
@@ -105,16 +107,21 @@ namespace NIDE
             if (shouldUpdate)
             {
                 shouldUpdate = false;
-                _Update();
+                _Update(editor);
             }
         }
     }
 
     class ErrorReporterEx : ErrorReporter
     {
-        List<int> lines = new List<int>();
+        List<int> lines;
 
         private delegate void Logs(string source, string message);
+
+        public void SetOut(List<int> outLines)
+        {
+            lines = outLines;
+        }
 
         public void Clear()
         {

@@ -29,7 +29,7 @@ namespace NIDE.Editors
 
         public override void Update(Range range)
         {
-            CodeAnalysisEngine.Update();
+            CodeAnalysisEngine.Update(this);
             ProgramData.MainForm.UpdateHighlighting(range);
         }
     }

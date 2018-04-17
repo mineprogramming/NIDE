@@ -1,5 +1,6 @@
 ﻿using FastColoredTextBoxNS;
 using NIDE.components;
+using System.Collections.Generic;
 
 namespace NIDE.Editors
 {
@@ -7,6 +8,7 @@ namespace NIDE.Editors
     {
         public abstract void Update(Range range);
         public abstract void Focus();
+        public List<int> Errors { get; } = new List<int>();
 
         public EditorTab EditorTab { get; private set; }
         public FastColoredTextBox TextBox { get { return EditorTab.TextBox; } }

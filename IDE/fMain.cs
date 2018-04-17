@@ -422,8 +422,6 @@ namespace NIDE
         }
 
         //Log and errors
-        private List<int> errorLines = new List<int>();
-
         public void Log(string source, string message)
         {
             try
@@ -447,7 +445,7 @@ namespace NIDE
         {
             Invoke( new Action(() => {
                 errors.Clear();
-                errorLines.Clear();
+                CurrentEditor.Errors.Clear();
             }));
         }
         public void UpdateHighlighting(Range range)
@@ -458,7 +456,7 @@ namespace NIDE
         }
         public void HighlightError(int line)
         {
-            errorLines.Add(line);
+            CurrentEditor.Errors.Add(line);
         }
 
 
@@ -488,7 +486,7 @@ namespace NIDE
 
         private void fctbMain_PaintLine(object sender, PaintLineEventArgs e)
         {
-            if (errorLines.Contains(e.LineIndex))
+            if (CurrentEditor.Errors.Contains(e.LineIndex))
             {
                 highlighter.HighlightError(e);
             }
@@ -535,7 +533,6 @@ namespace NIDE
 
         private void tsmiRunJs_Click(object sender, EventArgs e)
         {
-
             new JsRunner(fctbMain.Text);
         }       
 
@@ -578,7 +575,6 @@ namespace NIDE
                 WebClient client = new WebClient();
                 client.DownloadString("http://api.mineprogramming.org/nide/counters/open.php");
                 client.Dispose();
-
             }
             catch{ }
         }
@@ -605,21 +601,9 @@ namespace NIDE
             Process.Start(new ProcessStartInfo("bin\\RendererTool.exe"));
         }
 
-        private void btnStartLog_Click(object sender, EventArgs e)
-        {
-            ADBWorker.StartLog();
-        }
-
-        private void btnStopLog_Click(object sender, EventArgs e)
-        {
-            ADBWorker.StopLog();
-        }
-
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentTab = (EditorTab)tabControl.SelectedTab;
-            Autocomplete.SetAutoompleteMenu(fctbMain);
-            CodeAnalysisEngine.Update();
             try { CurrentEditor.Focus(); } catch { }; //TODO: КОСТЫЛЬ!!!
         }
 
@@ -697,6 +681,15 @@ namespace NIDE
             PushChosen(true);
         }
 
+        private void btnStartLog_Click(object sender, EventArgs e)
+        {
+            ADBWorker.StartLog();
+        }
+
+        private void btnStopLog_Click(object sender, EventArgs e)
+        {
+            ADBWorker.StopLog();
+        }
         #endregion
 
         #region Panels

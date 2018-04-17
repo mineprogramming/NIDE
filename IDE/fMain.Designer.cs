@@ -32,6 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fMain));
             this.container = new System.Windows.Forms.ToolStripContainer();
             this.mainSplit = new System.Windows.Forms.SplitContainer();
+            this.btnHideBottomPanel = new System.Windows.Forms.Button();
+            this.btnHideTree = new System.Windows.Forms.Button();
+            this.tabControl = new NIDE.components.FileTabControl();
             this.splitContainerLogs = new System.Windows.Forms.SplitContainer();
             this.gbErrors = new System.Windows.Forms.GroupBox();
             this.errors = new System.Windows.Forms.TextBox();
@@ -43,6 +46,7 @@
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.splitter = new System.Windows.Forms.Splitter();
             this.panel = new System.Windows.Forms.Panel();
+            this.projectTree = new NIDE.components.ProjectTree();
             this.Ads = new System.Windows.Forms.WebBrowser();
             this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
@@ -118,10 +122,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnHideTree = new System.Windows.Forms.Button();
-            this.tabControl = new NIDE.components.FileTabControl();
-            this.projectTree = new NIDE.components.ProjectTree();
-            this.btnHideBottomPanel = new System.Windows.Forms.Button();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -178,6 +178,29 @@
             // 
             this.mainSplit.Panel2.Controls.Add(this.splitContainerLogs);
             this.mainSplit.SplitterMoving += new System.Windows.Forms.SplitterCancelEventHandler(this.mainSplit_SplitterMoving);
+            // 
+            // btnHideBottomPanel
+            // 
+            resources.ApplyResources(this.btnHideBottomPanel, "btnHideBottomPanel");
+            this.btnHideBottomPanel.Name = "btnHideBottomPanel";
+            this.btnHideBottomPanel.UseVisualStyleBackColor = true;
+            this.btnHideBottomPanel.Click += new System.EventHandler(this.btnHideBottomPanel_Click);
+            // 
+            // btnHideTree
+            // 
+            resources.ApplyResources(this.btnHideTree, "btnHideTree");
+            this.btnHideTree.Name = "btnHideTree";
+            this.btnHideTree.UseVisualStyleBackColor = true;
+            this.btnHideTree.Click += new System.EventHandler(this.btnHideTree_Click);
+            // 
+            // tabControl
+            // 
+            resources.ApplyResources(this.tabControl, "tabControl");
+            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // splitContainerLogs
             // 
@@ -260,6 +283,13 @@
             this.panel.Controls.Add(this.Ads);
             resources.ApplyResources(this.panel, "panel");
             this.panel.Name = "panel";
+            // 
+            // projectTree
+            // 
+            this.projectTree.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.projectTree.Cursor = System.Windows.Forms.Cursors.Default;
+            resources.ApplyResources(this.projectTree, "projectTree");
+            this.projectTree.Name = "projectTree";
             // 
             // Ads
             // 
@@ -794,36 +824,6 @@
             // dlgOpen
             // 
             this.dlgOpen.DefaultExt = "nproj";
-            // 
-            // btnHideTree
-            // 
-            resources.ApplyResources(this.btnHideTree, "btnHideTree");
-            this.btnHideTree.Name = "btnHideTree";
-            this.btnHideTree.UseVisualStyleBackColor = true;
-            this.btnHideTree.Click += new System.EventHandler(this.btnHideTree_Click);
-            // 
-            // tabControl
-            // 
-            resources.ApplyResources(this.tabControl, "tabControl");
-            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
-            // 
-            // projectTree
-            // 
-            this.projectTree.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.projectTree.Cursor = System.Windows.Forms.Cursors.Default;
-            resources.ApplyResources(this.projectTree, "projectTree");
-            this.projectTree.Name = "projectTree";
-            // 
-            // btnHideBottomPanel
-            // 
-            resources.ApplyResources(this.btnHideBottomPanel, "btnHideBottomPanel");
-            this.btnHideBottomPanel.Name = "btnHideBottomPanel";
-            this.btnHideBottomPanel.UseVisualStyleBackColor = true;
-            this.btnHideBottomPanel.Click += new System.EventHandler(this.btnHideBottomPanel_Click);
             // 
             // fMain
             // 
