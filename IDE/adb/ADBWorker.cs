@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace NIDE.adb
 {
@@ -20,7 +21,7 @@ namespace NIDE.adb
                 try
                 {
                     StopLog();
-                    var device = GetFirstDevice();
+                    var device = GetDevice();
                     using (SyncService sync = device.SyncService)
                     {
                         ProgramData.Log("ADB", "Starting copying files.......");
@@ -73,7 +74,7 @@ namespace NIDE.adb
                 try
                 {
                     StopLog();
-                    var device = GetFirstDevice();
+                    var device = GetDevice();
                     InitLogging(device);
                 }
                 catch (Exception e)
@@ -108,7 +109,7 @@ namespace NIDE.adb
             task.Start();
         }
 
-        private static Device GetFirstDevice()
+        private static Device GetDevice()
         {
             if (adb == null || !adb.IsConnected)
             {
@@ -118,10 +119,12 @@ namespace NIDE.adb
             }
             List<Device> devices = (List<Device>)adb.Devices;
             if (devices.Count < 1)
-            {
                 throw new Exception("Connect your device and retry!");
-            }
-            return devices[0];
+            FChooseDevice form = new FChooseDevice();
+            if (form.ShowDialog(devices) == DialogResult.OK)
+                return FChooseDevice.Device;
+            else
+                throw new Exception("Choose device and retry!");
         }
 
         private static void PushFiles(List<string> files, string localBasedir, string remoteBasedir, SyncService sync)

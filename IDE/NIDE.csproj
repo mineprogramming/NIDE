@@ -89,6 +89,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adb\ADBWorker.cs" />
+    <Compile Include="adb\FChooseDevice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="adb\FChooseDevice.Designer.cs">
+      <DependentUpon>FChooseDevice.cs</DependentUpon>
+    </Compile>
     <Compile Include="adb\FChooseFiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     <Compile Include="window\SearchListBox.Designer.cs">
       <DependentUpon>SearchListBox.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="adb\FChooseDevice.resx">
+      <DependentUpon>FChooseDevice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="adb\FChooseFiles.resx">
       <DependentUpon>FChooseFiles.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,6 +297,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\js.png" />
     <Content Include="Resources\screen.png" />
     <None Include="bin\Release\icons\background.png" />
     <Content Include="icon.ico" />

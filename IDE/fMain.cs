@@ -6,14 +6,12 @@ using System.Diagnostics;
 using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
-using System.Collections.Generic;
 using NIDE.window;
 using NIDE.ProjectTypes.ZCore;
 using NIDE.Editors;
 using NIDE.UI;
 using NIDE.highlighting;
 using System.Threading;
-using System.Linq;
 using static NIDE.window.SearchListBox;
 
 namespace NIDE
@@ -757,18 +755,22 @@ namespace NIDE
                 return;
             if (searchThread != null)
                 searchThread.Abort();
-            searchThread = new Thread(() => Search(tbSearch.Text));
+            searchThread = new Thread(() => Search(tbSearch.Text, true));
             searchThread.Start();
         }
 
-        private void Search(string pattern)
+        private void Search(string pattern, bool caseInsensitive)
         {
+            if (caseInsensitive)
+                pattern = pattern.ToLower();
             string[] files = Directory.GetFiles(ProgramData.Project.CodePath, "*.js");
             foreach(string file in files)
             {
                 string[] lines = File.ReadAllLines(file);
                 for (int i = 0; i < lines.Length; i++)
                 {
+                    if (caseInsensitive)
+                        lines[i] = lines[i].ToLower();
                     if (lines[i].Contains(pattern))
                     {
                         Invoke(new Action(() =>

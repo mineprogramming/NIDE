@@ -28,25 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FChooseFiles));
             this.ClbFiles = new System.Windows.Forms.CheckedListBox();
             this.BtnPush = new System.Windows.Forms.Button();
             this.CBDontAsk = new System.Windows.Forms.CheckBox();
             this.BtnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // CLBFiles
+            // ClbFiles
             // 
             this.ClbFiles.CheckOnClick = true;
             this.ClbFiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.ClbFiles.FormattingEnabled = true;
             this.ClbFiles.Location = new System.Drawing.Point(0, 0);
-            this.ClbFiles.Name = "CLBFiles";
-            this.ClbFiles.Size = new System.Drawing.Size(488, 289);
+            this.ClbFiles.Name = "ClbFiles";
+            this.ClbFiles.Size = new System.Drawing.Size(484, 274);
             this.ClbFiles.TabIndex = 0;
             // 
             // BtnPush
             // 
-            this.BtnPush.Location = new System.Drawing.Point(320, 291);
+            this.BtnPush.Location = new System.Drawing.Point(316, 291);
             this.BtnPush.Name = "BtnPush";
             this.BtnPush.Size = new System.Drawing.Size(75, 23);
             this.BtnPush.TabIndex = 1;
@@ -57,7 +58,7 @@
             // CBDontAsk
             // 
             this.CBDontAsk.AutoSize = true;
-            this.CBDontAsk.Location = new System.Drawing.Point(214, 295);
+            this.CBDontAsk.Location = new System.Drawing.Point(210, 295);
             this.CBDontAsk.Name = "CBDontAsk";
             this.CBDontAsk.Size = new System.Drawing.Size(100, 17);
             this.CBDontAsk.TabIndex = 2;
@@ -66,7 +67,7 @@
             // 
             // BtnCancel
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(401, 291);
+            this.BtnCancel.Location = new System.Drawing.Point(397, 291);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(75, 23);
             this.BtnCancel.TabIndex = 3;
@@ -78,11 +79,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(488, 326);
+            this.ClientSize = new System.Drawing.Size(484, 326);
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.CBDontAsk);
             this.Controls.Add(this.BtnPush);
             this.Controls.Add(this.ClbFiles);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FChooseFiles";
             this.Text = "Choose files to push";
             this.ResumeLayout(false);

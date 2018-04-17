@@ -34,6 +34,7 @@ namespace NIDE.Editors
             {
                 TextBox.Selection.Start = new Place(0, line);
                 TextBox.InsertText("");
+                EditorTab.Save();
             }
             catch { }
         }
