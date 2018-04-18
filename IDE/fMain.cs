@@ -550,14 +550,7 @@ namespace NIDE
                 {
                     if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Process process = new Process();
-                        process.StartInfo.FileName = "CMD.exe";
-                        process.StartInfo.WorkingDirectory = Directory.GetCurrentDirectory();
-                        process.StartInfo.Arguments = "/C \"cd /d \"" + Directory.GetCurrentDirectory() + "\" && cscript //D //Nologo update.vbs\"";
-                        process.StartInfo.UseShellExecute = true;
-                        process.StartInfo.Verb = "runas";
-                        process.Start();
-                        Close();
+                        Process.Start("bin\\Updater.exe");
                     }
                 }
             }

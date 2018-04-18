@@ -1,6 +1,7 @@
 ﻿using Ionic.Zip;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Windows.Forms;
 
@@ -19,18 +20,25 @@ namespace Updater
 
         private void FUpdate_Load(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcessesByName("NIDE");
-            foreach (Process process in processes)
+            try
             {
-                process.Kill();
-            }
+                Process[] processes = Process.GetProcessesByName("NIDE");
+                foreach (Process process in processes)
+                {
+                    process.Kill();
+                }
 
-            using (var client = new WebClient())
+                using (var client = new WebClient())
+                {
+                    client.DownloadProgressChanged += Client_DownloadProgressChanged;
+                    client.DownloadFileCompleted += Client_DownloadFileCompleted;
+                    Log("Downloading update archive");
+                    client.DownloadFileAsync(new Uri("http://api.mineprogramming.org/nide/update.zip"), UPDATE_FILE);
+                }
+            }
+            catch(Exception ex)
             {
-                client.DownloadProgressChanged += Client_DownloadProgressChanged;
-                client.DownloadFileCompleted += Client_DownloadFileCompleted;
-                Log("Downloading update archieve");
-                client.DownloadFileAsync(new Uri("http://api.mineprogramming.org/nide/update.zip"), UPDATE_FILE);
+                Abort(ex.Message);
             }
         }
         
@@ -42,15 +50,27 @@ namespace Updater
 
         private void Client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
-            Log("Success");
-            pbDownload.Value = 0;
-            pbGeneral.Value = 100;
-            using (ZipFile zip = ZipFile.Read(UPDATE_FILE))
+            try
             {
-                zip.ExtractProgress += Zip_ExtractProgress;
-                Log("Unzipping update archieve");
-                zip.ExtractAll("..\\", ExtractExistingFileAction.OverwriteSilently);
+                Log("Success");
+                pbDownload.Value = 0;
+                pbGeneral.Value = 100;
+                using (ZipFile zip = ZipFile.Read(UPDATE_FILE))
+                {
+                    zip.ExtractProgress += Zip_ExtractProgress;
+                    Log("Unzipping update archive");
+                    zip.ExtractAll("..\\", ExtractExistingFileAction.OverwriteSilently);
+                }
+                Log("Deleting update archive");
+                File.Delete(UPDATE_FILE);
+                Log("Success");
+                btnOk.Enabled = true;
+
+            } catch(Exception ex)
+            {
+                Abort(ex.Message);
             }
+            
         }
 
         private void Zip_ExtractProgress(object sender, ExtractProgressEventArgs e)
@@ -63,7 +83,6 @@ namespace Updater
                 {
                     Log("Success");
                     success = true;
-                    btnOk.Enabled = true;
                 }
             }
         }
@@ -78,6 +97,12 @@ namespace Updater
         {
             Process.Start("..\\NIDE.exe", "update");
             Close();
+        }
+
+        private void Abort(string message)
+        {
+            Log(message);
+            btnOk.Enabled = true;
         }
     }
 }
