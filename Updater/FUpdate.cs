@@ -9,7 +9,7 @@ namespace Updater
 {
     public partial class FUpdate : Form
     {
-        private const string UPDATE_FILE = "..\\update.zip";
+        private const string UPDATE_FILE = "update.zip";
 
         public FUpdate()
         {
@@ -59,7 +59,7 @@ namespace Updater
                 {
                     zip.ExtractProgress += Zip_ExtractProgress;
                     Log("Unzipping update archive");
-                    zip.ExtractAll("..\\", ExtractExistingFileAction.OverwriteSilently);
+                    zip.ExtractAll(Environment.CurrentDirectory, ExtractExistingFileAction.OverwriteSilently);
                 }
                 Log("Deleting update archive");
                 File.Delete(UPDATE_FILE);
@@ -95,7 +95,7 @@ namespace Updater
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            Process.Start("..\\NIDE.exe", "update");
+            Process.Start("NIDE.exe", "update");
             Close();
         }
 

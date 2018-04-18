@@ -6,7 +6,7 @@ namespace NIDE
 {
     static class ProgramData
     {
-        public const int PROGRAM_VERSION = 21;
+        public const int PROGRAM_VERSION = 25;
         public const int API_LEVEL = 3;
 
         public static Encoding Encoding { get { return new UTF8Encoding(false); } }

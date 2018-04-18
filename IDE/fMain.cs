@@ -49,7 +49,14 @@ namespace NIDE
             
             if (args.Length > 0 && args[0] == "update")
             {
-                //here is update code
+                string[] toDelete = { "update.vbs", "update.zip" };
+                foreach(string file in toDelete)
+                {
+                    if (File.Exists(file))
+                    {
+                        File.Delete(file);
+                    }
+                }
             }
 
             if (args.Length > 0 && args[0] != "update")
