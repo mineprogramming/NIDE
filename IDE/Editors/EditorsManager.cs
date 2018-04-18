@@ -1,8 +1,7 @@
-﻿using NIDE.ProjectTypes.ZCore;
+﻿using NIDE.ProjectTypes.MCPEModding.ZCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 
 namespace NIDE.Editors

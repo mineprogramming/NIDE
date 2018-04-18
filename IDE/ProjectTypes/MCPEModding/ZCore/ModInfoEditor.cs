@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using NIDE.Editors;
 
-namespace NIDE.ProjectTypes.ZCore
+namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
     class ModInfoEditor : FormEditor
     {

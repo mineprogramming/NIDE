@@ -2,7 +2,7 @@
 
 using System;
 
-namespace NIDE.ProjectTypes.ZCore
+namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
     class CoreEngine : ZCore
     {

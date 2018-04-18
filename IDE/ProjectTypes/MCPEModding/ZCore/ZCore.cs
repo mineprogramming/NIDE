@@ -4,14 +4,27 @@ using System.IO;
 using System.Linq;
 using NIDE.Languages;
 using System.Windows.Forms;
+using System;
 
-namespace NIDE.ProjectTypes.ZCore
+namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
     abstract class ZCore : Project
     {
         public static List<string> Items;
         public static Dictionary<string, List<string>> Members;
         public static Dictionary<string, string> Patterns;
+
+        static ZCore()
+        {
+            try
+            {
+                LoadData("core.txt", "patterns.txt");
+            } catch(Exception e)
+            {
+                ProgramData.Log("ZCore", "Cannot load ZCore data: " + e.Message);
+            }
+            
+        }
 
         private int lastLine = 0;
         private bool pattern = false;
@@ -134,11 +147,11 @@ namespace NIDE.ProjectTypes.ZCore
             files.AddRange(File.ReadAllLines(MainScriptPath, ProgramData.Encoding));
 
             string newpath = GetPath(name);
-            
-            for(int i = 1; i < files.Count; i++)
+
+            for (int i = 1; i < files.Count; i++)
             {
                 string path = GetPath(files[i]);
-                if(GetPath(files[i - 1]) == newpath && GetPath(files[i]) != newpath)
+                if (GetPath(files[i - 1]) == newpath && GetPath(files[i]) != newpath)
                 {
                     files.Insert(i, name);
                     break;

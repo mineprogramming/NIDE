@@ -123,6 +123,10 @@
             this.LineColor = System.Drawing.Color.Black;
             this.SelectedImageIndex = 0;
             this.Size = new System.Drawing.Size(200, 97);
+            this.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.ProjectTree_AfterLabelEdit);
+            this.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ProjectTree_NodeMouseClick);
+            this.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.ProjectTree_NodeMouseDoubleClick);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ProjectTree_KeyDown);
             this.cmsTreeView.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -1,7 +1,6 @@
 ﻿using NIDE.Editors;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -15,9 +14,6 @@ namespace NIDE.window
         public ProjectTree()
         {
             InitializeComponent();
-            NodeMouseDoubleClick += ProjectTree_NodeMouseDoubleClick;
-            AfterLabelEdit += ProjectTree_AfterLabelEdit;
-            NodeMouseClick += ProjectTree_NodeMouseClick;
         }
 
         public void UpdatePath(Path path)
@@ -111,31 +107,7 @@ namespace NIDE.window
 
         private void ProjectTree_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            string path = GetTreeViewPath(e.Node);
-
-            if (Directory.Exists(path))
-                return;
-
-            string extension = System.IO.Path.GetExtension(path).ToLower();
-            if (extension == ".png")
-            {
-                Process.Start(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
-            }
-            else if (extension == ".json")
-            {
-                if (ProgramData.Project.Type == ProjectType.MODPE)
-                    try
-                    {
-                        new fJsonItem(path).Show();
-                    }
-                    catch { EditorsManager.GetEditor(path).Edit(); }
-                else EditorsManager.GetEditor(path).Edit();
-            }
-            else
-            {
-                Editor editor = EditorsManager.GetEditor(path);
-                editor.Edit();
-            }
+            OpenSelected();
         }
 
         
@@ -263,6 +235,52 @@ namespace NIDE.window
             if (File.Exists(GetTreeViewPath(SelectedNode)))
                 return SelectedNode.Parent;
             else return SelectedNode;
+        }
+
+        private void ProjectTree_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (SelectedNode == null) return;
+            switch (e.KeyCode)
+            {
+                case Keys.Delete:
+                    tsmiDelete.PerformClick();
+                    break;
+                case Keys.Enter:
+                    OpenSelected();
+                    break;
+            }
+        }
+
+        private void OpenSelected()
+        {
+            string path = GetTreeViewPath(SelectedNode);
+
+            if (Directory.Exists(path))
+            {
+                SelectedNode.Expand();
+                return;
+            }
+
+            string extension = System.IO.Path.GetExtension(path).ToLower();
+            if (extension == ".png")
+            {
+                Process.Start(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "bin\\NPixelPaint.exe"), "\"" + path + "\"");
+            }
+            else if (extension == ".json")
+            {
+                if (ProgramData.Project.Type == ProjectType.MODPE)
+                    try
+                    {
+                        new fJsonItem(path).Show();
+                    }
+                    catch { EditorsManager.GetEditor(path).Edit(); }
+                else EditorsManager.GetEditor(path).Edit();
+            }
+            else
+            {
+                Editor editor = EditorsManager.GetEditor(path);
+                editor.Edit();
+            }
         }
     }
 }

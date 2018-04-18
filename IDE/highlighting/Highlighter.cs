@@ -1,12 +1,12 @@
 ﻿using FastColoredTextBoxNS;
-using NIDE.ProjectTypes;
-using NIDE.ProjectTypes.ZCore;
+using NIDE.ProjectTypes.MCPEModding;
+using NIDE.ProjectTypes.MCPEModding.ZCore;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text.RegularExpressions;
 
-namespace NIDE.highlighting
+namespace NIDE.Highlighting
 {
     public class Highlighter
     {

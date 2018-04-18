@@ -37,6 +37,7 @@
   <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Camalot.Common, Version=1.0.5937.17275, Culture=neutral, PublicKeyToken=02434577b8ec3216, processorArchitecture=MSIL">
       <HintPath>packages\Camalot.Common.1.0.5937.17275\lib\net45\Camalot.Common.dll</HintPath>
@@ -103,8 +104,8 @@
     </Compile>
     <Compile Include="adb\FileSyncProgressMonitor.cs" />
     <Compile Include="adb\OutputLogReceiver.cs" />
-    <Compile Include="Autocomplete.cs" />
-    <Compile Include="CodeAnalysisEngine.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\Autocomplete.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\CodeAnalysisEngine.cs" />
     <Compile Include="window\EditorTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -124,7 +125,7 @@
       <DependentUpon>ProjectTree.cs</DependentUpon>
     </Compile>
     <Compile Include="Constants.cs" />
-    <Compile Include="ProjectTypes\ZCore\IncludesEditor.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\IncludesEditor.cs" />
     <Compile Include="Path.cs" />
     <Compile Include="UI\DialogForm.cs">
       <SubType>Form</SubType>
@@ -140,7 +141,7 @@
     <Compile Include="Editors\FormEditor.cs" />
     <Compile Include="Editors\JSCodeEditor.cs" />
     <Compile Include="Languages\JavaScript.cs" />
-    <Compile Include="ProjectTypes\ZCore\CoreEngine.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\CoreEngine.cs" />
     <Compile Include="fCraft.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,21 +198,21 @@
     </Compile>
     <Compile Include="JsRunner.cs" />
     <Compile Include="Library.cs" />
-    <Compile Include="ProjectTypes\ZCore\FModInfo.cs">
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\FModInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProjectTypes\ZCore\FModInfo.Designer.cs">
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\FModInfo.Designer.cs">
       <DependentUpon>FModInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProjectTypes\ZCore\InnerCore.cs" />
-    <Compile Include="ProjectTypes\ModPE.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\InnerCore.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\ModPE.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgramData.cs" />
     <Compile Include="ProjectTypes\Project.cs" />
-    <Compile Include="ProjectTypes\ZCore\ZCore.cs" />
-    <Compile Include="ProjectTypes\ZCore\ModInfoEditor.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\ZCore.cs" />
+    <Compile Include="ProjectTypes\MCPEModding\ZCore\ModInfoEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="highlighting\Highlighter.cs" />
+    <Compile Include="Highlighting\Highlighter.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="RegistryWorker.cs" />
     <Compile Include="Util.cs" />
@@ -266,7 +267,7 @@
     <EmbeddedResource Include="fStartWindow.resx">
       <DependentUpon>fStartWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProjectTypes\ZCore\FModInfo.resx">
+    <EmbeddedResource Include="ProjectTypes\MCPEModding\ZCore\FModInfo.resx">
       <DependentUpon>FModInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -305,6 +306,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

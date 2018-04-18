@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using NIDE.adb;
-using NIDE.highlighting;
+using NIDE.Highlighting;
 
 namespace NIDE
 {

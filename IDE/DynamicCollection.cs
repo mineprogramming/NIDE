@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.ProjectTypes.MCPEModding;
 using System.Collections.Generic;
 
 namespace NIDE

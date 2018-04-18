@@ -7,7 +7,7 @@ using NIDE.Languages;
 using Yahoo.Yui.Compressor;
 using System.Windows.Forms;
 
-namespace NIDE.ProjectTypes
+namespace NIDE.ProjectTypes.MCPEModding
 {
     class ModPE : Project
     {
@@ -16,6 +16,18 @@ namespace NIDE.ProjectTypes
         public static List<string> namespaces = new List<string>() { "android", "java" };
         public static List<string> hooks = new List<string>();
         public static List<string> hooks_autocomplete = new List<string>();
+
+        static ModPE()
+        {
+            try
+            {
+                LoadData("modpescript_dump.txt");
+            }
+            catch (Exception e)
+            {
+                ProgramData.Log("ModPE", "Cannot load ModPE data: " + e.Message);
+            }
+        }
 
         public static IEnumerable<string> members
         {

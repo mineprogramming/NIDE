@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 
-namespace NIDE.ProjectTypes.ZCore
+namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
     class IncludesEditor : CodeEditor, IEnumerable<AutocompleteItem>
     {

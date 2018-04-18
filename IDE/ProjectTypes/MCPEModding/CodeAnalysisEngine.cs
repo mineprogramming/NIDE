@@ -1,13 +1,10 @@
-﻿using FastColoredTextBoxNS;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using EcmaScript.NET;
 using System.Threading;
-using System;
-using NIDE.ProjectTypes;
 using NIDE.Editors;
 
-namespace NIDE
+namespace NIDE.ProjectTypes.MCPEModding
 {
     static class CodeAnalysisEngine
     {
@@ -20,7 +17,7 @@ namespace NIDE
 
         static bool shouldUpdate = false;
 
-        public static void Initialize()
+        static CodeAnalysisEngine()
         {
             reporter = new ErrorReporterEx();
             parser = new Parser(new CompilerEnvirons(), reporter);

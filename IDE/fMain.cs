@@ -7,12 +7,13 @@ using System.Net;
 using NIDE.ProjectTypes;
 using NIDE.adb;
 using NIDE.window;
-using NIDE.ProjectTypes.ZCore;
 using NIDE.Editors;
 using NIDE.UI;
-using NIDE.highlighting;
+using NIDE.Highlighting;
 using System.Threading;
 using static NIDE.window.SearchListBox;
+using NIDE.ProjectTypes.MCPEModding.ZCore;
+using NIDE.ProjectTypes.MCPEModding;
 
 namespace NIDE
 {
@@ -37,27 +38,21 @@ namespace NIDE
             this.args = args;
             InitializeComponent();
             ProgramData.MainForm = this;
-            CodeAnalysisEngine.Initialize();
             RegistryWorker.Load();
             highlighter = new Highlighter();
-
-            try
-            {
-                ModPE.LoadData("modpescript_dump.txt");
-                ZCore.LoadData("core.txt", "patterns.txt");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Unable to load ModPE or CoreEngine data");
-                Close();
-            }
         }
 
         private void fMain_Shown(object sender, EventArgs e)
         {
             CheckUpdates();
             SendStats();
-            if (args.Length > 0)
+            
+            if (args.Length > 0 && args[0] == "update")
+            {
+                //here is update code
+            }
+
+            if (args.Length > 0 && args[0] != "update")
             {
                 try
                 {

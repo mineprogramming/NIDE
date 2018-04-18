@@ -7,8 +7,9 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using NIDE.ProjectTypes.ZCore;
-using NIDE.highlighting;
+using NIDE.ProjectTypes.MCPEModding.ZCore;
+using NIDE.ProjectTypes.MCPEModding;
+using NIDE.Highlighting;
 
 namespace NIDE
 {

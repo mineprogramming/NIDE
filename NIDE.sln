@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NIDE", "IDE\NIDE.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPixelPaint", "NPixelPaint\NPixelPaint.csproj", "{4233BCCC-E3B5-4E18-997A-A7782015329B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{18AD8F64-D9A4-4720-9871-B53C45428864}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4233BCCC-E3B5-4E18-997A-A7782015329B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4233BCCC-E3B5-4E18-997A-A7782015329B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4233BCCC-E3B5-4E18-997A-A7782015329B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18AD8F64-D9A4-4720-9871-B53C45428864}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18AD8F64-D9A4-4720-9871-B53C45428864}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18AD8F64-D9A4-4720-9871-B53C45428864}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18AD8F64-D9A4-4720-9871-B53C45428864}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.ProjectTypes.MCPEModding;
 
 namespace NIDE.Editors
 {

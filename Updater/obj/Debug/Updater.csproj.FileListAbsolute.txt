@@ -1,0 +1,11 @@
+F:\OneDrive\VisualStudio\NIDE\IDE\bin\Debug\bin\Updater.exe.config
+F:\OneDrive\VisualStudio\NIDE\IDE\bin\Debug\bin\Updater.exe
+F:\OneDrive\VisualStudio\NIDE\IDE\bin\Debug\bin\Updater.pdb
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.csprojResolveAssemblyReference.cache
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.FUpdate.resources
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.Properties.Resources.resources
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.csproj.GenerateResource.cache
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.csproj.CoreCompileInputs.cache
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.exe
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.pdb
+F:\OneDrive\VisualStudio\NIDE\Updater\obj\Debug\Updater.csproj.CopyComplete

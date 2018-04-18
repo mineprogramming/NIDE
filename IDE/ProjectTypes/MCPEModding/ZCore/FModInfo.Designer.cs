@@ -1,4 +1,4 @@
-﻿namespace NIDE.ProjectTypes.ZCore
+﻿namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
     partial class FModInfo
     {
@@ -118,7 +118,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FModInfo";
             this.Text = "mod.info";

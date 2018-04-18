@@ -1,5 +1,6 @@
 ﻿using FastColoredTextBoxNS;
-using NIDE.ProjectTypes.ZCore;
+using NIDE.ProjectTypes.MCPEModding;
+using NIDE.ProjectTypes.MCPEModding.ZCore;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -10,6 +11,7 @@ namespace NIDE.ProjectTypes
 {
     abstract class Project
     {
+        public static void Init() { }
 
         public string Name { get; set; }
         public string Version { get; set; }
