@@ -7,9 +7,8 @@ namespace NIDE
 {
     public partial class fSettings : Form
     {
-        private Highlighter highlighter;
 
-        public fSettings(Highlighter highlighter)
+        public fSettings()
         {
             InitializeComponent();
             btnNormal.ForeColor = Highlighter.ForeColor;
@@ -27,7 +26,6 @@ namespace NIDE
             cbLast.Checked = ProgramData.LoadLast;
             cbRunProgram.Checked = ADBWorker.RunProgram;
             cbHighlighting.Checked = (Highlighter.ErrorStrategy == ErrorHighlightStrategy.LINE_NUMBER);
-            this.highlighter = highlighter;
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -35,7 +33,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.ForeColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -44,7 +42,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.NamespaceColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -53,7 +51,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.HookColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -62,7 +60,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.GlobalColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -71,7 +69,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.MemberColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -80,7 +78,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.BackColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -89,7 +87,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.NumbersColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -98,7 +96,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.StringsColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -107,7 +105,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.KeywordsColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 
@@ -116,7 +114,7 @@ namespace NIDE
             if (ShowColorDialog(sender))
             {
                 Highlighter.CommentsColor = dlgColor.Color;
-                highlighter.RefreshStyles();
+                ProgramData.MainForm.RequestHighlightingUpdate();
             }
         }
 

@@ -47,11 +47,10 @@ namespace NIDE.Highlighting
 
 
         private TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
-        
 
-        public void RefreshStyles()
+        public void RefreshStyles(FastColoredTextBox fctb)
         {
-            Range range = ProgramData.MainForm.fctbMain.Range;
+            Range range = fctb.Range;
 
             range.ClearStyle(NamespaceStyle);
             range.ClearStyle(HookStyle);
@@ -63,20 +62,18 @@ namespace NIDE.Highlighting
             GlobalStyle = new TextStyle(new SolidBrush(GlobalColor), null, FontStyle.Regular);
             MemberStyle = new TextStyle(new SolidBrush(MemberColor), null, FontStyle.Italic);
 
-            var fctbMain = ProgramData.MainForm.fctbMain;
+            fctb.AddStyle(NamespaceStyle);
+            fctb.AddStyle(HookStyle);
+            fctb.AddStyle(GlobalStyle);
+            fctb.AddStyle(MemberStyle);
 
-            fctbMain.AddStyle(NamespaceStyle);
-            fctbMain.AddStyle(HookStyle);
-            fctbMain.AddStyle(GlobalStyle);
-            fctbMain.AddStyle(MemberStyle);
+            fctb.ForeColor = ForeColor;
+            fctb.BackColor = BackColor;
 
-            fctbMain.ForeColor = ForeColor;
-            fctbMain.BackColor = BackColor;
-
-            fctbMain.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor), null, FontStyle.Regular);
-            fctbMain.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor), null, FontStyle.Regular);
-            fctbMain.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor), null, FontStyle.Regular);
-            fctbMain.SyntaxHighlighter.CommentStyle = new TextStyle(new SolidBrush(CommentsColor), null, FontStyle.Italic);
+            fctb.SyntaxHighlighter.NumberStyle = new TextStyle(new SolidBrush(NumbersColor), null, FontStyle.Regular);
+            fctb.SyntaxHighlighter.StringStyle = new TextStyle(new SolidBrush(StringsColor), null, FontStyle.Regular);
+            fctb.SyntaxHighlighter.KeywordStyle = new TextStyle(new SolidBrush(KeywordsColor), null, FontStyle.Regular);
+            fctb.SyntaxHighlighter.CommentStyle = new TextStyle(new SolidBrush(CommentsColor), null, FontStyle.Italic);
 
             ProgramData.MainForm.fctbMain.ClearStylesBuffer();
             ResetStyles(range);
@@ -92,6 +89,7 @@ namespace NIDE.Highlighting
                 range.ClearStyle(GlobalStyle);
 
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
+
                 range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
 
                 if (Autocomplete.UserItems.Keys.Count > 0)
@@ -112,6 +110,7 @@ namespace NIDE.Highlighting
                     range.SetStyle(GlobalStyle, @"(\W|^)(" + string.Join("|", ModPE.global) + @")(\W|$)", RegexOptions.Multiline);
                     range.SetStyle(MemberStyle, @"(\W|^)(" + string.Join("|", ModPE.members) + @")(\W|$)", RegexOptions.Multiline);
                 }
+                
             }
             catch { }
          }

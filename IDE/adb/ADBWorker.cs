@@ -52,7 +52,14 @@ namespace NIDE.adb
 
         public static void Push(DirectoryInfo directory, string subdir = "")
         {
-            var files = Util.GetFileList(directory);
+            var files = new List<string>();
+            foreach(string file in Util.GetFileList(directory))
+            {
+                if (!file.Contains(".git"))
+                {
+                    files.Add(file);
+                }
+            }
             Push(files, directory.FullName, subdir);
         }
 

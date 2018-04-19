@@ -3,6 +3,7 @@ using FastColoredTextBoxNS;
 using System.Collections.Generic;
 using System.IO;
 using System.Collections;
+using NIDE.Highlighting;
 
 namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
@@ -39,6 +40,11 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
                 if(file != ".includes")
                     yield return new AutocompleteItem(file.Replace('\\', '/'));
             }
+        }
+
+        public override void RefreshStyles(Highlighter highlighter)
+        {
+           
         }
 
         public override void Update(Range range) { }

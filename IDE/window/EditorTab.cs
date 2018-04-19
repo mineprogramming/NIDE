@@ -82,5 +82,9 @@ namespace NIDE.window
             if (!Text.EndsWith("*"))
                 Text = Text + "*";
         }
+
+        private void fctb_Load(object sender, EventArgs e)
+        {
+        }
     }
 }

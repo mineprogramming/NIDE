@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.Highlighting;
 using NIDE.ProjectTypes.MCPEModding;
 
 namespace NIDE.Editors
@@ -27,6 +28,11 @@ namespace NIDE.Editors
         public override void Focus()
         {
             Autocomplete.Enabled = false;
+        }
+
+        public override void RefreshStyles(Highlighter highlighter)
+        {
+            
         }
 
         public override void Update(Range range) { }

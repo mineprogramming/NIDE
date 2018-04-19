@@ -89,6 +89,11 @@ namespace NIDE
             }
         }
 
+        internal void RequestHighlightingUpdate()
+        {
+            CurrentEditor.RefreshStyles(highlighter);
+        }
+
         private void ShowStartWindow()
         {
             try
@@ -389,7 +394,6 @@ namespace NIDE
                     currentTab = tabControl.LoadBlank(FileName, editor);
                 else
                     currentTab = tabControl.Load(FileName, editor);
-                highlighter.RefreshStyles();
                 fctbMain.TextChanged += fctbMain_TextChanged;
                 fctbMain.KeyDown += fctbMain_KeyDown;
                 fctbMain.PaintLine += fctbMain_PaintLine;
@@ -420,7 +424,7 @@ namespace NIDE
 
         private void tsmiSettings_Click(object sender, EventArgs e)
         {
-            new fSettings(highlighter).ShowDialog();
+            new fSettings().ShowDialog();
             highlighter.ResetStyles(fctbMain.Range);
         }
 
@@ -600,7 +604,11 @@ namespace NIDE
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             currentTab = (EditorTab)tabControl.SelectedTab;
-            try { CurrentEditor.Focus(); } catch { }; //TODO: КОСТЫЛЬ!!!
+            try
+            {
+                CurrentEditor.Focus();
+            }
+            catch { }; //TODO: КОСТЫЛЬ!!!
         }
 
         private void tsmiSaveAll_Click(object sender, EventArgs e)
@@ -789,5 +797,7 @@ namespace NIDE
                 editor.ToLine(item.Line);
             }
         }
+
+        
     }
 }

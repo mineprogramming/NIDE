@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.Highlighting;
 using NIDE.window;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace NIDE.Editors
 {
     public abstract class CodeEditor : Editor
     {
+        public abstract void RefreshStyles(Highlighter highlighter);
         public abstract void Update(Range range);
         public abstract void Focus();
         public List<int> Errors { get; } = new List<int>();
@@ -38,5 +40,7 @@ namespace NIDE.Editors
             }
             catch { }
         }
+
+        
     }
 }

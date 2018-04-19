@@ -1,4 +1,6 @@
 ﻿using NIDE.Editors;
+using NIDE.Highlighting;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 

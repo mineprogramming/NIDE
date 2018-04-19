@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.Highlighting;
 using NIDE.ProjectTypes.MCPEModding;
 
 namespace NIDE.Editors
@@ -17,15 +18,20 @@ namespace NIDE.Editors
 
             TextBox.Language = Language.JS;
             Focus();
-            Update(TextBox.Range);
             return true;
         }
 
         public override void Focus()
         {
+            Highlighter.Instance.RefreshStyles(TextBox);
             Autocomplete.SetAutoompleteMenu(TextBox);
             Autocomplete.Enabled = true;
             Update(TextBox.Range);
+        }
+
+        public override void RefreshStyles(Highlighter highlighter)
+        {
+            highlighter.RefreshStyles(TextBox);
         }
 
         public override void Update(Range range)
