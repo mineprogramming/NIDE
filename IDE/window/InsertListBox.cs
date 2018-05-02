@@ -1,36 +1,50 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace NIDE.window
 {
-    public partial class SearchListBox : ListBox
+    public partial class InsertListBox : ListBox
     {
-        private Image jsImage = new Bitmap(Properties.Resources.js);
+        private Image templateImage = new Bitmap(Properties.Resources.js);
 
-        public SearchListBox()
+        public InsertListBox()
         {
             InitializeComponent();
             DrawMode = DrawMode.OwnerDrawVariable;
+            try
+            {
+                LoadInserts();
+            }
+            catch { }
+        }
+
+        private void LoadInserts()
+        {
+            string text = File.ReadAllText("inserts.txt");
+            string[] patterns = text.Split('~');
+            for (int i = 1; i < patterns.Length; i += 2)
+                Items.Add(new InsertListItem(patterns[i].Trim(' ', '\n', '\r'), patterns[i - 1].Trim(' ', '\n', '\r')));
         }
 
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            if (e.Index > -1)
+            if (e.Index > -1 && e.Index < Items.Count)
             {
-                string pos = Items[e.Index].ToString();
-                string text = ((SearchListItem)Items[e.Index]).Text;
+                string text = ((InsertListItem)Items[e.Index]).Text;
+                string code = ((InsertListItem)Items[e.Index]).CodeText;
                 
                 if ((e.State & DrawItemState.Focus) == 0)
                 {
                     e.Graphics.FillRectangle(
                         new SolidBrush(SystemColors.Window),
                         e.Bounds);
-                    e.Graphics.DrawImage(jsImage, e.Bounds.Left, e.Bounds.Top + 1);
-                    e.Graphics.DrawString(pos, Font,
+                    e.Graphics.DrawImage(templateImage, e.Bounds.Left, e.Bounds.Top + 1);
+                    e.Graphics.DrawString(text, Font,
                         new SolidBrush(SystemColors.WindowText),
                         e.Bounds.Left + 16, e.Bounds.Top + 3);
-                    e.Graphics.DrawString(text, ProgramData.MainForm.fctbMain?.Font,
+                    e.Graphics.DrawString(code, ProgramData.MainForm.fctbMain?.Font,
                         new SolidBrush(SystemColors.WindowText),
                         e.Bounds.Left, e.Bounds.Top + 17);
                     e.Graphics.DrawLine(
@@ -42,11 +56,11 @@ namespace NIDE.window
                     e.Graphics.FillRectangle(
                         new SolidBrush(SystemColors.Highlight),
                         e.Bounds);
-                    e.Graphics.DrawImage(jsImage, e.Bounds.Left, e.Bounds.Top + 1);
-                    e.Graphics.DrawString(pos, Font,
+                    e.Graphics.DrawImage(templateImage, e.Bounds.Left, e.Bounds.Top + 1);
+                    e.Graphics.DrawString(text, Font,
                         new SolidBrush(SystemColors.HighlightText),
                         e.Bounds.Left + 16, e.Bounds.Top + 3);
-                    e.Graphics.DrawString(text, ProgramData.MainForm.fctbMain?.Font,
+                    e.Graphics.DrawString(code, ProgramData.MainForm.fctbMain?.Font,
                         new SolidBrush(SystemColors.HighlightText),
                         e.Bounds.Left, e.Bounds.Top + 17);
                     e.Graphics.DrawLine(
@@ -56,25 +70,24 @@ namespace NIDE.window
             }
         }
 
-        public class SearchListItem
+        public class InsertListItem
         {
-            public Path File { get; }
-            private string filename;
-            public int Line { get; }
             public string Text { get; }
+            public string Code { get; }
+            public string CodeText { get; }
 
-            public SearchListItem(Path file, int pos, string line)
+            public InsertListItem(string text, string code)
             {
-                File = file;
-                filename = file.GetName();
-                Line = pos;
-                line = line.Trim();
-                Text = line.Substring(0, Math.Min(line.Length, 20)) + "...";
-            }
-
-            public override string ToString()
-            {
-                return string.Format("{0}, line {1}:", filename, Line + 1);
+                Text = text;
+                Code = code;
+                if(code.IndexOf('\n') != -1)
+                {
+                    CodeText = code.Substring(0, code.IndexOf('\n'));
+                }
+                else
+                {
+                    CodeText = code;
+                }
             }
         }
     }

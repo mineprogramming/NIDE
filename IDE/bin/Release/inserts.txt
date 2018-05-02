@@ -1,0 +1,44 @@
+for(var i = 0; i < 10; i++){
+    //Repeat 10 times
+}~For-loop - repeat 10 times~
+
+if(i == 5){
+    //Condition
+}~Conditional expression~
+
+if(i == 5){
+    //true
+} else {
+    //false
+}~Conditional expression with else-block~
+
+IDRegistry.genItemID("MagicWand"); //Create a new item
+Item.createItem("MagicWand", "Magic Wand", {name: "stick", meta: 0}, {});
+~Create a new item~
+
+IDRegistry.genBlockID("LuckyBlock"); //Create a new block
+Block.createBlock("LuckyBlock", [
+    {
+        name: "Lucky Block", 
+        texture: [["planks", 0], ["planks", 0], ["planks", 0], ["planks", 0], ["planks", 0], ["planks", 0]], 
+        inCreative: true
+    }
+]);~Create a new block~
+
+Game.message("Hello, world!");~Send message to the chat~
+Game.tipMessage("Hello, world!");~Show tip above the inventory~
+World.drop(x, y, z, id, count);~Drop item~
+World.explode(x, y, z, radius, fire)~Kaboom!~
+Math.random()~Random value~
+
+Callback.addCallback("ItemUse", function (coords, item, block) {
+    var x = coords.relative.x
+	var y = coords.relative.y
+	var z = coords.relative.z
+    //Tap on some block
+});~Using item - tap on some block~
+
+Callback.addCallback("tick", function(){
+    //Tick - is called 20 times per second
+
+});~Tick - is called 20 times per second~

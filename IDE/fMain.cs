@@ -14,6 +14,7 @@ using System.Threading;
 using static NIDE.window.SearchListBox;
 using NIDE.ProjectTypes.MCPEModding.ZCore;
 using NIDE.ProjectTypes.MCPEModding;
+using static NIDE.window.InsertListBox;
 
 namespace NIDE
 {
@@ -798,6 +799,32 @@ namespace NIDE
             }
         }
 
-        
+        private void lbInserts_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (lbInserts.SelectedItem != null)
+            {
+                InsertListItem item = (InsertListItem)lbInserts.SelectedItem;
+                fctbMain.InsertText("\n" + item.Code + "\n");
+            }
+        }
+
+        private bool lbInsertsMouseDown = false;
+
+        private void lbInserts_MouseDown(object sender, MouseEventArgs e) =>
+            lbInsertsMouseDown = true;
+
+        private void lbInserts_MouseUp(object sender, MouseEventArgs e) =>
+            lbInsertsMouseDown = false;
+
+        private void lbInserts_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (lbInserts.SelectedItem != null && lbInsertsMouseDown && e.Button == MouseButtons.Left)
+            {
+                DataObject drag = new DataObject();
+                drag.SetData(DataFormats.Text, ((InsertListItem)lbInserts.SelectedItem).Code);
+                DoDragDrop(drag, DragDropEffects.Copy);
+                lbInsertsMouseDown = false;
+            }
+        }
     }
 }

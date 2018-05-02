@@ -216,6 +216,12 @@
     <Compile Include="Enums.cs" />
     <Compile Include="RegistryWorker.cs" />
     <Compile Include="Util.cs" />
+    <Compile Include="window\InsertListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="window\InsertListBox.Designer.cs">
+      <DependentUpon>InsertListBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="window\SearchListBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -280,6 +286,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="window\InsertListBox.resx">
+      <DependentUpon>InsertListBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="window\SearchListBox.resx">
       <DependentUpon>SearchListBox.cs</DependentUpon>
     </EmbeddedResource>

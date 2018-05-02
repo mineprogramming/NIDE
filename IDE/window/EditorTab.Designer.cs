@@ -50,13 +50,14 @@
         '\''};
             this.fctb.AutoIndentChars = false;
             this.fctb.AutoIndentExistingLines = false;
-            this.fctb.AutoScrollMinSize = new System.Drawing.Size(2, 14);
+            this.fctb.AutoScrollMinSize = new System.Drawing.Size(2, 18);
             this.fctb.BackBrush = null;
-            this.fctb.CharHeight = 14;
-            this.fctb.CharWidth = 8;
+            this.fctb.CharHeight = 18;
+            this.fctb.CharWidth = 10;
             this.fctb.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.fctb.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.fctb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fctb.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.fctb.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.VisibleRange;
             this.fctb.IsReplaceMode = false;
             this.fctb.LineNumberColor = System.Drawing.Color.RoyalBlue;
@@ -69,7 +70,7 @@
             this.fctb.TabIndex = 0;
             this.fctb.Zoom = 100;
             this.fctb.TextChanged += new System.EventHandler<FastColoredTextBoxNS.TextChangedEventArgs>(this.fctb_TextChanged);
-            this.fctb.Load += new System.EventHandler(this.fctb_Load);
+            this.fctb.DragOver += new System.Windows.Forms.DragEventHandler(this.fctb_DragOver);
             ((System.ComponentModel.ISupportInitialize)(this.fctb)).EndInit();
             this.ResumeLayout(false);
 

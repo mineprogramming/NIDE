@@ -1,6 +1,6 @@
 ﻿namespace NIDE.window
 {
-    partial class SearchListBox
+    partial class InsertListBox
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -30,7 +30,7 @@
         {
             this.SuspendLayout();
             // 
-            // SearchListBox
+            // InsertListBox
             // 
             this.HorizontalScrollbar = true;
             this.ItemHeight = 36;

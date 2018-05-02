@@ -83,8 +83,12 @@ namespace NIDE.window
                 Text = Text + "*";
         }
 
-        private void fctb_Load(object sender, EventArgs e)
+        private void fctb_DragOver(object sender, DragEventArgs e)
         {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
         }
     }
 }

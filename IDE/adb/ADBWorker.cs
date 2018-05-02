@@ -44,6 +44,7 @@ namespace NIDE.adb
                     ProgramData.Log("ADB", e.Message);
                     if (adb != null)
                         adb.Stop();
+                    FChooseDevice.Ask = true;
                     ProgramData.MainForm.StopProgress();
                 }
             });
@@ -67,6 +68,7 @@ namespace NIDE.adb
         {
             try
             {
+                adb.Stop();
                 AdbHelper.Instance.KillAdb(AndroidDebugBridge.SocketAddress);
             } catch
             {
@@ -142,7 +144,8 @@ namespace NIDE.adb
                 string relative = file.Substring(localBasedir.Length).TrimStart('\\').Replace('\\', '/');
                 ProgramData.Log("ADB", "Pushing: " + relative);
                 string remotePath = ProgramData.Project.ADBPushPath + remoteBasedir + relative;
-                sync.PushFile(file, remotePath, monitor);
+                SyncResult result = sync.PushFile(file, remotePath, monitor);
+                ProgramData.Log("ADB", result.Message);
             }
         }
     }

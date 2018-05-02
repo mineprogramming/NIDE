@@ -1,14 +1,66 @@
 <html>
     <head>
         <title>Useful links for ModPE and CE development</title>
+        <style>
+            body {
+                background-color: white;
+            }
+
+            .title{
+                display: inline-block;
+                position: relative;
+                padding: 0px 36px 8px 14px;
+                background-color: #2895f1;
+                overflow: hidden;
+            }
+
+            .title::before{
+                top: -59px;
+                border-left: 60px solid transparent;
+                border-right: 60px solid transparent;
+                border-top: 122px solid #fff;
+            }
+
+            .title::after{
+                bottom: -61px;
+                border-left: 60px solid transparent;
+                border-right: 60px solid transparent;
+                border-bottom: 122px solid #fff;
+            }
+
+            .title:before, 
+            .title:after {
+                box-sizing: border-box;
+                display: block;
+                position: absolute;
+                content: "";
+                right: -64px;
+                width: 0;
+                height: 0;
+            }
+            
+            h1 {
+                line-height: 1.1;
+                font-size: 24px;
+                font-weight: normal;
+                color: #fff;
+                margin-bottom: 0;
+                font-family: "Source Sans Pro", Helvetica, Arial, sans-serif;
+            } 
+        </style>
     </head>
     <body>
-        <h1>Useful links for ModPE and CE development</h1>
-        <p><a href="http://mineprogramming.org">#mineprogramming</a></p>
-        <p><a href="https://vk.com/mineprogramming">Official group</a></p>
-        <p><a href="https://vk.com/core_engine">CoreEngine official group</a></p>
-        <p><a href="https://github.com/Connor4898/ModPE-Docs/wiki">ModPE functions list</a></p>
-        <p><a href="https://www.genymotion.com/fun-zone/">Genymotion emulator</a></p>
-        <p><a href="https://github.com/Ihor01/NIDE">NIDE source code</a></p>
+        <div class="title"><h1>Useful links for ModPE and CE development</h1></div>
+        <ul>
+            <li><p><a href="https://mineprogramming.org">#mineprogramming</a></p></li>
+            <li><p><a href="https://wiki.mineprogramming.org">#mineprogramming wiki</a></p></li>
+            <li><p><a href="https://icmods.mineprogramming.org">InnerCore mods website</a></p></li>
+            <li><p><a href="https://www.mineprogramming.org/learn-innercore/">Sources for learning InnerCore</a></p></li>
+            <li><p><a href="https://forum.mcmodding.ru">MCModding forum</a></p></li>
+            <li><p><a href="https://vk.com/mineprogramming">Official VK group</a></p></li>
+            <li><p><a href="https://www.facebook.com/mineprogramming">Official facebook group</a></p></li>
+            <li><p><a href="https://vk.com/core_engine">InnerCore official group</a></p></li>
+            <li><p><a href="https://bignox.com">NOX App Player (good emulator for InnerCore)</a></p></li>
+        </ul>
     </body>
 </html>
