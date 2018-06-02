@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.FileIO;
 
 namespace NIDE.window
 {
@@ -139,7 +140,7 @@ namespace NIDE.window
             }
             catch (Exception ex)
             {
-                ProgramData.Log("ProjectTree", ex.Message);
+                ProgramData.Log("ProjectTree", ex.Message, ProgramData.LOG_STYLE_ERROR);
             }
         }
 
@@ -169,7 +170,7 @@ namespace NIDE.window
             }
             catch (Exception ex)
             {
-                ProgramData.Log("ProjectTree", ex.Message);
+                ProgramData.Log("ProjectTree", ex.Message, ProgramData.LOG_STYLE_ERROR);
             }
         }
 
@@ -190,7 +191,7 @@ namespace NIDE.window
                 {
                     string path = GetTreeViewPath(SelectedNode);
                     if (File.Exists(path))
-                        File.Delete(path);
+                        FileSystem.DeleteFile(path, UIOption.AllDialogs, RecycleOption.SendToRecycleBin);
                     else if (Directory.Exists(path))
                         Directory.Delete(path, true);
                     SelectedNode.Remove();

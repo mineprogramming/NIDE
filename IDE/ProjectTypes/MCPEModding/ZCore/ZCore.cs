@@ -21,7 +21,7 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
                 LoadData("core.txt", "patterns.txt");
             } catch(Exception e)
             {
-                ProgramData.Log("ZCore", "Cannot load ZCore data: " + e.Message);
+                ProgramData.Log("ZCore", "Cannot load ZCore data: " + e.Message, ProgramData.LOG_STYLE_ERROR);
             }
             
         }

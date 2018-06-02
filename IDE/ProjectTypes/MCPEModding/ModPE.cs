@@ -25,7 +25,7 @@ namespace NIDE.ProjectTypes.MCPEModding
             }
             catch (Exception e)
             {
-                ProgramData.Log("ModPE", "Cannot load ModPE data: " + e.Message);
+                ProgramData.Log("ModPE", "Cannot load ModPE data: " + e.Message, ProgramData.LOG_STYLE_ERROR);
             }
         }
 

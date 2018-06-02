@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Net;
-using NIDE.ProjectTypes;
 using NIDE.adb;
 using NIDE.window;
 using NIDE.Editors;
@@ -15,6 +14,8 @@ using static NIDE.window.SearchListBox;
 using NIDE.ProjectTypes.MCPEModding.ZCore;
 using NIDE.ProjectTypes.MCPEModding;
 using static NIDE.window.InsertListBox;
+using static NIDE.ProgramData;
+using System.Drawing;
 
 namespace NIDE
 {
@@ -22,7 +23,7 @@ namespace NIDE
     {
         private const int LEFT_PANEL_MIN_SIZE = 150;
         private const int BOTTOM_PANEL_MIN_SIZE = 80;
-
+        
         private string[] args;
 
         private Highlighter highlighter;
@@ -266,7 +267,7 @@ namespace NIDE
             if (!CanChangeFile()) return;
             try
             {
-                ProgramData.Project = Project.New(FileName);
+                ProgramData.Project = ProjectTypes.Project.New(FileName);
                 CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(ProgramData.Project.MainScriptPath);
                 editor.EditBlank = true;
                 editor.Edit();
@@ -402,7 +403,7 @@ namespace NIDE
             }
             catch (Exception e)
             {
-                Log("FileSystem", "Unable to open script! " + e.Message);
+                Log("FileSystem", "Unable to open script! " + e.Message, LOG_STYLE_ERROR);
                 return null;
             }
         }
@@ -430,13 +431,13 @@ namespace NIDE
         }
 
         //Log and errors
-        public void Log(string source, string message)
+        public void Log(string source, string message, Style style)
         {
             try
             {
                 Invoke(new Action(() => {
                     string format = "[{0}]: {1} \r\n";
-                    logger.AppendText(string.Format(format, source, message));
+                    logger.InsertText(string.Format(format, source, message), style);
                 }));
             }
             catch { }
@@ -524,11 +525,11 @@ namespace NIDE
             try
             {
                 ProgramData.Project.Build();
-                Log("Build", "Project successfully built");
+                Log("Build", "Project successfully built", LOG_STYLE_NORMAL);
             }
             catch (Exception ex)
             {
-                Log("Build", "Unable to build project: " + ex.Message);
+                Log("Build", "Unable to build project: " + ex.Message, LOG_STYLE_ERROR);
             }
 
         }
@@ -726,7 +727,8 @@ namespace NIDE
 
         private void btnHideBottomPanel_Click(object sender, EventArgs e)
         {
-            if (mainSplit.Height - mainSplit.SplitterDistance == 4)
+            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+            if (mainSplit.Height - mainSplit.SplitterDistance <= 4)
             {
                 mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
                 mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
@@ -742,12 +744,27 @@ namespace NIDE
 
         private void mainSplit_SplitterMoving(object sender, SplitterCancelEventArgs e)
         {
-            if (mainSplit.SplitterDistance > 1 && mainSplit.SplitterDistance < BOTTOM_PANEL_MIN_SIZE)
+            if (mainSplit.Height - mainSplit.SplitterDistance > 1 && mainSplit.Height - mainSplit.SplitterDistance < BOTTOM_PANEL_MIN_SIZE)
             {
                 mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
                 mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
                 btnHideBottomPanel.Text = "▼";
             }
+        }
+
+        private void fMain_Resize(object sender, EventArgs e)
+        {
+            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+        }
+
+        private void mainSplit_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+        }
+
+        private void splitter_SplitterMoved_1(object sender, SplitterEventArgs e)
+        {
+            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
         }
         #endregion
 
@@ -826,5 +843,7 @@ namespace NIDE
                 lbInsertsMouseDown = false;
             }
         }
+
+        
     }
 }

@@ -15,11 +15,11 @@ namespace NIDE.adb
                 if (it.Contains("INNERCORE"))
                 {
                     string msg = it.Substring(it.IndexOf(':') + 2);
-                    ProgramData.Log("InnerCore", msg);
+                    ProgramData.Log("InnerCore", msg, ProgramData.LOG_STYLE_NORMAL);
                 } else if (it.Contains("MOD-PRINT"))
                 {
                     string msg = it.Substring(it.IndexOf(':') + 2);
-                    ProgramData.Log("Mod-Print", msg);
+                    ProgramData.Log("Mod-Print", msg, ProgramData.LOG_STYLE_NORMAL);
                 }
         }
 

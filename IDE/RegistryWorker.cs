@@ -83,13 +83,12 @@ namespace NIDE
                 try
                 {
                     MessageBox.Show(e.Message, "Cannot save window properties, restoring defaults");
-                    RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
-                    key = key.CreateSubKey("NIDE");
-                    UpdateSettings(key);
-                }
+                    ToDefaults();                }
                 catch { }
             }
         }
+
+        private static bool first = true;
 
         public static void Load()
         {
@@ -165,6 +164,11 @@ namespace NIDE
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "Cannot load window properties");
+                if (first)
+                {
+                    ToDefaults();
+                    Load();
+                }
             }
         }
 
@@ -176,6 +180,24 @@ namespace NIDE
                 if (!key.GetValueNames().Contains(def.Key))
                     key.SetValue(def.Key, def.Value);
             }
+        }
+
+        private static void ToDefaults()
+        {
+            try
+            {
+                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
+                key = key.CreateSubKey("NIDE");
+                key = key.CreateSubKey("settings");
+                foreach (var def in defaults)
+                {
+                    key.SetValue(def.Key, def.Value);
+                }
+            } catch(Exception e)
+            {
+                ProgramData.Log("Registry", "Unable to restore default settings: " + e.Message, ProgramData.LOG_STYLE_WARN);
+            }
+            
         }
 
         public static void AddRecent()

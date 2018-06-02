@@ -143,7 +143,7 @@ namespace NIDE.ProjectTypes
                         }
                         catch (Exception e)
                         {
-                            ProgramData.Log("ProjectManager", e.Message);
+                            ProgramData.Log("ProjectManager", e.Message, ProgramData.LOG_STYLE_ERROR);
                         }
                         break;
                 }

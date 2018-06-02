@@ -36,7 +36,7 @@ namespace NIDE.window
             }
             catch (Exception e)
             {
-                ProgramData.Log("FileSystem", "Unable to open script! " + e.Message);
+                ProgramData.Log("FileSystem", "Unable to open script! " + e.Message, ProgramData.LOG_STYLE_ERROR);
             }
         }
 

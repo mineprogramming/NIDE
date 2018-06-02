@@ -29,7 +29,7 @@ namespace NIDE
 
         private void log(object iString)
         {
-            ProgramData.MainForm?.Log("JsRunner", iString.ToString());
+            ProgramData.Log("JsRunner", iString.ToString(), ProgramData.LOG_STYLE_NORMAL);
         }
     }
 }

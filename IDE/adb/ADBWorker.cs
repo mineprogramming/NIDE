@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static NIDE.ProgramData;
 
 namespace NIDE.adb
 {
@@ -24,28 +25,28 @@ namespace NIDE.adb
                     var device = GetDevice();
                     using (SyncService sync = device.SyncService)
                     {
-                        ProgramData.Log("ADB", "Starting copying files.......");
+                        ProgramData.Log("ADB", "Starting copying files.......", LOG_STYLE_NORMAL);
                         PushFiles(files, basedir, ProgramData.Project.Name + "/" + subdir, sync);
                         sync.Close();
-                        ProgramData.Log("ADB", "Successfully pushed file(s) to remote device");
+                        ProgramData.Log("ADB", "Successfully pushed file(s) to remote device", LOG_STYLE_NORMAL);
                     }
                     if (RunProgram)
                     {
                         ConsoleOutputReceiver receiver = new ConsoleOutputReceiver();
                         device.ExecuteShellCommand("am force-stop " + ProgramData.Project.ProgramPackage, receiver);
                         device.ExecuteShellCommand("monkey -p " + ProgramData.Project.ProgramPackage + " 1", receiver);
-                        ProgramData.Log("ADB", "Restarted package " + ProgramData.Project.ProgramPackage);
+                        ProgramData.Log("ADB", "Restarted package " + ProgramData.Project.ProgramPackage, LOG_STYLE_NORMAL);
                         InitLogging(device);
                     }
                     ProgramData.MainForm.StopProgress();
                 }
                 catch (Exception e)
                 {
-                    ProgramData.Log("ADB", e.Message);
+                    Log("ADB", e.Message, LOG_STYLE_ERROR);
                     if (adb != null)
                         adb.Stop();
                     FChooseDevice.Ask = true;
-                    ProgramData.MainForm.StopProgress();
+                    MainForm.StopProgress();
                 }
             });
             task.Start();
@@ -88,7 +89,7 @@ namespace NIDE.adb
                 }
                 catch (Exception e)
                 {
-                    ProgramData.Log("ADB", e.Message);
+                    Log("ADB", e.Message, LOG_STYLE_ERROR);
                 }
             });
             task.Start();
@@ -107,12 +108,12 @@ namespace NIDE.adb
                 try
                 {
                     creciever = new OutputLogReceiver();
-                    ProgramData.Log("ADB", "Logging initialized");
+                    Log("ADB", "Logging initialized", LOG_STYLE_NORMAL);
                     device.ExecuteShellCommand("logcat", creciever);
                 }
                 catch (Exception e)
                 {
-                    ProgramData.Log("ADB", "Error: " + e.Message);
+                    Log("ADB", "Error: " + e.Message, LOG_STYLE_ERROR);
                 }
             });
             task.Start();
@@ -122,7 +123,7 @@ namespace NIDE.adb
         {
             if (adb == null || !adb.IsConnected)
             {
-                ProgramData.Log("ADB", "Initializing ADB.......");
+                Log("ADB", "Initializing ADB.......", LOG_STYLE_NORMAL);
                 adb = AndroidDebugBridge.CreateBridge(Directory.GetCurrentDirectory() + "\\ADB\\adb.exe", true);
                 adb.Start();
             }
@@ -142,10 +143,10 @@ namespace NIDE.adb
             foreach (string file in files)
             {
                 string relative = file.Substring(localBasedir.Length).TrimStart('\\').Replace('\\', '/');
-                ProgramData.Log("ADB", "Pushing: " + relative);
+                Log("ADB", "Pushing: " + relative, LOG_STYLE_NORMAL);
                 string remotePath = ProgramData.Project.ADBPushPath + remoteBasedir + relative;
                 SyncResult result = sync.PushFile(file, remotePath, monitor);
-                ProgramData.Log("ADB", result.Message);
+                Log("ADB", result.Message, result.Message == "Success."? LOG_STYLE_SUCCESS: LOG_STYLE_WARN);
             }
         }
     }

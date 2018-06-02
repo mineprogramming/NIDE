@@ -41,7 +41,7 @@
             this.gbLogger = new System.Windows.Forms.GroupBox();
             this.btnStopLog = new System.Windows.Forms.Button();
             this.btnStartLog = new System.Windows.Forms.Button();
-            this.logger = new System.Windows.Forms.TextBox();
+            this.logger = new FastColoredTextBoxNS.FastColoredTextBox();
             this.StatusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressBarStatus = new System.Windows.Forms.ToolStripProgressBar();
             this.splitter = new System.Windows.Forms.Splitter();
@@ -141,6 +141,7 @@
             this.splitContainerLogs.SuspendLayout();
             this.gbErrors.SuspendLayout();
             this.gbLogger.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logger)).BeginInit();
             this.StatusStrip.SuspendLayout();
             this.panel.SuspendLayout();
             this.tcLeft.SuspendLayout();
@@ -169,9 +170,9 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
             // 
             // mainSplit
             // 
@@ -188,6 +189,7 @@
             // 
             this.mainSplit.Panel2.Controls.Add(this.splitContainerLogs);
             this.mainSplit.SplitterMoving += new System.Windows.Forms.SplitterCancelEventHandler(this.mainSplit_SplitterMoving);
+            this.mainSplit.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.mainSplit_SplitterMoved);
             // 
             // btnHideBottomPanel
             // 
@@ -263,9 +265,34 @@
             // 
             // logger
             // 
+            this.logger.AutoCompleteBracketsList = new char[] {
+        '(',
+        ')',
+        '{',
+        '}',
+        '[',
+        ']',
+        '\"',
+        '\"',
+        '\'',
+        '\''};
             resources.ApplyResources(this.logger, "logger");
+            this.logger.BackBrush = null;
+            this.logger.BackColor = System.Drawing.SystemColors.Control;
+            this.logger.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.logger.CaretVisible = false;
+            this.logger.CharHeight = 18;
+            this.logger.CharWidth = 10;
+            this.logger.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.logger.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.logger.IsReplaceMode = false;
             this.logger.Name = "logger";
+            this.logger.Paddings = new System.Windows.Forms.Padding(0);
             this.logger.ReadOnly = true;
+            this.logger.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.logger.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("logger.ServiceColors")));
+            this.logger.ShowLineNumbers = false;
+            this.logger.Zoom = 100;
             // 
             // StatusStrip
             // 
@@ -286,6 +313,7 @@
             this.splitter.Name = "splitter";
             this.splitter.TabStop = false;
             this.splitter.SplitterMoving += new System.Windows.Forms.SplitterEventHandler(this.splitter_SplitterMoved);
+            this.splitter.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitter_SplitterMoved_1);
             // 
             // panel
             // 
@@ -891,6 +919,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fMain_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.fMain_FormClosed);
             this.Shown += new System.EventHandler(this.fMain_Shown);
+            this.Resize += new System.EventHandler(this.fMain_Resize);
             this.container.ContentPanel.ResumeLayout(false);
             this.container.ContentPanel.PerformLayout();
             this.container.TopToolStripPanel.ResumeLayout(false);
@@ -908,7 +937,7 @@
             this.gbErrors.ResumeLayout(false);
             this.gbErrors.PerformLayout();
             this.gbLogger.ResumeLayout(false);
-            this.gbLogger.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logger)).EndInit();
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
             this.panel.ResumeLayout(false);
@@ -998,7 +1027,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiLinks;
         private System.Windows.Forms.ToolStripMenuItem tsmiVersion;
         private System.Windows.Forms.ToolStripButton tsbShowMain;
-        private System.Windows.Forms.TextBox logger;
+        private FastColoredTextBoxNS.FastColoredTextBox logger;
         private System.Windows.Forms.SplitContainer splitContainerLogs;
         private System.Windows.Forms.GroupBox gbErrors;
         private System.Windows.Forms.GroupBox gbLogger;
@@ -1029,7 +1058,6 @@
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.TabPage tabPage3;
-        private NIDE.window.InsertListBox lbInsertPatterns;
         private NIDE.window.InsertListBox lbInserts;
     }
 }
