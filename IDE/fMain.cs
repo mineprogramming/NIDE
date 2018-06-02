@@ -23,7 +23,7 @@ namespace NIDE
     {
         private const int LEFT_PANEL_MIN_SIZE = 150;
         private const int BOTTOM_PANEL_MIN_SIZE = 80;
-        
+
         private string[] args;
 
         private Highlighter highlighter;
@@ -48,11 +48,11 @@ namespace NIDE
         {
             CheckUpdates();
             SendStats();
-            
+
             if (args.Length > 0 && args[0] == "update")
             {
                 string[] toDelete = { "update.vbs", "update.zip" };
-                foreach(string file in toDelete)
+                foreach (string file in toDelete)
                 {
                     if (File.Exists(file))
                     {
@@ -159,7 +159,7 @@ namespace NIDE
         public int TextViewWidth { get { return projectTree.Width; } set { projectTree.Width = value; } }
         public int TextViewHeight { get { return mainSplit.SplitterDistance; } set { mainSplit.SplitterDistance = value; } }
         #endregion
-        
+
 
         #region Edit
         private void tsmiUndo_Click(object sender, EventArgs e) { fctbMain.Undo(); }
@@ -203,7 +203,7 @@ namespace NIDE
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
-        
+
         public void NewScript() => tsmiNewScript.PerformClick();
         private void tsmiNewScript_Click(object sender, EventArgs e)
         {
@@ -421,6 +421,14 @@ namespace NIDE
             currentTab.Save();
             tabControl.Refresh();
         }
+
+        private void tsmiSaveAll_Click(object sender, EventArgs e)
+        {
+            foreach (EditorTab tab in tabControl.TabPages)
+            {
+                tab.Save();
+            }
+        }
         #endregion
 
 
@@ -435,7 +443,8 @@ namespace NIDE
         {
             try
             {
-                Invoke(new Action(() => {
+                Invoke(new Action(() =>
+                {
                     string format = "[{0}]: {1} \r\n";
                     logger.InsertText(string.Format(format, source, message), style);
                 }));
@@ -452,14 +461,16 @@ namespace NIDE
         }
         public void ClearErrors()
         {
-            Invoke( new Action(() => {
+            Invoke(new Action(() =>
+            {
                 errors.Clear();
                 CurrentEditor.Errors.Clear();
             }));
         }
         public void UpdateHighlighting(Range range)
         {
-            Invoke(new Action(() => {
+            Invoke(new Action(() =>
+            {
                 highlighter.ResetStyles(range);
             }));
         }
@@ -543,307 +554,307 @@ namespace NIDE
         private void tsmiRunJs_Click(object sender, EventArgs e)
         {
             new JsRunner(fctbMain.Text);
-        }       
+        }
 
 
         //Other
         private void tsmiVersion_Click(object sender, EventArgs e)
         {
-            CheckUpdates();
+            CheckUpdates(false);
         }
 
-        private void CheckUpdates()
+        private void CheckUpdates(bool silent = true)
         {
-            try
+            WebClient client = new WebClient();
+            Uri uri = new Uri("http://api.mineprogramming.org/nide/version/");
+            client.DownloadStringCompleted += (object sender, DownloadStringCompletedEventArgs e) =>
             {
-                WebClient client = new WebClient();
-                int version = Convert.ToInt32(client.DownloadString("http://api.mineprogramming.org/nide/version/"));
-                client.Dispose();
-                if (version > ProgramData.PROGRAM_VERSION)
+                try
                 {
-                    if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    int version = Convert.ToInt32(e.Result);
+                    client.Dispose();
+                    if (version > ProgramData.PROGRAM_VERSION)
                     {
-                        Process.Start("bin\\Updater.exe");
-                    }
-                }
-            }
-            catch (Exception e) { MessageBox.Show(e.Message, "Unable to download update!"); }
-        }
-
-        private void SendStats()
-        {
-            try
-            {
-                WebClient client = new WebClient();
-                client.DownloadString("http://api.mineprogramming.org/nide/counters/open.php");
-                client.Dispose();
-            }
-            catch{ }
-        }
-
-        private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
-        {
-            Process.Start("CoreEngine help.chm");
-        }
-
-        private void tsmiLinks_Click(object sender, EventArgs e)
-        {
-            Process.Start("links.html");
-        }
-
-        private void Ads_Navigating(object sender, WebBrowserNavigatingEventArgs e)
-        {
-            e.Cancel = true;
-            if (e.Url.ToString().StartsWith("http"))
-                Process.Start(e.Url.ToString());
-        }
-
-        private void tsmiRenderer_Click(object sender, EventArgs e)
-        {
-            Process.Start(new ProcessStartInfo("bin\\RendererTool.exe"));
-        }
-
-        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            currentTab = (EditorTab)tabControl.SelectedTab;
-            try
-            {
-                CurrentEditor.Focus();
-            }
-            catch { }; //TODO: КОСТЫЛЬ!!!
-        }
-
-        private void tsmiSaveAll_Click(object sender, EventArgs e)
-        {
-            foreach (EditorTab tab in tabControl.TabPages)
-            {
-                tab.Save();
-            }
-        }
-
-
-        #region ADB buttons
-
-        private bool PushButtonsEnabled
-        {
-            get
-            {
-                return tsbPush.Enabled;
-            }
-            set
-            {
-                ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
-                foreach (var btn in items)
-                    btn.Enabled = value;
-            }
-        }
-
-        private void TogglePushButton(object sender)
-        {
-            if (tsbPush != sender)
-            {
-                tsbPush.Tag = sender;
-                tsbPush.Text = (sender as ToolStripMenuItem).Text;
-            }
-        }
-
-        private void TsbPush_ButtonClick(object sender, EventArgs e)
-        {
-            (tsbPush.Tag as ToolStripMenuItem).PerformClick();
-        }
-
-        private void TsbPushEverything_Click(object sender, EventArgs e)
-        {
-            PushButtonsEnabled = false;
-            TogglePushButton(sender);
-            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
-        }
-
-        private void TsbPushCode_Click(object sender, EventArgs e)
-        {
-            PushButtonsEnabled = false;
-            TogglePushButton(sender);
-            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.CodePath), "dev/");
-        }
-
-        private void PushChosen(bool forceWindow = false)
-        {
-            FChooseFiles form = new FChooseFiles();
-            if (form.ShowDialog(forceWindow) == DialogResult.OK)
-            {
-                PushButtonsEnabled = false;
-                TogglePushButton(tsbPushFiles);
-                ADBWorker.Push(form.Files, ProgramData.Project.PushPath);
-            }
-        }
-
-        private void TsbPushFiles_Click(object sender, EventArgs e)
-        {
-            PushChosen();
-        }
-
-        private void TsmiChooseFiles_Click(object sender, EventArgs e)
-        {
-            PushChosen(true);
-        }
-
-        private void btnStartLog_Click(object sender, EventArgs e)
-        {
-            ADBWorker.StartLog();
-        }
-
-        private void btnStopLog_Click(object sender, EventArgs e)
-        {
-            ADBWorker.StopLog();
-        }
-        #endregion
-
-        #region Panels
-        private void btnHideTree_Click(object sender, EventArgs e)
-        {
-            if(splitter.SplitPosition == 1)
-            {
-                splitter.MinSize = LEFT_PANEL_MIN_SIZE;
-                splitter.SplitPosition = LEFT_PANEL_MIN_SIZE;
-                btnHideTree.Text = "◄";
-            }
-            else
-            {
-                splitter.MinSize = 0;
-                splitter.SplitPosition = 1;
-                btnHideTree.Text = "►";
-            }
-        }
-
-        private void splitter_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if(splitter.SplitPosition > 1 && splitter.SplitPosition < LEFT_PANEL_MIN_SIZE)
-            {
-                splitter.MinSize = LEFT_PANEL_MIN_SIZE;
-                splitter.SplitPosition = LEFT_PANEL_MIN_SIZE;
-                btnHideTree.Text = "◄";
-            }
-        }
-
-        private void btnHideBottomPanel_Click(object sender, EventArgs e)
-        {
-            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
-            if (mainSplit.Height - mainSplit.SplitterDistance <= 4)
-            {
-                mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
-                mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
-                btnHideBottomPanel.Text = "▼";
-            }
-            else
-            {
-                mainSplit.Panel2MinSize = 0;
-                mainSplit.SplitterDistance = mainSplit.Height - 1;
-                btnHideBottomPanel.Text = "▲";
-            }
-        }
-
-        private void mainSplit_SplitterMoving(object sender, SplitterCancelEventArgs e)
-        {
-            if (mainSplit.Height - mainSplit.SplitterDistance > 1 && mainSplit.Height - mainSplit.SplitterDistance < BOTTOM_PANEL_MIN_SIZE)
-            {
-                mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
-                mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
-                btnHideBottomPanel.Text = "▼";
-            }
-        }
-
-        private void fMain_Resize(object sender, EventArgs e)
-        {
-            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
-        }
-
-        private void mainSplit_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
-        }
-
-        private void splitter_SplitterMoved_1(object sender, SplitterEventArgs e)
-        {
-            btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
-        }
-        #endregion
-
-        Thread searchThread = null;
-        private void tbSearch_TextChanged(object sender, EventArgs e)
-        {
-            lbSearchResults.Items.Clear();
-            if (tbSearch.Text == "")
-                return;
-            if (searchThread != null)
-                searchThread.Abort();
-            searchThread = new Thread(() => Search(tbSearch.Text, true));
-            searchThread.Start();
-        }
-
-        private void Search(string pattern, bool caseInsensitive)
-        {
-            if (caseInsensitive)
-                pattern = pattern.ToLower();
-            string[] files = Directory.GetFiles(ProgramData.Project.CodePath, "*.js");
-            foreach(string file in files)
-            {
-                string[] lines = File.ReadAllLines(file);
-                for (int i = 0; i < lines.Length; i++)
-                {
-                    if (caseInsensitive)
-                        lines[i] = lines[i].ToLower();
-                    if (lines[i].Contains(pattern))
-                    {
-                        Invoke(new Action(() =>
+                        if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            lbSearchResults.Items.Add(new SearchListItem(file, i, lines[i]));
-                        }));
+                            Process.Start("bin\\Updater.exe");
+                        }
                     }
+                }
+                catch (Exception ex) {
+                    if(!silent)
+                        MessageBox.Show(ex.InnerException.Message, "Unable to download update!");
+                }
+            };
+            client.DownloadStringAsync(uri);
+    }
+
+    private void SendStats()
+    {
+        try
+        {
+            WebClient client = new WebClient();
+            client.DownloadString("http://api.mineprogramming.org/nide/counters/open.php");
+            client.Dispose();
+        }
+        catch { }
+    }
+
+    private void tsmiCoreEngineDocs_Click(object sender, EventArgs e)
+    {
+        Process.Start("CoreEngine help.chm");
+    }
+
+    private void tsmiLinks_Click(object sender, EventArgs e)
+    {
+        Process.Start("links.html");
+    }
+
+    private void Ads_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+    {
+        e.Cancel = true;
+        if (e.Url.ToString().StartsWith("http"))
+            Process.Start(e.Url.ToString());
+    }
+
+    private void tsmiRenderer_Click(object sender, EventArgs e)
+    {
+        Process.Start(new ProcessStartInfo("bin\\RendererTool.exe"));
+    }
+
+    private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        currentTab = (EditorTab)tabControl.SelectedTab;
+        try
+        {
+            CurrentEditor.Focus();
+        }
+        catch { }; //TODO: КОСТЫЛЬ!!!
+    }
+
+
+    #region ADB buttons
+
+    private bool PushButtonsEnabled
+    {
+        get
+        {
+            return tsbPush.Enabled;
+        }
+        set
+        {
+            ToolStripItem[] items = new ToolStripItem[] { tsmiBuildAndPush, tsmiPush, tsbBuildPush, tsbPush };
+            foreach (var btn in items)
+                btn.Enabled = value;
+        }
+    }
+
+    private void TogglePushButton(object sender)
+    {
+        if (tsbPush != sender)
+        {
+            tsbPush.Tag = sender;
+            tsbPush.Text = (sender as ToolStripMenuItem).Text;
+        }
+    }
+
+    private void TsbPush_ButtonClick(object sender, EventArgs e)
+    {
+        (tsbPush.Tag as ToolStripMenuItem).PerformClick();
+    }
+
+    private void TsbPushEverything_Click(object sender, EventArgs e)
+    {
+        PushButtonsEnabled = false;
+        TogglePushButton(sender);
+        ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
+    }
+
+    private void TsbPushCode_Click(object sender, EventArgs e)
+    {
+        PushButtonsEnabled = false;
+        TogglePushButton(sender);
+        ADBWorker.Push(new DirectoryInfo(ProgramData.Project.CodePath), "dev/");
+    }
+
+    private void PushChosen(bool forceWindow = false)
+    {
+        FChooseFiles form = new FChooseFiles();
+        if (form.ShowDialog(forceWindow) == DialogResult.OK)
+        {
+            PushButtonsEnabled = false;
+            TogglePushButton(tsbPushFiles);
+            ADBWorker.Push(form.Files, ProgramData.Project.PushPath);
+        }
+    }
+
+    private void TsbPushFiles_Click(object sender, EventArgs e)
+    {
+        PushChosen();
+    }
+
+    private void TsmiChooseFiles_Click(object sender, EventArgs e)
+    {
+        PushChosen(true);
+    }
+
+    private void btnStartLog_Click(object sender, EventArgs e)
+    {
+        ADBWorker.StartLog();
+    }
+
+    private void btnStopLog_Click(object sender, EventArgs e)
+    {
+        ADBWorker.StopLog();
+    }
+    #endregion
+
+    #region Panels
+    private void btnHideTree_Click(object sender, EventArgs e)
+    {
+        if (splitter.SplitPosition == 1)
+        {
+            splitter.MinSize = LEFT_PANEL_MIN_SIZE;
+            splitter.SplitPosition = LEFT_PANEL_MIN_SIZE;
+            btnHideTree.Text = "◄";
+        }
+        else
+        {
+            splitter.MinSize = 0;
+            splitter.SplitPosition = 1;
+            btnHideTree.Text = "►";
+        }
+    }
+
+    private void splitter_SplitterMoved(object sender, SplitterEventArgs e)
+    {
+        if (splitter.SplitPosition > 1 && splitter.SplitPosition < LEFT_PANEL_MIN_SIZE)
+        {
+            splitter.MinSize = LEFT_PANEL_MIN_SIZE;
+            splitter.SplitPosition = LEFT_PANEL_MIN_SIZE;
+            btnHideTree.Text = "◄";
+        }
+    }
+
+    private void btnHideBottomPanel_Click(object sender, EventArgs e)
+    {
+        btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+        if (mainSplit.Height - mainSplit.SplitterDistance <= 4)
+        {
+            mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
+            mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
+            btnHideBottomPanel.Text = "▼";
+        }
+        else
+        {
+            mainSplit.Panel2MinSize = 0;
+            mainSplit.SplitterDistance = mainSplit.Height - 1;
+            btnHideBottomPanel.Text = "▲";
+        }
+    }
+
+    private void mainSplit_SplitterMoving(object sender, SplitterCancelEventArgs e)
+    {
+        if (mainSplit.Height - mainSplit.SplitterDistance > 1 && mainSplit.Height - mainSplit.SplitterDistance < BOTTOM_PANEL_MIN_SIZE)
+        {
+            mainSplit.Panel2MinSize = BOTTOM_PANEL_MIN_SIZE;
+            mainSplit.SplitterDistance = mainSplit.Height - BOTTOM_PANEL_MIN_SIZE;
+            btnHideBottomPanel.Text = "▼";
+        }
+    }
+
+    private void fMain_Resize(object sender, EventArgs e)
+    {
+        btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+    }
+
+    private void mainSplit_SplitterMoved(object sender, SplitterEventArgs e)
+    {
+        btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+    }
+
+    private void splitter_SplitterMoved_1(object sender, SplitterEventArgs e)
+    {
+        btnHideBottomPanel.Location = new Point(mainSplit.Panel1.Width - 20, mainSplit.Panel1.Height - 21);
+    }
+    #endregion
+
+    #region Inserts & Search
+
+    Thread searchThread = null;
+    private void tbSearch_TextChanged(object sender, EventArgs e)
+    {
+        lbSearchResults.Items.Clear();
+        if (tbSearch.Text == "")
+            return;
+        if (searchThread != null)
+            searchThread.Abort();
+        searchThread = new Thread(() => Search(tbSearch.Text, true));
+        searchThread.Start();
+    }
+
+    private void Search(string pattern, bool caseInsensitive)
+    {
+        if (caseInsensitive)
+            pattern = pattern.ToLower();
+        string[] files = Directory.GetFiles(ProgramData.Project.CodePath, "*.js");
+        foreach (string file in files)
+        {
+            string[] lines = File.ReadAllLines(file);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                if (caseInsensitive)
+                    lines[i] = lines[i].ToLower();
+                if (lines[i].Contains(pattern))
+                {
+                    Invoke(new Action(() =>
+                    {
+                        lbSearchResults.Items.Add(new SearchListItem(file, i, lines[i]));
+                    }));
                 }
             }
         }
-
-        
-
-        private void lbSearchResults_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (lbSearchResults.SelectedItem != null)
-            {
-                SearchListItem item = (SearchListItem)lbSearchResults.SelectedItem;
-                CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(item.File.ToString());
-                editor.Edit();
-                editor.ToLine(item.Line);
-            }
-        }
-
-        private void lbInserts_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (lbInserts.SelectedItem != null)
-            {
-                InsertListItem item = (InsertListItem)lbInserts.SelectedItem;
-                fctbMain.InsertText("\n" + item.Code + "\n");
-            }
-        }
-
-        private bool lbInsertsMouseDown = false;
-
-        private void lbInserts_MouseDown(object sender, MouseEventArgs e) =>
-            lbInsertsMouseDown = true;
-
-        private void lbInserts_MouseUp(object sender, MouseEventArgs e) =>
-            lbInsertsMouseDown = false;
-
-        private void lbInserts_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (lbInserts.SelectedItem != null && lbInsertsMouseDown && e.Button == MouseButtons.Left)
-            {
-                DataObject drag = new DataObject();
-                drag.SetData(DataFormats.Text, ((InsertListItem)lbInserts.SelectedItem).Code);
-                DoDragDrop(drag, DragDropEffects.Copy);
-                lbInsertsMouseDown = false;
-            }
-        }
-
-        
     }
+
+    private void lbSearchResults_MouseDoubleClick(object sender, MouseEventArgs e)
+    {
+        if (lbSearchResults.SelectedItem != null)
+        {
+            SearchListItem item = (SearchListItem)lbSearchResults.SelectedItem;
+            CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(item.File.ToString());
+            editor.Edit();
+            editor.ToLine(item.Line);
+        }
+    }
+
+    private void lbInserts_MouseDoubleClick(object sender, MouseEventArgs e)
+    {
+        if (lbInserts.SelectedItem != null)
+        {
+            InsertListItem item = (InsertListItem)lbInserts.SelectedItem;
+            fctbMain.InsertText("\n" + item.Code + "\n");
+        }
+    }
+
+    private bool lbInsertsMouseDown = false;
+
+    private void lbInserts_MouseDown(object sender, MouseEventArgs e) =>
+        lbInsertsMouseDown = true;
+
+    private void lbInserts_MouseUp(object sender, MouseEventArgs e) =>
+        lbInsertsMouseDown = false;
+
+    private void lbInserts_MouseMove(object sender, MouseEventArgs e)
+    {
+        if (lbInserts.SelectedItem != null && lbInsertsMouseDown && e.Button == MouseButtons.Left)
+        {
+            DataObject drag = new DataObject();
+            drag.SetData(DataFormats.Text, ((InsertListItem)lbInserts.SelectedItem).Code);
+            DoDragDrop(drag, DragDropEffects.Copy);
+            lbInsertsMouseDown = false;
+        }
+    }
+    #endregion
+
+}
 }

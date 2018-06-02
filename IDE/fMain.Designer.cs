@@ -54,20 +54,6 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lbInserts = new NIDE.window.InsertListBox();
-            this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
-            this.tsbCreate = new System.Windows.Forms.ToolStripButton();
-            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
-            this.tsbSave = new System.Windows.Forms.ToolStripButton();
-            this.tsbNewFile = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbCut = new System.Windows.Forms.ToolStripButton();
-            this.tsbCopy = new System.Windows.Forms.ToolStripButton();
-            this.tsbPaste = new System.Windows.Forms.ToolStripButton();
-            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
-            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
-            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
-            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
-            this.tsbRenderer = new System.Windows.Forms.ToolStripButton();
             this.toolStripProject = new System.Windows.Forms.ToolStrip();
             this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
             this.tsbPush = new System.Windows.Forms.ToolStripSplitButton();
@@ -78,6 +64,20 @@
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
             this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
+            this.toolStripEdit = new System.Windows.Forms.ToolStrip();
+            this.tsbUndo = new System.Windows.Forms.ToolStripButton();
+            this.tsbRedo = new System.Windows.Forms.ToolStripButton();
+            this.tsbSettings = new System.Windows.Forms.ToolStripButton();
+            this.tsbRenderer = new System.Windows.Forms.ToolStripButton();
+            this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
+            this.tsbCreate = new System.Windows.Forms.ToolStripButton();
+            this.tsbOpen = new System.Windows.Forms.ToolStripButton();
+            this.tsbSave = new System.Windows.Forms.ToolStripButton();
+            this.tsbNewFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbCut = new System.Windows.Forms.ToolStripButton();
+            this.tsbCopy = new System.Windows.Forms.ToolStripButton();
+            this.tsbPaste = new System.Windows.Forms.ToolStripButton();
             this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
             this.ctsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
@@ -148,9 +148,9 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.toolStripGeneral.SuspendLayout();
-            this.toolStripEdit.SuspendLayout();
             this.toolStripProject.SuspendLayout();
+            this.toolStripEdit.SuspendLayout();
+            this.toolStripGeneral.SuspendLayout();
             this.cmsMain.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -170,9 +170,9 @@
             // 
             // container.TopToolStripPanel
             // 
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
-            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
             this.container.TopToolStripPanel.Controls.Add(this.toolStripGeneral);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripEdit);
+            this.container.TopToolStripPanel.Controls.Add(this.toolStripProject);
             // 
             // mainSplit
             // 
@@ -385,116 +385,6 @@
             this.lbInserts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbInserts_MouseMove);
             this.lbInserts.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbInserts_MouseUp);
             // 
-            // toolStripGeneral
-            // 
-            resources.ApplyResources(this.toolStripGeneral, "toolStripGeneral");
-            this.toolStripGeneral.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbCreate,
-            this.tsbOpen,
-            this.tsbSave,
-            this.tsbNewFile,
-            this.toolStripSeparator,
-            this.tsbCut,
-            this.tsbCopy,
-            this.tsbPaste});
-            this.toolStripGeneral.Name = "toolStripGeneral";
-            this.toolStripGeneral.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            // 
-            // tsbCreate
-            // 
-            this.tsbCreate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbCreate, "tsbCreate");
-            this.tsbCreate.Name = "tsbCreate";
-            this.tsbCreate.Click += new System.EventHandler(this.tsmiNewProject_Click);
-            // 
-            // tsbOpen
-            // 
-            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbOpen, "tsbOpen");
-            this.tsbOpen.Name = "tsbOpen";
-            this.tsbOpen.Click += new System.EventHandler(this.tsmiOpenProject_Click);
-            // 
-            // tsbSave
-            // 
-            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbSave, "tsbSave");
-            this.tsbSave.Name = "tsbSave";
-            this.tsbSave.Click += new System.EventHandler(this.tsmiSave_Click);
-            // 
-            // tsbNewFile
-            // 
-            this.tsbNewFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbNewFile, "tsbNewFile");
-            this.tsbNewFile.Name = "tsbNewFile";
-            this.tsbNewFile.Click += new System.EventHandler(this.tsmiNewScript_Click);
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            resources.ApplyResources(this.toolStripSeparator, "toolStripSeparator");
-            // 
-            // tsbCut
-            // 
-            this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbCut, "tsbCut");
-            this.tsbCut.Name = "tsbCut";
-            this.tsbCut.Click += new System.EventHandler(this.tsbCut_Click);
-            // 
-            // tsbCopy
-            // 
-            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbCopy, "tsbCopy");
-            this.tsbCopy.Name = "tsbCopy";
-            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
-            // 
-            // tsbPaste
-            // 
-            this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbPaste, "tsbPaste");
-            this.tsbPaste.Name = "tsbPaste";
-            this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
-            // 
-            // toolStripEdit
-            // 
-            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
-            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbUndo,
-            this.tsbRedo,
-            this.tsbSettings,
-            this.tsbRenderer});
-            this.toolStripEdit.Name = "toolStripEdit";
-            this.toolStripEdit.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            // 
-            // tsbUndo
-            // 
-            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbUndo, "tsbUndo");
-            this.tsbUndo.Name = "tsbUndo";
-            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-            // 
-            // tsbRedo
-            // 
-            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRedo, "tsbRedo");
-            this.tsbRedo.Name = "tsbRedo";
-            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-            // 
-            // tsbSettings
-            // 
-            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbSettings, "tsbSettings");
-            this.tsbSettings.Name = "tsbSettings";
-            this.tsbSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
-            // 
-            // tsbRenderer
-            // 
-            this.tsbRenderer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRenderer, "tsbRenderer");
-            this.tsbRenderer.Name = "tsbRenderer";
-            this.tsbRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
-            // 
             // toolStripProject
             // 
             resources.ApplyResources(this.toolStripProject, "toolStripProject");
@@ -572,6 +462,116 @@
             resources.ApplyResources(this.tsbShowMain, "tsbShowMain");
             this.tsbShowMain.Name = "tsbShowMain";
             this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
+            // 
+            // toolStripEdit
+            // 
+            resources.ApplyResources(this.toolStripEdit, "toolStripEdit");
+            this.toolStripEdit.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbUndo,
+            this.tsbRedo,
+            this.tsbSettings,
+            this.tsbRenderer});
+            this.toolStripEdit.Name = "toolStripEdit";
+            this.toolStripEdit.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            // 
+            // tsbUndo
+            // 
+            this.tsbUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUndo, "tsbUndo");
+            this.tsbUndo.Name = "tsbUndo";
+            this.tsbUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
+            // 
+            // tsbRedo
+            // 
+            this.tsbRedo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRedo, "tsbRedo");
+            this.tsbRedo.Name = "tsbRedo";
+            this.tsbRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
+            // 
+            // tsbSettings
+            // 
+            this.tsbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbSettings, "tsbSettings");
+            this.tsbSettings.Name = "tsbSettings";
+            this.tsbSettings.Click += new System.EventHandler(this.tsmiSettings_Click);
+            // 
+            // tsbRenderer
+            // 
+            this.tsbRenderer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRenderer, "tsbRenderer");
+            this.tsbRenderer.Name = "tsbRenderer";
+            this.tsbRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
+            // 
+            // toolStripGeneral
+            // 
+            resources.ApplyResources(this.toolStripGeneral, "toolStripGeneral");
+            this.toolStripGeneral.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripGeneral.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbCreate,
+            this.tsbOpen,
+            this.tsbSave,
+            this.tsbNewFile,
+            this.toolStripSeparator,
+            this.tsbCut,
+            this.tsbCopy,
+            this.tsbPaste});
+            this.toolStripGeneral.Name = "toolStripGeneral";
+            this.toolStripGeneral.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            // 
+            // tsbCreate
+            // 
+            this.tsbCreate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbCreate, "tsbCreate");
+            this.tsbCreate.Name = "tsbCreate";
+            this.tsbCreate.Click += new System.EventHandler(this.tsmiNewProject_Click);
+            // 
+            // tsbOpen
+            // 
+            this.tsbOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbOpen, "tsbOpen");
+            this.tsbOpen.Name = "tsbOpen";
+            this.tsbOpen.Click += new System.EventHandler(this.tsmiOpenProject_Click);
+            // 
+            // tsbSave
+            // 
+            this.tsbSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbSave, "tsbSave");
+            this.tsbSave.Name = "tsbSave";
+            this.tsbSave.Click += new System.EventHandler(this.tsmiSave_Click);
+            // 
+            // tsbNewFile
+            // 
+            this.tsbNewFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbNewFile, "tsbNewFile");
+            this.tsbNewFile.Name = "tsbNewFile";
+            this.tsbNewFile.Click += new System.EventHandler(this.tsmiNewScript_Click);
+            // 
+            // toolStripSeparator
+            // 
+            this.toolStripSeparator.Name = "toolStripSeparator";
+            resources.ApplyResources(this.toolStripSeparator, "toolStripSeparator");
+            // 
+            // tsbCut
+            // 
+            this.tsbCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbCut, "tsbCut");
+            this.tsbCut.Name = "tsbCut";
+            this.tsbCut.Click += new System.EventHandler(this.tsbCut_Click);
+            // 
+            // tsbCopy
+            // 
+            this.tsbCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbCopy, "tsbCopy");
+            this.tsbCopy.Name = "tsbCopy";
+            this.tsbCopy.Click += new System.EventHandler(this.tsbCopy_Click);
+            // 
+            // tsbPaste
+            // 
+            this.tsbPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbPaste, "tsbPaste");
+            this.tsbPaste.Name = "tsbPaste";
+            this.tsbPaste.Click += new System.EventHandler(this.tsbPaste_Click);
             // 
             // cmsMain
             // 
@@ -946,12 +946,12 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.toolStripGeneral.ResumeLayout(false);
-            this.toolStripGeneral.PerformLayout();
-            this.toolStripEdit.ResumeLayout(false);
-            this.toolStripEdit.PerformLayout();
             this.toolStripProject.ResumeLayout(false);
             this.toolStripProject.PerformLayout();
+            this.toolStripEdit.ResumeLayout(false);
+            this.toolStripEdit.PerformLayout();
+            this.toolStripGeneral.ResumeLayout(false);
+            this.toolStripGeneral.PerformLayout();
             this.cmsMain.ResumeLayout(false);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
