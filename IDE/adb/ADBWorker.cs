@@ -43,8 +43,6 @@ namespace NIDE.adb
                 catch (Exception e)
                 {
                     Log("ADB", e.Message, LOG_STYLE_ERROR);
-                    if (adb != null)
-                        adb.Stop();
                     FChooseDevice.Ask = true;
                     MainForm.StopProgress();
                 }
@@ -127,7 +125,7 @@ namespace NIDE.adb
                 adb = AndroidDebugBridge.CreateBridge(Directory.GetCurrentDirectory() + "\\ADB\\adb.exe", true);
                 adb.Start();
             }
-            List<Device> devices = (List<Device>)adb.Devices;
+            IList<Device> devices = adb.Devices;
             if (devices.Count < 1)
                 throw new Exception("Connect your device and retry!");
             FChooseDevice form = new FChooseDevice();
@@ -135,6 +133,7 @@ namespace NIDE.adb
                 return FChooseDevice.Device;
             else
                 throw new Exception("Choose device and retry!");
+                
         }
 
         private static void PushFiles(List<string> files, string localBasedir, string remoteBasedir, SyncService sync)

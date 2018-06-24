@@ -185,6 +185,7 @@ namespace NIDE.ProjectTypes
             name = name.ToLower().EndsWith(".js") ? name : name + ".js";
             string backslashed = name.Replace('/', '\\');
             Path ScriptPath = ScriptsPath + backslashed;
+            ScriptPath.mkdirs();
             if (ScriptPath.Exisis() && MessageBox.Show("File " + ScriptPath.GetName() + " already exists. Do you want to override it?",
                 "Confirmation", MessageBoxButtons.YesNo) == DialogResult.No)
                 return "";

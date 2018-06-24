@@ -47,6 +47,7 @@ namespace NIDE.Highlighting
 
 
         private TextStyle NamespaceStyle, HookStyle, GlobalStyle, MemberStyle;
+        private TextStyle InvisibleStyle = new TextStyle(new SolidBrush(Color.Transparent), null, FontStyle.Regular);
 
         public void RefreshStyles(FastColoredTextBox fctb)
         {
@@ -87,10 +88,14 @@ namespace NIDE.Highlighting
                 range.ClearStyle(MemberStyle);
                 range.ClearStyle(HookStyle);
                 range.ClearStyle(GlobalStyle);
+                range.ClearStyle(InvisibleStyle);
 
+                //Making ~c~ invisible
+                range.SetStyle(InvisibleStyle, @"~c~", RegexOptions.Multiline);
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
 
                 range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
+                
 
                 if (Autocomplete.UserItems.Keys.Count > 0)
                 {

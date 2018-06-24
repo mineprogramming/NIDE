@@ -210,7 +210,35 @@ namespace NIDE.window
 
         private void tsmiNewScript_Click(object sender, EventArgs e)
         {
-            ProgramData.MainForm.NewScript();
+            Path pattern = "";
+            Path path = new Path(GetTreeViewPath(SelectedNode));
+            if (path.IsSubPath(ProgramData.Project.ScriptsPath)){
+                pattern = path - ProgramData.Project.ScriptsPath.Trim('\\') + "";
+            }
+            ProgramData.MainForm.NewScript(pattern.ToString().Replace('\\', '/'));
+        }
+
+        private TreeNode GetNodeByPath(Path path)
+        {
+            string[] elements = path.Explode();
+            TreeNode current = Nodes[0];
+            foreach(string element in elements)
+            {
+                bool found = false;
+                foreach(TreeNode node in current.Nodes)
+                {
+                    if (node.Text == element)
+                    {
+                        current = node;
+                        found = true;
+                    }
+                }
+                if (!found)
+                {
+                    return null;
+                }
+            }
+            return current;
         }
 
         private void tsmiNewTexture_Click(object sender, EventArgs e)

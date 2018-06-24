@@ -1,625 +1,1439 @@
-__name__=
-__dir__=/mnt/shared/shared/#trash/dump//
-__config__.file=/mnt/shared/shared/#trash/dump//config.json
+__name__=dump
+__dir__=/storage/emulated/0/games/com.mojang/mods/dump/
+__config__.file=/storage/emulated/0/games/com.mojang/mods/dump/config.json
 __config__.config.[data]
 __config__.isLoaded=true
-__config__.load()
-__config__.save()
-__config__.clear()
-__config__.get()
-__config__.access(address)
-__config__.checkAndRestore(original)
-__config__.__copyMissingValues(obj, source)
+__config__.load(())
+__config__.save(())
+__config__.clear(())
+__config__.get(())
+__config__.access((a))
+__config__.checkAndRestore((a))
+__config__.__copyMissingValues((a, c))
 
 __mod__.[data]
-alert(msg)
-Resources.getResourceList()
-Resources.setResourceList(list)
-Resources.setResourcePack(path, enabled, hideErrors) 
+alert((a))
+Resources.getResourceList(())
+Resources.setResourceList((a))
+Resources.setResourcePack((a, b, c) )
 
-importLib(libName, name)
-getCoreAPILevel()
-runOnMainThread(func)
-getMCPEVersion() 
-Debug.addParticle(x, y, z, id, vx, vy, vz, data)
-Debug.message(message)
-Debug.warning(message)
-Debug.error(message)
-Debug.m()
-Debug.bitmap(bitmap, title)
+importLib((a, b))
+getCoreAPILevel(())
+runOnMainThread((a))
+getMCPEVersion(() )
+Debug.addParticle((a, b, c, d, e, f, g, h))
+Debug.message((a))
+Debug.warning((a))
+Debug.error((a))
+Debug.m(())
+Debug.bitmap((a, b))
 
 FileTools.mntdir=/mnt
 FileTools.root=/storage/emulated/0/
 FileTools.workdir=games/com.mojang/coreengine/
 FileTools.moddir=games/com.mojang/mods/
 FileTools.modpedir=games/com.mojang/modpe/
-FileTools.mkdir(dir)
-FileTools.mkworkdirs()
-FileTools.getFullPath(path)
-FileTools.isExists(path)
-FileTools.WriteText(file, text, add)
-FileTools.ReadText(file)
-FileTools.WriteImage(file, bitmap)
-FileTools.ReadImage(file)
-FileTools.ReadTextAsset(name)
-FileTools.ReadImageAsset(name)
-FileTools.ReadBytesAsset(name)
-FileTools.GetListOfDirs(path)
-FileTools.GetListOfFiles(path, ext)
-FileTools.ReadKeyValueFile(dir, specialSeparator)
-FileTools.WriteKeyValueFile(dir, data, specialSeparator)
-FileTools.ReadJSON(dir)
-FileTools.WriteJSON(dir, obj, beautify)
+FileTools.mkdir((a))
+FileTools.mkworkdirs(())
+FileTools.getFullPath((a))
+FileTools.isExists((a))
+FileTools.WriteText((a, b, c))
+FileTools.ReadText((a))
+FileTools.WriteImage((a, b))
+FileTools.ReadImage((a))
+FileTools.ReadTextAsset((a))
+FileTools.ReadImageAsset((a))
+FileTools.ReadBytesAsset((a))
+FileTools.GetListOfDirs((a))
+FileTools.GetListOfFiles((a, b))
+FileTools.ReadKeyValueFile((a, b))
+FileTools.WriteKeyValueFile((a, b, c))
+FileTools.ReadJSON((a))
+FileTools.WriteJSON((a, b, c))
 
 Logger.MAX_BUFFER_LEN=1024
 Logger.CORE=core.log
 Logger.MOD=mods.log
-Logger.shared
+Logger.shared=
 
-Logger.hasErrorMessages=true
-Logger.wipe(log)
+[CORE] Core Engine started
+[CORE] -- current time: 17.03.2017 13:42:28
+[CORE] -- MCPE version: 1.0.3.12 (17th generation)
+[CORE] -- Core Engine version: 1.17 (api level 7)
+[CORE] -- android API level: 23
+[CORE] Current MCPE version (1.0.3.12) is supported by Core Engine, it will work stable
+[API] World API switched into in-menu mode
+[API] max update calls set to 64
+[CORE] background ui thread priority set to 0
+[CORE] render ui thread priority set to -17
+[CORE] switched Core Engine into alternative thread mode
+[CORE] thicking thread priority set to 5
+[LOADER] found mod directory /storage/emulated/0/games/com.mojang/mods/dump, loading mod
+[MOD] mod.info file is not found
+[MOD] running mod launcher script: dump
+[MOD] running mod: dump
+
+Logger.hasErrorMessages=false
+Logger.wipe((a))
 Logger.buffer.[data]
-Logger.message(log, message)
-Logger.flush(log)
-Logger.formatLog(log)
-Logger.formatItem(id, count, data)
-Logger.showAsDialog(title, paragraf)
-Logger.Log(msg, prefix, log)
-Logger.LogError(error, log)
-Logger.LogList(prefix, list, tag, log)
-Logger.getFormattedTime(showDate)
-Logger.getShared()
-Logger.getFormattedLog()
-Logger.checkErrors()
+Logger.message((a, b))
+Logger.flush((a))
+Logger.formatLog((a))
+Logger.formatItem((a, b, c))
+Logger.showAsDialog((a, b))
+Logger.Log((a, b, c))
+Logger.LogError((a, b))
+Logger.LogList((a, b, c, d))
+Logger.getFormattedTime((a))
+Logger.getShared(())
+Logger.getFormattedLog(())
+Logger.checkErrors(())
 
 Translation.currentLanguage.[data]
-Translation.allTranslations.[data]
-Translation.refreshLanguage()
-Translation.addTranslation(original, lang)
-Translation.getLanguage()
-Translation.translate(original)
-Translation.translateSentence(str)
-Translation.translateItem(name)
-Translation.translateAllItems()
+
+Translation.refreshLanguage(())
+Translation.addTranslation((a, b))
+Translation.getLanguage(())
+Translation.translate((a))
+Translation.translateSentence((a))
+Translation.translateItem((a))
+Translation.translateAllItems(())
 
 Threading.threads=
-Threading.formatFatalErrorMessage(error, name, priority, formatFunc)
-Threading.initThread(name, func, priority, isErrorFatal, formatFunc)
-Threading.getThread(name)
+Threading.formatFatalErrorMessage((a, b, c, d))
+Threading.initThread((a, b, c, d, e))
+Threading.getThread((a))
 
-UI.Container(tileEntity) 
+UI.Container((a) )
 UI.WindowProvider.windows=
 UI.WindowProvider.lastOpenID=1
-UI.WindowProvider.refreshInventorySource()
-UI.WindowProvider.addWindow(window)
-UI.WindowProvider.removeWindow(window)
-UI.WindowProvider.openWindow(window)
-UI.WindowProvider.closeWindow(window)
+UI.WindowProvider.refreshInventorySource(())
+UI.WindowProvider.addWindow((a))
+UI.WindowProvider.removeWindow((a))
+UI.WindowProvider.openWindow((a))
+UI.WindowProvider.closeWindow((a))
 UI.WindowProvider.threadID=0
 UI.WindowProvider.backgroundThreadPriority=0
 UI.WindowProvider.renderThreadPriority=-17
 UI.WindowProvider.threadRunning=false
-UI.WindowProvider.setThreadPriority(priority)
-UI.WindowProvider.setRenderThreadPriority(priority)
-UI.WindowProvider.StartThread()
-UI.WindowProvider.ThreadFunc(id)
-UI.WindowProvider.Frame(callingThreadID)
+UI.WindowProvider.setThreadPriority((a))
+UI.WindowProvider.setRenderThreadPriority((a))
+UI.WindowProvider.StartThread(())
+UI.WindowProvider.ThreadFunc((a))
+UI.WindowProvider.Frame((a))
 UI.WindowProvider.threadStack=[]
-UI.WindowProvider.ExecInThread(func)
-UI.WindowProvider.StopThread()
+UI.WindowProvider.ExecInThread((a))
+UI.WindowProvider.StopThread(())
 UI.WindowProvider.touchEvent.[data]
-UI.WindowProvider.registerTouchEvent(window, event)
-UI.WindowProvider.onClick(x, y, isLong, eventID)
+UI.WindowProvider.registerTouchEvent((a, b))
+UI.WindowProvider.onClick((a, b, c, d))
 UI.WindowProvider.Images=
-UI.WindowProvider.BitmapCache.cache.[data]
-UI.WindowProvider.BitmapCache.getScaled(name, scale)
-UI.WindowProvider.BitmapCache.getSized(name, width, height)
-UI.WindowProvider.BitmapCache.getScaledForRaw(bitmap, scale)
+
+UI.WindowProvider.BitmapCache.getScaled((a, b))
+UI.WindowProvider.BitmapCache.getSized((a, b, c))
+UI.WindowProvider.BitmapCache.getScaledForRaw((a, b))
 
 
-UI.WindowCore() 
-UI.ElementProvider(window) 
-UI.Window(content) 
-UI.WindowGroup() 
-UI.StandartWindow(content) 
-UI.Utils.colorPaint=android.graphics.Paint@1da4d2ac
-UI.Utils.textPaint=android.graphics.Paint@34664b75
-UI.Utils.textCenterPaint=android.graphics.Paint@c09f70a
-UI.Utils.iconPaint=android.graphics.Paint@53f6b7b
-UI.Utils.GetDisplaySize()
-UI.Utils.Run(func)
-UI.Utils.GetGuiAssetName(fileName)
-UI.Utils.FastScale(bitmap, scale)
-UI.Utils.GetFrame(_width, _height, name, scale, background)
-UI.Utils.createBitmapByMatrix(bitmap, matrix, size)
-UI.Utils.genBlockTexture(textures, shape, size)
+UI.WindowCore(() )
+UI.ElementProvider((a) )
+UI.Window((a) )
+UI.WindowGroup(() )
+UI.StandartWindow((a) )
+UI.Utils.colorPaint=android.graphics.Paint@1d3b0b8
+UI.Utils.textPaint=android.graphics.Paint@d4a7e91
+UI.Utils.textCenterPaint=android.graphics.Paint@6e41f6
+UI.Utils.iconPaint=android.graphics.Paint@14f39f7
+UI.Utils.GetDisplaySize(())
+UI.Utils.Run((a))
+UI.Utils.GetGuiAssetName((a))
+UI.Utils.FastScale((a, b))
+UI.Utils.GetFrame((a, b, c, d, e))
+UI.Utils.createBitmapByMatrix((a, b, c))
+UI.Utils.genBlockTexture((a, b, c))
 
-UI.run(func)
-UI.getMcContext() 
-UI.testUI(ui)
-UI.openUI(ui)
-UI.addIconOverride(name1, name2)
-UI.addItemOverride(id, data, name)
-UI.registerBitmap(name, bitmap)
-UI.requireBitmap(name)
-UI.getBitmapFromCache(name)
-UI.getScreenHeight()
-UI.checkAndPlacehold(name, width, height)
+UI.run((a))
+UI.getMcContext(() )
+UI.testUI((a))
+UI.openUI((a))
+UI.addIconOverride((a, b))
+UI.addItemOverride((a, b, c))
+UI.registerBitmap((a, b))
+UI.requireBitmap((a))
+UI.getBitmapFromCache((a))
+UI.getScreenHeight(())
+UI.checkAndPlacehold((a, b, c))
 
 UpdatableAPI.updatableList=
 UpdatableAPI.uniqueUpdatableMap=
 UpdatableAPI.uniqueUpdatableID=1
 UpdatableAPI.maximumCalls=64
-UpdatableAPI.setMaxUpdateCalls(count)
-UpdatableAPI.addUpdatable(updatable)
-UpdatableAPI.removeUpdatable(updatable)
-UpdatableAPI.isInUpdate(updatable)
-UpdatableAPI.removeUpdatableFast(updatable)
-UpdatableAPI.removesUpdatableByID(id)
-UpdatableAPI.getUpdatable(uuID)
+UpdatableAPI.setMaxUpdateCalls((a))
+UpdatableAPI.addUpdatable((a))
+UpdatableAPI.removeUpdatable((a))
+UpdatableAPI.isInUpdate((a))
+UpdatableAPI.removeUpdatableFast((a))
+UpdatableAPI.removesUpdatableByID((a))
+UpdatableAPI.getUpdatable((a))
 UpdatableAPI.previousPosition=0
-UpdatableAPI.updateAll()
-UpdatableAPI.resetEngine()
-UpdatableAPI.Updatable(func) 
+UpdatableAPI.updateAll(())
+UpdatableAPI.resetEngine(())
+UpdatableAPI.Updatable((a) )
 
 Updatable.updatableList=
 Updatable.uniqueUpdatableMap=
 Updatable.uniqueUpdatableID=1
 Updatable.maximumCalls=64
-Updatable.setMaxUpdateCalls(count)
-Updatable.addUpdatable(updatable)
-Updatable.removeUpdatable(updatable)
-Updatable.isInUpdate(updatable)
-Updatable.removeUpdatableFast(updatable)
-Updatable.removesUpdatableByID(id)
-Updatable.getUpdatable(uuID)
+Updatable.setMaxUpdateCalls((a))
+Updatable.addUpdatable((a))
+Updatable.removeUpdatable((a))
+Updatable.isInUpdate((a))
+Updatable.removeUpdatableFast((a))
+Updatable.removesUpdatableByID((a))
+Updatable.getUpdatable((a))
 Updatable.previousPosition=0
-Updatable.updateAll()
-Updatable.resetEngine()
-Updatable.Updatable(func) 
+Updatable.updateAll(())
+Updatable.resetEngine(())
+Updatable.Updatable((a) )
 
-UpdatableSaver.saverPrototypes.[data]
-UpdatableSaver.registerPrototype(name, Prototype)
-UpdatableSaver.attachSaverPrototype(updatable, name)
-UpdatableSaver.readUpdatable(data)
-UpdatableSaver.readUpdatableByPrototype(TYPE, data)
-UpdatableSaver.writeUpdatable(updatable)
-UpdatableSaver.saveAllUpdatables(saverScope)
-UpdatableSaver.readAllUpdatables(saverScope)
 
-TileEntity.tileEntityPrototypes.[data]
+UpdatableSaver.registerPrototype((a, b))
+UpdatableSaver.attachSaverPrototype((a, b))
+UpdatableSaver.readUpdatable((a))
+UpdatableSaver.readUpdatableByPrototype((a, b))
+UpdatableSaver.writeUpdatable((a))
+UpdatableSaver.saveAllUpdatables((a))
+UpdatableSaver.readAllUpdatables((a))
+
+
 TileEntity.tileEntityList=
-TileEntity.resetEngine()
-TileEntity.registerPrototype(blockID, customPrototype)
-TileEntity.getPrototype(blockID)
-TileEntity.isTileEntityBlock(blockID)
-TileEntity.createTileEntityForPrototype(Prototype, addToUpdate)
-TileEntity.addTileEntity(x, y, z)
-TileEntity.addUpdatableAsTileEntity(updatable)
-TileEntity.getTileEntity(x, y, z)
-TileEntity.destroyTileEntity(tileEntity)
-TileEntity.destroyTileEntityAtCoords(x, y, z)
-TileEntity.CheckTileEntities()
-TileEntity.DeployDestroyChecker(tileEntity)
+TileEntity.resetEngine(())
+TileEntity.registerPrototype((a, b))
+TileEntity.getPrototype((a))
+TileEntity.isTileEntityBlock((a))
+TileEntity.createTileEntityForPrototype((a, b))
+TileEntity.addTileEntity((a, b, c))
+TileEntity.addUpdatableAsTileEntity((a))
+TileEntity.getTileEntity((a, b, c))
+TileEntity.destroyTileEntity((a))
+TileEntity.destroyTileEntityAtCoords((a, b, c))
+TileEntity.CheckTileEntities(())
+TileEntity.DeployDestroyChecker((a))
 
-MobRegistry.mobPrototypes.[data]
+
 MobRegistry.loadedEntities=
-MobRegistry.registerPrototype(name, customPrototype)
-MobRegistry.createEntityUpdatable(prototypeName, addToUpdate)
-MobRegistry.registerUpdatableAsEntity(updatable)
-MobRegistry.spawnEntityAsPrototype(prototypeName, coords, extraData)
-MobRegistry.getEntityUpdatable(entity)
-MobRegistry.registerNativeEntity(entity)
-MobRegistry.registerEntityRemove(entity)
-MobRegistry.callPlayerAttack(attacker, victim)
+MobRegistry.registerPrototype((a, b))
+MobRegistry.createEntityUpdatable((a, b))
+MobRegistry.registerUpdatableAsEntity((a))
+MobRegistry.spawnEntityAsPrototype((a, b, c))
+MobRegistry.getEntityUpdatable((a))
+MobRegistry.registerNativeEntity((a))
+MobRegistry.registerEntityRemove((a))
+MobRegistry.callPlayerAttack((a, b))
 
 Callback.callbacks.[data]
-Callback.formatCallbackError(name, error)
-Callback.addCallback(name, func, mod)
-Callback.invokeCallback(name, par1, par2, par3, par4, par5, par6, par7, par8, par9)
+Callback.formatCallbackError((a, b))
+Callback.addCallback((a, b, c))
+Callback.invokeCallback((a, b, c, d, e, f, g, h, k, m))
 
-GameObject(name, Prototype) 
-GameObjectRegistry.gameObjectTypes.[data]
-GameObjectRegistry.activeGameObjects.[data]
-GameObjectRegistry.genUniqueName(name)
-GameObjectRegistry.registerClass(gameObjectClass)
-GameObjectRegistry.deployGameObject(gameobject)
-GameObjectRegistry.addGameObject(gameobject)
-GameObjectRegistry.removeGameObject(gameobject)
-GameObjectRegistry.resetEngine()
-GameObjectRegistry.getAllByType(type, clone)
-GameObjectRegistry.callForType()
-GameObjectRegistry.callForTypeSafe()
+GameObject((a, b) )
 
-ModAPI.modAPIs.[data]
-ModAPI.registerAPI(name, api, descr)
-ModAPI.requireAPI(name)
-ModAPI.requireGlobal(name)
-ModAPI.requireAPIdoc(name)
-ModAPI.requireAPIPropertyDoc(name, prop)
-ModAPI.getModByName(modName)
-ModAPI.isModLoaded(modName)
-ModAPI.addAPICallback(apiName, func)
-ModAPI.addModCallback(modName, func)
-ModAPI.getModList()
-ModAPI.getModPEList()
-ModAPI.addTexturePack(path)
-ModAPI.cloneAPI(api, deep)
-ModAPI.inheritPrototypes(source, target)
 
-Saver.saverScopes.[data]
-Saver.addSavesScope(name, loadFunc, saveFunc)
-Saver.onAllLoaded(globalScope)
-Saver.onAllSaved(globalScope)
+GameObjectRegistry.genUniqueName((a))
+GameObjectRegistry.registerClass((a))
+GameObjectRegistry.deployGameObject((a))
+GameObjectRegistry.addGameObject((a))
+GameObjectRegistry.removeGameObject((a))
+GameObjectRegistry.resetEngine(())
+GameObjectRegistry.getAllByType((a, b))
+GameObjectRegistry.callForType(())
+GameObjectRegistry.callForTypeSafe(())
+
+
+ModAPI.registerAPI((a, b, c))
+ModAPI.requireAPI((a))
+ModAPI.requireGlobal((a))
+ModAPI.requireAPIdoc((a))
+ModAPI.requireAPIPropertyDoc((a, b))
+ModAPI.getModByName((a))
+ModAPI.isModLoaded((a))
+ModAPI.addAPICallback((a, b))
+ModAPI.addModCallback((a, b))
+ModAPI.getModList(())
+ModAPI.getModPEList(())
+ModAPI.addTexturePack((a))
+ModAPI.cloneAPI((a, b))
+ModAPI.inheritPrototypes((a, b))
+
+Saver.saverScopes.M_native_animation.loader((a))
+Saver.saverScopes.M_native_animation.saver(())
+
+
+Saver.addSavesScope((a, b, c))
+Saver.onAllLoaded((a))
+Saver.onAllSaved((a))
 
 World.isLoaded=false
-World.setLoaded(isLoaded)
-World.isWorldLoaded()
-World.getThreadTime()
-World.nativeSetBlock()
-World.nativeGetBlockID()
-World.nativeGetBlockData(x, y, z)
-World.setBlock(x, y, z, id, data)
-World.setFullBlock(x, y, z, fullTile)
-World.getBlock(x, y, z)
-World.getBlockID(x, y, z)
-World.getBlockData(x, y, z)
-World.destroyBlock(x, y, z, drop)
-World.getLightLevel(x, y, z)
-World.getTileEntity(x, y, z)
-World.addTileEntity(x, y, z)
-World.removeTileEntity(x, y, z)
-World.getContainer(x, y, z)
-World.getWorldTime()
-World.setWorldTime(time)
-World.setDayMode(day)
-World.setNightMode(night)
-World.getWeather()
-World.setWeather(weather)
-World.drop(x, y, z, id, count, data)
-World.explode(x, y, z, power, someBoolean)
-World.getBiome(x, z)
-World.getBiomeName(x, z)
-World.getGrassColor(x, z)
-World.setGrassColor(x, z, color)
-World.getGrassColorRGB(x, z)
-World.setGrassColorRGB(x, z, rgb)
-World.canSeeSky(x, y, z)
-World.playSound(x, y, z, name, volume, pitch)
-World.playSoundAtEntity(entity, name, volume, pitch)
+World.setLoaded((a))
+World.isWorldLoaded(())
+World.getThreadTime(())
+World.__inworld.nativeSetBlock((a, b, c, d, e))
+World.__inworld.nativeGetBlockID((a, b, c))
+World.__inworld.nativeGetBlockData((a, b, c))
+World.__inworld.setBlock((a, b, c, d, e))
+World.__inworld.setFullBlock((a, b, c, d))
+World.__inworld.getBlock((a, b, c))
+World.__inworld.getBlockID((a, b, c))
+World.__inworld.getBlockData((a, b, c))
+World.__inworld.destroyBlock((a, b, c, d))
+World.__inworld.getLightLevel((a, b, c))
+World.__inworld.getTileEntity((a, b, c))
+World.__inworld.addTileEntity((a, b, c))
+World.__inworld.removeTileEntity((a, b, c))
+World.__inworld.getContainer((a, b, c))
+World.__inworld.getWorldTime(())
+World.__inworld.setWorldTime((a))
+World.__inworld.setDayMode((a))
+World.__inworld.setNightMode((a))
+World.__inworld.getWeather(())
+World.__inworld.setWeather((a))
+World.__inworld.drop((a, b, c, d, e, f))
+World.__inworld.explode((a, b, c, d, e))
+World.__inworld.getBiome((a, b))
+World.__inworld.getBiomeName((a, b))
+World.__inworld.getGrassColor((a, b))
+World.__inworld.setGrassColor((a, b, c))
+World.__inworld.getGrassColorRGB((a, b))
+World.__inworld.setGrassColorRGB((a, b, c))
+World.__inworld.canSeeSky((a, b, c))
+World.__inworld.playSound((a, b, c, d, e, f))
+World.__inworld.playSoundAtEntity((a, b, c, d))
 
-Entity._AI.base(entity, data) 
-Entity._AI.idle(entity, data) 
-Entity._AI.follow(entity, data) 
-Entity._AI.attack(entity, data) 
-Entity._AI.panic(entity, data) 
+World.nativeSetBlock(())
+World.nativeGetBlockID(())
+World.nativeGetBlockData((a, b, c))
+World.setBlock((a, b, c, d, e))
+World.setFullBlock((a, b, c, d))
+World.getBlock((a, b, c))
+World.getBlockID((a, b, c))
+World.getBlockData((a, b, c))
+World.destroyBlock((a, b, c, d))
+World.getLightLevel((a, b, c))
+World.getTileEntity((a, b, c))
+World.addTileEntity((a, b, c))
+World.removeTileEntity((a, b, c))
+World.getContainer((a, b, c))
+World.getWorldTime(())
+World.setWorldTime((a))
+World.setDayMode((a))
+World.setNightMode((a))
+World.getWeather(())
+World.setWeather((a))
+World.drop((a, b, c, d, e, f))
+World.explode((a, b, c, d, e))
+World.getBiome((a, b))
+World.getBiomeName((a, b))
+World.getGrassColor((a, b))
+World.setGrassColor((a, b, c))
+World.getGrassColorRGB((a, b))
+World.setGrassColorRGB((a, b, c))
+World.canSeeSky((a, b, c))
+World.playSound((a, b, c, d, e, f))
+World.playSoundAtEntity((a, b, c, d))
 
-Entity.getAll()
-Entity.getAllJS()
+Entity._AI.base((a, b) )
+Entity._AI.idle((a, b) )
+Entity._AI.follow((a, b) )
+Entity._AI.attack((a, b) )
+Entity._AI.panic((a, b) )
+
+Entity.getAll(())
+Entity.getAllJS(())
 Entity.EXTRA_DATA_PREFIX=core.engine.
-Entity.getExtra(ent, name)
-Entity.putExtra(ent, name, extra)
-Entity.getExtraJson(ent, name)
-Entity.putExtraJson(ent, name, obj)
-Entity.addEffect(ent, effectId, effectTime, effectData, amplifier, particles)
-Entity.clearEffect(ent, id)
-Entity.clearEffects(ent)
-Entity.damageEntity(ent, damage)
-Entity.healEntity(ent, heal)
-Entity.getType(ent)
-Entity.setHitbox(ent, w, h)
-Entity.isExist(entity)
-Entity.spawn(x, y, z, type, skin)
-Entity.spawnCustom(name, x, y, z, extra)
-Entity.spawnCustomAtCoords(name, coords, extra)
-Entity.spawnAtCoords(coords, type, skin)
-Entity.remove(entity)
-Entity.getCustom(entity)
-Entity.getAge(ent)
-Entity.setAge(ent, age)
-Entity.getSkin(ent)
-Entity.setSkin(ent, skin)
-Entity.getRender(ent)
-Entity.setRender(ent, render)
-Entity.rideAnimal(ent1, ent2)
-Entity.getNameTag(ent)
-Entity.setNameTag(ent, tag)
-Entity.getTarget(ent)
-Entity.setTarget(ent, target)
-Entity.setMobile(ent, mobile)
-Entity.getSneaking(ent)
-Entity.setSneaking(ent, sneak)
-Entity.getRider(ent)
-Entity.getRiding(ent)
-Entity.setFire(ent, fire)
-Entity.health(entity)
-Entity.getHealth(ent)
-Entity.setHealth(ent, health)
-Entity.getMaxHealth(ent)
-Entity.setMaxHealth(ent, health)
-Entity.setPosition(ent, x, y, z)
-Entity.getPosition(ent)
-Entity.addPosition(ent, x, y, z)
-Entity.setVelocity(ent, x, y, z)
-Entity.getVelocity(ent)
-Entity.addVelocity(ent, x, y, z)
-Entity.getDistanceBetweenCoords(coords1, coords2)
-Entity.getDistanceToCoords(ent, coords)
-Entity.getDistanceToEntity(ent1, ent2)
-Entity.getLookAngle(ent)
-Entity.setLookAngle(ent, yaw, pitch)
-Entity.getLookVectorByAngle(angle)
-Entity.getLookVector(ent)
-Entity.getLookAt(ent, x, y, z)
-Entity.lookAt(ent, x, y, z)
-Entity.lookAtCoords(ent, coords)
-Entity.moveToTarget(ent, target, params)
-Entity.moveToAngle(ent, angle, params)
-Entity.moveToLook(ent, params)
-Entity.getMovingVector(ent)
-Entity.getMovingAngle(ent)
-Entity.findNearest(coords, type, maxRange)
-Entity.getAllInRange(coords, maxRange, type)
-Entity.getInventory(ent, handleNames, handleEnchant)
-Entity.getProjectileItem(projectile)
+Entity.getExtra((a, b))
+Entity.putExtra((a, b, c))
+Entity.getExtraJson((a, b))
+Entity.putExtraJson((a, b, c))
+Entity.addEffect((a, b, c, d, e, f))
+Entity.clearEffect((a, b))
+Entity.clearEffects((a))
+Entity.damageEntity((a, b))
+Entity.healEntity((a, b))
+Entity.getType((a))
+Entity.setHitbox((a, b, c))
+Entity.isExist((a))
+Entity.spawn((a, b, c, d, e))
+Entity.spawnCustom((a, b, c, d, e))
+Entity.spawnCustomAtCoords((a, b, c))
+Entity.spawnAtCoords((a, b, c))
+Entity.remove((a))
+Entity.getCustom((a))
+Entity.getAge((a))
+Entity.setAge((a, b))
+Entity.getSkin((a))
+Entity.setSkin((a, b))
+Entity.getRender((a))
+Entity.setRender((a, b))
+Entity.rideAnimal((a, b))
+Entity.getNameTag((a))
+Entity.setNameTag((a, b))
+Entity.getTarget((a))
+Entity.setTarget((a, b))
+Entity.setMobile((a, b))
+Entity.getSneaking((a))
+Entity.setSneaking((a, b))
+Entity.getRider((a))
+Entity.getRiding((a))
+Entity.setFire((a, b))
+Entity.health((a))
+Entity.getHealth((a))
+Entity.setHealth((a, b))
+Entity.getMaxHealth((a))
+Entity.setMaxHealth((a, b))
+Entity.setPosition((a, b, c, d))
+Entity.getPosition((a))
+Entity.addPosition((a, b, c, d))
+Entity.setVelocity((a, b, c, d))
+Entity.getVelocity((a))
+Entity.addVelocity((a, b, c, d))
+Entity.getDistanceBetweenCoords((a, b))
+Entity.getDistanceToCoords((a, b))
+Entity.getDistanceToEntity((a, b))
+Entity.getLookAngle((a))
+Entity.setLookAngle((a, b, c))
+Entity.getLookVectorByAngle((a))
+Entity.getLookVector((a))
+Entity.getLookAt((a, b, c, d))
+Entity.lookAt((a, b, c, d))
+Entity.lookAtCoords((a, b))
+Entity.moveToTarget((a, b, c))
+Entity.moveToAngle((a, b, c))
+Entity.moveToLook((a, b))
+Entity.getMovingVector((a))
+Entity.getMovingAngle((a))
+Entity.findNearest((a, b, c))
+Entity.getAllInRange((a, b, c))
+Entity.getInventory((a, b, c))
+Entity.getProjectileItem((a))
 
-Player.get()
-Player.getNameForEnt(ent)
-Player.getName()
-Player.getDimension()
-Player.isPlayer(ent)
-Player.getPointed()
-Player.getInventory(loadPart, handleEnchant, handleNames)
-Player.addItemToInventory(id, count, data)
-Player.getCarriedItem(handleEnchant, handleNames)
-Player.setCarriedItem(id, count, data, enchant, name)
-Player.decreaseCarriedItem(count)
-Player.setPosition(x, y, z)
-Player.getPosition()
-Player.addPosition(x, y, z)
-Player.setVelocity(x, y, z)
-Player.getVelocity()
-Player.addVelocity(x, y, z)
-Player.experience()
-Player.getExperience()
-Player.setExperience(exp)
-Player.addExperience(exp)
-Player.level()
-Player.getLevel()
-Player.setLevel(level)
-Player.addLevel(level)
-Player.flying()
-Player.getFlyingEnabled()
-Player.setFlyingEnabled(enabled)
-Player.getFlying()
-Player.setFlying(enabled)
-Player.exhaustion()
-Player.getExhaustion()
-Player.setExhaustion(value)
-Player.hunger()
-Player.getHunger()
-Player.setHunger(value)
-Player.saturation()
-Player.getSaturation()
-Player.setSaturation(value)
-Player.health()
-Player.getHealth()
-Player.setHealth(value)
-Player.score()
-Player.getScore()
+Player.get(())
+Player.getNameForEnt((a))
+Player.getName(())
+Player.getDimension(())
+Player.isPlayer((a))
+Player.getPointed(())
+Player.getInventory((a, b, c))
+Player.addItemToInventory((a, b, c))
+Player.getCarriedItem((a, b))
+Player.setCarriedItem((a, b, c, d, e))
+Player.decreaseCarriedItem((a))
+Player.setPosition((a, b, c))
+Player.getPosition(())
+Player.addPosition((a, b, c))
+Player.setVelocity((a, b, c))
+Player.getVelocity(())
+Player.addVelocity((a, b, c))
+Player.experience(())
+Player.getExperience(())
+Player.setExperience((a))
+Player.addExperience((a))
+Player.level(())
+Player.getLevel(())
+Player.setLevel((a))
+Player.addLevel((a))
+Player.flying(())
+Player.getFlyingEnabled(())
+Player.setFlyingEnabled((a))
+Player.getFlying(())
+Player.setFlying((a))
+Player.exhaustion(())
+Player.getExhaustion(())
+Player.setExhaustion((a))
+Player.hunger(())
+Player.getHunger(())
+Player.setHunger((a))
+Player.saturation(())
+Player.getSaturation(())
+Player.setSaturation((a))
+Player.health(())
+Player.getHealth(())
+Player.setHealth((a))
+Player.score(())
+Player.getScore(())
 
-Render(renderParams) 
-Game.prevent()
-Game.message(msg)
-Game.tipMessage(msg)
-Game.dialogMessage(message, title)
-Game.setDifficulty(difficulty)
-Game.getDifficulty()
-Game.getI18n(str)
-Game.getMinecraftVersion()
-Game.getEngineVersion()
-Game.selectLevel(name)
-Game.setCamera(entity)
-Game.setTickingSpeed(speed)
-Game.setRenderDebug(enabled)
-Game.screenshot(name)
+Render((a) )
+Game.prevent(())
+Game.message((a))
+Game.tipMessage((a))
+Game.dialogMessage((a, b))
+Game.setDifficulty((a))
+Game.getDifficulty(())
+Game.getI18n((a))
+Game.getMinecraftVersion(())
+Game.getEngineVersion(())
+Game.selectLevel((a))
+Game.setCamera((a))
+Game.setTickingSpeed((a))
+Game.setRenderDebug((a))
+Game.screenshot((a))
 
 GenerationUtils.TERRAIN.[data]
 GenerationUtils.TRANSPARENT.[data]
-GenerationUtils.isTerrainBlock(id)
-GenerationUtils.isTransparentBlock(id)
-GenerationUtils.randomXZ(cx, cz)
-GenerationUtils.randomCoords(cx, cz, lowest, highest)
-GenerationUtils.findSurface(x, y, z)
-GenerationUtils.findHighSurface(x, z)
-GenerationUtils.findLowSurface(x, z)
+GenerationUtils.isTerrainBlock((a))
+GenerationUtils.isTransparentBlock((a))
+GenerationUtils.randomXZ((a, b))
+GenerationUtils.randomCoords((a, b, c, d))
+GenerationUtils.findSurface((a, b, c))
+GenerationUtils.findHighSurface((a, b))
+GenerationUtils.findLowSurface((a, b))
 GenerationUtils.__lockedReal.[data]
-GenerationUtils.lockInBlock(id, data, checkerTile, checkerMode)
-GenerationUtils.setLockedBlock(x, y, z)
-GenerationUtils.genMinable(x, y, z, params)
+GenerationUtils.lockInBlock((a, b, c, d))
+GenerationUtils.setLockedBlock((a, b, c))
+GenerationUtils.genMinable((a, b, c, d))
 
-Animation.base(x, y, z) 
-Animation.Base(x, y, z) 
-Animation.text(x, y, z, text) 
-Animation.Text(x, y, z, text) 
-Animation.item(x, y, z) 
-Animation.Item(x, y, z) 
+Animation.base((a, b, c) )
+Animation.Base((a, b, c) )
+Animation.text((a, b, c, d) )
+Animation.Text((a, b, c, d) )
+Animation.item((a, b, c) )
+Animation.Item((a, b, c) )
 
-Particles.addParticle(x, y, z, id, vx, vy, vz, data)
-Particles.line(particle, coords1, coords2, gap, vel, data)
+Particles.addParticle((a, b, c, d, e, f, g, h))
+Particles.line((a, b, c, d, e, f))
 
 IDRegistry.uniqueID.[data]
-IDRegistry.data.[data]
-IDRegistry.reversedData.[data]
-IDRegistry.loadDataFromStatic(data)
-IDRegistry.genUniqueID(name, mode)
-IDRegistry.genItemID(name)
-IDRegistry.genBlockID(name)
-IDRegistry.genMiscID(name)
-IDRegistry.getNameByID(id)
-IDRegistry.addedInCreative=
-IDRegistry.requireCreativeAdd(id, data)
+IDRegistry.data.item.[data]
+IDRegistry.data.block.[data]
 
-IDData.[data]
+
+IDRegistry.reversedData.item.[data]
+IDRegistry.reversedData.block.[data]
+
+
+IDRegistry.loadDataFromStatic((a))
+IDRegistry.genUniqueID((a, b))
+IDRegistry.genItemID((a))
+IDRegistry.genBlockID((a))
+IDRegistry.genMiscID((a))
+IDRegistry.getNameByID((a))
+IDRegistry.addedInCreative=
+IDRegistry.requireCreativeAdd((a, b))
+
+IDData.item.[data]
+IDData.block.[data]
+
+
 ItemID.[data]
 BlockID.[data]
 Block.idSource.[data]
+Block.dropFunctions.1((a, b, c, d, e))
+Block.dropFunctions.4((a, d, e, f))
+Block.dropFunctions.14((a, d, e, f))
+Block.dropFunctions.15((a, d, e, f))
+Block.dropFunctions.16((a, b, c, d, e))
+Block.dropFunctions.21((a, b, c, d, e))
+Block.dropFunctions.22((a, d, e, f))
+Block.dropFunctions.30((a, b, c, d, e))
+Block.dropFunctions.41((a, d, e, f))
+Block.dropFunctions.42((a, d, e, f))
+Block.dropFunctions.43((a, b, c, d, e))
+Block.dropFunctions.44((a, d, e, f))
+Block.dropFunctions.45((a, d, e, f))
+Block.dropFunctions.48((a, d, e, f))
+Block.dropFunctions.49((a, d, e, f))
+Block.dropFunctions.52((a, b, c, d, e))
+Block.dropFunctions.56((a, b, c, d, e))
+Block.dropFunctions.57((a, d, e, f))
+Block.dropFunctions.61((a, d, e, f))
+Block.dropFunctions.62((a, b, c, d, e))
+Block.dropFunctions.67((a, d, e, f))
+Block.dropFunctions.70((a, d, e, f))
+Block.dropFunctions.71((a, b, c, d, e))
+Block.dropFunctions.73((a, b, c, d, e))
+Block.dropFunctions.74((a, b, c, d, e))
+Block.dropFunctions.77((a, d, e, f))
+Block.dropFunctions.87((a, d, e, f))
+Block.dropFunctions.98((a, d, e, f))
+Block.dropFunctions.101((a, d, e, f))
+Block.dropFunctions.108((a, d, e, f))
+Block.dropFunctions.109((a, d, e, f))
+Block.dropFunctions.112((a, d, e, f))
+Block.dropFunctions.113((a, d, e, f))
+Block.dropFunctions.114((a, d, e, f))
+Block.dropFunctions.116((a, d, e, f))
+Block.dropFunctions.117((a, d, e, f))
+Block.dropFunctions.118((a, d, e, f))
+Block.dropFunctions.121((a, d, e, f))
+Block.dropFunctions.125((a, d, e, f))
+Block.dropFunctions.128((a, d, e, f))
+Block.dropFunctions.129((a, b, c, d, e))
+Block.dropFunctions.133((a, d, e, f))
+Block.dropFunctions.135((a, d, e, f))
+Block.dropFunctions.139((a, d, e, f))
+Block.dropFunctions.147((a, d, e, f))
+Block.dropFunctions.148((a, d, e, f))
+Block.dropFunctions.152((a, d, e, f))
+Block.dropFunctions.153((a, b, c, d, e))
+Block.dropFunctions.154((a, d, e, f))
+Block.dropFunctions.155((a, d, e, f))
+Block.dropFunctions.156((a, d, e, f))
+Block.dropFunctions.167((a, d, e, f))
+Block.dropFunctions.172((a, d, e, f))
+Block.dropFunctions.173((a, d, e, f))
+Block.dropFunctions.179((a, d, e, f))
+Block.dropFunctions.180((a, d, e, f))
+Block.dropFunctions.181((a, b, c, d, e))
+Block.dropFunctions.182((a, d, e, f))
+Block.dropFunctions.245((a, d, e, f))
+Block.dropFunctions.251((a, d, e, f))
+
 Block.DEFAULT_ICON_RESOLUTION=96
-Block.setGuiIconParams(canGenerate, size)
-Block.createBlock(namedID, defineData, blockType)
-Block.createBlockWithRotation(namedID, defineData, blockType)
-Block.isNativeTile(id)
-Block.registerDropFunctionForID(numericID, dropFunc, level)
-Block.registerDropFunction(namedID, dropFunc, level)
-Block.defaultDropFunction(blockCoords, blockID, blockData, diggingLevel)
-Block.getDropFunction(id)
-Block.setDestroyLevelForID(id, level)
-Block.setDestroyLevel(namedID, level)
-Block.onBlockDestroyed(coords, fullTile)
-Block.getBlockDropViaItem(block, item, coords)
-Block.registerPlaceFunction(namedID, func)
-Block.registerPlaceFunctionForID(block, func)
-Block.getPlaceFunc(block)
-Block.setBlockShape(id, pos1, pos2, data)
-Block.setShape(id, x1, y1, z1, x2, y2, z2, data)
-Block.createSpecialType(description, nameKey)
+Block.setGuiIconParams((a, b))
+Block.createBlock((a, b, c))
+Block.createBlockWithRotation((a, b, c))
+Block.isNativeTile((a))
+Block.registerDropFunctionForID((a, b, c))
+Block.registerDropFunction((a, b, c))
+Block.defaultDropFunction((a, b, c, d))
+Block.getDropFunction((a))
+Block.setDestroyLevelForID((a, b))
+Block.setDestroyLevel((a, b))
+Block.onBlockDestroyed((a, b))
+Block.getBlockDropViaItem((a, b, c))
+Block.placeFuncs=
+Block.registerPlaceFunction((a, b))
+Block.registerPlaceFunctionForID((a, b))
+Block.getPlaceFunc((a))
+Block.setBlockShape((a, b, c, d))
+Block.setShape((a, b, c, d, e, f, g, h))
+Block.createSpecialType((a, b))
 Block.TYPE_BASE=createBlock
 Block.TYPE_ROTATION=createBlockWithRotation
-Block.setPrototype(namedID, Prototype)
+Block.setPrototype((a, b))
 
 Item.idSource.[data]
-Item.useFunctions.513(coords, item, tile)
-Item.useFunctions.553(coords, item, block)
-Item.useFunctions.566(coords, item, block)
-Item.useFunctions.568(coords, item, block)
-Item.useFunctions.571(coords, item, block)
-Item.useFunctions.573(coords, item, block)
-Item.useFunctions.574(coords, item, block)
-Item.useFunctions.575(coords, item, block)
-Item.useFunctions.576(coords, item, block)
-Item.useFunctions.608(coords, item, block)
-Item.useFunctions.611(coords, item, block)
-Item.useFunctions.613(coords, item, block)
-Item.useFunctions.615(coords, item, block)
-Item.useFunctions.616(coords, item, block)
-Item.useFunctions.617(coords, item, block)
 
-Item.throwableFunctions.615(projectile, item, target)
-Item.throwableFunctions.616(projectile, item, target)
 
-Item.createItem(namedID, name, texture, params)
-Item.createFoodItem(namedID, name, texture, params)
-Item.createFuelItem(namedID, name, texture, params)
-Item.createArmorItem(namedID, name, texture, params)
-Item.createThrowableItem(namedID, name, texture, params)
-Item.isNativeItem(id)
-Item.getMaxDamage(id)
-Item.getMaxStack(id)
-Item.getCustomThrowableRenderType(id)
-Item.getName(id, data, encode)
-Item.getTextureCoords(id, data)
-Item.getUseAnimation(id)
-Item.isValid(id, data)
-Item.describeItem(numericID, description)
-Item.setCategory(id, category)
-Item.setEnchantType(id, enchant, value)
-Item.setToolRender(id, enabled)
-Item.setMaxDamage(id, maxdamage)
-Item.setStackedByData(id, enabled)
-Item.setProperties(id, props)
-Item.setUseAnimation(id, animType)
-Item.registerUseFunctionForID(numericID, useFunc)
-Item.registerUseFunction(namedID, useFunc)
-Item.onItemUsed(coords, item, block)
-Item.registerThrowableFunctionForID(numericID, useFunc)
-Item.registerThrowableFunction(namedID, useFunc)
-Item.onProjectileHit(projectile, item, target)
+Item.createItem((a, b, c, d))
+Item.createFoodItem((a, b, c, d))
+Item.createFuelItem((a, b, c, d))
+Item.createArmorItem((a, b, c, d))
+Item.createThrowableItem((a, b, c, d))
+Item.isNativeItem((a))
+Item.getMaxDamage((a))
+Item.getMaxStack((a))
+Item.getCustomThrowableRenderType((a))
+Item.getName((a, b, c))
+Item.getTextureCoords((a, b))
+Item.getUseAnimation((a))
+Item.isValid((a, b))
+Item.describeItem((a, b))
+Item.setCategory((a, b))
+Item.setEnchantType((a, b, c))
+Item.setToolRender((a, b))
+Item.setMaxDamage((a, b))
+Item.setStackedByData((a, b))
+Item.setProperties((a, b))
+Item.setUseAnimation((a, b))
+Item.registerUseFunctionForID((a, b))
+Item.registerUseFunction((a, b))
+Item.onItemUsed((a, b, c))
+Item.registerThrowableFunctionForID((a, b))
+Item.registerThrowableFunction((a, b))
+Item.onProjectileHit((a, b, c))
 Item.TYPE_BASE=createItem
 Item.TYPE_FOOD=createFoodItem
 Item.TYPE_ARMOR=createArmorItem
 Item.TYPE_THROWABLE=createThrowableItem
-Item.setPrototype(namedID, Prototype)
+Item.setPrototype((a, b))
 
-Recipes.addShaped(result, mask, data, func, prefix)
-Recipes.addShapedNative(id, count, data, mask, data2, func, prefix)
-Recipes.addShapeless(result, data, func, prefix)
-Recipes.deleteRecipe(item)
-Recipes.replaceWithShaped(result, mask, data, func, prefix)
-Recipes.replaceWithShapeless(result, data, func, prefix)
-Recipes.getFieldContainer(slots)
-Recipes.getRecipeByField(slots, prefix, ignorePrefix)
-Recipes.getRecipeResult(slots, prefix)
-Recipes.provideRecipe(slots, prefix)
-Recipes.getWorkbenchUI()
-Recipes.getRecipesByResult(id, count, data)
-Recipes.furnaceRecipes.[data]
+Recipes.addShaped((a, b, c, d, e))
+Recipes.addShapedNative((a, b, c, d, e, f, g))
+Recipes.addShapeless((a, b, c, d))
+Recipes.deleteRecipe((a))
+Recipes.replaceWithShaped((a, b, c, d, e))
+Recipes.replaceWithShapeless((a, b, c, d))
+Recipes.getFieldContainer((a))
+Recipes.getRecipeByField((a, b, c))
+Recipes.getRecipeResult((a, b))
+Recipes.provideRecipe((a, b))
+Recipes.getWorkbenchUI(())
+Recipes.getRecipesByResult((a, b, c))
+Recipes.furnaceRecipes.4.[data]
+Recipes.furnaceRecipes.12.[data]
+Recipes.furnaceRecipes.14.[data]
+Recipes.furnaceRecipes.15.[data]
+Recipes.furnaceRecipes.17.[data]
+Recipes.furnaceRecipes.87.[data]
+Recipes.furnaceRecipes.263.[data]
+Recipes.furnaceRecipes.319.[data]
+Recipes.furnaceRecipes.337.[data]
+Recipes.furnaceRecipes.349.[data]
+Recipes.furnaceRecipes.363.[data]
+Recipes.furnaceRecipes.365.[data]
+Recipes.furnaceRecipes.392.[data]
+Recipes.furnaceRecipes.460.[data]
+
 Recipes.isFurnaceAdded=false
-Recipes.addFurnace(source, resultID, resultData, prefix, isLocked)
-Recipes.addFurnaceNative(source, resultID, resultData)
-Recipes.addAllFurnaceRecipes()
-Recipes.doesFurnacePrefixesMatch(recipePrefix, actionPrefix)
-Recipes.getFurnaceRecipeResult(itemId, prefix)
-Recipes.removeFurnaceRecipe(itemId)
+Recipes.addFurnace((a, b, c, d, e))
+Recipes.addFurnaceNative((a, b, c))
+Recipes.addAllFurnaceRecipes(())
+Recipes.doesFurnacePrefixesMatch((a, b))
+Recipes.getFurnaceRecipeResult((a, b))
+Recipes.removeFurnaceRecipe((a))
 
-ToolAPI.blockMaterials.[data]
-ToolAPI.toolMaterials.[data]
-ToolAPI.toolData.[data]
-ToolAPI.blockData.[data]
+ToolAPI.blockMaterials.stone.[data]
+ToolAPI.blockMaterials.wood.[data]
+ToolAPI.blockMaterials.dirt.[data]
+ToolAPI.blockMaterials.plant.[data]
+ToolAPI.blockMaterials.fibre.[data]
+ToolAPI.blockMaterials.cobweb.[data]
+ToolAPI.blockMaterials.unbreaking.[data]
+
+ToolAPI.toolMaterials.wood.[data]
+ToolAPI.toolMaterials.stone.[data]
+ToolAPI.toolMaterials.iron.[data]
+ToolAPI.toolMaterials.golden.[data]
+ToolAPI.toolMaterials.diamond.[data]
+
+ToolAPI.toolData.256.isNative=true
+ToolAPI.toolData.256.damage=0
+ToolAPI.toolData.256.brokenId=0
+ToolAPI.toolData.256.toolMaterial.[data]
+ToolAPI.toolData.256.blockMaterials.[data]
+ToolAPI.toolData.256.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.257.isNative=true
+ToolAPI.toolData.257.damage=1
+ToolAPI.toolData.257.brokenId=0
+ToolAPI.toolData.257.toolMaterial.[data]
+ToolAPI.toolData.257.blockMaterials.[data]
+ToolAPI.toolData.257.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.258.isNative=true
+ToolAPI.toolData.258.damage=2
+ToolAPI.toolData.258.brokenId=0
+ToolAPI.toolData.258.toolMaterial.[data]
+ToolAPI.toolData.258.blockMaterials.[data]
+ToolAPI.toolData.258.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.269.isNative=true
+ToolAPI.toolData.269.damage=0
+ToolAPI.toolData.269.brokenId=0
+ToolAPI.toolData.269.toolMaterial.[data]
+ToolAPI.toolData.269.blockMaterials.[data]
+ToolAPI.toolData.269.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.270.isNative=true
+ToolAPI.toolData.270.damage=1
+ToolAPI.toolData.270.brokenId=0
+ToolAPI.toolData.270.toolMaterial.[data]
+ToolAPI.toolData.270.blockMaterials.[data]
+ToolAPI.toolData.270.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.271.isNative=true
+ToolAPI.toolData.271.damage=2
+ToolAPI.toolData.271.brokenId=0
+ToolAPI.toolData.271.toolMaterial.[data]
+ToolAPI.toolData.271.blockMaterials.[data]
+ToolAPI.toolData.271.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.273.isNative=true
+ToolAPI.toolData.273.damage=0
+ToolAPI.toolData.273.brokenId=0
+ToolAPI.toolData.273.toolMaterial.[data]
+ToolAPI.toolData.273.blockMaterials.[data]
+ToolAPI.toolData.273.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.274.isNative=true
+ToolAPI.toolData.274.damage=1
+ToolAPI.toolData.274.brokenId=0
+ToolAPI.toolData.274.toolMaterial.[data]
+ToolAPI.toolData.274.blockMaterials.[data]
+ToolAPI.toolData.274.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.275.isNative=true
+ToolAPI.toolData.275.damage=2
+ToolAPI.toolData.275.brokenId=0
+ToolAPI.toolData.275.toolMaterial.[data]
+ToolAPI.toolData.275.blockMaterials.[data]
+ToolAPI.toolData.275.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.277.isNative=true
+ToolAPI.toolData.277.damage=0
+ToolAPI.toolData.277.brokenId=0
+ToolAPI.toolData.277.toolMaterial.[data]
+ToolAPI.toolData.277.blockMaterials.[data]
+ToolAPI.toolData.277.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.278.isNative=true
+ToolAPI.toolData.278.damage=1
+ToolAPI.toolData.278.brokenId=0
+ToolAPI.toolData.278.toolMaterial.[data]
+ToolAPI.toolData.278.blockMaterials.[data]
+ToolAPI.toolData.278.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.279.isNative=true
+ToolAPI.toolData.279.damage=2
+ToolAPI.toolData.279.brokenId=0
+ToolAPI.toolData.279.toolMaterial.[data]
+ToolAPI.toolData.279.blockMaterials.[data]
+ToolAPI.toolData.279.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.284.isNative=true
+ToolAPI.toolData.284.damage=0
+ToolAPI.toolData.284.brokenId=0
+ToolAPI.toolData.284.toolMaterial.[data]
+ToolAPI.toolData.284.blockMaterials.[data]
+ToolAPI.toolData.284.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.285.isNative=true
+ToolAPI.toolData.285.damage=1
+ToolAPI.toolData.285.brokenId=0
+ToolAPI.toolData.285.toolMaterial.[data]
+ToolAPI.toolData.285.blockMaterials.[data]
+ToolAPI.toolData.285.calcDestroyTime((a, b, c, d))
+
+ToolAPI.toolData.286.isNative=true
+ToolAPI.toolData.286.damage=2
+ToolAPI.toolData.286.brokenId=0
+ToolAPI.toolData.286.toolMaterial.[data]
+ToolAPI.toolData.286.blockMaterials.[data]
+ToolAPI.toolData.286.calcDestroyTime((a, b, c, d))
+
+
+ToolAPI.blockData.1.material.[data]
+ToolAPI.blockData.1.level=1
+
+ToolAPI.blockData.2.material.[data]
+ToolAPI.blockData.2.level=0
+
+ToolAPI.blockData.3.material.[data]
+ToolAPI.blockData.3.level=0
+
+ToolAPI.blockData.4.material.[data]
+ToolAPI.blockData.4.level=1
+
+ToolAPI.blockData.5.material.[data]
+ToolAPI.blockData.5.level=0
+
+ToolAPI.blockData.6.material.[data]
+ToolAPI.blockData.6.level=0
+
+ToolAPI.blockData.7.material.[data]
+ToolAPI.blockData.7.level=0
+
+ToolAPI.blockData.8.material.[data]
+ToolAPI.blockData.8.level=0
+
+ToolAPI.blockData.9.material.[data]
+ToolAPI.blockData.9.level=0
+
+ToolAPI.blockData.10.material.[data]
+ToolAPI.blockData.10.level=0
+
+ToolAPI.blockData.11.material.[data]
+ToolAPI.blockData.11.level=0
+
+ToolAPI.blockData.12.material.[data]
+ToolAPI.blockData.12.level=0
+
+ToolAPI.blockData.13.material.[data]
+ToolAPI.blockData.13.level=0
+
+ToolAPI.blockData.14.material.[data]
+ToolAPI.blockData.14.level=3
+
+ToolAPI.blockData.15.material.[data]
+ToolAPI.blockData.15.level=2
+
+ToolAPI.blockData.16.material.[data]
+ToolAPI.blockData.16.level=1
+
+ToolAPI.blockData.17.material.[data]
+ToolAPI.blockData.17.level=0
+
+ToolAPI.blockData.18.material.[data]
+ToolAPI.blockData.18.level=0
+
+ToolAPI.blockData.19.material.[data]
+ToolAPI.blockData.19.level=0
+
+ToolAPI.blockData.21.material.[data]
+ToolAPI.blockData.21.level=2
+
+ToolAPI.blockData.22.material.[data]
+ToolAPI.blockData.22.level=2
+
+ToolAPI.blockData.23.material.[data]
+ToolAPI.blockData.23.level=0
+
+ToolAPI.blockData.24.material.[data]
+ToolAPI.blockData.24.level=0
+
+ToolAPI.blockData.25.material.[data]
+ToolAPI.blockData.25.level=0
+
+ToolAPI.blockData.26.material.[data]
+ToolAPI.blockData.26.level=0
+
+ToolAPI.blockData.27.material.[data]
+ToolAPI.blockData.27.level=0
+
+ToolAPI.blockData.28.material.[data]
+ToolAPI.blockData.28.level=0
+
+ToolAPI.blockData.29.material.[data]
+ToolAPI.blockData.29.level=0
+
+ToolAPI.blockData.30.material.[data]
+ToolAPI.blockData.30.level=1
+
+ToolAPI.blockData.31.material.[data]
+ToolAPI.blockData.31.level=0
+
+ToolAPI.blockData.32.material.[data]
+ToolAPI.blockData.32.level=0
+
+ToolAPI.blockData.33.material.[data]
+ToolAPI.blockData.33.level=0
+
+ToolAPI.blockData.37.material.[data]
+ToolAPI.blockData.37.level=0
+
+ToolAPI.blockData.38.material.[data]
+ToolAPI.blockData.38.level=0
+
+ToolAPI.blockData.39.material.[data]
+ToolAPI.blockData.39.level=0
+
+ToolAPI.blockData.40.material.[data]
+ToolAPI.blockData.40.level=0
+
+ToolAPI.blockData.41.material.[data]
+ToolAPI.blockData.41.level=3
+
+ToolAPI.blockData.42.material.[data]
+ToolAPI.blockData.42.level=3
+
+ToolAPI.blockData.43.material.[data]
+ToolAPI.blockData.43.level=1
+
+ToolAPI.blockData.44.material.[data]
+ToolAPI.blockData.44.level=1
+
+ToolAPI.blockData.45.material.[data]
+ToolAPI.blockData.45.level=1
+
+ToolAPI.blockData.46.material.[data]
+ToolAPI.blockData.46.level=0
+
+ToolAPI.blockData.47.material.[data]
+ToolAPI.blockData.47.level=0
+
+ToolAPI.blockData.48.material.[data]
+ToolAPI.blockData.48.level=1
+
+ToolAPI.blockData.49.material.[data]
+ToolAPI.blockData.49.level=4
+
+ToolAPI.blockData.50.material.[data]
+ToolAPI.blockData.50.level=0
+
+ToolAPI.blockData.51.material.[data]
+ToolAPI.blockData.51.level=0
+
+ToolAPI.blockData.52.material.[data]
+ToolAPI.blockData.52.level=1
+
+ToolAPI.blockData.53.material.[data]
+ToolAPI.blockData.53.level=0
+
+ToolAPI.blockData.54.material.[data]
+ToolAPI.blockData.54.level=0
+
+ToolAPI.blockData.55.material.[data]
+ToolAPI.blockData.55.level=0
+
+ToolAPI.blockData.56.material.[data]
+ToolAPI.blockData.56.level=3
+
+ToolAPI.blockData.57.material.[data]
+ToolAPI.blockData.57.level=3
+
+ToolAPI.blockData.58.material.[data]
+ToolAPI.blockData.58.level=0
+
+ToolAPI.blockData.59.material.[data]
+ToolAPI.blockData.59.level=0
+
+ToolAPI.blockData.60.material.[data]
+ToolAPI.blockData.60.level=0
+
+ToolAPI.blockData.61.material.[data]
+ToolAPI.blockData.61.level=1
+
+ToolAPI.blockData.62.material.[data]
+ToolAPI.blockData.62.level=1
+
+ToolAPI.blockData.63.material.[data]
+ToolAPI.blockData.63.level=0
+
+ToolAPI.blockData.64.material.[data]
+ToolAPI.blockData.64.level=0
+
+ToolAPI.blockData.65.material.[data]
+ToolAPI.blockData.65.level=0
+
+ToolAPI.blockData.66.material.[data]
+ToolAPI.blockData.66.level=0
+
+ToolAPI.blockData.67.material.[data]
+ToolAPI.blockData.67.level=1
+
+ToolAPI.blockData.68.material.[data]
+ToolAPI.blockData.68.level=0
+
+ToolAPI.blockData.69.material.[data]
+ToolAPI.blockData.69.level=0
+
+ToolAPI.blockData.70.material.[data]
+ToolAPI.blockData.70.level=1
+
+ToolAPI.blockData.71.material.[data]
+ToolAPI.blockData.71.level=2
+
+ToolAPI.blockData.72.material.[data]
+ToolAPI.blockData.72.level=0
+
+ToolAPI.blockData.73.material.[data]
+ToolAPI.blockData.73.level=3
+
+ToolAPI.blockData.74.material.[data]
+ToolAPI.blockData.74.level=3
+
+ToolAPI.blockData.75.material.[data]
+ToolAPI.blockData.75.level=0
+
+ToolAPI.blockData.76.material.[data]
+ToolAPI.blockData.76.level=0
+
+ToolAPI.blockData.77.material.[data]
+ToolAPI.blockData.77.level=1
+
+ToolAPI.blockData.78.material.[data]
+ToolAPI.blockData.78.level=0
+
+ToolAPI.blockData.79.material.[data]
+ToolAPI.blockData.79.level=0
+
+ToolAPI.blockData.80.material.[data]
+ToolAPI.blockData.80.level=0
+
+ToolAPI.blockData.81.material.[data]
+ToolAPI.blockData.81.level=0
+
+ToolAPI.blockData.83.material.[data]
+ToolAPI.blockData.83.level=0
+
+ToolAPI.blockData.85.material.[data]
+ToolAPI.blockData.85.level=0
+
+ToolAPI.blockData.86.material.[data]
+ToolAPI.blockData.86.level=0
+
+ToolAPI.blockData.87.material.[data]
+ToolAPI.blockData.87.level=1
+
+ToolAPI.blockData.88.material.[data]
+ToolAPI.blockData.88.level=0
+
+ToolAPI.blockData.89.material.[data]
+ToolAPI.blockData.89.level=0
+
+ToolAPI.blockData.91.material.[data]
+ToolAPI.blockData.91.level=0
+
+ToolAPI.blockData.93.material.[data]
+ToolAPI.blockData.93.level=0
+
+ToolAPI.blockData.94.material.[data]
+ToolAPI.blockData.94.level=0
+
+ToolAPI.blockData.95.material.[data]
+ToolAPI.blockData.95.level=0
+
+ToolAPI.blockData.96.material.[data]
+ToolAPI.blockData.96.level=0
+
+ToolAPI.blockData.97.material.[data]
+ToolAPI.blockData.97.level=0
+
+ToolAPI.blockData.98.material.[data]
+ToolAPI.blockData.98.level=1
+
+ToolAPI.blockData.99.material.[data]
+ToolAPI.blockData.99.level=0
+
+ToolAPI.blockData.100.material.[data]
+ToolAPI.blockData.100.level=0
+
+ToolAPI.blockData.101.material.[data]
+ToolAPI.blockData.101.level=2
+
+ToolAPI.blockData.103.material.[data]
+ToolAPI.blockData.103.level=0
+
+ToolAPI.blockData.104.material.[data]
+ToolAPI.blockData.104.level=0
+
+ToolAPI.blockData.105.material.[data]
+ToolAPI.blockData.105.level=0
+
+ToolAPI.blockData.106.material.[data]
+ToolAPI.blockData.106.level=0
+
+ToolAPI.blockData.107.material.[data]
+ToolAPI.blockData.107.level=0
+
+ToolAPI.blockData.108.material.[data]
+ToolAPI.blockData.108.level=1
+
+ToolAPI.blockData.109.material.[data]
+ToolAPI.blockData.109.level=1
+
+ToolAPI.blockData.110.material.[data]
+ToolAPI.blockData.110.level=0
+
+ToolAPI.blockData.111.material.[data]
+ToolAPI.blockData.111.level=0
+
+ToolAPI.blockData.112.material.[data]
+ToolAPI.blockData.112.level=2
+
+ToolAPI.blockData.113.material.[data]
+ToolAPI.blockData.113.level=2
+
+ToolAPI.blockData.114.material.[data]
+ToolAPI.blockData.114.level=2
+
+ToolAPI.blockData.115.material.[data]
+ToolAPI.blockData.115.level=0
+
+ToolAPI.blockData.116.material.[data]
+ToolAPI.blockData.116.level=2
+
+ToolAPI.blockData.117.material.[data]
+ToolAPI.blockData.117.level=1
+
+ToolAPI.blockData.118.material.[data]
+ToolAPI.blockData.118.level=1
+
+ToolAPI.blockData.120.material.[data]
+ToolAPI.blockData.120.level=0
+
+ToolAPI.blockData.121.material.[data]
+ToolAPI.blockData.121.level=2
+
+ToolAPI.blockData.123.material.[data]
+ToolAPI.blockData.123.level=0
+
+ToolAPI.blockData.124.material.[data]
+ToolAPI.blockData.124.level=0
+
+ToolAPI.blockData.125.material.[data]
+ToolAPI.blockData.125.level=1
+
+ToolAPI.blockData.126.material.[data]
+ToolAPI.blockData.126.level=0
+
+ToolAPI.blockData.127.material.[data]
+ToolAPI.blockData.127.level=0
+
+ToolAPI.blockData.128.material.[data]
+ToolAPI.blockData.128.level=1
+
+ToolAPI.blockData.129.material.[data]
+ToolAPI.blockData.129.level=3
+
+ToolAPI.blockData.131.material.[data]
+ToolAPI.blockData.131.level=0
+
+ToolAPI.blockData.132.material.[data]
+ToolAPI.blockData.132.level=0
+
+ToolAPI.blockData.133.material.[data]
+ToolAPI.blockData.133.level=3
+
+ToolAPI.blockData.134.material.[data]
+ToolAPI.blockData.134.level=0
+
+ToolAPI.blockData.135.material.[data]
+ToolAPI.blockData.135.level=2
+
+ToolAPI.blockData.136.material.[data]
+ToolAPI.blockData.136.level=0
+
+ToolAPI.blockData.139.material.[data]
+ToolAPI.blockData.139.level=1
+
+ToolAPI.blockData.140.material.[data]
+ToolAPI.blockData.140.level=0
+
+ToolAPI.blockData.141.material.[data]
+ToolAPI.blockData.141.level=0
+
+ToolAPI.blockData.142.material.[data]
+ToolAPI.blockData.142.level=0
+
+ToolAPI.blockData.143.material.[data]
+ToolAPI.blockData.143.level=0
+
+ToolAPI.blockData.144.material.[data]
+ToolAPI.blockData.144.level=0
+
+ToolAPI.blockData.145.material.[data]
+ToolAPI.blockData.145.level=0
+
+ToolAPI.blockData.146.material.[data]
+ToolAPI.blockData.146.level=0
+
+ToolAPI.blockData.147.material.[data]
+ToolAPI.blockData.147.level=2
+
+ToolAPI.blockData.148.material.[data]
+ToolAPI.blockData.148.level=2
+
+ToolAPI.blockData.149.material.[data]
+ToolAPI.blockData.149.level=0
+
+ToolAPI.blockData.150.material.[data]
+ToolAPI.blockData.150.level=0
+
+ToolAPI.blockData.151.material.[data]
+ToolAPI.blockData.151.level=0
+
+ToolAPI.blockData.152.material.[data]
+ToolAPI.blockData.152.level=3
+
+ToolAPI.blockData.153.material.[data]
+ToolAPI.blockData.153.level=2
+
+ToolAPI.blockData.154.material.[data]
+ToolAPI.blockData.154.level=1
+
+ToolAPI.blockData.155.material.[data]
+ToolAPI.blockData.155.level=2
+
+ToolAPI.blockData.156.material.[data]
+ToolAPI.blockData.156.level=2
+
+ToolAPI.blockData.157.material.[data]
+ToolAPI.blockData.157.level=0
+
+ToolAPI.blockData.158.material.[data]
+ToolAPI.blockData.158.level=0
+
+ToolAPI.blockData.159.material.[data]
+ToolAPI.blockData.159.level=0
+
+ToolAPI.blockData.161.material.[data]
+ToolAPI.blockData.161.level=0
+
+ToolAPI.blockData.162.material.[data]
+ToolAPI.blockData.162.level=0
+
+ToolAPI.blockData.163.material.[data]
+ToolAPI.blockData.163.level=0
+
+ToolAPI.blockData.164.material.[data]
+ToolAPI.blockData.164.level=0
+
+ToolAPI.blockData.167.material.[data]
+ToolAPI.blockData.167.level=2
+
+ToolAPI.blockData.170.material.[data]
+ToolAPI.blockData.170.level=0
+
+ToolAPI.blockData.172.material.[data]
+ToolAPI.blockData.172.level=1
+
+ToolAPI.blockData.173.material.[data]
+ToolAPI.blockData.173.level=1
+
+ToolAPI.blockData.174.material.[data]
+ToolAPI.blockData.174.level=0
+
+ToolAPI.blockData.175.material.[data]
+ToolAPI.blockData.175.level=0
+
+ToolAPI.blockData.178.material.[data]
+ToolAPI.blockData.178.level=0
+
+ToolAPI.blockData.179.material.[data]
+ToolAPI.blockData.179.level=1
+
+ToolAPI.blockData.180.material.[data]
+ToolAPI.blockData.180.level=1
+
+ToolAPI.blockData.181.material.[data]
+ToolAPI.blockData.181.level=1
+
+ToolAPI.blockData.182.material.[data]
+ToolAPI.blockData.182.level=1
+
+ToolAPI.blockData.183.material.[data]
+ToolAPI.blockData.183.level=0
+
+ToolAPI.blockData.184.material.[data]
+ToolAPI.blockData.184.level=0
+
+ToolAPI.blockData.185.material.[data]
+ToolAPI.blockData.185.level=0
+
+ToolAPI.blockData.186.material.[data]
+ToolAPI.blockData.186.level=0
+
+ToolAPI.blockData.187.material.[data]
+ToolAPI.blockData.187.level=0
+
+ToolAPI.blockData.193.material.[data]
+ToolAPI.blockData.193.level=0
+
+ToolAPI.blockData.194.material.[data]
+ToolAPI.blockData.194.level=0
+
+ToolAPI.blockData.195.material.[data]
+ToolAPI.blockData.195.level=0
+
+ToolAPI.blockData.196.material.[data]
+ToolAPI.blockData.196.level=0
+
+ToolAPI.blockData.197.material.[data]
+ToolAPI.blockData.197.level=0
+
+ToolAPI.blockData.198.material.[data]
+ToolAPI.blockData.198.level=0
+
+ToolAPI.blockData.199.material.[data]
+ToolAPI.blockData.199.level=0
+
+ToolAPI.blockData.243.material.[data]
+ToolAPI.blockData.243.level=0
+
+ToolAPI.blockData.244.material.[data]
+ToolAPI.blockData.244.level=0
+
+ToolAPI.blockData.245.material.[data]
+ToolAPI.blockData.245.level=1
+
+ToolAPI.blockData.251.material.[data]
+ToolAPI.blockData.251.level=1
+
+
 ToolAPI.needDamagableItemFix=true
-ToolAPI.addBlockMaterial(name, breakingMultiplier)
-ToolAPI.addToolMaterial(name, material)
-ToolAPI.registerTool(id, toolMaterial, blockMaterials, params)
-ToolAPI.registerSword(id, toolMaterial, params)
-ToolAPI.registerBlockMaterial(uid, materialName, level)
-ToolAPI.registerBlockDiggingLevel(uid, level)
-ToolAPI.registerBlockMaterialAsArray(materialName, UIDs)
-ToolAPI.destroyTimeData=-1,1.5,0.6000000238418579,0.5,2,2,0,-1,100,100,100,100,0.5,0.6000000238418579,3,3,3,2,0.20000000298023224,0.6000000238418579,0.30000001192092896,3,3,3.5,0.800000011920929,0.800000011920929,0.20000000298023224,0.699999988079071,0.699999988079071,0.5,4,0,0,0.5,0.5,0.800000011920929,1,0,0,0,0,3,5,2,2,2,0,1.5,2,35,0,0,5,2,2.5,0,3,5,2.5,0,0.6000000238418579,3.5,3.5,1,3,0.4000000059604645,0.699999988079071,2,1,0.5,0.5,5,0.5,3,3,0,0,0.5,0.10000000149011612,0.5,0.20000000298023224,0.4000000059604645,0.6000000238418579,0,1,2,1,0.4000000059604645,0.5,0.30000001192092896,-1,1,0.5,0,0,-1,3,0.75,1.5,0.20000000298023224,0.20000000298023224,5,0.30000001192092896,1,0,0,0.20000000298023224,2,2,1.5,0.6000000238418579,0,2,2,2,0,5,0.5,2,-1,-1,3,3,0.30000001192092896,0.30000001192092896,3.5,0.5,0.20000000298023224,0.800000011920929,3,22.5,0,0,5,2,2,2,1,3,10,0,0,0,0.5,1,5,2.5,0.5,0.5,0,0,0.20000000298023224,5,3,3,0.800000011920929,0.800000011920929,2,2,1.25,0.30000001192092896,0.20000000298023224,2,2,2,0,1,5,1.5,0.30000001192092896,0.5,0.10000000149011612,1.25,5,0.5,0,1,0,0.20000000298023224,0.800000011920929,0.800000011920929,2,2,2,2,2,2,2,0,0,0,0,0,3,3,3,3,3,0.6499999761581421,0.25,0.4000000059604645,1.5,0,1.5,0,0,0.800000011920929,0,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0.4000000059604645,0.30000001192092896,1,0.5,0,2.5,10,3,1,1,-1,3,1,1,2,1
-ToolAPI.refresh()
-ToolAPI.getBlockData(blockID)
-ToolAPI.getBlockMaterial(blockID)
-ToolAPI.getBlockDestroyLevel(blockID)
-ToolAPI.getEnchantExtraData(enchant)
-ToolAPI.fortuneDropModifier(drop, level)
-ToolAPI.getDestroyTimeViaTool(fullBlock, toolItem, coords, ignoreNative)
-ToolAPI.getToolData(itemID)
-ToolAPI.getToolLevel(itemID)
-ToolAPI.getToolLevelViaBlock(itemID, blockID)
-ToolAPI.getCarriedToolData()
-ToolAPI.getCarriedToolLevel()
-ToolAPI.startDestroyHook(coords, block, carried)
-ToolAPI.destroyBlockHook(coords, block, carried)
+ToolAPI.addBlockMaterial((a, b))
+ToolAPI.addToolMaterial((a, b))
+ToolAPI.registerTool((a, b, c, d))
+ToolAPI.registerSword((a, b, c))
+ToolAPI.registerBlockMaterial((a, b, c))
+ToolAPI.registerBlockDiggingLevel((a, b))
+ToolAPI.registerBlockMaterialAsArray((a, b))
+ToolAPI.destroyTimeData=
+ToolAPI.refresh(())
+ToolAPI.getBlockData((a))
+ToolAPI.getBlockMaterial((a))
+ToolAPI.getBlockDestroyLevel((a))
+ToolAPI.getEnchantExtraData((a))
+ToolAPI.fortuneDropModifier((a, b))
+ToolAPI.getDestroyTimeViaTool((a, b, c, d))
+ToolAPI.getToolData((a))
+ToolAPI.getToolLevel((a))
+ToolAPI.getToolLevelViaBlock((a, b))
+ToolAPI.getCarriedToolData(())
+ToolAPI.getCarriedToolLevel(())
+ToolAPI.startDestroyHook((a, b, c))
+ToolAPI.destroyBlockHook((a, b, c))
 ToolAPI.LastAttackTime=0
-ToolAPI.playerAttackHook(attackerPlayer, victimEntity, carried)
-ToolAPI.resetEngine()
-ToolAPI.dropExpOrb(x, y, z, value)
-ToolAPI.dropExpOrbs(x, y, z, value)
-ToolAPI.dropOreExp(coords, minVal, maxVal, modifier)
-ToolAPI.checkOrbRemoved(entity, type)
-ToolAPI.breakCarriedTool(damage)
-ToolAPI.setTool(itemID, toolProperties, toolType)
+ToolAPI.playerAttackHook((a, b, c))
+ToolAPI.resetEngine(())
+ToolAPI.dropExpOrb((a, b, c, d))
+ToolAPI.dropExpOrbs((a, b, c, d))
+ToolAPI.dropOreExp((a, b, c, d))
+ToolAPI.checkOrbRemoved((a, b))
 
-Armor.armorFuncs.[data]
-Armor.registerFuncsForID(item, funcs)
-Armor.registerFuncs(namedID, funcs)
-Armor.getForSlot(slot)
-Armor.tickCallback()
-Armor.hurtCallback(attacker, damage)
 
-LiquidRegistry.liquids.[data]
-LiquidRegistry.registerLiquid(key, name, uiTextures, modelTextures)
-LiquidRegistry.getLiquidData(key)
-LiquidRegistry.isExists(key)
-LiquidRegistry.getLiquidName(key)
-LiquidRegistry.getLiquidUITexture(key, width, height)
-LiquidRegistry.getLiquidUIBitmap(key, width, height)
-LiquidRegistry.FullByEmpty.[data]
-LiquidRegistry.EmptyByFull.[data]
-LiquidRegistry.registerItem(liquid, empty, full)
-LiquidRegistry.getEmptyItem(id, data)
-LiquidRegistry.getItemLiquid(id, data)
-LiquidRegistry.getFullItem(id, data, liquid)
-LiquidRegistry.Storage(tileEntity)
+Armor.registerFuncsForID((a, b))
+Armor.registerFuncs((a, b))
+Armor.getForSlot((a))
+Armor.tickCallback(())
+Armor.hurtCallback((a, b))
 
-Unlimited.[data]
+LiquidRegistry.liquids.water.[data]
+LiquidRegistry.liquids.lava.[data]
+LiquidRegistry.liquids.milk.[data]
+
+LiquidRegistry.registerLiquid((a, b, c, d))
+LiquidRegistry.getLiquidData((a))
+LiquidRegistry.isExists((a))
+LiquidRegistry.getLiquidName((a))
+LiquidRegistry.getLiquidUITexture((a, b, c))
+LiquidRegistry.getLiquidUIBitmap((a, b, c))
+LiquidRegistry.FullByEmpty.325:0:water.[data]
+LiquidRegistry.FullByEmpty.374:0:water.[data]
+LiquidRegistry.FullByEmpty.325:0:lava.[data]
+LiquidRegistry.FullByEmpty.325:0:milk.[data]
+
+LiquidRegistry.EmptyByFull.325:8.[data]
+LiquidRegistry.EmptyByFull.373:0.[data]
+LiquidRegistry.EmptyByFull.325:10.[data]
+LiquidRegistry.EmptyByFull.325:1.[data]
+
+LiquidRegistry.registerItem((a, b, c))
+LiquidRegistry.getEmptyItem((a, b))
+LiquidRegistry.getItemLiquid((a, b))
+LiquidRegistry.getFullItem((a, b, c))
+LiquidRegistry.Storage((a))
+
+Unlimited.API.SpecifiedBlockData=
+Unlimited.API.PostedDefine=
+Unlimited.API.SetDefaultData((a))
+Unlimited.API.GetBlockSpecial((a))
+Unlimited.API.SetBlockSpecial((a, b))
+Unlimited.API.SpecialBlockOffset=255
+Unlimited.API.GenerateSpecialBlock((a))
+Unlimited.API.GenerateSpecialType((a, b))
+Unlimited.API.ExtendSpecialType((a))
+Unlimited.API.PostDefine((a, b, c, d))
+Unlimited.API.DeleteDefine((a, b))
+Unlimited.API.GetName((a, b))
+Unlimited.API.ExecuteAllDefines(())
+Unlimited.API.NextFreeID=25
+Unlimited.API.isNativeBlock((a))
+Unlimited.API.FindFreePlaceForBlock(())
+Unlimited.API.BlockGroups=
+Unlimited.API.UIDbyReal=
+Unlimited.API.RealByUID=
+Unlimited.API.ClearBlockGroup((a))
+Unlimited.API.RegisterBlockGroup((a, b, c))
+Unlimited.API.RegisterStaticBlockGroup((a, b, c))
+Unlimited.API.SetShape((a, b, c))
+Unlimited.API.GetReal((a, b))
+Unlimited.API.GetUID((a, b))
+
+Unlimited.Access.RegisterBlock((a, b, c))
+Unlimited.Access.getFullTile((a, b, c))
+Unlimited.Access.setFullTile((a, b, c, d, e))
+Unlimited.Access.getCarriedItem((a))
+Unlimited.Access.setCarriedItem((a, b, c, d))
+Unlimited.Access.setPlayerCarriedItem((a, b, c, d))
+Unlimited.Access.delayedCreativeItems=
+Unlimited.Access.addCreativeItem((a, b))
+Unlimited.Access.addListToCreative((a))
+Unlimited.Access.addDelayedCreativeItems(())
+
+
 Native.[data]
+CoreDump=undefined
+DumpObject((obj, prefix, rec) )
+DumpValue((name, obj) )
 

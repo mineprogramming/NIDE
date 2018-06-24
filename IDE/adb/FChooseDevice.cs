@@ -11,7 +11,7 @@ namespace NIDE.adb
         public static Device Device { get; private set; }
         public static bool Ask { get; set; } = true;
 
-        public DialogResult ShowDialog(List<Device> devices)
+        public DialogResult ShowDialog(IList<Device> devices)
         {
             if (Ask || !Device.IsOnline)
             {

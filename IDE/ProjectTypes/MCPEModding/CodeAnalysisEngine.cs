@@ -51,10 +51,19 @@ namespace NIDE.ProjectTypes.MCPEModding
                     reporter.Clear();
                     ProgramData.MainForm?.ClearErrors();
                     string text = editor.TextBox.Text;
+
+                    //const/let support
                     Regex reg = new Regex(@"\b(const|let)\b");
                     text = reg.Replace(text, " var ");
+
+                    //OOP-skipping
                     reg = new Regex(@"(class|super|extends|implements|abstract|final|static|public|private)");
                     text = reg.Replace(text, "kek");
+
+                    //~c~ skipping
+                    reg = new Regex(@"~c~");
+                    text = reg.Replace(text, "");
+                    
                     parser.Parse(text, "", 0);
                 }
                 catch { }

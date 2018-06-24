@@ -24,6 +24,18 @@ namespace NIDE.Languages
                     "hypot", "imul", "log", "log1p", "log10", "log2", "max", "min", "pow", "random",
                     "round", "sign", "sin", "sinh", "sqrt", "tan", "tanh", "trunc"
                 }
+            },
+            {
+                "JSON", new List<string>()
+                {
+                    "parse", "stringify"
+                }
+            },
+            {
+                "Array", new List<string>()
+                {
+                    "isArray", "from", "of"
+                }
             }
         };
     }

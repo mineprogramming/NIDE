@@ -61,6 +61,11 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
         {
             Items = new List<string>();
             Members = new Dictionary<string, List<string>>();
+            foreach(var module in JavaScript.Modules)
+            {
+                Items.Add(module.Key);
+                Members.Add(module.Key, module.Value);
+            }
             string[] lines = File.ReadAllLines(path);
             foreach (string line in lines)
             {
@@ -85,7 +90,7 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
             }
             Patterns = new Dictionary<string, string>();
             string text = File.ReadAllText(pattern);
-            string[] patterns = text.Split(';');
+            string[] patterns = text.Split('¶');
             for (int i = 1; i < patterns.Length; i += 2)
                 Patterns.Add(patterns[i - 1].Trim(' ', '\n', '\r') + ";", patterns[i].Trim(' ', '\n', '\r'));
         }

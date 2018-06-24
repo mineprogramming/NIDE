@@ -204,10 +204,17 @@ namespace NIDE
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
 
-        public void NewScript() => tsmiNewScript.PerformClick();
+        string newScriptPattern = "";
+        public void NewScript(string pattern)
+        {
+            newScriptPattern = pattern;
+            tsmiNewScript.PerformClick();
+            newScriptPattern = "";
+        }
+
         private void tsmiNewScript_Click(object sender, EventArgs e)
         {
-            NewDialog form = new NewDialog(DialogType.SCRIPT);
+            NewDialog form = new NewDialog(DialogType.SCRIPT, newScriptPattern);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 try

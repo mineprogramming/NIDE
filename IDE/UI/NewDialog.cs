@@ -7,9 +7,12 @@ namespace NIDE.UI
         public ImageType type;
         public string name;
 
-        public NewDialog(DialogType dialog)
+        public NewDialog(DialogType dialog, string pattern = "")
         {
             InitializeComponent();
+            this.ActiveControl = tbFileName;
+            tbFileName.Text = pattern;
+            tbFileName.SelectionStart = tbFileName.Text.Length;
             switch (dialog)
             {
                 case DialogType.SCRIPT:

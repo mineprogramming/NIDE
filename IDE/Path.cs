@@ -100,7 +100,12 @@ namespace NIDE
 
         public string[] Explode()
         {
-            return path.Trim('\\').Split('\\');
+            return path.Replace('/', '\\').Trim('\\').Split('\\');
+        }
+
+        public bool IsSubPath(Path path)
+        {
+            return this.path.StartsWith(path.path);
         }
 
         internal string GetName()
