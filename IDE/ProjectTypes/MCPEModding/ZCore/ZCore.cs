@@ -193,7 +193,6 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
         {
             pattern = true;
             lastLine = 0;
-            OnEnter(textBox);
         }
 
         public override bool OnEnter(FastColoredTextBox textBox)

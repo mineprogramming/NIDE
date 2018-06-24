@@ -135,37 +135,37 @@ Block.createBlockWithRotation("~c~", [
 ], "opaque")¶Block.createBlockWithRotation¶
 
 Callback.addCallback("GenerateNetherChunk", function(x, z){
-	let generateOre = function(inChunk, minY, maxY){
+	let generator = function(inChunk, block, minY, maxY, size){
 		for(var i = 0; i < inChunk; i++){
-			let c = GenerationUtils.randomCoords(x, z, minY, maxY, b, size);
-			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[b], 0, Math.floor(Math.random() * (size.max - size.min + 1)) + size.min);
+			let c = GenerationUtils.randomCoords(x, z, minY, maxY, BlockID[block], size);
+			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[block], 0, Math.floor(Math.random() * (size - 1 + 1)) + 1);
 		}
 	}
 })¶GenerateNetherChunk¶
 
 Callback.addCallback("GenerateEndChunk", function(x, z){
-    let generateOre = function(inChunk, minY, maxY){
+    let generator = function(inChunk, block, minY, maxY, size){
 		for(var i = 0; i < inChunk; i++){
-			let c = GenerationUtils.randomCoords(x, z, minY, maxY, b, size);
-			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[b], 0, Math.floor(Math.random() * (size.max - size.min + 1)) + size.min);
+			let c = GenerationUtils.randomCoords(x, z, minY, maxY, BlockID[block], size);
+			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[block], 0, Math.floor(Math.random() * (size - 1 + 1)) + 1);
 		}
 	}
 })¶GenerateEndChunk¶
 
 Callback.addCallback("GenerateChunkUnderground", function(x, z){
-    let generateOre = function(inChunk, minY, maxY){
+    let generator = function(inChunk, block, minY, maxY, size){
 		for(var i = 0; i < inChunk; i++){
-			let c = GenerationUtils.randomCoords(x, z, minY, maxY, b, size);
-			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[b], 0, Math.floor(Math.random() * (size.max - size.min + 1)) + size.min);
+			let c = GenerationUtils.randomCoords(x, z, minY, maxY, BlockID[block], size);
+			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[block], 0, Math.floor(Math.random() * (size - 1 + 1)) + 1);
 		}
 	}
 })¶GenerateChunkUnderground¶
 
 Callback.addCallback("GenerateChunk", function(x, z){
-    let generateOre = function(inChunk, minY, maxY){
+    let generator = function(inChunk, block, minY, maxY, size){
 		for(var i = 0; i < inChunk; i++){
-			let c = GenerationUtils.randomCoords(x, z, minY, maxY, b, size);
-			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[b], 0, Math.floor(Math.random() * (size.max - size.min + 1)) + size.min);
+			let c = GenerationUtils.randomCoords(x, z, minY, maxY, BlockID[block], size);
+			GenerationUtils.generateOre(c.x, c.y, c.z, BlockID[block], 0, Math.floor(Math.random() * (size - 1 + 1)) + 1);
 		}
 	}
 })¶GenerateChunk¶

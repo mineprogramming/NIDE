@@ -482,7 +482,7 @@ namespace NIDE
                 Invoke(new Action(() =>
                 {
                     string format = "[{0}]: {1} \r\n";
-                    logger.InsertText(string.Format(format, source, message), style);
+                    logger.AppendText(string.Format(format, source, message), style);
                 }));
             }
             catch { }
