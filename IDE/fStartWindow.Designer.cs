@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fStartWindow));
             this.lvRecent = new System.Windows.Forms.ListView();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tsmiRemove = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,10 +46,11 @@
             // lvRecent
             // 
             this.lvRecent.ContextMenuStrip = this.contextMenuStrip;
-            this.lvRecent.Location = new System.Drawing.Point(12, 128);
+            this.lvRecent.Location = new System.Drawing.Point(16, 158);
+            this.lvRecent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.lvRecent.MultiSelect = false;
             this.lvRecent.Name = "lvRecent";
-            this.lvRecent.Size = new System.Drawing.Size(241, 137);
+            this.lvRecent.Size = new System.Drawing.Size(320, 168);
             this.lvRecent.TabIndex = 0;
             this.lvRecent.UseCompatibleStateImageBehavior = false;
             this.lvRecent.View = System.Windows.Forms.View.List;
@@ -56,32 +58,35 @@
             // 
             // contextMenuStrip
             // 
+            this.contextMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiRemove});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(118, 26);
+            this.contextMenuStrip.Size = new System.Drawing.Size(133, 28);
             // 
             // tsmiRemove
             // 
             this.tsmiRemove.Name = "tsmiRemove";
-            this.tsmiRemove.Size = new System.Drawing.Size(117, 22);
+            this.tsmiRemove.Size = new System.Drawing.Size(132, 24);
             this.tsmiRemove.Text = "Remove";
             this.tsmiRemove.Click += new System.EventHandler(this.tsmiRemove_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 112);
+            this.label1.Location = new System.Drawing.Point(16, 138);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.Size = new System.Drawing.Size(87, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Open recent";
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(12, 12);
+            this.btnNew.Location = new System.Drawing.Point(16, 15);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(241, 23);
+            this.btnNew.Size = new System.Drawing.Size(321, 28);
             this.btnNew.TabIndex = 2;
             this.btnNew.Text = "New project";
             this.btnNew.UseVisualStyleBackColor = true;
@@ -89,9 +94,10 @@
             // 
             // btnOpen
             // 
-            this.btnOpen.Location = new System.Drawing.Point(12, 41);
+            this.btnOpen.Location = new System.Drawing.Point(16, 50);
+            this.btnOpen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(241, 23);
+            this.btnOpen.Size = new System.Drawing.Size(321, 28);
             this.btnOpen.TabIndex = 3;
             this.btnOpen.Text = "Open project";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -99,9 +105,10 @@
             // 
             // btnRecent
             // 
-            this.btnRecent.Location = new System.Drawing.Point(12, 272);
+            this.btnRecent.Location = new System.Drawing.Point(16, 335);
+            this.btnRecent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRecent.Name = "btnRecent";
-            this.btnRecent.Size = new System.Drawing.Size(241, 23);
+            this.btnRecent.Size = new System.Drawing.Size(321, 28);
             this.btnRecent.TabIndex = 4;
             this.btnRecent.Text = "Open recent";
             this.btnRecent.UseVisualStyleBackColor = true;
@@ -110,9 +117,10 @@
             // btnImport
             // 
             this.btnImport.Enabled = false;
-            this.btnImport.Location = new System.Drawing.Point(12, 70);
+            this.btnImport.Location = new System.Drawing.Point(16, 86);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(241, 23);
+            this.btnImport.Size = new System.Drawing.Size(321, 28);
             this.btnImport.TabIndex = 5;
             this.btnImport.Text = "Import .modpkg";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -120,9 +128,9 @@
             // 
             // fStartWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 306);
+            this.ClientSize = new System.Drawing.Size(353, 377);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnRecent);
             this.Controls.Add(this.btnOpen);
@@ -130,6 +138,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lvRecent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "fStartWindow";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(fSettings));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnComments = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -84,9 +85,9 @@
             this.groupBox1.Controls.Add(this.btnNamespaces);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(439, 239);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -95,7 +96,7 @@
             // btnComments
             // 
             this.btnComments.Location = new System.Drawing.Point(331, 130);
-            this.btnComments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnComments.Margin = new System.Windows.Forms.Padding(4);
             this.btnComments.Name = "btnComments";
             this.btnComments.Size = new System.Drawing.Size(100, 28);
             this.btnComments.TabIndex = 19;
@@ -116,7 +117,7 @@
             // btnKeywords
             // 
             this.btnKeywords.Location = new System.Drawing.Point(331, 95);
-            this.btnKeywords.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnKeywords.Margin = new System.Windows.Forms.Padding(4);
             this.btnKeywords.Name = "btnKeywords";
             this.btnKeywords.Size = new System.Drawing.Size(100, 28);
             this.btnKeywords.TabIndex = 17;
@@ -137,7 +138,7 @@
             // btnStrings
             // 
             this.btnStrings.Location = new System.Drawing.Point(331, 59);
-            this.btnStrings.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStrings.Margin = new System.Windows.Forms.Padding(4);
             this.btnStrings.Name = "btnStrings";
             this.btnStrings.Size = new System.Drawing.Size(100, 28);
             this.btnStrings.TabIndex = 15;
@@ -158,7 +159,7 @@
             // btnNumbers
             // 
             this.btnNumbers.Location = new System.Drawing.Point(331, 23);
-            this.btnNumbers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNumbers.Margin = new System.Windows.Forms.Padding(4);
             this.btnNumbers.Name = "btnNumbers";
             this.btnNumbers.Size = new System.Drawing.Size(100, 28);
             this.btnNumbers.TabIndex = 13;
@@ -179,7 +180,7 @@
             // btnBack
             // 
             this.btnBack.Location = new System.Drawing.Point(108, 202);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 28);
             this.btnBack.TabIndex = 11;
@@ -200,7 +201,7 @@
             // btnNormal
             // 
             this.btnNormal.Location = new System.Drawing.Point(108, 23);
-            this.btnNormal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNormal.Margin = new System.Windows.Forms.Padding(4);
             this.btnNormal.Name = "btnNormal";
             this.btnNormal.Size = new System.Drawing.Size(100, 28);
             this.btnNormal.TabIndex = 9;
@@ -221,7 +222,7 @@
             // btnMembers
             // 
             this.btnMembers.Location = new System.Drawing.Point(108, 166);
-            this.btnMembers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnMembers.Margin = new System.Windows.Forms.Padding(4);
             this.btnMembers.Name = "btnMembers";
             this.btnMembers.Size = new System.Drawing.Size(100, 28);
             this.btnMembers.TabIndex = 7;
@@ -242,7 +243,7 @@
             // btnGlobal
             // 
             this.btnGlobal.Location = new System.Drawing.Point(108, 130);
-            this.btnGlobal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGlobal.Margin = new System.Windows.Forms.Padding(4);
             this.btnGlobal.Name = "btnGlobal";
             this.btnGlobal.Size = new System.Drawing.Size(100, 28);
             this.btnGlobal.TabIndex = 5;
@@ -263,7 +264,7 @@
             // btnHooks
             // 
             this.btnHooks.Location = new System.Drawing.Point(108, 95);
-            this.btnHooks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHooks.Margin = new System.Windows.Forms.Padding(4);
             this.btnHooks.Name = "btnHooks";
             this.btnHooks.Size = new System.Drawing.Size(100, 28);
             this.btnHooks.TabIndex = 3;
@@ -284,7 +285,7 @@
             // btnNamespaces
             // 
             this.btnNamespaces.Location = new System.Drawing.Point(108, 59);
-            this.btnNamespaces.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNamespaces.Margin = new System.Windows.Forms.Padding(4);
             this.btnNamespaces.Name = "btnNamespaces";
             this.btnNamespaces.Size = new System.Drawing.Size(100, 28);
             this.btnNamespaces.TabIndex = 1;
@@ -305,7 +306,7 @@
             // tbPath
             // 
             this.tbPath.Location = new System.Drawing.Point(511, 114);
-            this.tbPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPath.Margin = new System.Windows.Forms.Padding(4);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(327, 22);
             this.tbPath.TabIndex = 1;
@@ -323,7 +324,7 @@
             // btnApply
             // 
             this.btnApply.Location = new System.Drawing.Point(739, 226);
-            this.btnApply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(4);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(100, 28);
             this.btnApply.TabIndex = 3;
@@ -335,7 +336,7 @@
             // 
             this.cbLast.AutoSize = true;
             this.cbLast.Location = new System.Drawing.Point(511, 55);
-            this.cbLast.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbLast.Margin = new System.Windows.Forms.Padding(4);
             this.cbLast.Name = "cbLast";
             this.cbLast.Size = new System.Drawing.Size(135, 21);
             this.cbLast.TabIndex = 4;
@@ -346,7 +347,7 @@
             // 
             this.cbRunProgram.AutoSize = true;
             this.cbRunProgram.Location = new System.Drawing.Point(511, 152);
-            this.cbRunProgram.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbRunProgram.Margin = new System.Windows.Forms.Padding(4);
             this.cbRunProgram.Name = "cbRunProgram";
             this.cbRunProgram.Size = new System.Drawing.Size(237, 21);
             this.cbRunProgram.TabIndex = 5;
@@ -357,7 +358,7 @@
             // 
             this.cbHighlighting.AutoSize = true;
             this.cbHighlighting.Location = new System.Drawing.Point(511, 26);
-            this.cbHighlighting.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbHighlighting.Margin = new System.Windows.Forms.Padding(4);
             this.cbHighlighting.Name = "cbHighlighting";
             this.cbHighlighting.Size = new System.Drawing.Size(181, 21);
             this.cbHighlighting.TabIndex = 6;
@@ -398,7 +399,8 @@
             this.Controls.Add(this.tbPath);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fSettings";
             this.Text = "Settings";
             this.groupBox1.ResumeLayout(false);
