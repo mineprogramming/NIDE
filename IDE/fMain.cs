@@ -483,6 +483,8 @@ namespace NIDE
                 {
                     string format = "[{0}]: {1} \r\n";
                     logger.AppendText(string.Format(format, source, message), style);
+                    logger.Selection.Start = new Place(0, logger.LinesCount - 1);
+                    logger.DoSelectionVisible();
                 }));
             }
             catch { }

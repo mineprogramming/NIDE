@@ -1,4 +1,5 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.Languages;
 using NIDE.ProjectTypes.MCPEModding;
 using NIDE.ProjectTypes.MCPEModding.ZCore;
 using System.Collections.Generic;
@@ -89,13 +90,17 @@ namespace NIDE.Highlighting
                 range.ClearStyle(HookStyle);
                 range.ClearStyle(GlobalStyle);
                 range.ClearStyle(InvisibleStyle);
+                range.ClearStyle(ProgramData.MainForm.fctbMain.SyntaxHighlighter.BlueStyle);
 
                 //Making ~c~ invisible
                 range.SetStyle(InvisibleStyle, @"~c~", RegexOptions.Multiline);
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
 
-                range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
                 
+                range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
+
+                range.SetStyle(ProgramData.MainForm.fctbMain.SyntaxHighlighter.BlueStyle,
+                    @"(\W|^)(" + string.Join("|", JavaScript.Items) + @")(\W|$)", RegexOptions.Multiline);
 
                 if (Autocomplete.UserItems.Keys.Count > 0)
                 {

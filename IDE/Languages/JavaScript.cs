@@ -13,7 +13,7 @@ namespace NIDE.Languages
             "break", "case", "catch", "const", "continue", "debugger", "default",
             "delete", "do", "else", "finally", "for", "function", "if", "in",
             "instanceof", "let", "new", "return", "switch", "this", "throw",
-            "try", "typeof", "var", "void", "while", "with", "Math"
+            "try", "typeof", "var", "void", "while", "with", "undefined"
         };
 
         public static Dictionary<string, List<string>> Modules = new Dictionary<string, List<string>>() {
