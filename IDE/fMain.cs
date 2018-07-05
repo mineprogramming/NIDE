@@ -39,7 +39,7 @@ namespace NIDE
             Directory.SetCurrentDirectory(Application.StartupPath);
             this.args = args;
             InitializeComponent();
-            ProgramData.MainForm = this;
+            MainForm = this;
             RegistryWorker.Load();
             highlighter = new Highlighter();
         }
@@ -77,11 +77,11 @@ namespace NIDE
                     Close();
                 }
             }
-            else if (ProgramData.LoadLast && ProgramData.Last != "")
+            else if (LoadLast && Last != "")
             {
                 try
                 {
-                    OpenProject(ProgramData.Last);
+                    OpenProject(Last);
                 }
                 catch { ShowStartWindow(); }
             }
@@ -136,7 +136,7 @@ namespace NIDE
         {
             if (e.KeyCode == Keys.Enter)
             {
-                ProgramData.Project.OnEnter(fctbMain);
+                Project.OnEnter(fctbMain);
             }
         }
 
@@ -178,7 +178,7 @@ namespace NIDE
         #region Insert
         private void tsmiNewItem_Click(object sender, EventArgs e)
         {
-            if (!ProgramData.Project.LibraryInstalled("ItemsEngine"))
+            if (!Project.LibraryInstalled("ItemsEngine"))
             {
                 var result = MessageBox.Show("You need to have ItemsEngine library to be installed!\nDo you want to install it now?",
                     "Confirmation", MessageBoxButtons.YesNo);
@@ -186,7 +186,7 @@ namespace NIDE
                     return;
                 else
                 {
-                    ProgramData.Project.IncludeLibrary("ItemsEngine");
+                    Project.IncludeLibrary("ItemsEngine");
                 }
             }
             fJsonItem form = new fJsonItem();
@@ -199,7 +199,7 @@ namespace NIDE
 
         private void tsmiNewCraft_Click(object sender, EventArgs e)
         {
-            var form = new fCraft(ProgramData.Project.CraftPattern);
+            var form = new fCraft(Project.CraftPattern);
             if (form.ShowDialog() == DialogResult.OK)
                 fctbMain.AppendText("\n" + fCraft.recipie);
         }
@@ -219,7 +219,7 @@ namespace NIDE
             {
                 try
                 {
-                    string path = ProgramData.Project.AddScript(form.name);
+                    string path = Project.AddScript(form.name);
                     projectTree.UpdatePath(path);
                 }
                 catch (Exception ex)
@@ -237,7 +237,7 @@ namespace NIDE
             {
                 try
                 {
-                    string path = ProgramData.Project.AddTexture(form.name, form.type);
+                    string path = Project.AddTexture(form.name, form.type);
                     projectTree.UpdatePath(path);
                 }
                 catch (Exception ex)
@@ -255,7 +255,7 @@ namespace NIDE
             {
                 try
                 {
-                    ProgramData.Project.AddLibrary(form.name);
+                    Project.AddLibrary(form.name);
                     UpdateProject();
                 }
                 catch (Exception ex)
@@ -274,8 +274,8 @@ namespace NIDE
             if (!CanChangeFile()) return;
             try
             {
-                ProgramData.Project = ProjectTypes.Project.New(FileName);
-                CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(ProgramData.Project.MainScriptPath);
+                Project = ProjectTypes.Project.New(FileName);
+                CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(Project.MainScriptPath);
                 editor.EditBlank = true;
                 editor.Edit();
                 InitProject();
@@ -290,8 +290,8 @@ namespace NIDE
         private void InitProject()
         {
             UpdateProject();
-            tsbShowMain.Enabled = ProgramData.Project.ShowMainEnabled;
-            if (ProgramData.Project.Type == ProjectType.COREENGINE || ProgramData.Project.Type == ProjectType.INNERCORE)
+            tsbShowMain.Enabled = Project.ShowMainEnabled;
+            if (Project.Type == ProjectType.COREENGINE || Project.Type == ProjectType.INNERCORE)
             {
                 tsmiNewItem.Enabled = false;
                 tsmiNewLibrary.Enabled = false;
@@ -303,22 +303,22 @@ namespace NIDE
                 tsmiNewLibrary.Enabled = true;
                 tsmiManageLibraries.Enabled = true;
             }
-            Text = ProgramData.Project.Name + " - NIDE 2018 build " + ProgramData.PROGRAM_VERSION;
+            Text = Project.Name + " - NIDE 2018 build " + PROGRAM_VERSION;
         }
 
         private void UpdateProject()
         {
             projectTree.Nodes.Clear();
-            projectTree.Nodes.Add(ProgramData.Project.Name);
-            ProgramData.Project.Post_tree_reload(projectTree.Nodes[0]);
-            Util.FillDirectoryNodes(projectTree.Nodes[0], new DirectoryInfo(ProgramData.Project.Path));
+            projectTree.Nodes.Add(Project.Name);
+            Project.Post_tree_reload(projectTree.Nodes[0]);
+            Util.FillDirectoryNodes(projectTree.Nodes[0], new DirectoryInfo(Project.Path));
             projectTree.Nodes[0].Expand();
         }
 
         private void tsmiUpdate_Click(object sender, EventArgs e)
         {
             UpdateProject();
-            ProgramData.Project.UpdateNlib();
+            Project.UpdateNlib();
             tabControl.ReloadTabs();
         }
 
@@ -335,7 +335,7 @@ namespace NIDE
             }
             try
             {
-                ProgramData.Project.Build();
+                Project.Build();
                 Log("Build", "Project successfully built", LOG_STYLE_NORMAL);
             }
             catch (Exception ex)
@@ -363,16 +363,17 @@ namespace NIDE
                     switch (form.type)
                     {
                         case ProjectType.MODPE:
-                            ProgramData.Project = new ModPE(form.path, form.name);
+                            Project = new ModPE(form.path, form.name);
                             break;
                         case ProjectType.COREENGINE:
-                            ProgramData.Project = new CoreEngine(form.path, form.name);
+                            Project = new CoreEngine(form.path, form.name);
                             break;
                         case ProjectType.INNERCORE:
-                            ProgramData.Project = new InnerCore(form.path, form.name);
+                            Project = new InnerCore(form.path, form.name);
                             break;
                     }
-                    Editor editor = EditorsManager.GetEditor(ProgramData.Project.MainScriptPath);
+                    CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(Project.MainScriptPath);
+                    editor.EditBlank = true;
                     editor.Edit();
                     InitProject();
                 }
@@ -413,7 +414,7 @@ namespace NIDE
         private void tsmiCloseProject_Click(object sender, EventArgs e)
         {
             if (!CanChangeFile()) return;
-            ProgramData.Restart = true;
+            Restart = true;
             Application.Restart();
         }
         #endregion
@@ -424,7 +425,7 @@ namespace NIDE
         {
             if (CanChangeFile())
             {
-                Editor editor = EditorsManager.GetEditor(ProgramData.Project.BuiltScriptPath);
+                Editor editor = EditorsManager.GetEditor(Project.BuiltScriptPath);
                 editor.Edit();
                 fctbMain.ReadOnly = true;
             }
@@ -576,7 +577,7 @@ namespace NIDE
                 {
                     int version = Convert.ToInt32(e.Result);
                     client.Dispose();
-                    if (version > ProgramData.PROGRAM_VERSION)
+                    if (version > PROGRAM_VERSION)
                     {
                         if (MessageBox.Show("Download it now?", "Update found!", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
@@ -668,14 +669,14 @@ namespace NIDE
         {
             PushButtonsEnabled = false;
             TogglePushButton(sender);
-            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.PushPath));
+            ADBWorker.Push(new DirectoryInfo(Project.PushPath));
         }
 
         private void TsbPushCode_Click(object sender, EventArgs e)
         {
             PushButtonsEnabled = false;
             TogglePushButton(sender);
-            ADBWorker.Push(new DirectoryInfo(ProgramData.Project.CodePath), "dev/");
+            ADBWorker.Push(new DirectoryInfo(Project.CodePath), "dev/");
         }
 
         private void PushChosen(bool forceWindow = false)
@@ -685,7 +686,7 @@ namespace NIDE
             {
                 PushButtonsEnabled = false;
                 TogglePushButton(tsbPushFiles);
-                ADBWorker.Push(form.Files, ProgramData.Project.PushPath);
+                ADBWorker.Push(form.Files, Project.PushPath);
             }
         }
 
@@ -800,7 +801,7 @@ namespace NIDE
         {
             if (caseInsensitive)
                 pattern = pattern.ToLower();
-            string[] files = Directory.GetFiles(ProgramData.Project.CodePath, "*.js");
+            string[] files = Directory.GetFiles(Project.CodePath, "*.js");
             foreach (string file in files)
             {
                 string[] lines = File.ReadAllLines(file);
