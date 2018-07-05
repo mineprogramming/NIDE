@@ -22,6 +22,9 @@ namespace NIDE
                 label3.Visible = false;
                 tbSource.Visible = false;
                 btnSource.Visible = false;
+            } else
+            {
+                rbCoreEngine.Enabled = false;
             }
         }
 
@@ -70,12 +73,50 @@ namespace NIDE
             }
         }
 
+        private void tbSource_TextChanged(object sender, EventArgs e)
+        {
+            Path path = tbSource.Text;
+            if (path.GetExtension() == ".icmod")
+            {
+                rbInnerCore.Enabled = true;
+                rbModPE.Enabled = false;
+            }
+            else if(path.GetExtension() == ".modpkg")
+            {
+                rbInnerCore.Enabled = false;
+                rbModPE.Enabled = true;
+            }
+            verify_fields();
+        }
+
         private void tbName_TextChanged(object sender, EventArgs e)
         {
             int ind = tbPath.Text.LastIndexOf("\\");
             if (ind >= 0)
             {
                 tbPath.Text = tbPath.Text.Substring(0, tbPath.Text.LastIndexOf("\\") + 1) + tbName.Text;
+            }
+        }
+
+        private void tbPath_TextChanged(object sender, EventArgs e)
+        {
+            verify_fields();
+        }
+
+        private void verify_fields()
+        {
+            Path path = tbPath.Text;
+            string ext = new Path(tbSource.Text).GetExtension();
+            if (tbPath.Text != "" && path.isRooted()
+                && tbName.Text != "" 
+                && (!import || tbSource.Text != "")
+                && (!import || ext == ".icmod" || ext == ".modpkg"))
+            {
+                btnCreate.Enabled = true;
+            }
+            else
+            {
+                btnCreate.Enabled = false;
             }
         }
 
@@ -88,5 +129,7 @@ namespace NIDE
             }
             return true;
         }
+
+        
     }
 }

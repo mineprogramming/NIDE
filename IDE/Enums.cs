@@ -31,7 +31,6 @@
         OPEN,
         NEW,
         RECENT,
-        IMPORT_ICMOD,
-        IMPORT_MODPKG
+        IMPORT
     }
 }

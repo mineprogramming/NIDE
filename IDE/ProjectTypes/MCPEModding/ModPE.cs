@@ -40,6 +40,12 @@ namespace NIDE.ProjectTypes.MCPEModding
 
         public static string ADBPath;
 
+        public static ModPE Import(string source, string path, string projectName)
+        {
+            ModPE project = new ModPE(path, projectName);
+            return project;
+        }
+
         public override ProjectType Type => ProjectType.MODPE;
 
         public override string CraftPattern => "Item.addShapedRecipe({0}, {1}, {2}, {3}, {4});";

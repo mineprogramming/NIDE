@@ -37,17 +37,16 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.btnRecent = new System.Windows.Forms.Button();
-            this.btnImportModpkg = new System.Windows.Forms.Button();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.btnImportIcmod = new System.Windows.Forms.Button();
+            this.btnImport = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // lvRecent
             // 
             this.lvRecent.ContextMenuStrip = this.contextMenuStrip;
-            this.lvRecent.Location = new System.Drawing.Point(17, 202);
+            this.lvRecent.Location = new System.Drawing.Point(17, 154);
             this.lvRecent.Margin = new System.Windows.Forms.Padding(4);
             this.lvRecent.MultiSelect = false;
             this.lvRecent.Name = "lvRecent";
@@ -75,7 +74,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 181);
+            this.label1.Location = new System.Drawing.Point(16, 133);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 17);
@@ -106,7 +105,7 @@
             // 
             // btnRecent
             // 
-            this.btnRecent.Location = new System.Drawing.Point(16, 378);
+            this.btnRecent.Location = new System.Drawing.Point(16, 330);
             this.btnRecent.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecent.Name = "btnRecent";
             this.btnRecent.Size = new System.Drawing.Size(321, 28);
@@ -115,36 +114,23 @@
             this.btnRecent.UseVisualStyleBackColor = true;
             this.btnRecent.Click += new System.EventHandler(this.btnRecent_Click);
             // 
-            // btnImportModpkg
+            // btnImport
             // 
-            this.btnImportModpkg.Enabled = false;
-            this.btnImportModpkg.Location = new System.Drawing.Point(16, 122);
-            this.btnImportModpkg.Margin = new System.Windows.Forms.Padding(4);
-            this.btnImportModpkg.Name = "btnImportModpkg";
-            this.btnImportModpkg.Size = new System.Drawing.Size(321, 28);
-            this.btnImportModpkg.TabIndex = 5;
-            this.btnImportModpkg.Text = "Import .modpkg";
-            this.btnImportModpkg.UseVisualStyleBackColor = true;
-            this.btnImportModpkg.Click += new System.EventHandler(this.btnImportModpkg_Click);
-            // 
-            // btnImportIcmod
-            // 
-            this.btnImportIcmod.Enabled = false;
-            this.btnImportIcmod.Location = new System.Drawing.Point(16, 86);
-            this.btnImportIcmod.Margin = new System.Windows.Forms.Padding(4);
-            this.btnImportIcmod.Name = "btnImportIcmod";
-            this.btnImportIcmod.Size = new System.Drawing.Size(321, 28);
-            this.btnImportIcmod.TabIndex = 6;
-            this.btnImportIcmod.Text = "Import .icmod";
-            this.btnImportIcmod.UseVisualStyleBackColor = true;
+            this.btnImport.Location = new System.Drawing.Point(16, 86);
+            this.btnImport.Margin = new System.Windows.Forms.Padding(4);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(321, 28);
+            this.btnImport.TabIndex = 6;
+            this.btnImport.Text = "Import mod archive";
+            this.btnImport.UseVisualStyleBackColor = true;
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
             // fStartWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 426);
-            this.Controls.Add(this.btnImportIcmod);
-            this.Controls.Add(this.btnImportModpkg);
+            this.ClientSize = new System.Drawing.Size(353, 367);
+            this.Controls.Add(this.btnImport);
             this.Controls.Add(this.btnRecent);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.btnNew);
@@ -170,11 +156,10 @@
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnRecent;
-        private System.Windows.Forms.Button btnImportModpkg;
         private System.Windows.Forms.OpenFileDialog dlgOpen;
         private System.Windows.Forms.FolderBrowserDialog dlgFolder;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem tsmiRemove;
-        private System.Windows.Forms.Button btnImportIcmod;
+        private System.Windows.Forms.Button btnImport;
     }
 }

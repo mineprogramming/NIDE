@@ -49,10 +49,11 @@
             // tbPath
             // 
             this.tbPath.Location = new System.Drawing.Point(135, 137);
-            this.tbPath.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbPath.Margin = new System.Windows.Forms.Padding(4);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(275, 22);
             this.tbPath.TabIndex = 1;
+            this.tbPath.TextChanged += new System.EventHandler(this.tbPath_TextChanged);
             // 
             // label1
             // 
@@ -67,7 +68,7 @@
             // btnFolder
             // 
             this.btnFolder.Location = new System.Drawing.Point(419, 134);
-            this.btnFolder.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFolder.Margin = new System.Windows.Forms.Padding(4);
             this.btnFolder.Name = "btnFolder";
             this.btnFolder.Size = new System.Drawing.Size(32, 28);
             this.btnFolder.TabIndex = 3;
@@ -88,7 +89,7 @@
             // tbName
             // 
             this.tbName.Location = new System.Drawing.Point(116, 105);
-            this.tbName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbName.Margin = new System.Windows.Forms.Padding(4);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(333, 22);
             this.tbName.TabIndex = 4;
@@ -96,8 +97,9 @@
             // 
             // btnCreate
             // 
+            this.btnCreate.Enabled = false;
             this.btnCreate.Location = new System.Drawing.Point(360, 170);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(91, 27);
             this.btnCreate.TabIndex = 6;
@@ -109,7 +111,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(261, 170);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 27);
             this.btnCancel.TabIndex = 7;
@@ -120,7 +122,7 @@
             // 
             this.rbModPE.AutoSize = true;
             this.rbModPE.Location = new System.Drawing.Point(20, 44);
-            this.rbModPE.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbModPE.Margin = new System.Windows.Forms.Padding(4);
             this.rbModPE.Name = "rbModPE";
             this.rbModPE.Size = new System.Drawing.Size(74, 21);
             this.rbModPE.TabIndex = 8;
@@ -131,7 +133,7 @@
             // 
             this.rbCoreEngine.AutoSize = true;
             this.rbCoreEngine.Location = new System.Drawing.Point(135, 15);
-            this.rbCoreEngine.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbCoreEngine.Margin = new System.Windows.Forms.Padding(4);
             this.rbCoreEngine.Name = "rbCoreEngine";
             this.rbCoreEngine.Size = new System.Drawing.Size(103, 21);
             this.rbCoreEngine.TabIndex = 9;
@@ -141,7 +143,7 @@
             // btnSource
             // 
             this.btnSource.Location = new System.Drawing.Point(419, 70);
-            this.btnSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSource.Margin = new System.Windows.Forms.Padding(4);
             this.btnSource.Name = "btnSource";
             this.btnSource.Size = new System.Drawing.Size(32, 28);
             this.btnSource.TabIndex = 12;
@@ -162,17 +164,22 @@
             // tbSource
             // 
             this.tbSource.Location = new System.Drawing.Point(100, 73);
-            this.tbSource.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbSource.Margin = new System.Windows.Forms.Padding(4);
             this.tbSource.Name = "tbSource";
             this.tbSource.Size = new System.Drawing.Size(309, 22);
             this.tbSource.TabIndex = 10;
+            this.tbSource.TextChanged += new System.EventHandler(this.tbSource_TextChanged);
+            // 
+            // dlgOpen
+            // 
+            this.dlgOpen.Filter = "InnerCore mods (*.icmod)|*.icmod|ModPE mods (*.modpkg)|*.modpkg";
             // 
             // rbInnerCore
             // 
             this.rbInnerCore.AutoSize = true;
             this.rbInnerCore.Checked = true;
             this.rbInnerCore.Location = new System.Drawing.Point(20, 15);
-            this.rbInnerCore.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbInnerCore.Margin = new System.Windows.Forms.Padding(4);
             this.rbInnerCore.Name = "rbInnerCore";
             this.rbInnerCore.Size = new System.Drawing.Size(91, 21);
             this.rbInnerCore.TabIndex = 13;
@@ -200,7 +207,7 @@
             this.Controls.Add(this.tbPath);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "fNewProject";

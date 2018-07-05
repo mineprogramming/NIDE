@@ -65,17 +65,10 @@ namespace NIDE
             }
         }
 
-        private void btnImportModpkg_Click(object sender, EventArgs e)
+        private void btnImport_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            result = StartDialogResult.IMPORT_MODPKG;
-            Close();
-        }
-
-        private void btnImportIcmod_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            result = StartDialogResult.IMPORT_ICMOD;
+            result = StartDialogResult.IMPORT;
             Close();
         }
     }

@@ -411,9 +411,6 @@
   <data name="logger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="logger.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9.75pt</value>
-  </data>
   <data name="logger.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 19</value>
   </data>
@@ -1288,19 +1285,19 @@
     <value>Build and Push</value>
   </data>
   <data name="tsbPushEverything.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>187, 26</value>
   </data>
   <data name="tsbPushEverything.Text" xml:space="preserve">
     <value>Push everything</value>
   </data>
   <data name="tsbPushCode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>187, 26</value>
   </data>
   <data name="tsbPushCode.Text" xml:space="preserve">
     <value>Push code</value>
   </data>
   <data name="tsbPushFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>187, 26</value>
   </data>
   <data name="tsbPushFiles.Text" xml:space="preserve">
     <value>Push chosen</value>
@@ -1425,7 +1422,7 @@
     <value>297, 0</value>
   </data>
   <data name="toolStripProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 27</value>
+    <value>322, 27</value>
   </data>
   <data name="toolStripProject.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>

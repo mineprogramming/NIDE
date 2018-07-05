@@ -112,5 +112,10 @@ namespace NIDE
         {
             return Explode().Last();
         }
+
+        internal bool isRooted()
+        {
+            return System.IO.Path.IsPathRooted(path);
+        }
     }
 }

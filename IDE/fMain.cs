@@ -114,11 +114,8 @@ namespace NIDE
                         case StartDialogResult.OPEN:
                             OpenProjectDlg(true);
                             break;
-                        case StartDialogResult.IMPORT_MODPKG:
-
-                            break;
-                        case StartDialogResult.IMPORT_ICMOD:
-
+                        case StartDialogResult.IMPORT:
+                            ImportProjectDlg(true);
                             break;
                     }
                 }
@@ -373,6 +370,38 @@ namespace NIDE
                             break;
                         case ProjectType.INNERCORE:
                             Project = new InnerCore(form.path, form.name);
+                            break;
+                    }
+                    CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(Project.MainScriptPath);
+                    editor.EditBlank = true;
+                    editor.Edit();
+                    InitProject();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "An error occured while creating a new project");
+                }
+            }
+            else if (closeIfNotChecked)
+            {
+                Close();
+            }
+        }
+
+        private void ImportProjectDlg(bool closeIfNotChecked = false)
+        {
+            var form = new fNewProject(import: true);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    switch (form.type)
+                    {
+                        case ProjectType.MODPE:
+                            Project = ModPE.Import(form.source, form.path, form.name);
+                            break;
+                        case ProjectType.INNERCORE:
+                            Project = InnerCore.Import(form.source, form.path, form.name);
                             break;
                     }
                     CodeEditor editor = (CodeEditor)EditorsManager.GetEditor(Project.MainScriptPath);
