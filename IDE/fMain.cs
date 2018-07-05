@@ -105,17 +105,20 @@ namespace NIDE
                 {
                     switch (form.result)
                     {
-                        case "recent":
+                        case StartDialogResult.RECENT:
                             OpenProject(form.path);
                             break;
-                        case "new":
+                        case StartDialogResult.NEW:
                             NewProjectDlg(true);
                             break;
-                        case "open":
+                        case StartDialogResult.OPEN:
                             OpenProjectDlg(true);
                             break;
-                        case "import":
-                            //ImportModpkg(true);
+                        case StartDialogResult.IMPORT_MODPKG:
+
+                            break;
+                        case StartDialogResult.IMPORT_ICMOD:
+
                             break;
                     }
                 }

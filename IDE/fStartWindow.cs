@@ -5,7 +5,7 @@ namespace NIDE
 {
     public partial class fStartWindow : Form
     {
-        public string result;
+        public StartDialogResult result;
         public string path;
 
         public fStartWindow()
@@ -20,14 +20,14 @@ namespace NIDE
         private void btnNew_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            result = "new";
+            result = StartDialogResult.NEW;
             Close();
         }
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            result = "open";
+            result = StartDialogResult.OPEN;
             Close();
         }
 
@@ -41,14 +41,7 @@ namespace NIDE
                 return;
             }
             DialogResult = DialogResult.OK;
-            result = "recent";
-            Close();
-        }
-
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            result = "import";
+            result = StartDialogResult.RECENT;
             Close();
         }
 
@@ -67,9 +60,23 @@ namespace NIDE
             {
                 path = lvRecent.SelectedItems[0].Text;
                 DialogResult = DialogResult.OK;
-                result = "recent";
+                result = StartDialogResult.RECENT;
                 Close();
             }
+        }
+
+        private void btnImportModpkg_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            result = StartDialogResult.IMPORT_MODPKG;
+            Close();
+        }
+
+        private void btnImportIcmod_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            result = StartDialogResult.IMPORT_ICMOD;
+            Close();
         }
     }
 }

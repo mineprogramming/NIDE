@@ -25,4 +25,13 @@
         UNDERLINE,
         LINE_NUMBER
     }
+
+    public enum StartDialogResult
+    {
+        OPEN,
+        NEW,
+        RECENT,
+        IMPORT_ICMOD,
+        IMPORT_MODPKG
+    }
 }
