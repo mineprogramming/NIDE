@@ -6,6 +6,7 @@ using System;
 using NIDE.Languages;
 using Yahoo.Yui.Compressor;
 using System.Windows.Forms;
+using Ionic.Zip;
 
 namespace NIDE.ProjectTypes.MCPEModding
 {
@@ -43,6 +44,21 @@ namespace NIDE.ProjectTypes.MCPEModding
         public static ModPE Import(string source, string path, string projectName)
         {
             ModPE project = new ModPE(path, projectName);
+            using (ZipFile zip = ZipFile.Read(source))
+            {
+                zip.ToList().ForEach(e =>
+                {
+                    if (e.FileName.StartsWith("images/"))
+                    {
+                        e.Extract(project.SourceCodePath + "res", ExtractExistingFileAction.OverwriteSilently);
+                    }
+                    else if (e.FileName.StartsWith("script/"))
+                    {
+                        e.FileName = e.FileName.Substring(7);
+                        e.Extract(project.ScriptsPath, ExtractExistingFileAction.OverwriteSilently);
+                    }
+                });
+            }
             return project;
         }
 
