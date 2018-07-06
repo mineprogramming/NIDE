@@ -52,7 +52,7 @@ namespace NIDE.ProjectTypes.MCPEModding
                     {
                         e.Extract(project.SourceCodePath + "res", ExtractExistingFileAction.OverwriteSilently);
                     }
-                    else if (e.FileName.StartsWith("script/"))
+                    else if (e.FileName.StartsWith("script/") && e.FileName != "script/")
                     {
                         e.FileName = e.FileName.Substring(7);
                         e.Extract(project.ScriptsPath, ExtractExistingFileAction.OverwriteSilently);
