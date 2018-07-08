@@ -519,8 +519,8 @@ namespace NIDE
             {
                 Invoke(new Action(() =>
                 {
-                    string format = "[{0}]: {1} \r\n";
-                    logger.AppendText(string.Format(format, source, message), style);
+                    string format = "[{0:H:mm:ss}][{1}]: {2} \r\n";
+                    logger.AppendText(string.Format(format, DateTime.Now, source, message), style);
                     logger.Selection.Start = new Place(0, logger.LinesCount - 1);
                     logger.DoSelectionVisible();
                 }));
