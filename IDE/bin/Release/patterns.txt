@@ -198,11 +198,21 @@ Callback.addCallback("NativeCommand", function(str){
     ~c~
 })¶NativeCommand¶
 
-
 Callback.addCallback("ItemUse", function(coords, item, block){
+    let x = coords.relative.x;
+    let y = coords.relative.y;
+    let z = coords.relative.z;
     ~c~
 })¶ItemUse¶
 
+Callback.addCallback("ItemUse", function(coords, item, block){
+    let x = coords.relative.x;
+    let y = coords.relative.y;
+    let z = coords.relative.z;
+    if(item.id == 280){
+        ~c~
+    }
+})¶Super-Palka¶
 
 Callback.addCallback("PlayerAttack", function(player, entity){
     ~c~
