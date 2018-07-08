@@ -40,14 +40,24 @@ namespace NIDE.window
             }
         }
 
-        public void Reload()
+        public bool Reload()
         {
             if (CanClose())
             {
-                fctb.OpenFile(File, ProgramData.Encoding);
-                saved = true;
-                base.Text = System.IO.Path.GetFileName(File);
+                try
+                {
+                    fctb.OpenFile(File, ProgramData.Encoding);
+                    saved = true;
+                    base.Text = System.IO.Path.GetFileName(File);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Unable to find file " + File + ". This tab will be closed.", "Warning");
+                    return false;
+                }
             }
+            return true;
         }
 
         public void Save()

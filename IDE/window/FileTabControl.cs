@@ -81,7 +81,10 @@ namespace NIDE.window
         {
             foreach (EditorTab tab in TabPages)
             {
-                tab.Reload();
+                if (!tab.Reload())
+                {
+                    TabPages.Remove(tab);
+                }
             }
             Refresh();
         }
