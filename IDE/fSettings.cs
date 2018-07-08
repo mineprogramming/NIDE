@@ -7,7 +7,8 @@ namespace NIDE
 {
     public partial class fSettings : Form
     {
-
+        const string PATH_DEVICE = "/storage/emulated/0/games/com.mojang/mods/";
+        const string PATH_EMULATOR = "/storage/emulated/legacy/games/com.mojang/mods/";
         public fSettings()
         {
             InitializeComponent();
@@ -23,6 +24,16 @@ namespace NIDE
             btnComments.ForeColor = Highlighter.CommentsColor;
 
             tbPath.Text = ProgramData.Project.ADBPushPath;
+            tbPath.Enabled = false;
+            if (tbPath.Text == PATH_DEVICE)
+                rbDevice.Select();
+            else if (tbPath.Text == PATH_EMULATOR)
+                rbEmulator.Select();
+            else
+            {
+                rbCustom.Select();
+                tbPath.Enabled = true;
+            }
             cbLast.Checked = ProgramData.LoadLast;
             cbRunProgram.Checked = ADBWorker.RunProgram;
             cbHighlighting.Checked = (Highlighter.ErrorStrategy == ErrorHighlightStrategy.LINE_NUMBER);
@@ -143,6 +154,23 @@ namespace NIDE
             ProgramData.LoadLast = cbLast.Checked;
             ADBWorker.RunProgram = cbRunProgram.Checked;
             Close();
+        }
+
+        private void rbDevice_CheckedChanged(object sender, EventArgs e)
+        {
+            tbPath.Enabled = false;
+            tbPath.Text = PATH_DEVICE;
+        }
+
+        private void rbEmulator_CheckedChanged(object sender, EventArgs e)
+        {
+            tbPath.Enabled = false;
+            tbPath.Text = PATH_EMULATOR;
+        }
+
+        private void rbCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            tbPath.Enabled = true;
         }
     }
 }

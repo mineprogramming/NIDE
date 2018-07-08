@@ -706,6 +706,7 @@ namespace NIDE
         {
             PushButtonsEnabled = false;
             TogglePushButton(sender);
+            tabControl.SaveTabs();
             ADBWorker.Push(new DirectoryInfo(Project.PushPath));
         }
 
@@ -713,6 +714,7 @@ namespace NIDE
         {
             PushButtonsEnabled = false;
             TogglePushButton(sender);
+            tabControl.SaveTabs();
             ADBWorker.Push(new DirectoryInfo(Project.CodePath), "dev/");
         }
 
@@ -723,6 +725,7 @@ namespace NIDE
             {
                 PushButtonsEnabled = false;
                 TogglePushButton(tsbPushFiles);
+                tabControl.SaveTabs();
                 ADBWorker.Push(form.Files, Project.PushPath);
             }
         }

@@ -57,8 +57,9 @@
             this.cbLast = new System.Windows.Forms.CheckBox();
             this.cbRunProgram = new System.Windows.Forms.CheckBox();
             this.cbHighlighting = new System.Windows.Forms.CheckBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.rbDevice = new System.Windows.Forms.RadioButton();
+            this.rbEmulator = new System.Windows.Forms.RadioButton();
+            this.rbCustom = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -305,7 +306,7 @@
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(511, 114);
+            this.tbPath.Location = new System.Drawing.Point(512, 145);
             this.tbPath.Margin = new System.Windows.Forms.Padding(4);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(327, 22);
@@ -314,12 +315,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(508, 93);
+            this.label5.Location = new System.Drawing.Point(508, 97);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 17);
+            this.label5.Size = new System.Drawing.Size(138, 17);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Android scripts path*:";
+            this.label5.Text = "Android scripts path:";
             // 
             // btnApply
             // 
@@ -346,7 +347,7 @@
             // cbRunProgram
             // 
             this.cbRunProgram.AutoSize = true;
-            this.cbRunProgram.Location = new System.Drawing.Point(511, 152);
+            this.cbRunProgram.Location = new System.Drawing.Point(511, 197);
             this.cbRunProgram.Margin = new System.Windows.Forms.Padding(4);
             this.cbRunProgram.Name = "cbRunProgram";
             this.cbRunProgram.Size = new System.Drawing.Size(237, 21);
@@ -366,31 +367,49 @@
             this.cbHighlighting.UseVisualStyleBackColor = true;
             this.cbHighlighting.CheckedChanged += new System.EventHandler(this.cbHighlighting_CheckedChanged);
             // 
-            // label12
+            // rbDevice
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(508, 192);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(276, 17);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "*For the proper work with NOX App Player,";
+            this.rbDevice.AutoSize = true;
+            this.rbDevice.Checked = true;
+            this.rbDevice.Location = new System.Drawing.Point(511, 117);
+            this.rbDevice.Name = "rbDevice";
+            this.rbDevice.Size = new System.Drawing.Size(72, 21);
+            this.rbDevice.TabIndex = 20;
+            this.rbDevice.TabStop = true;
+            this.rbDevice.Text = "Device";
+            this.rbDevice.UseVisualStyleBackColor = true;
+            this.rbDevice.CheckedChanged += new System.EventHandler(this.rbDevice_CheckedChanged);
             // 
-            // label13
+            // rbEmulator
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(508, 208);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(148, 17);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "change \"0\" to \"legacy\"";
+            this.rbEmulator.AutoSize = true;
+            this.rbEmulator.Location = new System.Drawing.Point(617, 117);
+            this.rbEmulator.Name = "rbEmulator";
+            this.rbEmulator.Size = new System.Drawing.Size(85, 21);
+            this.rbEmulator.TabIndex = 21;
+            this.rbEmulator.Text = "Emulator";
+            this.rbEmulator.UseVisualStyleBackColor = true;
+            this.rbEmulator.CheckedChanged += new System.EventHandler(this.rbEmulator_CheckedChanged);
+            // 
+            // rbCustom
+            // 
+            this.rbCustom.AutoSize = true;
+            this.rbCustom.Location = new System.Drawing.Point(729, 117);
+            this.rbCustom.Name = "rbCustom";
+            this.rbCustom.Size = new System.Drawing.Size(76, 21);
+            this.rbCustom.TabIndex = 22;
+            this.rbCustom.Text = "Custom";
+            this.rbCustom.UseVisualStyleBackColor = true;
+            this.rbCustom.CheckedChanged += new System.EventHandler(this.rbCustom_CheckedChanged);
             // 
             // fSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(859, 270);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
+            this.Controls.Add(this.rbCustom);
+            this.Controls.Add(this.rbEmulator);
+            this.Controls.Add(this.rbDevice);
             this.Controls.Add(this.cbHighlighting);
             this.Controls.Add(this.cbRunProgram);
             this.Controls.Add(this.cbLast);
@@ -440,7 +459,8 @@
         private System.Windows.Forms.CheckBox cbHighlighting;
         private System.Windows.Forms.Button btnComments;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RadioButton rbDevice;
+        private System.Windows.Forms.RadioButton rbEmulator;
+        private System.Windows.Forms.RadioButton rbCustom;
     }
 }

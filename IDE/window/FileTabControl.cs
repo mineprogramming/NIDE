@@ -138,7 +138,7 @@ namespace NIDE.window
             TabPage current = (TabPage)contextMenuStrip.Tag;
             for (int i = TabPages.Count - 1; i >= 0; i--)
             {
-                if(TabPages[i] != current && (((EditorTab)TabPages[i]).CanClose()))
+                if (TabPages[i] != current && (((EditorTab)TabPages[i]).CanClose()))
                 {
                     TabPages.RemoveAt(i);
                 }
@@ -168,9 +168,9 @@ namespace NIDE.window
                     {
                         TabPages.RemoveAt(i);
                     }
-                } else if (r.Contains(e.Location) && e.Button == MouseButtons.Right){
+                } else if (r.Contains(e.Location) && e.Button == MouseButtons.Right) {
                     contextMenuStrip.Tag = TabPages[i];
-                    contextMenuStrip.Items[1].Enabled = TabPages.Count > 1;  
+                    contextMenuStrip.Items[1].Enabled = TabPages.Count > 1;
                     contextMenuStrip.Show(this, e.Location);
                 }
             }
@@ -198,7 +198,7 @@ namespace NIDE.window
         {
             EditorTab newTab = new EditorTab(file, editor);
             TabPages.Add(newTab);
-            foreach(TabPage page in TabPages)
+            foreach (TabPage page in TabPages)
             {
                 if (page != newTab)
                     TabPages.Remove(page);
@@ -214,6 +214,15 @@ namespace NIDE.window
                 {
                     TabPages.Remove(tab);
                 }
+            }
+            Refresh();
+        }
+
+        public void SaveTabs()
+        {
+            foreach (EditorTab tab in TabPages)
+            {
+                tab.Save();
             }
             Refresh();
         }

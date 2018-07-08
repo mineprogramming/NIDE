@@ -128,10 +128,13 @@ namespace NIDE
                 }
                 
                 key = key.OpenSubKey("settings");
-                ProgramData.MainForm.Width = Convert.ToInt32(key.GetValue("width"));
-                ProgramData.MainForm.Height = Convert.ToInt32(key.GetValue("height"));
-                ProgramData.MainForm.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
-                ProgramData.MainForm.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
+                try
+                {
+                    ProgramData.MainForm.Width = Convert.ToInt32(key.GetValue("width"));
+                    ProgramData.MainForm.Height = Convert.ToInt32(key.GetValue("height"));
+                    ProgramData.MainForm.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
+                    ProgramData.MainForm.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
+                } catch(Exception e){ }
                 ZCore.ADBPath = key.GetValue("ADBPath.CoreEngine").ToString();
                 ModPE.ADBPath = key.GetValue("ADBPath.ModPE").ToString();
                 ADBWorker.RunProgram = Convert.ToBoolean(key.GetValue("RunProgram"));
@@ -163,7 +166,7 @@ namespace NIDE
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Cannot load window properties");
+                
                 if (first)
                 {
                     ToDefaults();
