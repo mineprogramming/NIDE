@@ -78,16 +78,11 @@
             this.tsbRun = new System.Windows.Forms.ToolStripButton();
             this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
             this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
-            this.cmsMain = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ctsmiUndo = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiRedo = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiFind = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
-            this.ctsmiAutoIndent = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiOpenProject = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiImportArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSave = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSaveAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiCloseProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -128,7 +123,6 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.tsmiImportArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -152,7 +146,6 @@
             this.toolStripGeneral.SuspendLayout();
             this.toolStripEdit.SuspendLayout();
             this.toolStripProject.SuspendLayout();
-            this.cmsMain.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -575,48 +568,6 @@
             this.tsbShowMain.Name = "tsbShowMain";
             this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
             // 
-            // cmsMain
-            // 
-            this.cmsMain.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.cmsMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ctsmiUndo,
-            this.ctsmiRedo,
-            this.ctsmiFind,
-            this.ctsmiReplace,
-            this.ctsmiAutoIndent});
-            this.cmsMain.Name = "cmsMain";
-            resources.ApplyResources(this.cmsMain, "cmsMain");
-            // 
-            // ctsmiUndo
-            // 
-            this.ctsmiUndo.Name = "ctsmiUndo";
-            resources.ApplyResources(this.ctsmiUndo, "ctsmiUndo");
-            this.ctsmiUndo.Click += new System.EventHandler(this.tsmiUndo_Click);
-            // 
-            // ctsmiRedo
-            // 
-            this.ctsmiRedo.Name = "ctsmiRedo";
-            resources.ApplyResources(this.ctsmiRedo, "ctsmiRedo");
-            this.ctsmiRedo.Click += new System.EventHandler(this.tsmiRedo_Click);
-            // 
-            // ctsmiFind
-            // 
-            this.ctsmiFind.Name = "ctsmiFind";
-            resources.ApplyResources(this.ctsmiFind, "ctsmiFind");
-            this.ctsmiFind.Click += new System.EventHandler(this.tsmiFind_Click);
-            // 
-            // ctsmiReplace
-            // 
-            this.ctsmiReplace.Name = "ctsmiReplace";
-            resources.ApplyResources(this.ctsmiReplace, "ctsmiReplace");
-            this.ctsmiReplace.Click += new System.EventHandler(this.tsmiReplace_Click);
-            // 
-            // ctsmiAutoIndent
-            // 
-            this.ctsmiAutoIndent.Name = "ctsmiAutoIndent";
-            resources.ApplyResources(this.ctsmiAutoIndent, "ctsmiAutoIndent");
-            this.ctsmiAutoIndent.Click += new System.EventHandler(this.ctsmiAutoIndent_Click);
-            // 
             // MenuStrip
             // 
             this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -656,6 +607,12 @@
             this.tsmiOpenProject.Name = "tsmiOpenProject";
             resources.ApplyResources(this.tsmiOpenProject, "tsmiOpenProject");
             this.tsmiOpenProject.Click += new System.EventHandler(this.tsmiOpenProject_Click);
+            // 
+            // tsmiImportArchive
+            // 
+            this.tsmiImportArchive.Name = "tsmiImportArchive";
+            resources.ApplyResources(this.tsmiImportArchive, "tsmiImportArchive");
+            this.tsmiImportArchive.Click += new System.EventHandler(this.tsmiImportArchive_Click);
             // 
             // tsmiSave
             // 
@@ -911,12 +868,6 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
-            // tsmiImportArchive
-            // 
-            this.tsmiImportArchive.Name = "tsmiImportArchive";
-            resources.ApplyResources(this.tsmiImportArchive, "tsmiImportArchive");
-            this.tsmiImportArchive.Click += new System.EventHandler(this.tsmiImportArchive_Click);
-            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -961,7 +912,6 @@
             this.toolStripEdit.PerformLayout();
             this.toolStripProject.ResumeLayout(false);
             this.toolStripProject.PerformLayout();
-            this.cmsMain.ResumeLayout(false);
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -981,12 +931,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRedo;
         private System.Windows.Forms.ToolStripMenuItem tsmiFind;
         private System.Windows.Forms.ToolStripMenuItem tsmiReplace;
-        private System.Windows.Forms.ContextMenuStrip cmsMain;
-        private System.Windows.Forms.ToolStripMenuItem ctsmiUndo;
-        private System.Windows.Forms.ToolStripMenuItem ctsmiRedo;
-        private System.Windows.Forms.ToolStripMenuItem ctsmiFind;
-        private System.Windows.Forms.ToolStripMenuItem ctsmiReplace;
-        private System.Windows.Forms.ToolStripMenuItem ctsmiAutoIndent;
         private System.Windows.Forms.ToolStripMenuItem tsmiRun;
         private System.Windows.Forms.ToolStripMenuItem tsmiComment;
         private System.Windows.Forms.ToolStripSeparator tss2;

@@ -8,6 +8,8 @@ namespace NIDE.window
 {
     public partial class FileTabControl : TabControl
     {
+        ContextMenuStrip contextMenuStrip;
+
         public FileTabControl()
         {
             InitializeComponent();
@@ -16,9 +18,37 @@ namespace NIDE.window
             DrawMode = TabDrawMode.OwnerDrawFixed;
             DrawItem += FileTabControl_DrawItem;
             MouseDown += FileTabControl_MouseDown;
+
+            contextMenuStrip = new ContextMenuStrip();
+            ToolStripMenuItem item = new ToolStripMenuItem("Close all tabs but this");
+            item.Click += CloseAll_Click;
+            contextMenuStrip.Items.Add(item);
+            item = new ToolStripMenuItem("Close");
+            item.Click += Close_Click;
+            contextMenuStrip.Items.Add(item);
         }
 
+        private void Close_Click(object sender, EventArgs e)
+        {
+            if (TabPages.Count <= 1) return;
+            EditorTab tab = (EditorTab)contextMenuStrip.Tag;
+            if (tab.CanClose())
+            {
+                TabPages.Remove(tab);
+            }
+        }
 
+        private void CloseAll_Click(object sender, EventArgs e)
+        {
+            TabPage current = (TabPage)contextMenuStrip.Tag;
+            for (int i = TabPages.Count - 1; i >= 0; i--)
+            {
+                if(TabPages[i] != current && (((EditorTab)TabPages[i]).CanClose()))
+                {
+                    TabPages.RemoveAt(i);
+                }
+            }
+        }
 
         private void FileTabControl_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -32,17 +62,21 @@ namespace NIDE.window
 
         private void FileTabControl_MouseDown(object sender, MouseEventArgs e)
         {
-            if (TabCount <= 1) return;
             for (int i = 0; i < TabPages.Count; i++)
             {
                 Rectangle r = GetTabRect(i);
                 Rectangle closeButton = new Rectangle(r.Right - 15, r.Top + 4, 15, 9);
                 if (closeButton.Contains(e.Location))
                 {
+                    if (TabCount <= 1) return;
                     if (((EditorTab)TabPages[i]).CanClose())
                     {
                         TabPages.RemoveAt(i);
                     }
+                } else if (r.Contains(e.Location) && e.Button == MouseButtons.Right){
+                    contextMenuStrip.Tag = TabPages[i];
+                    contextMenuStrip.Items[1].Enabled = TabPages.Count > 1;  
+                    contextMenuStrip.Show(this, e.Location);
                 }
             }
         }
