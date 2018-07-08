@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.SuspendLayout();
+            // 
+            // FileTabControl
+            // 
+            this.AllowDrop = true;
             this.ResumeLayout(false);
 
         }
