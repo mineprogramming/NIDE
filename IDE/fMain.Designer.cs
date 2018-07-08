@@ -128,6 +128,7 @@
             this.dlgSave = new System.Windows.Forms.SaveFileDialog();
             this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
             this.dlgFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.tsmiImportArchive = new System.Windows.Forms.ToolStripMenuItem();
             this.container.ContentPanel.SuspendLayout();
             this.container.TopToolStripPanel.SuspendLayout();
             this.container.SuspendLayout();
@@ -635,6 +636,7 @@
             this.tsmiFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiNewProject,
             this.tsmiOpenProject,
+            this.tsmiImportArchive,
             this.tsmiSave,
             this.tsmiSaveAll,
             this.tsmiCloseProject,
@@ -909,6 +911,12 @@
             // 
             this.dlgOpen.DefaultExt = "nproj";
             // 
+            // tsmiImportArchive
+            // 
+            this.tsmiImportArchive.Name = "tsmiImportArchive";
+            resources.ApplyResources(this.tsmiImportArchive, "tsmiImportArchive");
+            this.tsmiImportArchive.Click += new System.EventHandler(this.tsmiImportArchive_Click);
+            // 
             // fMain
             // 
             resources.ApplyResources(this, "$this");
@@ -1060,6 +1068,7 @@
         private System.Windows.Forms.Panel panel;
         private System.Windows.Forms.TabPage tabPage3;
         private NIDE.window.InsertListBox lbInserts;
+        private System.Windows.Forms.ToolStripMenuItem tsmiImportArchive;
     }
 }
 

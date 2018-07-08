@@ -3,6 +3,7 @@ using MoreLinq;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
@@ -35,6 +36,50 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
                             e.Extract(project.Path, ExtractExistingFileAction.OverwriteSilently);
                         }
                     });
+                }
+            }
+            if (Directory.GetFiles(project.ScriptsPath).Length == 1)
+            {
+                if (File.Exists(project.BuiltScriptPath))
+                {
+                    if (MessageBox.Show("Do you want to split main.js into separate files?",
+                        "Dev folder is empty, main.js found", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        string currentFile = "main.js";
+                        StreamWriter currentStream = null;
+                        StreamWriter includes = null;
+                        try
+                        {
+                            includes = File.AppendText(project.MainScriptPath);
+                            currentStream = File.AppendText(project.ScriptsPath + currentFile.Replace('/', '\\'));
+                            foreach (string line in File.ReadAllLines(project.BuiltScriptPath))
+                            {
+                                if (line.StartsWith("// file: "))
+                                {
+                                    //Add previous file to .includes
+                                    includes.WriteLine(currentFile);
+                                    currentFile = line.Substring(9);
+                                    currentStream.Close();
+                                    Path p = project.ScriptsPath + currentFile.Replace('/', '\\');
+                                    p.mkdirs();
+                                    currentStream = File.AppendText(p.ToString());
+                                    continue;
+                                }
+                                currentStream.WriteLine(line);
+                            }
+                        }
+                        finally
+                        {
+                            if (includes != null)
+                                includes.Close();
+                            if (currentStream != null)
+                                currentStream.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("NIDE was unable to find source code in this .icmod archive. The code is probably compliled and thus unreadable.", "Unable to find the source code!");
                 }
             }
             return project;

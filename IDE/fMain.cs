@@ -443,6 +443,11 @@ namespace NIDE
             OpenProjectDlg();
         }
 
+        private void tsmiImportArchive_Click(object sender, EventArgs e)
+        {
+            ImportProjectDlg();
+        }
+
         private void tsmiCloseProject_Click(object sender, EventArgs e)
         {
             if (!CanChangeFile()) return;
