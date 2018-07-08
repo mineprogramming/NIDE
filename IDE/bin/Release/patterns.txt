@@ -232,3 +232,9 @@ Callback.addCallback("EntityHurt", function(attacker, victim, damage){
 Callback.addCallback("PostLoaded", function(){
     ~c~
 })¶PostLoaded¶
+
+Recipes.addShaped({id: ~c~, count: ~c~, data: ~c~}, [
+     "~c~",
+     "~c~",
+     "~c~"
+], ['~c~', ~c~, ~c~]);¶addShaped¶
