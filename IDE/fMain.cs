@@ -838,15 +838,14 @@ namespace NIDE
         {
             if (caseInsensitive)
                 pattern = pattern.ToLower();
-            string[] files = Directory.GetFiles(Project.CodePath, "*.js");
+            string[] files = Directory.GetFiles(Project.CodePath, "*.js", SearchOption.AllDirectories);
             foreach (string file in files)
             {
                 string[] lines = File.ReadAllLines(file);
                 for (int i = 0; i < lines.Length; i++)
                 {
-                    if (caseInsensitive)
-                        lines[i] = lines[i].ToLower();
-                    if (lines[i].Contains(pattern))
+                    string compLine = caseInsensitive ? lines[i].ToLower() : lines[i];
+                    if (compLine.Contains(pattern))
                     {
                         Invoke(new Action(() =>
                         {
