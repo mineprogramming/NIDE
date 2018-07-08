@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace NIDE.ProjectTypes
@@ -162,7 +163,11 @@ namespace NIDE.ProjectTypes
 
         public string AddTexture(string name, ImageType type)
         {
-            name = name.ToLower().EndsWith(".png") ? name : name + ".png";
+            if (name.ToLower().EndsWith(".png"))
+                name = name.Substring(0, name.Length - 4);
+            Regex regex = new Regex("_[0-9]+$");
+            if (!regex.IsMatch(name)) name += "_0";
+            name += ".png";
             Path TexturePath = (type == ImageType.ITEMS_OPAQUE ? ItemsOpaquePath : TerrainAtlasPath) + name;
             TexturePath.mkdirs();
             if(TexturePath.Exisis() && MessageBox.Show("File " + TexturePath.GetName() + " already exists. Do you want to override it?",
