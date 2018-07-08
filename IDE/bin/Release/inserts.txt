@@ -12,12 +12,12 @@ if(i == 5){
     //false
 }~Conditional expression with else-block~
 
-IDRegistry.genItemID("MagicWand"); //Create a new item
-Item.createItem("MagicWand", "Magic Wand", {name: "stick", meta: 0}, {});
+IDRegistry.genItemID("wandMagic"); //Create a new item
+Item.createItem("wandMagic", "Magic Wand", {name: "stick", meta: 0}, {});
 ~Create a new item~
 
-IDRegistry.genBlockID("LuckyBlock"); //Create a new block
-Block.createBlock("LuckyBlock", [
+IDRegistry.genBlockID("blockLucky"); //Create a new block
+Block.createBlock("blockLucky", [
     {
         name: "Lucky Block", 
         texture: [["planks", 0], ["planks", 0], ["planks", 0], ["planks", 0], ["planks", 0], ["planks", 0]], 
@@ -42,3 +42,9 @@ Callback.addCallback("tick", function(){
     //Tick - is called 20 times per second
 
 });~Tick - is called 20 times per second~
+
+Recipes.addShaped({id: ItemID.blockLucky, count: 1, data: 0}, [
+     "ax",
+     "xa",
+     "ax"
+], ['x', 265, 0, 'a', 263, 0]);~Crafting recipie example~

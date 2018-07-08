@@ -9,3 +9,14 @@ F:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.csproj.CoreCompileInpu
 F:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.csproj.CopyComplete
 F:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.exe
 F:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.pdb
+E:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\Updater.exe.config
+E:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\Updater.exe
+E:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\Updater.pdb
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.csprojAssemblyReference.cache
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.FUpdate.resources
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.Properties.Resources.resources
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.csproj.GenerateResource.cache
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.csproj.CoreCompileInputs.cache
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.csproj.CopyComplete
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.exe
+E:\OneDrive\VisualStudio\NIDE\Updater\obj\Release\Updater.pdb
