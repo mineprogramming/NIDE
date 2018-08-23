@@ -202,6 +202,7 @@
             // 
             // tabControl
             // 
+            this.tabControl.AllowDrop = true;
             resources.ApplyResources(this.tabControl, "tabControl");
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.Name = "tabControl";
