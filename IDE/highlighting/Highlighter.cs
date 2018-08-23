@@ -85,22 +85,29 @@ namespace NIDE.Highlighting
         {
             try
             {
+                var CommentStyle = ProgramData.MainForm.fctbMain.SyntaxHighlighter.CommentStyle;
+                var BlueStyle = ProgramData.MainForm.fctbMain.SyntaxHighlighter.BlueStyle;
+                var StringStyle = ProgramData.MainForm.fctbMain.SyntaxHighlighter.StringStyle;
+
+                range.ClearStyle(CommentStyle);
+                range.ClearStyle(StringStyle);
                 range.ClearStyle(NamespaceStyle);
                 range.ClearStyle(MemberStyle);
                 range.ClearStyle(HookStyle);
                 range.ClearStyle(GlobalStyle);
                 range.ClearStyle(InvisibleStyle);
-                range.ClearStyle(ProgramData.MainForm.fctbMain.SyntaxHighlighter.BlueStyle);
+                range.ClearStyle(BlueStyle);
 
                 //Making ~c~ invisible
                 range.SetStyle(InvisibleStyle, @"~c~", RegexOptions.Multiline);
+                range.SetStyle(CommentStyle, "/\\*((.|\\n)*?)\\*/|//.*", RegexOptions.Multiline);
+                range.SetStyle(StringStyle, @"""""|''|"".*?[^\\]""|'.*?[^\\]'", RegexOptions.Multiline);
                 ProgramData.MainForm.fctbMain.SyntaxHighlighter.JScriptSyntaxHighlight(range);
 
                 
                 range.SetStyle(NamespaceStyle, @"(\W)", RegexOptions.Multiline);
 
-                range.SetStyle(ProgramData.MainForm.fctbMain.SyntaxHighlighter.BlueStyle,
-                    @"(\W|^)(" + string.Join("|", JavaScript.Items) + @")(\W|$)", RegexOptions.Multiline);
+                range.SetStyle(BlueStyle, @"(\W|^)(" + string.Join("|", JavaScript.Items) + @")(\W|$)", RegexOptions.Multiline);
 
                 if (Autocomplete.UserItems.Keys.Count > 0)
                 {
