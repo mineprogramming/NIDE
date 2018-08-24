@@ -19,6 +19,10 @@ namespace NIDE.adb
                 {
                     lbDevices.Items.Add(new DeviceItem(device));
                 }
+                if(lbDevices.Items.Count > 0)
+                {
+                    lbDevices.SelectedIndex = 0;
+                }
                 return ShowDialog();
             }
             else
