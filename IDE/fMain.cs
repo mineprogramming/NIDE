@@ -138,7 +138,38 @@ namespace NIDE
             {
                 Project.OnEnter(fctbMain);
             }
+            else if (e.KeyCode == Keys.Back && SelectionEmpty()){
+                //Check for "", '', (), {}, []
+                char[] brackets = fctbMain.AutoCompleteBracketsList;
+                Place position = fctbMain.Selection.Start;
+
+                //Check position for arrays ranges
+                if (position.iChar == 0 || fctbMain.Lines[position.iLine].Length <= position.iChar)
+                    return;
+
+                for(int i = 0; i < brackets.Length; i += 2)
+                {
+                    if(fctbMain.Lines[position.iLine][position.iChar - 1] == brackets[i]
+                        && fctbMain.Lines[position.iLine][position.iChar] == brackets[i + 1])
+                    {
+                        fctbMain.Selection.Start = new Place(position.iChar, position.iLine);
+                        fctbMain.Selection.End = new Place(position.iChar + 1, position.iLine);
+                        fctbMain.ClearSelected();
+                    }
+                }
+            }
         }
+
+
+        /// <summary>
+        /// This method checks whether some text was selected or not
+        /// </summary>
+        /// <returns>Returns true, if selection is empty, false otherwise</returns>
+        private bool SelectionEmpty()
+        {
+            return fctbMain.Selection.Start == fctbMain.Selection.End;
+        }
+
 
         private void fMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -172,6 +203,23 @@ namespace NIDE
         private void tsbCut_Click(object sender, EventArgs e) { fctbMain.Cut(); }
         private void tsbCopy_Click(object sender, EventArgs e) { fctbMain.Copy(); }
         private void tsbPaste_Click(object sender, EventArgs e) { fctbMain.Paste(); }
+        private void tsmiDuplicate_Click(object sender, EventArgs e)
+        {
+            Range selection = fctbMain.Selection;
+            if(selection.Start == selection.End)
+            {
+                //Backup position (probably can do better?..)
+                Place back = selection.Start;
+                Place position = new Place(0, selection.Start.iLine);
+                fctbMain.Selection.Start = position;
+                fctbMain.Selection.End = position;
+                //Duplicate line
+                fctbMain.InsertText(fctbMain.Lines[selection.Start.iLine] + "\n");
+                //Restore position
+                fctbMain.Selection.Start = back;
+                fctbMain.Selection.End = back;
+            }
+        }
         #endregion
 
 
@@ -899,5 +947,6 @@ namespace NIDE
         }
         #endregion
 
+        
     }
 }

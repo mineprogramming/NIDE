@@ -96,6 +96,7 @@
             this.tsmiReplace = new System.Windows.Forms.ToolStripMenuItem();
             this.tss3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiComment = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiDuplicate = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSelectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiInserts = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -654,6 +655,7 @@
             this.tsmiReplace,
             this.tss3,
             this.tsmiComment,
+            this.tsmiDuplicate,
             this.tsmiSelectAll});
             this.tsmiEdit.Name = "tsmiEdit";
             resources.ApplyResources(this.tsmiEdit, "tsmiEdit");
@@ -697,6 +699,12 @@
             this.tsmiComment.Name = "tsmiComment";
             resources.ApplyResources(this.tsmiComment, "tsmiComment");
             this.tsmiComment.Click += new System.EventHandler(this.tsmiComment_Click);
+            // 
+            // tsmiDuplicate
+            // 
+            this.tsmiDuplicate.Name = "tsmiDuplicate";
+            resources.ApplyResources(this.tsmiDuplicate, "tsmiDuplicate");
+            this.tsmiDuplicate.Click += new System.EventHandler(this.tsmiDuplicate_Click);
             // 
             // tsmiSelectAll
             // 
@@ -1014,6 +1022,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private NIDE.window.InsertListBox lbInserts;
         private System.Windows.Forms.ToolStripMenuItem tsmiImportArchive;
+        private System.Windows.Forms.ToolStripMenuItem tsmiDuplicate;
     }
 }
 

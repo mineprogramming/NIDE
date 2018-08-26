@@ -1425,7 +1425,7 @@
     <value>297, 0</value>
   </data>
   <data name="toolStripProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>322, 27</value>
+    <value>283, 27</value>
   </data>
   <data name="toolStripProject.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1530,7 +1530,7 @@
     <value>Ctrl+Z</value>
   </data>
   <data name="tsmiUndo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 26</value>
+    <value>264, 26</value>
   </data>
   <data name="tsmiUndo.Text" xml:space="preserve">
     <value>Undo</value>
@@ -1539,19 +1539,19 @@
     <value>Ctrl+Y</value>
   </data>
   <data name="tsmiRedo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 26</value>
+    <value>264, 26</value>
   </data>
   <data name="tsmiRedo.Text" xml:space="preserve">
     <value>Redo</value>
   </data>
   <data name="tss2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 6</value>
+    <value>261, 6</value>
   </data>
   <data name="tsmiFind.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+F</value>
   </data>
   <data name="tsmiFind.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 26</value>
+    <value>264, 26</value>
   </data>
   <data name="tsmiFind.Text" xml:space="preserve">
     <value>Find</value>
@@ -1560,28 +1560,40 @@
     <value>Ctrl+H</value>
   </data>
   <data name="tsmiReplace.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 26</value>
+    <value>264, 26</value>
   </data>
   <data name="tsmiReplace.Text" xml:space="preserve">
     <value>Replace</value>
   </data>
   <data name="tss3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 6</value>
+    <value>261, 6</value>
+  </data>
+  <data name="tsmiComment.ShortcutKeyDisplayString" xml:space="preserve">
+    <value>Ctrl+/</value>
   </data>
   <data name="tsmiComment.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+OemQuestion</value>
   </data>
   <data name="tsmiComment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 26</value>
+    <value>264, 26</value>
   </data>
   <data name="tsmiComment.Text" xml:space="preserve">
     <value>Comment</value>
+  </data>
+  <data name="tsmiDuplicate.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+D</value>
+  </data>
+  <data name="tsmiDuplicate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 26</value>
+  </data>
+  <data name="tsmiDuplicate.Text" xml:space="preserve">
+    <value>Duplicate selection</value>
   </data>
   <data name="tsmiSelectAll.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
     <value>Ctrl+A</value>
   </data>
   <data name="tsmiSelectAll.Size" type="System.Drawing.Size, System.Drawing">
-    <value>282, 26</value>
+    <value>264, 26</value>
   </data>
   <data name="tsmiSelectAll.Text" xml:space="preserve">
     <value>Select all</value>
@@ -2115,6 +2127,12 @@
     <value>tsmiComment</value>
   </data>
   <data name="&gt;&gt;tsmiComment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiDuplicate.Name" xml:space="preserve">
+    <value>tsmiDuplicate</value>
+  </data>
+  <data name="&gt;&gt;tsmiDuplicate.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiSelectAll.Name" xml:space="preserve">

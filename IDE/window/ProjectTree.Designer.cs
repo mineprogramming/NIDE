@@ -54,54 +54,54 @@
             this.tsmiDelete,
             this.tsmiOpenInExplorer});
             this.cmsTreeView.Name = "contextMenuStrip1";
-            this.cmsTreeView.Size = new System.Drawing.Size(162, 158);
+            this.cmsTreeView.Size = new System.Drawing.Size(190, 172);
             // 
             // tsmiNewTexture
             // 
             this.tsmiNewTexture.Name = "tsmiNewTexture";
-            this.tsmiNewTexture.Size = new System.Drawing.Size(161, 22);
+            this.tsmiNewTexture.Size = new System.Drawing.Size(189, 24);
             this.tsmiNewTexture.Text = "New texture";
             this.tsmiNewTexture.Click += new System.EventHandler(this.tsmiNewTexture_Click);
             // 
             // tsmiNewScript
             // 
             this.tsmiNewScript.Name = "tsmiNewScript";
-            this.tsmiNewScript.Size = new System.Drawing.Size(161, 22);
+            this.tsmiNewScript.Size = new System.Drawing.Size(189, 24);
             this.tsmiNewScript.Text = "New script";
             this.tsmiNewScript.Click += new System.EventHandler(this.tsmiNewScript_Click);
             // 
             // tsmiNewFile
             // 
             this.tsmiNewFile.Name = "tsmiNewFile";
-            this.tsmiNewFile.Size = new System.Drawing.Size(161, 22);
+            this.tsmiNewFile.Size = new System.Drawing.Size(189, 24);
             this.tsmiNewFile.Text = "Create file";
             this.tsmiNewFile.Click += new System.EventHandler(this.tsmiNewFile_Click);
             // 
             // tsmiNewDirectory
             // 
             this.tsmiNewDirectory.Name = "tsmiNewDirectory";
-            this.tsmiNewDirectory.Size = new System.Drawing.Size(161, 22);
+            this.tsmiNewDirectory.Size = new System.Drawing.Size(189, 24);
             this.tsmiNewDirectory.Text = "Create directory";
             this.tsmiNewDirectory.Click += new System.EventHandler(this.tsmiNewDirectory_Click);
             // 
             // tsmiRename
             // 
             this.tsmiRename.Name = "tsmiRename";
-            this.tsmiRename.Size = new System.Drawing.Size(161, 22);
+            this.tsmiRename.Size = new System.Drawing.Size(189, 24);
             this.tsmiRename.Text = "Rename";
             this.tsmiRename.Click += new System.EventHandler(this.tsmiRename_Click);
             // 
             // tsmiDelete
             // 
             this.tsmiDelete.Name = "tsmiDelete";
-            this.tsmiDelete.Size = new System.Drawing.Size(161, 22);
+            this.tsmiDelete.Size = new System.Drawing.Size(189, 24);
             this.tsmiDelete.Text = "Delete";
             this.tsmiDelete.Click += new System.EventHandler(this.tsmiDelete_Click);
             // 
             // tsmiOpenInExplorer
             // 
             this.tsmiOpenInExplorer.Name = "tsmiOpenInExplorer";
-            this.tsmiOpenInExplorer.Size = new System.Drawing.Size(161, 22);
+            this.tsmiOpenInExplorer.Size = new System.Drawing.Size(189, 24);
             this.tsmiOpenInExplorer.Text = "Open in explorer";
             this.tsmiOpenInExplorer.Click += new System.EventHandler(this.tsmiOpenInExplorer_Click);
             // 

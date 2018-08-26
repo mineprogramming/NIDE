@@ -23,14 +23,23 @@ namespace NIDE.window
             MouseMove += FileTabControl_MouseMove;
             DragOver += FileTabControl_DragOver;
 
+
             contextMenuStrip = new ContextMenuStrip();
-            ToolStripMenuItem item = new ToolStripMenuItem("Close all tabs but this");
+
+            ToolStripMenuItem item = new ToolStripMenuItem("Show in project tree");
+            item.Click += ShowInProjectTree_Click;
+            contextMenuStrip.Items.Add(item);
+
+            item = new ToolStripMenuItem("Close all tabs but this");
             item.Click += CloseAll_Click;
             contextMenuStrip.Items.Add(item);
+
             item = new ToolStripMenuItem("Close");
             item.Click += Close_Click;
             contextMenuStrip.Items.Add(item);
         }
+
+        
 
         private void FileTabControl_DragOver(object sender, DragEventArgs e)
         {
@@ -121,6 +130,13 @@ namespace NIDE.window
             tc.TabPages[index_dst] = src;
             tc.TabPages[index_src] = dst;
             tc.Refresh();
+        }
+
+
+        private void ShowInProjectTree_Click(object sender, EventArgs e)
+        {
+            EditorTab tab = (EditorTab)contextMenuStrip.Tag;
+            var file = tab.File;
         }
 
         private void Close_Click(object sender, EventArgs e)
