@@ -68,8 +68,11 @@ namespace NIDE.ProjectTypes.MCPEModding
                 }
                 catch { }
 
+                
                 List<string> variables = new List<string>();
                 Dictionary<string, List<string>> objects = new Dictionary<string, List<string>>();
+
+                //variables
                 Regex regex = new Regex(@"\b(var|const|let)\s+(?<range>[\w_]+?)\b");
                 foreach (Match match in regex.Matches(ProgramData.MainForm.fctbMain.Text))
                 {
@@ -80,6 +83,8 @@ namespace NIDE.ProjectTypes.MCPEModding
                             variables.Add(variable);
                     }
                 }
+
+                //functions
                 regex = new Regex(@"\bfunction\b");
                 foreach (var line in ProgramData.MainForm.fctbMain.Lines)
                 {
@@ -97,16 +102,26 @@ namespace NIDE.ProjectTypes.MCPEModding
                         catch { }
                     }
                 }
-                Variables = variables;
-                regex = new Regex(@"([\w_]+)\.([\w_]+)");
+                
+                // "." member access
+                regex = new Regex(@"([\w_]+)(\.([\w_]+))+");
                 foreach (Match match in regex.Matches(ProgramData.MainForm.fctbMain.Text))
                 {
                     string[] splitted = match.Value.Split('.');
-                    if (!objects.ContainsKey(splitted[0]))
-                        objects.Add(splitted[0], new List<string>());
-                    if (!objects[splitted[0]].Contains(splitted[1]))
-                        objects[splitted[0]].Add(splitted[1]);
+                    variables.Add(splitted[0]);
+                    for(int i = 0; i < splitted.Length - 1; i++)
+                    {
+                        //Create list if not created
+                        if (!objects.ContainsKey(splitted[i]))
+                            objects.Add(splitted[i], new List<string>());
+                        //Add item to list
+                        if (!objects[splitted[i]].Contains(splitted[i + 1]))
+                            objects[splitted[i]].Add(splitted[i + 1]);
+                    }                   
                 }
+
+                //finalizing objects
+                Variables = variables;
                 Objects = objects;
             }
             catch { }
