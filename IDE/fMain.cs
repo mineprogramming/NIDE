@@ -218,6 +218,11 @@ namespace NIDE
                 //Restore position
                 fctbMain.Selection.Start = back;
                 fctbMain.Selection.End = back;
+            } else
+            {
+                string str = fctbMain.SelectedText;
+                fctbMain.Selection.Start = fctbMain.Selection.End;
+                fctbMain.InsertText(str);
             }
         }
         #endregion
