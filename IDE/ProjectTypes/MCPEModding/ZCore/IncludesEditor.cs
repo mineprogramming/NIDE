@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Collections;
 using NIDE.Highlighting;
+using System.Text.RegularExpressions;
+using System;
+using System.Drawing;
 
 namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
     class IncludesEditor : CodeEditor, IEnumerable<AutocompleteItem>
     {
         private AutocompleteMenu autocomplete;
+
+        TextStyle commentStyle = new TextStyle(Brushes.Green, null, FontStyle.Italic);
+        TextStyle delimitersStyle = new TextStyle(Brushes.Green, null, FontStyle.Bold);
 
         public IncludesEditor(string file) : base(file) { }
 
@@ -21,13 +27,17 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
             autocomplete.Items.SetAutocompleteItems(this);
             autocomplete.MinFragmentLength = 1;
             TextBox.Language = Language.Custom;
+            Autocomplete.SetAutoompleteMenu(TextBox);
             CodeAnalysisEngine.Stop();
+            Focus();
+            Update(TextBox.Range);
             return true;
         }
 
         public override void Focus()
         {
             Autocomplete.Enabled = false;
+            RefreshStyles(Highlighter.Instance);
         }
 
         public IEnumerator<AutocompleteItem> GetEnumerator()
@@ -44,10 +54,17 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
 
         public override void RefreshStyles(Highlighter highlighter)
         {
-           
+            commentStyle = new TextStyle(new SolidBrush(Highlighter.CommentsColor), null, FontStyle.Italic);
+            delimitersStyle = new TextStyle(new SolidBrush(Highlighter.StringsColor), null, FontStyle.Bold);
         }
 
-        public override void Update(Range range) { }
+        public override void Update(Range range)
+        {
+            range.ClearStyle(commentStyle);
+            range.ClearStyle(delimitersStyle);
+            range.SetStyle(delimitersStyle, "/", RegexOptions.Multiline);
+            range.SetStyle(commentStyle, "#.*", RegexOptions.Multiline);
+        }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
