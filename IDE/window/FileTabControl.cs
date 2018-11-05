@@ -238,7 +238,10 @@ namespace NIDE.window
         {
             foreach (EditorTab tab in TabPages)
             {
-                tab.Save();
+                if (!tab.Saved)
+                {
+                    tab.Save();
+                }
             }
             Refresh();
         }
