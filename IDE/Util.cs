@@ -1,4 +1,5 @@
 ﻿using Managed.Adb;
+using Newtonsoft.Json;
 using NIDE.window;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,12 @@ namespace NIDE
             return new JavaScriptSerializer().Deserialize<type>(JSON);
         }
 
-        public static string ToJson(this object obj)
+        public static string ToJson(this object obj, bool beautify = false)
         {
-            return new JavaScriptSerializer().Serialize(obj);
+            if(beautify)
+                return  JsonConvert.SerializeObject(obj, Formatting.Indented);
+            else 
+                return new JavaScriptSerializer().Serialize(obj);
         }
 
         public static void FillDirectoryNodes(TreeNode node, DirectoryInfo dir)

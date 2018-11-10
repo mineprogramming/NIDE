@@ -28,6 +28,7 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
             TbAuthor.Text = info.author;
             TbVersion.Text = info.version;
             TbDescription.Text = info.description;
+            cbIndent.Checked = RegistryWorker.indentModInfo;
         }
 
         protected override void OnOk()
@@ -37,7 +38,8 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
             RegistryWorker.User = TbAuthor.Text;
             info.version = TbVersion.Text;
             info.description = TbDescription.Text;
-            string json = info.ToJson();
+            RegistryWorker.indentModInfo = cbIndent.Checked;
+            string json = info.ToJson(cbIndent.Checked);
             File.WriteAllText(filename, json);
             Close();
         }

@@ -31,7 +31,8 @@ namespace NIDE
             {"saves", "0" },
             {"Last", "" },
             {"ErrorHighlighting", "False"},
-            {"Author", ""}
+            {"Author", ""},
+            {"IndentModInfo", "True"}
         };
 
         public static void Save(bool Last = true)
@@ -51,6 +52,7 @@ namespace NIDE
                 key.SetValue("LoadLast", ProgramData.LoadLast);
                 key.SetValue("RunProgram", ADBWorker.RunProgram);
                 key.SetValue("Author", User);
+                key.SetValue("IndentModInfo", indentModInfo);
 
                 if (ProgramData.Project != null && !ProgramData.Restart)
                 {
@@ -83,12 +85,14 @@ namespace NIDE
                 try
                 {
                     MessageBox.Show(e.Message, "Cannot save window properties, restoring defaults");
-                    ToDefaults();                }
+                    ToDefaults();
+                }
                 catch { }
             }
         }
 
         private static bool first = true;
+        internal static bool indentModInfo;
 
         public static void Load()
         {
@@ -134,13 +138,17 @@ namespace NIDE
                     ProgramData.MainForm.Height = Convert.ToInt32(key.GetValue("height"));
                     ProgramData.MainForm.TextViewWidth = Convert.ToInt32(key.GetValue("dvWidth"));
                     ProgramData.MainForm.TextViewHeight = Convert.ToInt32(key.GetValue("dvHeight"));
-                } catch(Exception e){ }
+                } catch(Exception e){
+                    ProgramData.MainForm.Width = Convert.ToInt32(defaults["width"]);
+                    ProgramData.MainForm.Height = Convert.ToInt32(defaults["height"]);
+                }
                 ZCore.ADBPath = key.GetValue("ADBPath.CoreEngine").ToString();
                 ModPE.ADBPath = key.GetValue("ADBPath.ModPE").ToString();
                 ADBWorker.RunProgram = Convert.ToBoolean(key.GetValue("RunProgram"));
                 ProgramData.LoadLast = Convert.ToBoolean(key.GetValue("LoadLast"));
                 ProgramData.MainForm.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 User = key.GetValue("Author").ToString();
+                indentModInfo = Convert.ToBoolean(key.GetValue("IndentModInfo"));
 
                 int count = Convert.ToInt32(key.GetValue("saves"));
                 for (int i = 0; i < count; i++)
