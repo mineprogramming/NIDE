@@ -1,4 +1,5 @@
-﻿using Noesis.Javascript;
+﻿using NIDE.ProjectTypes.MCPEModding.ZCore;
+using Noesis.Javascript;
 
 namespace NIDE
 {
@@ -12,11 +13,14 @@ namespace NIDE
             using (JavascriptContext context = new JavascriptContext())
             {
                 Log print = log;
-                context.SetParameter("print", print);
-                context.SetParameter("clientMessage", print);
-                context.SetParameter("alert", print);
                 try
                 {
+                    context.Run(ZCore.JavaScriptAPI);
+
+                    context.SetParameter("print", print);
+                    context.SetParameter("clientMessage", print);
+                    context.SetParameter("alert", print);
+
                     context.Run(code);
                 }
                 catch(JavascriptException e)

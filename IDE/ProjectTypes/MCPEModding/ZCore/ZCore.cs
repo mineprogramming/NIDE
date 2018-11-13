@@ -1,10 +1,10 @@
 ﻿using FastColoredTextBoxNS;
+using NIDE.Languages;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using NIDE.Languages;
 using System.Windows.Forms;
-using System;
 
 namespace NIDE.ProjectTypes.MCPEModding.ZCore
 {
@@ -14,16 +14,19 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
         public static Dictionary<string, List<string>> Members;
         public static Dictionary<string, string> Patterns;
 
+        public static string JavaScriptAPI { get; private set; }
+
         static ZCore()
         {
             try
             {
                 LoadData("core.txt", "patterns.txt");
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 ProgramData.Log("ZCore", "Cannot load ZCore data: " + e.Message, ProgramData.LOG_STYLE_ERROR);
             }
-            
+
         }
 
         private int lastLine = 0;
@@ -61,7 +64,7 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
         {
             Items = new List<string>();
             Members = new Dictionary<string, List<string>>();
-            foreach(var module in JavaScript.Modules)
+            foreach (var module in JavaScript.Modules)
             {
                 Items.Add(module.Key);
                 Members.Add(module.Key, module.Value);
@@ -77,7 +80,10 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
                 item = item.Trim('.');
                 if (item.IndexOf('.') < 0)
                 {
-                    Items.Add(item);
+                    if (!Items.Contains(item))
+                    {
+                        Items.Add(item);
+                    }
                 }
                 else
                 {
@@ -93,6 +99,8 @@ namespace NIDE.ProjectTypes.MCPEModding.ZCore
             string[] patterns = text.Split('¶');
             for (int i = 1; i < patterns.Length; i += 2)
                 Patterns.Add(patterns[i - 1].Trim(' ', '\n', '\r') + ";", patterns[i].Trim(' ', '\n', '\r'));
+
+            JavaScriptAPI = File.ReadAllText("JavaScriptAPI.js");
         }
 
         public ZCore(string projectFile) : base(projectFile) { }
