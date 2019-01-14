@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using NIDE.ProjectTypes.MCPEModding.ZCore;
 using NIDE.ProjectTypes.MCPEModding;
 using NIDE.Highlighting;
+using System.Globalization;
 
 namespace NIDE
 {
     static class RegistryWorker
     {
         public static string User { get; set; } = "";
+        public static float FontSize { get; set; } = 10.8f;
 
         static Dictionary<string, string> defaults = new Dictionary<string, string>()
         {
@@ -32,7 +34,8 @@ namespace NIDE
             {"Last", "" },
             {"ErrorHighlighting", "False"},
             {"Author", ""},
-            {"IndentModInfo", "True"}
+            {"IndentModInfo", "True"},
+            {"FontSize", "10.8"}
         };
 
         public static void Save(bool Last = true)
@@ -53,6 +56,7 @@ namespace NIDE
                 key.SetValue("RunProgram", ADBWorker.RunProgram);
                 key.SetValue("Author", User);
                 key.SetValue("IndentModInfo", indentModInfo);
+                key.SetValue("FontSize", FontSize.ToString(CultureInfo.InvariantCulture));
 
                 if (ProgramData.Project != null && !ProgramData.Restart)
                 {
@@ -124,10 +128,13 @@ namespace NIDE
                 {
                     UpdateSettings(key);
                     key.SetValue("version", ProgramData.PROGRAM_VERSION);
-                    RegistryKey colorsKey = key.CreateSubKey("settings").CreateSubKey("colors");
-                    foreach (var def in Highlighter.DefaultColors)
+                    if (!key.CreateSubKey("settings").GetSubKeyNames().Contains("colors"))
                     {
-                        colorsKey.SetValue(def.Key, def.Value);
+                        RegistryKey colorsKey = key.CreateSubKey("settings").CreateSubKey("colors");
+                        foreach (var def in Highlighter.DefaultColors)
+                        {
+                            colorsKey.SetValue(def.Key, def.Value);
+                        }
                     }
                 }
                 
@@ -149,6 +156,7 @@ namespace NIDE
                 ProgramData.MainForm.WindowState = Convert.ToBoolean(key.GetValue("maximized")) ? FormWindowState.Maximized : FormWindowState.Normal;
                 User = key.GetValue("Author").ToString();
                 indentModInfo = Convert.ToBoolean(key.GetValue("IndentModInfo"));
+                FontSize = float.Parse(key.GetValue("FontSize").ToString(), CultureInfo.InvariantCulture);
 
                 int count = Convert.ToInt32(key.GetValue("saves"));
                 for (int i = 0; i < count; i++)

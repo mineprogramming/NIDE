@@ -15,7 +15,7 @@ namespace NIDE
 
         public const int PROGRAM_VERSION = 
             /*THIS IS VERY IMPORTANT*/
-            /*Ta-boom-tss...*/     39;
+            /*Ta-boom-tss...*/     42;
             /*EXTREMELY*/
         public const int API_LEVEL = 3;
 

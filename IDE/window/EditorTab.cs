@@ -100,5 +100,15 @@ namespace NIDE.window
             else
                 e.Effect = DragDropEffects.None;
         }
+
+        private void fctb_ZoomChanged(object sender, EventArgs e)
+        {
+            RegistryWorker.FontSize = fctb.Font.Size;
+        }
+
+        private void fctb_Load(object sender, EventArgs e)
+        {
+            fctb.Font = new System.Drawing.Font(fctb.Font.FontFamily, RegistryWorker.FontSize);
+        }
     }
 }

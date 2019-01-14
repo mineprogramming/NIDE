@@ -245,5 +245,15 @@ namespace NIDE.window
             }
             Refresh();
         }
+
+        private void FileTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            EditorTab editorTab = (EditorTab)TabPages[SelectedIndex];
+            if((editorTab?.Editor?.TextBox?? null) != null)
+            {
+                Font font = editorTab.Editor.TextBox.Font;
+                editorTab.Editor.TextBox.Font = new Font(font.FontFamily, RegistryWorker.FontSize);
+            }
+        }
     }
 }

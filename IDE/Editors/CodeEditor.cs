@@ -13,7 +13,7 @@ namespace NIDE.Editors
         public List<int> Errors { get; } = new List<int>();
 
         public EditorTab EditorTab { get; private set; }
-        public FastColoredTextBox TextBox { get { return EditorTab.TextBox; } }
+        public FastColoredTextBox TextBox { get { return EditorTab?.TextBox; } }
         public bool EditBlank { get; set; } = false;
 
         public CodeEditor(string file) : base(file)

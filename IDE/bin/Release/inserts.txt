@@ -38,6 +38,11 @@ Callback.addCallback("ItemUse", function (coords, item, block) {
     //Tap on some block
 });~Using item - tap on some block~
 
+Callback.addCallback("LevelLoaded", function(){
+    //LevelLoaded - is called when the level is loaded 
+
+});~LevelLoaded - is called when the level is loaded~
+
 Callback.addCallback("tick", function(){
     //Tick - is called 20 times per second
 

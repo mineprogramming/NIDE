@@ -33,6 +33,7 @@
             // FileTabControl
             // 
             this.AllowDrop = true;
+            this.SelectedIndexChanged += new System.EventHandler(this.FileTabControl_SelectedIndexChanged);
             this.ResumeLayout(false);
 
         }
