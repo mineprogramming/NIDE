@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewDialog));
             this.rbItemsOpaque = new System.Windows.Forms.RadioButton();
             this.rbTerrainAtlas = new System.Windows.Forms.RadioButton();
             this.tbFileName = new System.Windows.Forms.TextBox();
@@ -70,7 +71,7 @@
             this.lbl1.Name = "lbl1";
             this.lbl1.Size = new System.Drawing.Size(55, 13);
             this.lbl1.TabIndex = 0;
-            this.lbl1.Text = "File name:";
+            resources.ApplyResources(this.lbl1, "lbl1");
             // 
             // NewDialog
             // 

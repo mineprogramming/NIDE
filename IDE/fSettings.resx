@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="dlgColor.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="dlgColor.TrayLocation" type="System.Drawing.Point, System.Drawing">
+    <value>17, 17</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAEAAAAAAAEAIADbFgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAFqJJ
@@ -222,5 +222,96 @@
         8kBkT3v1xt41lOjZ96D4oJ9EBDO89wws9aYIqjV5MxNnRlD5BwxnhIkzzZRo0b3aC3oznvY+hDCPKWAW
         M4XMWmZdqNMFlf6fR+UfyGlav45ZyxQyi5kCZl7UAf//GWuQf0h9DyEAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="btnNormal.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Namespaces‬ 
+and brackets</value>
+  </data>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="btnBack.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnComments.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnGlobal.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnHooks.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnKeywords.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnMembers.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnNamespaces.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnNumbers.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="btnStrings.Text" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="cbHighlighting.Text" xml:space="preserve">
+    <value>Simlify error highlighting</value>
+  </data>
+  <data name="cbLast.Text" xml:space="preserve">
+    <value>Load last project</value>
+  </data>
+  <data name="cbRunProgram.Text" xml:space="preserve">
+    <value>Run InnerCore or BlockLauncher</value>
+  </data>
+  <data name="fSettings.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Keywords</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Hooks</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Global</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Members</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Android scripts path:</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Normal text</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Numbers</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Strings</value>
+  </data>
+  <data name="rbCustom.Text" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="rbDevice.Text" xml:space="preserve">
+    <value>Device</value>
+  </data>
+  <data name="rbEmulator.Text" xml:space="preserve">
+    <value>Emulator</value>
   </data>
 </root>

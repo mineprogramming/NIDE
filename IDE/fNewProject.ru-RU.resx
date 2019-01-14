@@ -227,22 +227,22 @@
 </value>
   </data>
   <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Отмена</value>
   </data>
   <data name="btnCreate.Text" xml:space="preserve">
-    <value>Create</value>
+    <value>Создать</value>
   </data>
   <data name="fNewProject.Text" xml:space="preserve">
-    <value>New Project</value>
+    <value>Новый Проект</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Project directory</value>
+    <value>Папка проекта</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Project name</value>
+    <value>Имя проекта</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Source file</value>
+    <value>Архив</value>
   </data>
   <data name="rbCoreEngine.Text" xml:space="preserve">
     <value>CoreEngine</value>

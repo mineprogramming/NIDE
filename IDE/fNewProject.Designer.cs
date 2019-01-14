@@ -63,7 +63,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 17);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Project directory";
+            resources.ApplyResources(this.label1, "label1");
             // 
             // btnFolder
             // 
@@ -84,7 +84,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 17);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Project name";
+            resources.ApplyResources(this.label2, "label2");
             // 
             // tbName
             // 
@@ -103,9 +103,9 @@
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(91, 27);
             this.btnCreate.TabIndex = 6;
-            this.btnCreate.Text = "Create";
             this.btnCreate.UseVisualStyleBackColor = true;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            resources.ApplyResources(this.btnCreate, "btnCreate");
             // 
             // btnCancel
             // 
@@ -115,8 +115,8 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(91, 27);
             this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             // 
             // rbModPE
             // 
@@ -126,8 +126,8 @@
             this.rbModPE.Name = "rbModPE";
             this.rbModPE.Size = new System.Drawing.Size(74, 21);
             this.rbModPE.TabIndex = 8;
-            this.rbModPE.Text = "ModPE";
             this.rbModPE.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.rbModPE, "rbModPE");
             // 
             // rbCoreEngine
             // 
@@ -137,8 +137,8 @@
             this.rbCoreEngine.Name = "rbCoreEngine";
             this.rbCoreEngine.Size = new System.Drawing.Size(103, 21);
             this.rbCoreEngine.TabIndex = 9;
-            this.rbCoreEngine.Text = "CoreEngine";
             this.rbCoreEngine.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.rbCoreEngine, "rbCoreEngine");
             // 
             // btnSource
             // 
@@ -159,7 +159,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 17);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Source file";
+            resources.ApplyResources(this.label3, "label3");
             // 
             // tbSource
             // 
@@ -184,8 +184,8 @@
             this.rbInnerCore.Size = new System.Drawing.Size(91, 21);
             this.rbInnerCore.TabIndex = 13;
             this.rbInnerCore.TabStop = true;
-            this.rbInnerCore.Text = "InnerCore";
             this.rbInnerCore.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.rbInnerCore, "rbInnerCore");
             // 
             // fNewProject
             // 
@@ -211,9 +211,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "fNewProject";
-            this.Text = "New project";
             this.ResumeLayout(false);
             this.PerformLayout();
+            resources.ApplyResources(this, "fNewProject");
 
         }
 
