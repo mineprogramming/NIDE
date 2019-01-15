@@ -411,9 +411,6 @@
   <data name="logger.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="logger.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9.75pt</value>
-  </data>
   <data name="logger.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 19</value>
   </data>
@@ -1232,7 +1229,7 @@
     <value>Run RendererTool 3D</value>
   </data>
   <data name="toolStripEdit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 0</value>
+    <value>191, 0</value>
   </data>
   <data name="toolStripEdit.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 27</value>
@@ -1422,10 +1419,10 @@
     <value>Show generated script file (readonly)</value>
   </data>
   <data name="toolStripProject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>297, 0</value>
+    <value>301, 0</value>
   </data>
   <data name="toolStripProject.Size" type="System.Drawing.Size, System.Drawing">
-    <value>283, 27</value>
+    <value>322, 27</value>
   </data>
   <data name="toolStripProject.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1611,13 +1608,13 @@
     <value>Edit</value>
   </data>
   <data name="tsmiNewItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>214, 26</value>
   </data>
   <data name="tsmiNewItem.Text" xml:space="preserve">
     <value>New item</value>
   </data>
   <data name="tsmiCraftRecipie.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>214, 26</value>
   </data>
   <data name="tsmiCraftRecipie.Text" xml:space="preserve">
     <value>Craft recipie</value>
@@ -1626,7 +1623,7 @@
     <value>Ctrl+M</value>
   </data>
   <data name="tsmiNewScript.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>214, 26</value>
   </data>
   <data name="tsmiNewScript.Text" xml:space="preserve">
     <value>New script</value>
@@ -1635,7 +1632,7 @@
     <value>Ctrl+T</value>
   </data>
   <data name="tsmiNewTexture.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>214, 26</value>
   </data>
   <data name="tsmiNewTexture.Text" xml:space="preserve">
     <value>New texture</value>
@@ -1677,7 +1674,7 @@
     <value>Ctrl+B</value>
   </data>
   <data name="tsmiBuild.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>205, 26</value>
   </data>
   <data name="tsmiBuild.Text" xml:space="preserve">
     <value>Build</value>
@@ -1701,7 +1698,7 @@
     <value>Choose files to push</value>
   </data>
   <data name="tsmiPush.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>205, 26</value>
   </data>
   <data name="tsmiPush.Text" xml:space="preserve">
     <value>Push to device</value>
@@ -1710,7 +1707,7 @@
     <value>F5</value>
   </data>
   <data name="tsmiBuildAndPush.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>205, 26</value>
   </data>
   <data name="tsmiBuildAndPush.Text" xml:space="preserve">
     <value>Build and Push</value>
@@ -1719,7 +1716,7 @@
     <value>Ctrl+R</value>
   </data>
   <data name="tsmiRunJs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>205, 26</value>
   </data>
   <data name="tsmiRunJs.Text" xml:space="preserve">
     <value>Run</value>
@@ -1731,7 +1728,7 @@
     <value>Run</value>
   </data>
   <data name="tsmiSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>216, 26</value>
+    <value>137, 26</value>
   </data>
   <data name="tsmiSettings.Text" xml:space="preserve">
     <value>Settings</value>

@@ -117,9 +117,153 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnComments.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="dlgColor.TrayLocation" type="System.Drawing.Point, System.Drawing">
-    <value>17, 17</value>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>228, 137</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 17</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="btnKeywords.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>213, 101</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>116, 17</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>КлючевыеСлова</value>
+  </data>
+  <data name="btnStrings.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>55, 17</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Строки</value>
+  </data>
+  <data name="btnNumbers.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>275, 30</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 17</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Числа</value>
+  </data>
+  <data name="btnBack.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 208</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 17</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="btnNormal.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 17</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Нормальный</value>
+  </data>
+  <data name="btnMembers.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="btnGlobal.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 137</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 17</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>Глобальные</value>
+  </data>
+  <data name="btnHooks.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 101</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 17</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>Хуки</value>
+  </data>
+  <data name="btnNamespaces.Text" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 55</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>Цвета</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 17</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Путь Андроид скриптов:</value>
+  </data>
+  <data name="btnApply.Text" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="cbLast.Size" type="System.Drawing.Size, System.Drawing">
+    <value>223, 21</value>
+  </data>
+  <data name="cbLast.Text" xml:space="preserve">
+    <value>Загружать последний проект</value>
+  </data>
+  <data name="cbRunProgram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>290, 21</value>
+  </data>
+  <data name="cbRunProgram.Text" xml:space="preserve">
+    <value>Запускать InnerCore или BlockLauncher</value>
+  </data>
+  <data name="cbHighlighting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>277, 21</value>
+  </data>
+  <data name="cbHighlighting.Text" xml:space="preserve">
+    <value>Показывать ошибки подсвечиванием</value>
+  </data>
+  <data name="rbDevice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 21</value>
+  </data>
+  <data name="rbDevice.Text" xml:space="preserve">
+    <value>Устройство</value>
+  </data>
+  <data name="rbEmulator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 21</value>
+  </data>
+  <data name="rbEmulator.Text" xml:space="preserve">
+    <value>Эмулятор</value>
+  </data>
+  <data name="rbCustom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 21</value>
+  </data>
+  <data name="rbCustom.Text" xml:space="preserve">
+    <value>Свое</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -222,96 +366,5 @@
         8kBkT3v1xt41lOjZ96D4oJ9EBDO89wws9aYIqjV5MxNnRlD5BwxnhIkzzZRo0b3aC3oznvY+hDCPKWAW
         M4XMWmZdqNMFlf6fR+UfyGlav45ZyxQyi5kCZl7UAf//GWuQf0h9DyEAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="btnNormal.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Цвета</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Namespaces‬ 
-and brackets</value>
-  </data>
-  <data name="btnApply.Text" xml:space="preserve">
-    <value>Применить</value>
-  </data>
-  <data name="btnBack.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnComments.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnGlobal.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnHooks.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnKeywords.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnMembers.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnNamespaces.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnNumbers.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="btnStrings.Text" xml:space="preserve">
-    <value>Изменить</value>
-  </data>
-  <data name="cbHighlighting.Text" xml:space="preserve">
-    <value>Показывать ошибки подсвечиванием</value>
-  </data>
-  <data name="cbLast.Text" xml:space="preserve">
-    <value>Загружать последний проект</value>
-  </data>
-  <data name="cbRunProgram.Text" xml:space="preserve">
-    <value>Запускать InnerCore или BlockLauncher</value>
-  </data>
-  <data name="fSettings.Text" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>КлючевыеСлова</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>Комментарии</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Хуки</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>Глобальные</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Members</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Путь Андроид скриптов:</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Нормальный</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Фон</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Числа</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Строки</value>
-  </data>
-  <data name="rbCustom.Text" xml:space="preserve">
-    <value>Свое</value>
-  </data>
-  <data name="rbDevice.Text" xml:space="preserve">
-    <value>Устройство</value>
-  </data>
-  <data name="rbEmulator.Text" xml:space="preserve">
-    <value>Эмулятор</value>
   </data>
 </root>
