@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using System.Threading;
 using System.Windows.Forms;
 using NIDE.adb;
 using NIDE.Highlighting;
@@ -9,6 +11,24 @@ namespace NIDE
     {
         const string PATH_DEVICE = "/storage/emulated/0/games/com.mojang/mods/";
         const string PATH_EMULATOR = "/storage/emulated/legacy/games/com.mojang/mods/";
+
+        private class ComboboxItem
+        {
+            public string Text { get; set; }
+            public string Value { get; set; }
+
+            public ComboboxItem(string value, string text)
+            {
+                Text = text;
+                Value = value;
+            }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+
         public fSettings()
         {
             InitializeComponent();
@@ -37,6 +57,16 @@ namespace NIDE
             cbLast.Checked = ProgramData.LoadLast;
             cbRunProgram.Checked = ADBWorker.RunProgram;
             cbHighlighting.Checked = (Highlighter.ErrorStrategy == ErrorHighlightStrategy.LINE_NUMBER);
+
+            foreach(string culture in Constants.SupportedCultures)
+            {
+                ComboboxItem item = new ComboboxItem(culture, new CultureInfo(culture).DisplayName);
+                cbLanguage.Items.Add(item);
+                if(culture == Thread.CurrentThread.CurrentCulture.Name)
+                {
+                    cbLanguage.SelectedItem = item;
+                }
+            }
         }
 
         private void btnNormal_Click(object sender, EventArgs e)
@@ -171,6 +201,17 @@ namespace NIDE
         private void rbCustom_CheckedChanged(object sender, EventArgs e)
         {
             tbPath.Enabled = true;
+        }
+
+        private void cbLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboboxItem selectedItem = (ComboboxItem)cbLanguage.SelectedItem;
+            CultureInfo selectedCulture = new CultureInfo(selectedItem.Value);
+
+            Thread.CurrentThread.CurrentCulture = selectedCulture;
+            Thread.CurrentThread.CurrentUICulture = selectedCulture;
+
+            MessageBox.Show("Please, restart NIDE to apply changes");
         }
     }
 }

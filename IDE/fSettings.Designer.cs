@@ -60,12 +60,13 @@
             this.rbDevice = new System.Windows.Forms.RadioButton();
             this.rbEmulator = new System.Windows.Forms.RadioButton();
             this.rbCustom = new System.Windows.Forms.RadioButton();
+            this.cbLanguage = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.btnComments);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.btnKeywords);
@@ -86,6 +87,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.btnNamespaces);
             this.groupBox1.Controls.Add(this.label1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -268,10 +270,24 @@
             this.rbCustom.UseVisualStyleBackColor = true;
             this.rbCustom.CheckedChanged += new System.EventHandler(this.rbCustom_CheckedChanged);
             // 
+            // cbLanguage
+            // 
+            this.cbLanguage.FormattingEnabled = true;
+            resources.ApplyResources(this.cbLanguage, "cbLanguage");
+            this.cbLanguage.Name = "cbLanguage";
+            this.cbLanguage.SelectedIndexChanged += new System.EventHandler(this.cbLanguage_SelectedIndexChanged);
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
             // fSettings
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cbLanguage);
             this.Controls.Add(this.rbCustom);
             this.Controls.Add(this.rbEmulator);
             this.Controls.Add(this.rbDevice);
@@ -324,5 +340,7 @@
         private System.Windows.Forms.RadioButton rbDevice;
         private System.Windows.Forms.RadioButton rbEmulator;
         private System.Windows.Forms.RadioButton rbCustom;
+        private System.Windows.Forms.ComboBox cbLanguage;
+        private System.Windows.Forms.Label label12;
     }
 }

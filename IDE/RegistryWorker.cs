@@ -11,6 +11,8 @@ using NIDE.ProjectTypes.MCPEModding.ZCore;
 using NIDE.ProjectTypes.MCPEModding;
 using NIDE.Highlighting;
 using System.Globalization;
+using System.Threading;
+using FastColoredTextBoxNS;
 
 namespace NIDE
 {
@@ -35,7 +37,8 @@ namespace NIDE
             {"ErrorHighlighting", "False"},
             {"Author", ""},
             {"IndentModInfo", "True"},
-            {"FontSize", "10.8"}
+            {"FontSize", "10.8"},
+            {"Culture", Thread.CurrentThread.CurrentCulture.Name }
         };
 
         public static void Save(bool Last = true)
@@ -57,6 +60,7 @@ namespace NIDE
                 key.SetValue("Author", User);
                 key.SetValue("IndentModInfo", indentModInfo);
                 key.SetValue("FontSize", FontSize.ToString(CultureInfo.InvariantCulture));
+                key.SetValue("Culture", Thread.CurrentThread.CurrentCulture.Name);
 
                 if (ProgramData.Project != null && !ProgramData.Restart)
                 {
@@ -98,16 +102,36 @@ namespace NIDE
         private static bool first = true;
         internal static bool indentModInfo;
 
-        public static void Load()
+        private static RegistryKey key;
+
+        internal static void PreLoad()
         {
             try
             {
-                RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
+                key = Registry.CurrentUser.OpenSubKey("SOFTWARE", true);
                 if (!key.GetSubKeyNames().Contains("NIDE"))
                 {
                     throw new Exception("You have to install NIDE to use it correctly!");
                 }
                 key = key.OpenSubKey("NIDE", true);
+                RegistryKey subKey = key.OpenSubKey("settings");
+                if (subKey.GetValueNames().Contains("Culture"))
+                {
+                    CultureInfo savedCulture = new CultureInfo((string)subKey.GetValue("Culture"));
+                    Thread.CurrentThread.CurrentCulture = savedCulture;
+                    Thread.CurrentThread.CurrentUICulture = savedCulture;
+                }
+            }
+            catch (Exception e)
+            {
+                ProgramData.Log("RegistryWorker", e.Message, ProgramData.LOG_STYLE_ERROR);
+            }
+        }
+
+        public static void Load()
+        {
+            try
+            {
                 if (!File.Exists(Directory.GetCurrentDirectory() + "\\NIDE.exe"))
                     Directory.SetCurrentDirectory(key.GetValue("InstallPath").ToString());
 
@@ -182,7 +206,6 @@ namespace NIDE
             }
             catch (Exception e)
             {
-                
                 if (first)
                 {
                     ToDefaults();

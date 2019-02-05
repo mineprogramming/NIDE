@@ -38,8 +38,9 @@ namespace NIDE
         {
             Directory.SetCurrentDirectory(Application.StartupPath);
             this.args = args;
-            InitializeComponent();
             MainForm = this;
+            RegistryWorker.PreLoad();
+            InitializeComponent();
             RegistryWorker.Load();
             highlighter = new Highlighter();
         }
