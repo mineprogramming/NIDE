@@ -1229,7 +1229,7 @@
     <value>Run RendererTool 3D</value>
   </data>
   <data name="toolStripEdit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 0</value>
+    <value>189, 0</value>
   </data>
   <data name="toolStripEdit.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 27</value>
@@ -1419,7 +1419,7 @@
     <value>Show generated script file (readonly)</value>
   </data>
   <data name="toolStripProject.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 0</value>
+    <value>297, 0</value>
   </data>
   <data name="toolStripProject.Size" type="System.Drawing.Size, System.Drawing">
     <value>322, 27</value>
@@ -1727,6 +1727,21 @@
   <data name="tsmiRun.Text" xml:space="preserve">
     <value>Run</value>
   </data>
+  <data name="tsmiUpdatePlugins.Size" type="System.Drawing.Size, System.Drawing">
+    <value>216, 26</value>
+  </data>
+  <data name="tsmiUpdatePlugins.Text" xml:space="preserve">
+    <value>Update plugins list</value>
+  </data>
+  <data name="tss1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>213, 6</value>
+  </data>
+  <data name="tsmiPlugins.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 24</value>
+  </data>
+  <data name="tsmiPlugins.Text" xml:space="preserve">
+    <value>Plugins</value>
+  </data>
   <data name="tsmiSettings.Size" type="System.Drawing.Size, System.Drawing">
     <value>137, 26</value>
   </data>
@@ -1922,6 +1937,60 @@
   <data name="&gt;&gt;ProgressBarStatus.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tsbBuildPush.Name" xml:space="preserve">
+    <value>tsbBuildPush</value>
+  </data>
+  <data name="&gt;&gt;tsbBuildPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPush.Name" xml:space="preserve">
+    <value>tsbPush</value>
+  </data>
+  <data name="&gt;&gt;tsbPush.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSplitButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPushEverything.Name" xml:space="preserve">
+    <value>tsbPushEverything</value>
+  </data>
+  <data name="&gt;&gt;tsbPushEverything.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPushCode.Name" xml:space="preserve">
+    <value>tsbPushCode</value>
+  </data>
+  <data name="&gt;&gt;tsbPushCode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbPushFiles.Name" xml:space="preserve">
+    <value>tsbPushFiles</value>
+  </data>
+  <data name="&gt;&gt;tsbPushFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbBuild.Name" xml:space="preserve">
+    <value>tsbBuild</value>
+  </data>
+  <data name="&gt;&gt;tsbBuild.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbRun.Name" xml:space="preserve">
+    <value>tsbRun</value>
+  </data>
+  <data name="&gt;&gt;tsbRun.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbUpdate.Name" xml:space="preserve">
+    <value>tsbUpdate</value>
+  </data>
+  <data name="&gt;&gt;tsbUpdate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsbShowMain.Name" xml:space="preserve">
+    <value>tsbShowMain</value>
+  </data>
+  <data name="&gt;&gt;tsbShowMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;tsbCreate.Name" xml:space="preserve">
     <value>tsbCreate</value>
   </data>
@@ -1992,60 +2061,6 @@
     <value>tsbRenderer</value>
   </data>
   <data name="&gt;&gt;tsbRenderer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbBuildPush.Name" xml:space="preserve">
-    <value>tsbBuildPush</value>
-  </data>
-  <data name="&gt;&gt;tsbBuildPush.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbPush.Name" xml:space="preserve">
-    <value>tsbPush</value>
-  </data>
-  <data name="&gt;&gt;tsbPush.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSplitButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbPushEverything.Name" xml:space="preserve">
-    <value>tsbPushEverything</value>
-  </data>
-  <data name="&gt;&gt;tsbPushEverything.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbPushCode.Name" xml:space="preserve">
-    <value>tsbPushCode</value>
-  </data>
-  <data name="&gt;&gt;tsbPushCode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbPushFiles.Name" xml:space="preserve">
-    <value>tsbPushFiles</value>
-  </data>
-  <data name="&gt;&gt;tsbPushFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbBuild.Name" xml:space="preserve">
-    <value>tsbBuild</value>
-  </data>
-  <data name="&gt;&gt;tsbBuild.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbRun.Name" xml:space="preserve">
-    <value>tsbRun</value>
-  </data>
-  <data name="&gt;&gt;tsbRun.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbUpdate.Name" xml:space="preserve">
-    <value>tsbUpdate</value>
-  </data>
-  <data name="&gt;&gt;tsbUpdate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tsbShowMain.Name" xml:space="preserve">
-    <value>tsbShowMain</value>
-  </data>
-  <data name="&gt;&gt;tsbShowMain.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiFile.Name" xml:space="preserve">
@@ -2263,6 +2278,24 @@
   </data>
   <data name="&gt;&gt;tsmiRunJs.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiPlugins.Name" xml:space="preserve">
+    <value>tsmiPlugins</value>
+  </data>
+  <data name="&gt;&gt;tsmiPlugins.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tsmiUpdatePlugins.Name" xml:space="preserve">
+    <value>tsmiUpdatePlugins</value>
+  </data>
+  <data name="&gt;&gt;tsmiUpdatePlugins.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tss1.Name" xml:space="preserve">
+    <value>tss1</value>
+  </data>
+  <data name="&gt;&gt;tss1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tsmiOptions.Name" xml:space="preserve">
     <value>tsmiOptions</value>

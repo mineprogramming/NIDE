@@ -123,6 +123,8 @@
     </Compile>
     <Compile Include="adb\FileSyncProgressMonitor.cs" />
     <Compile Include="adb\OutputLogReceiver.cs" />
+    <Compile Include="PluginSystem\JavaScriptPlugin.cs" />
+    <Compile Include="PluginSystem\Plugin.cs" />
     <Compile Include="ProjectTypes\MCPEModding\Autocomplete.cs" />
     <Compile Include="ProjectTypes\MCPEModding\CodeAnalysisEngine.cs" />
     <Compile Include="window\EditorTab.cs">

@@ -54,6 +54,16 @@
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lbInserts = new NIDE.window.InsertListBox();
+            this.toolStripProject = new System.Windows.Forms.ToolStrip();
+            this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
+            this.tsbPush = new System.Windows.Forms.ToolStripSplitButton();
+            this.tsbPushEverything = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbPushCode = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbPushFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
+            this.tsbRun = new System.Windows.Forms.ToolStripButton();
+            this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
+            this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
             this.toolStripGeneral = new System.Windows.Forms.ToolStrip();
             this.tsbCreate = new System.Windows.Forms.ToolStripButton();
             this.tsbOpen = new System.Windows.Forms.ToolStripButton();
@@ -68,16 +78,6 @@
             this.tsbRedo = new System.Windows.Forms.ToolStripButton();
             this.tsbSettings = new System.Windows.Forms.ToolStripButton();
             this.tsbRenderer = new System.Windows.Forms.ToolStripButton();
-            this.toolStripProject = new System.Windows.Forms.ToolStrip();
-            this.tsbBuildPush = new System.Windows.Forms.ToolStripButton();
-            this.tsbPush = new System.Windows.Forms.ToolStripSplitButton();
-            this.tsbPushEverything = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbPushCode = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbPushFiles = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsbBuild = new System.Windows.Forms.ToolStripButton();
-            this.tsbRun = new System.Windows.Forms.ToolStripButton();
-            this.tsbUpdate = new System.Windows.Forms.ToolStripButton();
-            this.tsbShowMain = new System.Windows.Forms.ToolStripButton();
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiNewProject = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,6 +115,9 @@
             this.TsmiChooseFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiBuildAndPush = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiRunJs = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiPlugins = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiUpdatePlugins = new System.Windows.Forms.ToolStripMenuItem();
+            this.tss1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmiOptions = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiHelp = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,9 +147,9 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.toolStripProject.SuspendLayout();
             this.toolStripGeneral.SuspendLayout();
             this.toolStripEdit.SuspendLayout();
-            this.toolStripProject.SuspendLayout();
             this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -382,6 +385,84 @@
             this.lbInserts.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbInserts_MouseMove);
             this.lbInserts.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbInserts_MouseUp);
             // 
+            // toolStripProject
+            // 
+            resources.ApplyResources(this.toolStripProject, "toolStripProject");
+            this.toolStripProject.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStripProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbBuildPush,
+            this.tsbPush,
+            this.tsbBuild,
+            this.tsbRun,
+            this.tsbUpdate,
+            this.tsbShowMain});
+            this.toolStripProject.Name = "toolStripProject";
+            this.toolStripProject.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            // 
+            // tsbBuildPush
+            // 
+            this.tsbBuildPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbBuildPush, "tsbBuildPush");
+            this.tsbBuildPush.Name = "tsbBuildPush";
+            this.tsbBuildPush.Click += new System.EventHandler(this.TsbBuildPush_Click);
+            // 
+            // tsbPush
+            // 
+            this.tsbPush.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbPushEverything,
+            this.tsbPushCode,
+            this.tsbPushFiles});
+            resources.ApplyResources(this.tsbPush, "tsbPush");
+            this.tsbPush.Name = "tsbPush";
+            this.tsbPush.Tag = this.tsbPushEverything;
+            this.tsbPush.ButtonClick += new System.EventHandler(this.TsbPush_ButtonClick);
+            // 
+            // tsbPushEverything
+            // 
+            this.tsbPushEverything.Name = "tsbPushEverything";
+            resources.ApplyResources(this.tsbPushEverything, "tsbPushEverything");
+            this.tsbPushEverything.Click += new System.EventHandler(this.TsbPushEverything_Click);
+            // 
+            // tsbPushCode
+            // 
+            this.tsbPushCode.Name = "tsbPushCode";
+            resources.ApplyResources(this.tsbPushCode, "tsbPushCode");
+            this.tsbPushCode.Click += new System.EventHandler(this.TsbPushCode_Click);
+            // 
+            // tsbPushFiles
+            // 
+            this.tsbPushFiles.Name = "tsbPushFiles";
+            resources.ApplyResources(this.tsbPushFiles, "tsbPushFiles");
+            this.tsbPushFiles.Click += new System.EventHandler(this.TsbPushFiles_Click);
+            // 
+            // tsbBuild
+            // 
+            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbBuild, "tsbBuild");
+            this.tsbBuild.Name = "tsbBuild";
+            this.tsbBuild.Click += new System.EventHandler(this.tsmiBuild_Click);
+            // 
+            // tsbRun
+            // 
+            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbRun, "tsbRun");
+            this.tsbRun.Name = "tsbRun";
+            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
+            // 
+            // tsbUpdate
+            // 
+            this.tsbUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbUpdate, "tsbUpdate");
+            this.tsbUpdate.Name = "tsbUpdate";
+            this.tsbUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
+            // 
+            // tsbShowMain
+            // 
+            this.tsbShowMain.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.tsbShowMain, "tsbShowMain");
+            this.tsbShowMain.Name = "tsbShowMain";
+            this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
+            // 
             // toolStripGeneral
             // 
             resources.ApplyResources(this.toolStripGeneral, "toolStripGeneral");
@@ -492,84 +573,6 @@
             this.tsbRenderer.Name = "tsbRenderer";
             this.tsbRenderer.Click += new System.EventHandler(this.tsmiRenderer_Click);
             // 
-            // toolStripProject
-            // 
-            resources.ApplyResources(this.toolStripProject, "toolStripProject");
-            this.toolStripProject.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStripProject.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbBuildPush,
-            this.tsbPush,
-            this.tsbBuild,
-            this.tsbRun,
-            this.tsbUpdate,
-            this.tsbShowMain});
-            this.toolStripProject.Name = "toolStripProject";
-            this.toolStripProject.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            // 
-            // tsbBuildPush
-            // 
-            this.tsbBuildPush.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbBuildPush, "tsbBuildPush");
-            this.tsbBuildPush.Name = "tsbBuildPush";
-            this.tsbBuildPush.Click += new System.EventHandler(this.TsbBuildPush_Click);
-            // 
-            // tsbPush
-            // 
-            this.tsbPush.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbPushEverything,
-            this.tsbPushCode,
-            this.tsbPushFiles});
-            resources.ApplyResources(this.tsbPush, "tsbPush");
-            this.tsbPush.Name = "tsbPush";
-            this.tsbPush.Tag = this.tsbPushEverything;
-            this.tsbPush.ButtonClick += new System.EventHandler(this.TsbPush_ButtonClick);
-            // 
-            // tsbPushEverything
-            // 
-            this.tsbPushEverything.Name = "tsbPushEverything";
-            resources.ApplyResources(this.tsbPushEverything, "tsbPushEverything");
-            this.tsbPushEverything.Click += new System.EventHandler(this.TsbPushEverything_Click);
-            // 
-            // tsbPushCode
-            // 
-            this.tsbPushCode.Name = "tsbPushCode";
-            resources.ApplyResources(this.tsbPushCode, "tsbPushCode");
-            this.tsbPushCode.Click += new System.EventHandler(this.TsbPushCode_Click);
-            // 
-            // tsbPushFiles
-            // 
-            this.tsbPushFiles.Name = "tsbPushFiles";
-            resources.ApplyResources(this.tsbPushFiles, "tsbPushFiles");
-            this.tsbPushFiles.Click += new System.EventHandler(this.TsbPushFiles_Click);
-            // 
-            // tsbBuild
-            // 
-            this.tsbBuild.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbBuild, "tsbBuild");
-            this.tsbBuild.Name = "tsbBuild";
-            this.tsbBuild.Click += new System.EventHandler(this.tsmiBuild_Click);
-            // 
-            // tsbRun
-            // 
-            this.tsbRun.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbRun, "tsbRun");
-            this.tsbRun.Name = "tsbRun";
-            this.tsbRun.Click += new System.EventHandler(this.tsmiRunJs_Click);
-            // 
-            // tsbUpdate
-            // 
-            this.tsbUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbUpdate, "tsbUpdate");
-            this.tsbUpdate.Name = "tsbUpdate";
-            this.tsbUpdate.Click += new System.EventHandler(this.tsmiUpdate_Click);
-            // 
-            // tsbShowMain
-            // 
-            this.tsbShowMain.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.tsbShowMain, "tsbShowMain");
-            this.tsbShowMain.Name = "tsbShowMain";
-            this.tsbShowMain.Click += new System.EventHandler(this.tsbShowMain_Click);
-            // 
             // MenuStrip
             // 
             this.MenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -579,6 +582,7 @@
             this.tsmiInserts,
             this.tsmiProject,
             this.tsmiRun,
+            this.tsmiPlugins,
             this.tsmiOptions,
             this.tsmiHelp});
             resources.ApplyResources(this.MenuStrip, "MenuStrip");
@@ -828,6 +832,25 @@
             resources.ApplyResources(this.tsmiRunJs, "tsmiRunJs");
             this.tsmiRunJs.Click += new System.EventHandler(this.tsmiRunJs_Click);
             // 
+            // tsmiPlugins
+            // 
+            this.tsmiPlugins.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiUpdatePlugins,
+            this.tss1});
+            this.tsmiPlugins.Name = "tsmiPlugins";
+            resources.ApplyResources(this.tsmiPlugins, "tsmiPlugins");
+            // 
+            // tsmiUpdatePlugins
+            // 
+            this.tsmiUpdatePlugins.Name = "tsmiUpdatePlugins";
+            resources.ApplyResources(this.tsmiUpdatePlugins, "tsmiUpdatePlugins");
+            this.tsmiUpdatePlugins.Click += new System.EventHandler(this.tsmiUpdatePlugins_Click);
+            // 
+            // tss1
+            // 
+            this.tss1.Name = "tss1";
+            resources.ApplyResources(this.tss1, "tss1");
+            // 
             // tsmiOptions
             // 
             this.tsmiOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -915,12 +938,12 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.toolStripProject.ResumeLayout(false);
+            this.toolStripProject.PerformLayout();
             this.toolStripGeneral.ResumeLayout(false);
             this.toolStripGeneral.PerformLayout();
             this.toolStripEdit.ResumeLayout(false);
             this.toolStripEdit.PerformLayout();
-            this.toolStripProject.ResumeLayout(false);
-            this.toolStripProject.PerformLayout();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -1023,6 +1046,9 @@
         private NIDE.window.InsertListBox lbInserts;
         private System.Windows.Forms.ToolStripMenuItem tsmiImportArchive;
         private System.Windows.Forms.ToolStripMenuItem tsmiDuplicate;
+        private System.Windows.Forms.ToolStripMenuItem tsmiPlugins;
+        private System.Windows.Forms.ToolStripSeparator tss1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiUpdatePlugins;
     }
 }
 

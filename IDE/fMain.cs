@@ -49,6 +49,7 @@ namespace NIDE
         {
             CheckUpdates();
             SendStats();
+            UpdatePlugins();
 
             if (args.Length > 0 && args[0] == "update")
             {
@@ -951,8 +952,39 @@ namespace NIDE
                 lbInsertsMouseDown = false;
             }
         }
+
         #endregion
 
-        
+        #region Plugins
+        private void tsmiUpdatePlugins_Click(object sender, EventArgs e)
+        {
+            UpdatePlugins();
+        }
+
+        private void FMain_PluginClick(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            new PluginSystem.JavaScriptPlugin(item.Text).Run();
+        }
+
+        private void UpdatePlugins()
+        {
+            for (int i = tsmiPlugins.DropDownItems.Count - 1; i >= 0; i--)
+            {
+                ToolStripItem item = tsmiPlugins.DropDownItems[i];
+                if (item != tsmiUpdatePlugins && item != tss1)
+                {
+                    tsmiPlugins.DropDownItems.Remove(item);
+                }
+            }
+            var files = Directory.EnumerateFiles("plugins");
+            foreach (string file in files)
+            {
+                string name = file.Split('\\')[1];
+                name = name.Substring(0, name.LastIndexOf('.'));
+                tsmiPlugins.DropDownItems.Add(name).Click += FMain_PluginClick; ;
+            }
+        }
+        #endregion
     }
 }
