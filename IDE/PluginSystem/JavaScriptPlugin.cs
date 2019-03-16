@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using Noesis.Javascript;
 
 namespace NIDE.PluginSystem
@@ -13,14 +15,30 @@ namespace NIDE.PluginSystem
 
         private class Nide
         {
+            private string name;
+            public Nide(string name)
+            {
+                this.name = name;
+            }
+
             public void log(string message)
             {
-                ProgramData.Log("Plugin", message, ProgramData.LOG_STYLE_NORMAL);
+                ProgramData.Log("Plugin: " + name, message, ProgramData.LOG_STYLE_NORMAL);
+            }
+
+            public void success(string message)
+            {
+                ProgramData.Log("Plugin: " + name, message, ProgramData.LOG_STYLE_SUCCESS);
             }
 
             public void warn(string message)
             {
-                ProgramData.Log("Plugin", message, ProgramData.LOG_STYLE_WARN);
+                ProgramData.Log("Plugin: " + name, message, ProgramData.LOG_STYLE_WARN);
+            }
+
+            public void error(string message)
+            {
+                ProgramData.Log("Plugin: " + name, message, ProgramData.LOG_STYLE_ERROR);
             }
         }
 
@@ -51,6 +69,11 @@ namespace NIDE.PluginSystem
                 return Directory.EnumerateFiles(path, pattern, SearchOption.AllDirectories).ToArray();
             }
 
+            public bool exists(string path)
+            {
+                return System.IO.File.Exists(path) || Directory.Exists(path);
+            }
+
             public void copy(string from, string to)
             {
                 System.IO.File.Copy(from, to, true);
@@ -76,12 +99,59 @@ namespace NIDE.PluginSystem
 
             public string getBlocksDirectory()
             {
-                return ProgramData.Project.TerrainAtlasPath;
+                if (Directory.Exists(ProgramData.Project.TerrainAtlasPath))
+                {
+                    return ProgramData.Project.TerrainAtlasPath;
+                } else 
+                {
+                    return ProgramData.Project.Path;
+                }                 
             }
 
             public string getItemsDirectory()
             {
-                return ProgramData.Project.ItemsOpaquePath;
+                if (Directory.Exists(ProgramData.Project.TerrainAtlasPath))
+                {
+                    return ProgramData.Project.ItemsOpaquePath;
+                }
+                else
+                {
+                    return ProgramData.Project.Path;
+                }
+            }
+        }
+
+        private class Plugin
+        {
+            private Dictionary<string, JavascriptFunction> menuButtons = new Dictionary<string, JavascriptFunction>();
+            private string name;
+
+            public Plugin(string name)
+            {
+                this.name = name;
+            }
+
+            private void menuButtonClick(object sender, EventArgs e)
+            {
+                string command = ((ToolStripItem)sender).Text;
+                try
+                {
+                    menuButtons[command].Call();
+                }
+                catch (Exception ex)
+                {
+                    ProgramData.Log("Plugin: " + name, ex.Message, ProgramData.LOG_STYLE_ERROR);
+                }
+                
+            }
+
+            public void registerMenuButton(string text, JavascriptFunction function)
+            {
+                if (menuButtons.Keys.Contains(text)){
+                    throw new Exception("Button already exists: " + text);
+                }
+                menuButtons.Add(text, function);
+                ProgramData.MainForm.addPluginMenuItem(text, menuButtonClick);
             }
         }
 
@@ -89,16 +159,23 @@ namespace NIDE.PluginSystem
         {
             this.name = name;
             string file = "plugins\\" + name + ".js";
-            source = System.IO.File.ReadAllText(file, ProgramData.Encoding);
-            context = new JavascriptContext();
+            try
+            {
+                source = System.IO.File.ReadAllText(file, ProgramData.Encoding);
+                context = new JavascriptContext();
+                context.SetParameter("Nide", new Nide(name));
+                context.SetParameter("File", new File());
+                context.SetParameter("Project", new Project());
+                context.SetParameter("Plugin", new Plugin(name));
+            }
+            catch (Exception e)
+            {
+                ProgramData.Log("Plugin: " + name, e.Message, ProgramData.LOG_STYLE_ERROR);
+            }
         }
 
         public override void Run()
         {
-            context.SetParameter("Nide", new Nide());
-            context.SetParameter("File", new File());
-            context.SetParameter("Project", new Project());
-
             try
             {
                 context.Run(source);
@@ -106,7 +183,6 @@ namespace NIDE.PluginSystem
             {
                 ProgramData.Log("Plugin: " + name, e.Message, ProgramData.LOG_STYLE_ERROR);
             }
-            
         }
     }
 }

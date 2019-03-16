@@ -145,14 +145,29 @@ namespace NIDE
                 char[] brackets = fctbMain.AutoCompleteBracketsList;
                 Place position = fctbMain.Selection.Start;
 
+                string line = fctbMain.Lines[position.iLine];
+
+                // Check for four spaces
+                if (position.iChar >= 4)
+                {
+                    if (line[position.iChar - 1] == ' '
+                        && line[position.iChar - 2] == ' '
+                        && line[position.iChar - 3] == ' ')
+                    {
+                        fctbMain.Selection.Start = new Place(position.iChar - 3, position.iLine);
+                        fctbMain.Selection.End = new Place(position.iChar - 1, position.iLine);
+                        fctbMain.ClearSelected();
+                    }
+                }
+
                 //Check position for arrays ranges
                 if (position.iChar == 0 || fctbMain.Lines[position.iLine].Length <= position.iChar)
                     return;
 
-                for(int i = 0; i < brackets.Length; i += 2)
+                for (int i = 0; i < brackets.Length; i += 2)
                 {
-                    if(fctbMain.Lines[position.iLine][position.iChar - 1] == brackets[i]
-                        && fctbMain.Lines[position.iLine][position.iChar] == brackets[i + 1])
+                    if(line[position.iChar - 1] == brackets[i]
+                        && line[position.iChar] == brackets[i + 1])
                     {
                         fctbMain.Selection.Start = new Place(position.iChar, position.iLine);
                         fctbMain.Selection.End = new Place(position.iChar + 1, position.iLine);
@@ -961,12 +976,6 @@ namespace NIDE
             UpdatePlugins();
         }
 
-        private void FMain_PluginClick(object sender, EventArgs e)
-        {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            new PluginSystem.JavaScriptPlugin(item.Text).Run();
-        }
-
         private void UpdatePlugins()
         {
             for (int i = tsmiPlugins.DropDownItems.Count - 1; i >= 0; i--)
@@ -982,8 +991,13 @@ namespace NIDE
             {
                 string name = file.Split('\\')[1];
                 name = name.Substring(0, name.LastIndexOf('.'));
-                tsmiPlugins.DropDownItems.Add(name).Click += FMain_PluginClick; ;
+                new PluginSystem.JavaScriptPlugin(name).Run();
             }
+        }
+        
+        public void addPluginMenuItem(string text, EventHandler handler)
+        {
+            tsmiPlugins.DropDownItems.Add(text).Click += handler;
         }
         #endregion
     }
