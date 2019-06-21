@@ -9,18 +9,22 @@ namespace NIDE.adb
 
         public void AddOutput(byte[] data, int offset, int length)
         {
-            string item = Encoding.UTF8.GetString(data);
+            string item = Encoding.UTF8.GetString(data, offset, length);
             string[] items = item.Split('\n');
-            foreach (var it in items)
+            foreach (var its in items)
+            {
+                string it = its.Trim();
                 if (it.Contains("INNERCORE"))
                 {
                     string msg = it.Substring(it.IndexOf(':') + 2);
                     ProgramData.Log("InnerCore", msg, ProgramData.LOG_STYLE_NORMAL);
-                } else if (it.Contains("MOD-PRINT"))
+                }
+                else if (it.Contains("MOD-PRINT"))
                 {
                     string msg = it.Substring(it.IndexOf(':') + 2);
                     ProgramData.Log("Mod-Print", msg, ProgramData.LOG_STYLE_NORMAL);
                 }
+            }
         }
 
         public void Flush()

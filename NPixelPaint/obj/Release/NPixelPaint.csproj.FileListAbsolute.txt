@@ -20,3 +20,14 @@ E:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.CoreCom
 E:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.CopyComplete
 E:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.exe
 E:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.pdb
+D:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\NPixelPaint.exe.config
+D:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\NPixelPaint.exe
+D:\OneDrive\VisualStudio\NIDE\IDE\bin\Release\bin\NPixelPaint.pdb
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csprojAssemblyReference.cache
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.fPaint.resources
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.Properties.Resources.resources
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.GenerateResource.cache
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.CoreCompileInputs.cache
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.csproj.CopyComplete
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.exe
+D:\OneDrive\VisualStudio\NIDE\NPixelPaint\obj\Release\NPixelPaint.pdb
